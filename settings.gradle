@@ -20,3 +20,6 @@ plugins {
 }
 
 rootProject.name = 'spring-boot-learning'
+
+// 集成 spring-boot-actuator
+include("spring-boot-actuator:demo1")
