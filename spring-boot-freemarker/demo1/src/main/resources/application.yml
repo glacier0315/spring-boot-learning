@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active: dev
+
+  freemarker:
+    cache: false
+    request-context-attribute: ctx
+  devtools:
+    restart:
+      additional-paths: src/main/java
+      exclude: static/**, public/**
+
