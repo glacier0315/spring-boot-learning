@@ -1,0 +1,7 @@
+subprojects {
+    dependencies {
+        implementation "com.alibaba:druid-spring-boot-starter:${druidVersion}"
+    }
+}
+
+

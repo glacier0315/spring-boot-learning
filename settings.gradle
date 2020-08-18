@@ -24,6 +24,7 @@ rootProject.name = 'spring-boot-learning'
 // 集成 spring-boot-actuator
 include("spring-boot-actuator:demo1")
 
+include("spring-boot-data-jpa:demo1")
 include("spring-boot-druid:demo1")
 //include("spring-boot-easyexcel:demo1")
 //include("spring-boot-jersey:demo1")
