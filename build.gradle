@@ -4,3 +4,82 @@
  * This is a general purpose Gradle build.
  * Learn how to create Gradle builds at https://guides.gradle.org/creating-new-gradle-builds
  */
+// 配置所有项目
+allprojects {
+    apply plugin: 'java'
+
+    // 指定jdk版本
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    group = 'com.glacier'
+    description = 'spring-boot-learning'
+
+    // 指定仓库
+    repositories {
+        mavenLocal()
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/spring' }
+        maven { url 'https://maven.aliyun.com/repository/spring-plugin' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+    }
+
+    dependencies {
+        // 引入 lombok 方式二
+        compileOnly "org.projectlombok:lombok:${lombokVersion}"
+        annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+        testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+        testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+        // 配置junit 5 单元测试
+        testImplementation "org.junit.jupiter:junit-jupiter:5.6.2"
+    }
+
+    configurations {
+        // 排除兼容junit4 相关依赖
+        compile.exclude(group: "org.junit.vintage", module: "junit-vintage-engine")
+    }
+
+    // 设置编码为UTF-8
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+
+    //配置 删除文件夹
+    task cleanTempFiles {
+        doLast {
+            delete "out"
+            delete "logs"
+        }
+    }
+    clean.dependsOn cleanTempFiles
+
+    // 配置 创建源文件夹
+    task mkdirs {
+        sourceSets*.java.srcDirs*.each {
+            it.mkdirs()
+        }
+        sourceSets*.resources.srcDirs*.each {
+            it.mkdirs()
+        }
+    }
+    // 拷贝jar包
+    task copyJars(type: Copy) {
+        // 运行时
+        from configurations.runtimeClasspath
+        // 目标位置
+        into "$buildDir/libs"
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}
+
+subprojects {
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+}
