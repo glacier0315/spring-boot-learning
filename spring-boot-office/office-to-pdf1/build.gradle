@@ -1,0 +1,21 @@
+ext {
+    jsoupVersion = "1.10.3"
+    coreRendererVersion="R8"
+    itextVersion="4.2.2"
+    poiVersion = "3.16"
+    commonsIoVersion = "2.5"
+}
+
+dependencies {
+    // 本地依赖
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation(
+            "commons-io:commons-io:${commonsIoVersion}",
+            "org.apache.poi:poi:${poiVersion}",
+            "org.apache.poi:poi-ooxml:${poiVersion}",
+            "org.jsoup:jsoup:${jsoupVersion}",
+            "org.xhtmlrenderer:core-renderer:${coreRendererVersion}",
+            "com.lowagie:itext:${itextVersion}"
+    )
+}
