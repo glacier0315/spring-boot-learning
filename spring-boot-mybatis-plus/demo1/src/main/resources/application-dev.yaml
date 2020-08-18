@@ -1,0 +1,9 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.10.130:3306/eboot?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
