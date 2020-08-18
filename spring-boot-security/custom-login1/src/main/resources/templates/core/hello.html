@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="text/html;charset=utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="IE=edge,Chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap-theme.min.css}" rel="stylesheet"/>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script th:src="@{/js/html5shiv.min.js}"></script>
+    <script th:src="@{/js/respond.min.js}"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="grid">
+    <div class="row col-md-12">
+        <div class="tile tile-clouds col-md-3 col-xs-12">
+            <h1 th:text="${s[0]}"></h1>
+        </div>
+        <div class="tile tile-emerald col-md-3 col-xs-12">
+            <h1 th:text="${s[1]}"></h1>
+        </div>
+        <div class="tile tile-turquoise col-md-3 col-xs-12">
+            <h1 th:text="${s[2]}"></h1>
+        </div>
+        <div class="tile tile-amethyst col-md-3 col-xs-12">
+            <h1 th:text="${s[3]}"></h1>
+        </div>
+    </div>
+</div>
+</body>
+<script th:src="@{/js/jquery-1.12.4.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:inline="javascript">
+
+</script>
+</html>
