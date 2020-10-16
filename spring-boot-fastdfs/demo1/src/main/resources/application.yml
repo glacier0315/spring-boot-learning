@@ -1,0 +1,66 @@
+spring:
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 200MB
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          public-key-location: classpath:pubkey.pub
+
+
+# 分布式文件系统FDFS配置
+fdfs:
+  soTimeout: 1500 #socket连接超时时长
+  connectTimeout: 600 #连接tracker服务器超时时长
+  resHost: 192.168.10.132   #nginx访问地址
+  resPort: 8001             #nginx访问端口
+  thumbImage: #缩略图生成参数，可选
+    width: 150
+    height: 150
+  trackerList: #TrackerList参数,支持多个，我这里只有一个，如果有多个在下方加- x.x.x.x:port
+    - 192.168.10.132:22122
+  pool:
+    #从池中借出的对象的最大数目（配置为-1表示不限制）
+    max-total: -1
+    #获取连接时的最大等待毫秒数(默认配置为5秒)
+    max-wait-millis: 5000
+    #每个key最大连接数
+    max-total-per-key: 50
+    #每个key对应的连接池最大空闲连接数
+    max-idle-per-key: 10
+    #每个key对应的连接池最小空闲连接数
+    min-idle-per-key: 5
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+
+
+## 自定义
+settings:
+  feign:
+    clientId: uas_client
+  security:
+    permit-all:
+      - /login/**
+      - /logout
+      - /favicon.ico
+      - /static/**
+      - /webjars/**
+      - /actuator/**
+      - /druid/**
+      - /swagger-ui/**
+      - /swagger-resources/**
+      - /v3/api-docs
+      - /oauth/**
