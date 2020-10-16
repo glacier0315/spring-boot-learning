@@ -1,0 +1,17 @@
+ext {
+    easyExcelVerision="2.2.6"
+}
+
+subprojects {
+    dependencies {
+        implementation("org.springframework.boot:spring-boot-starter-web")
+
+        implementation("com.alibaba:easyexcel:${easyExcelVerision}")
+
+        implementation('org.springframework.boot:spring-boot-starter-actuator')
+        runtimeOnly("org.springframework.boot:spring-boot-devtools")
+        testImplementation("org.springframework.boot:spring-boot-starter-test")
+    }
+}
+
+
