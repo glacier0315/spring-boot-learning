@@ -35,7 +35,7 @@ public class UserController {
     @RequestMapping(method = RequestMethod.GET)
     public List<User> getUsers() {
         logger.info("获取所有用户！");
-        return userService.findAll();
+        return this.userService.findAll();
     }
 
     /**
@@ -45,8 +45,8 @@ public class UserController {
     @RequestMapping(method = RequestMethod.POST)
     public Result create(User user) {
         logger.info("添加用户", user);
-        userService.saveOrUpdate(user);
-        return new Result("添加用户成功！", user);
+        this.userService.saveOrUpdate(user);
+        return Result.ok("添加用户成功！", user);
     }
 
     /**
@@ -56,8 +56,8 @@ public class UserController {
     @RequestMapping(method = RequestMethod.PUT)
     public Result update(User user) {
         logger.info("更新用户", user);
-        userService.saveOrUpdate(user);
-        return new Result("更新用户成功！", user);
+        this.userService.saveOrUpdate(user);
+        return Result.ok("更新用户成功！", user);
     }
 
     /**
@@ -67,8 +67,8 @@ public class UserController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Result findOne(@PathVariable String id) {
         logger.info("获取id为" + id + "用户！");
-        User user = userService.findOne(id);
-        return new Result("获取用户成功！", user);
+        User user = this.userService.findOne(id);
+        return Result.ok("获取用户成功！", user);
     }
 
     /**
@@ -78,8 +78,8 @@ public class UserController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public Result delete(@PathVariable String id) {
         logger.info("输出id为：" + id + " 的用户！");
-        userService.deleteById(id);
-        return new Result("删除用户成功！", null);
+        this.userService.deleteById(id);
+        return Result.ok("删除用户成功！", null);
     }
 
 
