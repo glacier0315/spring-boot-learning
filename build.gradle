@@ -20,11 +20,11 @@ allprojects {
         mavenLocal()
         maven { url 'https://maven.aliyun.com/repository/public' }
         maven { url 'https://maven.aliyun.com/repository/central' }
-        maven { url 'https://maven.aliyun.com/repository/jcenter' }
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'https://maven.aliyun.com/repository/spring' }
         maven { url 'https://maven.aliyun.com/repository/spring-plugin' }
         maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        mavenCentral()
     }
 
     dependencies {
@@ -38,14 +38,19 @@ allprojects {
         testImplementation "org.junit.jupiter:junit-jupiter:5.6.2"
     }
 
-    configurations {
-        // 排除兼容junit4 相关依赖
-        compile.exclude(group: "org.junit.vintage", module: "junit-vintage-engine")
-    }
-
     // 设置编码为UTF-8
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
+    }
+
+    javadoc {
+        options{
+            encoding "UTF-8"
+            charSet 'UTF-8'
+            author true
+            version true
+            // links "<a href='http://docs.oracle.com/javase/8/docs/api'>http://docs.oracle.com/javase/8/docs/api</a>"
+        }
     }
 
     //配置 删除文件夹
@@ -75,7 +80,10 @@ allprojects {
     }
 
     test {
-        useJUnitPlatform()
+        useJUnitPlatform {
+            // includeEngines 'junit-jupiter'
+            excludeEngines 'junit-vintage'
+        }
     }
 }
 
