@@ -6,7 +6,8 @@
  */
 // 配置所有项目
 allprojects {
-    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply from: "$rootDir/version.gradle"
 
     // 指定jdk版本
     sourceCompatibility = 1.8
@@ -27,17 +28,6 @@ allprojects {
         mavenCentral()
     }
 
-    dependencies {
-        // 引入 lombok 方式二
-        compileOnly "org.projectlombok:lombok:${lombokVersion}"
-        annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
-        testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
-        testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
-
-        // 配置junit 5 单元测试
-        testImplementation "org.junit.jupiter:junit-jupiter:5.6.2"
-    }
-
     // 设置编码为UTF-8
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
@@ -49,7 +39,6 @@ allprojects {
             charSet 'UTF-8'
             author true
             version true
-            // links "<a href='http://docs.oracle.com/javase/8/docs/api'>http://docs.oracle.com/javase/8/docs/api</a>"
         }
     }
 
@@ -78,13 +67,6 @@ allprojects {
         // 目标位置
         into "$buildDir/libs"
     }
-
-    test {
-        useJUnitPlatform {
-            // includeEngines 'junit-jupiter'
-            excludeEngines 'junit-vintage'
-        }
-    }
 }
 
 subprojects {
@@ -96,5 +78,23 @@ subprojects {
         implementation('org.springframework.boot:spring-boot-starter-hateoas')
         implementation('org.springframework.boot:spring-boot-devtools')
         testImplementation ('org.springframework.boot:spring-boot-starter-test')
+    }
+
+    dependencies {
+        // 引入 lombok 方式二
+        compileOnly "org.projectlombok:lombok:${lombokVersion}"
+        annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+        testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+        testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+        developmentOnly("org.springframework.boot:spring-boot-devtools")
+
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
+    }
+
+    test {
+        useJUnitPlatform()
     }
 }
