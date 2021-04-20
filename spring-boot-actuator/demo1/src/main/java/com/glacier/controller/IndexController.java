@@ -1,6 +1,5 @@
 package com.glacier.controller;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @version v1.0.0
  * @since <pre>2017/4/15 0015</pre>
  */
-@Slf4j
 @RestController
 public class IndexController {
 

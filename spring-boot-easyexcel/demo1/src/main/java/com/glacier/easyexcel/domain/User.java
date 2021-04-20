@@ -4,7 +4,6 @@ import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.annotation.format.NumberFormat;
 import com.glacier.easyexcel.converter.LocalDateConverter;
-import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -14,7 +13,6 @@ import java.time.LocalDate;
  * @version 1.0
  * @date 2020-10-16 15:01
  */
-@Data
 @ExcelIgnoreUnannotated
 public class User implements Serializable {
     private static final long serialVersionUID = -5948191351150509559L;
@@ -46,4 +44,88 @@ public class User implements Serializable {
     @NumberFormat("#.##%")
     @ExcelProperty(value = {"用户信息", "数字标题"}, index = 7)
     private Double doubleData;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getDuty() {
+        return duty;
+    }
+
+    public void setDuty(String duty) {
+        this.duty = duty;
+    }
+
+    public LocalDate getJoinDate() {
+        return joinDate;
+    }
+
+    public void setJoinDate(LocalDate joinDate) {
+        this.joinDate = joinDate;
+    }
+
+    public Double getDoubleData() {
+        return doubleData;
+    }
+
+    public void setDoubleData(Double doubleData) {
+        this.doubleData = doubleData;
+    }
 }

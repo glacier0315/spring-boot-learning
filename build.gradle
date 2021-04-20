@@ -81,12 +81,6 @@ subprojects {
     }
 
     dependencies {
-        // 引入 lombok 方式二
-        compileOnly "org.projectlombok:lombok:${lombokVersion}"
-        annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
-        testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
-        testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
-
         developmentOnly("org.springframework.boot:spring-boot-devtools")
 
         testImplementation('org.springframework.boot:spring-boot-starter-test') {

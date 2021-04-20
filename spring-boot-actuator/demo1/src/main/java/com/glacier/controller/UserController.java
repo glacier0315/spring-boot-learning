@@ -1,7 +1,8 @@
 package com.glacier.controller;
 
 import com.glacier.domain.User;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,10 +16,11 @@ import java.util.List;
  * @version v1.0.0
  * @since <pre>2017/4/15 0015</pre>
  */
-@Slf4j
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<User> index(Model model) {

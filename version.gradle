@@ -1,6 +1,4 @@
 ext {
-    lombokVersion = "1.18.12"
-
     // spring cloud 和spring boot
     springBootAdminVersion = "2.3.1"
 

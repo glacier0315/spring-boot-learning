@@ -7,7 +7,6 @@ import com.glacier.constant.Constant;
 import com.glacier.entity.User;
 import com.glacier.mapper.UserMapper;
 import com.glacier.service.UserService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,17 +18,15 @@ import java.util.List;
  * @version 1.0
  * @date 2019-08-04 21:50
  */
-@Slf4j
 @DS(Constant.DATASOURCE_EBOOT_SYS)
 @Service(value = "userService")
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
     @Override
     public User getByUsername(String username) {
-        return this.baseMapper.selectOne(new QueryWrapper<>(User
-                .builder()
-                .username(username)
-                .build()));
+        User user = new User();
+        user.setUsername(username);
+        return this.baseMapper.selectOne(new QueryWrapper<>(user));
     }
 
     @Override
