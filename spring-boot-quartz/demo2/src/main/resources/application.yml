@@ -1,0 +1,40 @@
+# spring的datasource等配置未贴出
+spring:
+  datasource:
+    name: quartzDataSource
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.10.130:3306/sb_learning?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: sb_learning
+    password: sb_learning
+  quartz:
+    # Job 存储器类型。默认为 memory 表示内存，可选 jdbc 使用数据库。
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: always
+    # 应用关闭时，是否等待定时任务执行完成。默认为 false ，建议设置为 true
+    wait-for-jobs-to-complete-on-shutdown: true
+    # QuartzScheduler启动时更新己存在的Job,这样就不用每次修改targetObject后删除qrtz_job_details表对应记录
+    overwrite-existing-jobs: false
+    # 添加 Quartz Scheduler 附加属性
+    properties:
+      org:
+        quartz:
+          # JobStore 相关配置
+          jobStore:
+            dataSource: quartzDataSource # 使用的数据源
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX # JobStore 实现类
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: QRTZ_ # Quartz 表前缀
+            isClustered: true # 是集群模式
+            clusterCheckinInterval: 1000
+            useProperties: false
+          # 线程池相关
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            # 线程数
+            threadCount: 10
+            # 线程优先级
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+
