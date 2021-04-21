@@ -14,7 +14,8 @@ import java.time.LocalDateTime;
  * @author glacier
  * @version 1.0
  */
-//@DisallowConcurrentExecution // 禁止并发执行
+@PersistJobDataAfterExecution  //持久化
+@DisallowConcurrentExecution  // 禁止并发执行
 @Component
 public class PrintJob extends QuartzJobBean {
 

@@ -17,7 +17,7 @@ import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 @Configuration
 public class QuartzConfig {
 
-    @Bean
+//    @Bean
     public JobDetail jobDetail() {
         return JobBuilder.newJob(PrintJob.class)
                 .withIdentity("print_job")
@@ -25,7 +25,7 @@ public class QuartzConfig {
                 .build();
     }
 
-    @Bean
+//    @Bean
     public Trigger trigger(JobDetail job) {
         return TriggerBuilder.newTrigger()
                 .forJob(job)
