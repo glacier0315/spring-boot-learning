@@ -1,0 +1,21 @@
+# spring的datasource等配置未贴出
+spring:
+  quartz:
+    # Job 存储器类型。默认为 memory 表示内存，可选 jdbc 使用数据库。
+    job-store-type: memory
+    # 应用关闭时，是否等待定时任务执行完成。默认为 false ，建议设置为 true
+    wait-for-jobs-to-complete-on-shutdown: true
+    # QuartzScheduler启动时更新己存在的Job,这样就不用每次修改targetObject后删除qrtz_job_details表对应记录
+    overwrite-existing-jobs: false
+    # 添加 Quartz Scheduler 附加属性
+    properties:
+      org:
+        quartz:
+          # 线程池相关
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            # 线程数
+            threadCount: 10
+            # 线程优先级
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
