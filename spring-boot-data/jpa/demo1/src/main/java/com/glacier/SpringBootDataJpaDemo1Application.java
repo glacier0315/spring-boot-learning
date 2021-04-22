@@ -11,9 +11,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  */
 @SpringBootApplication
 @EnableJpaRepositories
-public class DataJpaDemo1Application {
+public class SpringBootDataJpaDemo1Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(DataJpaDemo1Application.class, args);
+        SpringApplication.run(SpringBootDataJpaDemo1Application.class, args);
     }
 }

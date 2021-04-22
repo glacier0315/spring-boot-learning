@@ -35,9 +35,8 @@ public class CommonDaoImpl implements CommonDao {
         if (s != null) {
             T t = null;
             int i = 0;
-            Iterator<T> it = s.iterator();
-            while (it.hasNext()) {
-                t = it.next();
+            for (T value : s) {
+                t = value;
                 this.getEntityManager().merge(t);
                 if (i % BATCH_COMMIT_NUM == 0) {
                     this.getEntityManager().flush();
