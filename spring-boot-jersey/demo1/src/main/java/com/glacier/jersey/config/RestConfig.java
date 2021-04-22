@@ -1,4 +1,4 @@
-package com.glacier.springbot.config;
+package com.glacier.jersey.config;
 
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 public class RestConfig extends ResourceConfig {
 
     public RestConfig() {
-        this.packages("com.glacier.springbot");
+        this.packages("com.glacier.jersey");
 
         this.register(RequestContextFilter.class);
         this.register(JacksonJsonProvider.class);

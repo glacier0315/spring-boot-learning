@@ -1,4 +1,4 @@
-package com.glacier.springbot.domain;
+package com.glacier.jersey.domain;
 
 import java.io.Serializable;
 

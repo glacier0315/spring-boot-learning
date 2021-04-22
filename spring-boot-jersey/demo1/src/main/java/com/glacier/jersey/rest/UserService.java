@@ -1,7 +1,7 @@
-package com.glacier.springbot.rest;
+package com.glacier.jersey.rest;
 
-import com.glacier.springbot.domain.Result;
-import com.glacier.springbot.domain.User;
+import com.glacier.jersey.domain.Result;
+import com.glacier.jersey.domain.User;
 
 import javax.inject.Singleton;
 import javax.ws.rs.*;
