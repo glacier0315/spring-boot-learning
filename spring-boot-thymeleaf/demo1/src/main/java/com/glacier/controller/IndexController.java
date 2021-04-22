@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class IndexController {
 
+    @GetMapping("")
+    public String index(Model model) {
+        return "index";
+    }
+
     @GetMapping("/hello")
     public String hello(Model model) {
         String[] s = {"我是1", "我是2", "我是3", "我是5"};
