@@ -11,7 +11,6 @@ import java.util.Map;
  * @author glacier
  * @version 1.0
  */
-
 public interface QuartzService {
     /**
      * 增加一个job

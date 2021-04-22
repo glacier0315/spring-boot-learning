@@ -47,23 +47,33 @@ public class QuartzServiceImpl implements QuartzService {
                        String jobName, String jobGroupName, int jobTime, int jobTimes, Map<String, Object> jobData) {
         try {
             // 任务名称和组构成任务key
-            JobDetail jobDetail = JobBuilder.newJob(jobClass).withIdentity(jobName, jobGroupName)
+            JobDetail jobDetail = JobBuilder.newJob(jobClass)
+                    .withIdentity(jobName, jobGroupName)
                     .build();
             // 设置job参数
             if (jobData != null && !jobData.isEmpty()) {
-                jobDetail.getJobDataMap().putAll(jobData);
+                jobDetail.getJobDataMap()
+                        .putAll(jobData);
             }
             // 使用simpleTrigger规则
             Trigger trigger = null;
             if (jobTimes < 0) {
-                trigger = TriggerBuilder.newTrigger().withIdentity(jobName, jobGroupName)
-                        .withSchedule(SimpleScheduleBuilder.repeatSecondlyForever(1).withIntervalInSeconds(jobTime))
-                        .startNow().build();
+                trigger = TriggerBuilder.newTrigger()
+                        .withIdentity(jobName, jobGroupName)
+                        .withSchedule(SimpleScheduleBuilder.repeatSecondlyForever(1)
+                                .withIntervalInSeconds(jobTime))
+                        .startNow()
+                        .build();
             } else {
                 trigger = TriggerBuilder
-                        .newTrigger().withIdentity(jobName, jobGroupName).withSchedule(SimpleScheduleBuilder
-                                .repeatSecondlyForever(1).withIntervalInSeconds(jobTime).withRepeatCount(jobTimes))
-                        .startNow().build();
+                        .newTrigger()
+                        .withIdentity(jobName, jobGroupName)
+                        .withSchedule(SimpleScheduleBuilder
+                                .repeatSecondlyForever(1)
+                                .withIntervalInSeconds(jobTime)
+                                .withRepeatCount(jobTimes))
+                        .startNow()
+                        .build();
             }
             scheduler.scheduleJob(jobDetail, trigger);
         } catch (SchedulerException e) {
@@ -87,18 +97,23 @@ public class QuartzServiceImpl implements QuartzService {
             // 创建jobDetail实例，绑定Job实现类
             // 指明job的名称，所在组的名称，以及绑定job类
             // 任务名称和组构成任务key
-            JobDetail jobDetail = JobBuilder.newJob(jobClass).withIdentity(jobName, jobGroupName)
+            JobDetail jobDetail = JobBuilder.newJob(jobClass)
+                    .withIdentity(jobName, jobGroupName)
                     .build();
             // 设置job参数
             if (jobData != null && !jobData.isEmpty()) {
-                jobDetail.getJobDataMap().putAll(jobData);
+                jobDetail.getJobDataMap()
+                        .putAll(jobData);
             }
             // 定义调度触发规则
             // 使用cornTrigger规则
             // 触发器key
-            Trigger trigger = TriggerBuilder.newTrigger().withIdentity(jobName, jobGroupName)
+            Trigger trigger = TriggerBuilder.newTrigger()
+                    .withIdentity(jobName, jobGroupName)
                     .startAt(DateBuilder.futureDate(1, DateBuilder.IntervalUnit.SECOND))
-                    .withSchedule(CronScheduleBuilder.cronSchedule(jobTime)).startNow().build();
+                    .withSchedule(CronScheduleBuilder.cronSchedule(jobTime))
+                    .startNow()
+                    .build();
             // 把作业和触发器注册到任务调度中
             scheduler.scheduleJob(jobDetail, trigger);
         } catch (Exception e) {
@@ -118,8 +133,10 @@ public class QuartzServiceImpl implements QuartzService {
         try {
             TriggerKey triggerKey = TriggerKey.triggerKey(jobName, jobGroupName);
             CronTrigger trigger = (CronTrigger) scheduler.getTrigger(triggerKey);
-            trigger = trigger.getTriggerBuilder().withIdentity(triggerKey)
-                    .withSchedule(CronScheduleBuilder.cronSchedule(jobTime)).build();
+            trigger = trigger.getTriggerBuilder()
+                    .withIdentity(triggerKey)
+                    .withSchedule(CronScheduleBuilder.cronSchedule(jobTime))
+                    .build();
             // 重启触发器
             scheduler.rescheduleJob(triggerKey, trigger);
         } catch (SchedulerException e) {
