@@ -23,26 +23,33 @@ rootProject.name = 'spring-boot-learning'
 
 // 集成 spring-boot-actuator
 include("spring-boot-actuator:demo1")
-
+// 集成 spring-boot-data
 include("spring-boot-data-jpa:demo1")
-include("spring-boot-druid:demo1")
+// 集成 spring-boot-jersey
 include("spring-boot-jersey:demo1")
 // 集成mybatis
 include("spring-boot-mybatis:demo1")
 include("spring-boot-mybatis:demo2")
 include("spring-boot-mybatis-plus:demo1")
 include("spring-boot-mybatis-plus:dynamic1")
-
-include("spring-boot-office:office-to-pdf1")
-include("spring-boot-test:junit5demo1")
+include("spring-boot-druid:demo1")
+// 模板引擎
 include("spring-boot-freemarker:demo1")
 include("spring-boot-thymeleaf:demo1")
+// 登录认证 security
 include("spring-boot-security:custom-login1")
+// openapi
 include("spring-boot-swagger3:demo1")
-include("spring-boot-fastdfs:demo1")
-include("spring-boot-easyexcel:demo1")
 include("spring-boot-openapi:demo1")
+// scheduled
 include("spring-boot-scheduled:demo1")
 // 集成quartz
 include("spring-boot-quartz:demo1")
 include("spring-boot-quartz:demo2")
+// 文件管理
+include("spring-boot-fastdfs:demo1")
+// 其他
+include("spring-boot-easyexcel:demo1")
+include("spring-boot-office:office-to-pdf1")
+// 测试
+include("spring-boot-test:junit5demo1")
