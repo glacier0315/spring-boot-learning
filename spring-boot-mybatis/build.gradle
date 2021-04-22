@@ -2,7 +2,7 @@ subprojects {
     dependencies {
         implementation "org.springframework.boot:spring-boot-starter-web"
         implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisVersion}"
-        implementation "com.alibaba:druid-spring-boot-starter:${druidVersion}"
+
     }
 }
 

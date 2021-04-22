@@ -11,9 +11,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2020-08-07 09:17
  */
 @SpringBootApplication
-public class MybatisDemoApplication {
+public class MybatisDemo2Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(MybatisDemoApplication.class, args);
+        SpringApplication.run(MybatisDemo2Application.class, args);
     }
 }
