@@ -38,6 +38,11 @@
 * demo1: spring-boot集成jersey 的示例。
 ***
 
+### 权限
+#### [spring-boot-security](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-security)
+* custom-login1: spring-boot集成security 的示例。
+***
+
 ### openapi
 #### [spring-boot-openapi](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-openapi)
 * demo1: spring-boot集成openapi 的示例。
@@ -55,7 +60,7 @@
 * demo1: spring-boot集成fastdfs 的示例。
 ***
 
-### 其他
+### office
 #### [spring-boot-office](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-office)
 * office-to-pdf1: spring-boot集成office转pdf 的示例。
 #### [spring-boot-easyexcel](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-easyexcel)
