@@ -22,14 +22,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 @SpringBootTest
 public class UserServiceImplTest {
-    @Mock
-    UserRepository userRepository;
     @Autowired
     UserService userService;
 
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
