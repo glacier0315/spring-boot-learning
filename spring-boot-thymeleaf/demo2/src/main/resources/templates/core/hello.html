@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{components/layout.html}">
+<head>
+    <title>hello</title>
+    <link rel="stylesheet" th:href="@{css/my/demo1.css}">
+    <link rel="stylesheet" th:href="@{css/my/demo2.css}">
+    <script type="text/javascript" th:src="@{js/my/demo1.js}"></script>
+    <script type="text/javascript" th:src="@{js/my/demo2.js}"></script>
+    <style rel="stylesheet">
+        #con {
+            background: #3c763d;
+        }
+    </style>
+    <script type="text/javascript">
+        function testDemo() {
+            alert("test");
+        }
+    </script>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="grid">
+        <div class="row col-md-12">
+            <div class="tile tile-clouds col-md-3 col-xs-12">
+                <h1 th:text="${s[0]}"></h1>
+            </div>
+            <div class="tile tile-emerald col-md-3 col-xs-12">
+                <h1 th:text="${s[1]}"></h1>
+            </div>
+            <div class="tile tile-turquoise col-md-3 col-xs-12">
+                <h1 th:text="${s[2]}"></h1>
+            </div>
+            <div class="tile tile-amethyst col-md-3 col-xs-12">
+                <h1 th:text="${s[3]}"></h1>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

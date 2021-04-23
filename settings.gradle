@@ -36,6 +36,7 @@ include("spring-boot-druid:demo1")
 // 模板引擎
 include("spring-boot-freemarker:demo1")
 include("spring-boot-thymeleaf:demo1")
+include("spring-boot-thymeleaf:demo2")
 // 登录认证 security
 include("spring-boot-security:custom-login1")
 // openapi
