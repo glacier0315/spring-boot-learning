@@ -67,6 +67,5 @@
 ### office
 #### [spring-boot-office](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-office)
 * office-to-pdf1: spring-boot集成office转pdf 的示例。
-#### [spring-boot-easyexcel](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-easyexcel)
-* demo1: spring-boot集成alibaba easyexcel 的示例。
+* easyexcel1: spring-boot集成alibaba easyexcel 的示例。
 ***

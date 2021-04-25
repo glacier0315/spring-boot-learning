@@ -49,6 +49,6 @@ include("spring-boot-quartz:demo1")
 include("spring-boot-quartz:demo2")
 // 文件管理
 include("spring-boot-fastdfs:demo1")
-// 其他
-include("spring-boot-easyexcel:demo1")
+// office
 include("spring-boot-office:office-to-pdf1")
+include("spring-boot-office:easyexcel1")

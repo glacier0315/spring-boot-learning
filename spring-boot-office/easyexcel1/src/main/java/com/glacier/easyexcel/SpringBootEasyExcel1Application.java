@@ -9,9 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2020-10-16 15:05
  */
 @SpringBootApplication
-public class EasyExcelDemo1Application {
+public class SpringBootEasyExcel1Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(EasyExcelDemo1Application.class, args);
+        SpringApplication.run(SpringBootEasyExcel1Application.class, args);
     }
 }
