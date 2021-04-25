@@ -1,7 +1,6 @@
 subprojects {
     dependencies {
+        implementation  "com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}"
         implementation "com.alibaba:druid-spring-boot-starter:${druidVersion}"
     }
 }
-
-

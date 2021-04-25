@@ -1,6 +1,5 @@
 subprojects {
     dependencies {
-        implementation("org.springframework.boot:spring-boot-starter-web")
         implementation "com.alibaba:druid-spring-boot-starter:${druidVersion}"
     }
 }

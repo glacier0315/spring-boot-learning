@@ -21,18 +21,17 @@ plugins {
 
 rootProject.name = 'spring-boot-learning'
 
+// web
 // 集成 spring-boot-actuator
 include("spring-boot-actuator:demo1")
 // 集成 spring-boot-data
 include("spring-boot-data:jpa:demo1")
+include("spring-boot-data:mybatis:demo1")
+include("spring-boot-data:mybatis:demo2")
+include("spring-boot-data:mybatis-plus:demo1")
+include("spring-boot-data:mybatis-plus:dynamic1")
 // 集成 spring-boot-jersey
 include("spring-boot-jersey:demo1")
-// 集成mybatis
-include("spring-boot-mybatis:demo1")
-include("spring-boot-mybatis:demo2")
-include("spring-boot-mybatis-plus:demo1")
-include("spring-boot-mybatis-plus:dynamic1")
-include("spring-boot-druid:demo1")
 // 模板引擎
 include("spring-boot-templates:freemarker:demo1")
 include("spring-boot-templates:thymeleaf:demo1")
