@@ -29,10 +29,10 @@
 ***
 
 ### 模板
-#### [spring-boot-freemarker](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-freemarker)
-* demo1: spring-boot集成freemarker 的示例。
-#### [spring-boot-thymeleaf](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-thymeleaf)
-* demo1: spring-boot集成thymeleaf 的示例。
+#### [spring-boot-templates](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-templates)
+* freemarker:demo1: spring-boot集成freemarker 的示例。
+* thymeleaf:demo1: spring-boot集成thymeleaf 的示例。
+* thymeleaf:demo2: spring-boot集成thymeleaf和thymeleaf-layout 的示例。
 ***
 
 ### rest

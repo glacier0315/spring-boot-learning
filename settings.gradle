@@ -34,9 +34,9 @@ include("spring-boot-mybatis-plus:demo1")
 include("spring-boot-mybatis-plus:dynamic1")
 include("spring-boot-druid:demo1")
 // 模板引擎
-include("spring-boot-freemarker:demo1")
-include("spring-boot-thymeleaf:demo1")
-include("spring-boot-thymeleaf:demo2")
+include("spring-boot-templates:freemarker:demo1")
+include("spring-boot-templates:thymeleaf:demo1")
+include("spring-boot-templates:thymeleaf:demo2")
 // 登录认证 security
 include("spring-boot-security:custom-login1")
 // openapi
