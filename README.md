@@ -31,6 +31,8 @@
 ### 模板
 #### [spring-boot-freemarker](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-freemarker)
 * demo1: spring-boot集成freemarker 的示例。
+#### [spring-boot-thymeleaf](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-thymeleaf)
+* demo1: spring-boot集成thymeleaf 的示例。
 ***
 
 ### rest
@@ -46,6 +48,8 @@
 ### openapi
 #### [spring-boot-openapi](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-openapi)
 * demo1: spring-boot集成openapi 的示例。
+#### [spring-boot-swagger3](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-swagger3)
+* demo1: spring-boot集成swagger3 的示例。
 
 ### 定时任务调度
 #### [spring-boot-scheduled](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-scheduled)
