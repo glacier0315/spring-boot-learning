@@ -5,9 +5,9 @@
 
 ## 下载地址
 
-[GitHub工程地址](https://github.com/glacier0315/spring-boot-learning): https://github.com/glacier0315/spring-boot-learning
+  [GitHub工程地址](https://github.com/glacier0315/spring-boot-learning)
 
-[码云工程地址](https://gitee.com/glacier0315/spring-boot-learning.git): https://gitee.com/glacier0315/spring-boot-learning.git
+  [码云工程地址](https://gitee.com/glacier0315/spring-boot-learning.git)
 
 ## 工程说明
 ### 监控
