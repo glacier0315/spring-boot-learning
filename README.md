@@ -11,8 +11,8 @@
 
 ## 工程说明
 ### 监控
-#### [spring-boot-actuator](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-actuator)
-* demo1: spring-boot-actuator 示例。
+#### [spring-boot-web](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-web)
+* demo1: spring-boot-web 示例。
 ***
 
 ### 数据源 和持久层

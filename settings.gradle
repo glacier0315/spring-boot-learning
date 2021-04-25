@@ -22,8 +22,7 @@ plugins {
 rootProject.name = 'spring-boot-learning'
 
 // web
-// 集成 spring-boot-actuator
-include("spring-boot-actuator:demo1")
+include("spring-boot-web:demo1")
 // 集成 spring-boot-data
 include("spring-boot-data:jpa:demo1")
 include("spring-boot-data:mybatis:demo1")
