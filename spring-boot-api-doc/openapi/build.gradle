@@ -1,0 +1,8 @@
+subprojects {
+    dependencies {
+        // openapi
+        implementation("org.springdoc:springdoc-openapi-ui:${openapiVersion}")
+    }
+}
+
+

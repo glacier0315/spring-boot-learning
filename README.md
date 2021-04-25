@@ -45,11 +45,11 @@
 * custom-login1: spring-boot集成security 的示例。
 ***
 
-### openapi
-#### [spring-boot-openapi](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-openapi)
-* demo1: spring-boot集成openapi 的示例。
-#### [spring-boot-swagger3](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-swagger3)
-* demo1: spring-boot集成swagger3 的示例。
+### api doc
+#### [spring-boot-api-doc](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-api-doc)
+* openapi:demo1: spring-boot集成openapi 的示例。
+* swagger3:demo1: spring-boot集成swagger3 的示例。
+***
 
 ### 定时任务调度
 #### [spring-boot-time-task](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-time-task)
