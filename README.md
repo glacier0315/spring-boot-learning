@@ -52,11 +52,10 @@
 * demo1: spring-boot集成swagger3 的示例。
 
 ### 定时任务调度
-#### [spring-boot-scheduled](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-scheduled)
-* demo1: spring-boot单机定时任务的示例。
-#### [spring-boot-quartz](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-quartz)
-* demo1: spring-boot集成quartz 的示例。
-* demo2: spring-boot集成quartz 分布式配置的示例。
+#### [spring-boot-time-task](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-time-task)
+* scheduled:demo1: spring-boot单机定时任务的示例。
+* quartz:demo1: spring-boot集成quartz 的示例。
+* quartz:demo2: spring-boot集成quartz 分布式配置的示例。
 ***
 
 ### 文件管理

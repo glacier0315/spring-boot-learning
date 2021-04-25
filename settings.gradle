@@ -43,10 +43,10 @@ include("spring-boot-security:custom-login1")
 include("spring-boot-swagger3:demo1")
 include("spring-boot-openapi:demo1")
 // scheduled
-include("spring-boot-scheduled:demo1")
 // 集成quartz
-include("spring-boot-quartz:demo1")
-include("spring-boot-quartz:demo2")
+include("spring-boot-time-task:scheduled:demo1")
+include("spring-boot-time-task:quartz:demo1")
+include("spring-boot-time-task:quartz:demo2")
 // 文件管理
 include("spring-boot-fastdfs:demo1")
 // office
