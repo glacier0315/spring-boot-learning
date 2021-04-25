@@ -42,8 +42,9 @@
 ***
 
 ### 权限
-#### [spring-boot-security](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-security)
-* custom-login1: spring-boot集成security 的示例。
+#### [spring-boot-auth](https://github.com/glacier0315/spring-boot-learning/tree/master/spring-boot-auth)
+* spring-security
+    * custom-login1: spring-boot集成security 的示例。
 ***
 
 ### api doc
