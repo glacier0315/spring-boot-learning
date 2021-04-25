@@ -52,5 +52,3 @@ include("spring-boot-fastdfs:demo1")
 // 其他
 include("spring-boot-easyexcel:demo1")
 include("spring-boot-office:office-to-pdf1")
-// 测试
-include("spring-boot-test:junit5demo1")
