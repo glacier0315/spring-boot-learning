@@ -1,0 +1,9 @@
+subprojects {
+    dependencies {
+        implementation("org.apache.shiro:shiro-spring-boot-web-starter:${shiroStarterVersion}")
+        implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
+        implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:${thymeleafLayouVersion}")
+    }
+}
+
+

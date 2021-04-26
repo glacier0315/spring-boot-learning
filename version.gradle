@@ -2,6 +2,9 @@ ext {
     // spring cloud 和spring boot
     springBootAdminVersion = "2.3.1"
 
+    //
+    shiroStarterVersion = "1.7.1"
+
     // 模板布局
     thymeleafLayouVersion = "2.5.3"
 
