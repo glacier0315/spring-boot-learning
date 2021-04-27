@@ -49,11 +49,18 @@ public class ShiroConfig {
     @Bean
     public ShiroFilterChainDefinition shiroFilterChainDefinition() {
         DefaultShiroFilterChainDefinition chainDefinition = new DefaultShiroFilterChainDefinition();
-        // logged in anno
+    
+        // 登录
         chainDefinition.addPathDefinition("/login", "anon");
+        // 静态资源
         chainDefinition.addPathDefinition("/js/**", "anon");
         chainDefinition.addPathDefinition("/css/**", "anon");
         chainDefinition.addPathDefinition("/images/**", "anon");
+        chainDefinition.addPathDefinition("/static/**", "anon");
+        // 错误页面
+        chainDefinition.addPathDefinition("/error", "anon");
+        // 退出
+        chainDefinition.addPathDefinition("/logout", "logout");
         // logged in users with the 'admin' role
         chainDefinition.addPathDefinition("/admin/**", "authc, roles[admin]");
         

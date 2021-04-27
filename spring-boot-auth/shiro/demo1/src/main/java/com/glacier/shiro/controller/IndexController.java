@@ -2,7 +2,6 @@ package com.glacier.shiro.controller;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
-import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +19,6 @@ public class IndexController {
     /**
      * 登录页面
      *
-     * @param model
      * @return
      */
     @GetMapping("/login")
