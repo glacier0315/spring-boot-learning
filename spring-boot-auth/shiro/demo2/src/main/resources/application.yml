@@ -1,0 +1,22 @@
+spring:
+  profiles:
+    active: dev
+  thymeleaf:
+    enabled: true
+    cache: false
+    encoding: UTF-8
+    prefix: classpath:/templates/
+    suffix: .html
+  datasource:
+    name: mysql1
+    type: com.zaxxer.hikari.HikariDataSource
+
+shiro:
+  web:
+    enabled: true
+  loginUrl: /login
+
+mybatis:
+  # 映射文件位置
+  mapper-locations: classpath*:mybatis/mapper/*.xml
+  config-location:  classpath:mybatis/mybatis-config.xml

@@ -38,6 +38,7 @@ include("spring-boot-templates:thymeleaf:demo2")
 // 登录认证 security
 include("spring-boot-auth:spring-security:custom-login1")
 include("spring-boot-auth:shiro:demo1")
+include("spring-boot-auth:shiro:demo2")
 // openapi
 include("spring-boot-api-doc:swagger3:demo1")
 include("spring-boot-api-doc:openapi:demo1")
