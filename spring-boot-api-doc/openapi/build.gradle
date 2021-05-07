@@ -1,7 +1,11 @@
 subprojects {
+    apply plugin: 'org.springframework.boot'
+
     dependencies {
         // openapi
         implementation("org.springdoc:springdoc-openapi-ui:${openapiVersion}")
+
+        developmentOnly("org.springframework.boot:spring-boot-devtools")
     }
 }
 

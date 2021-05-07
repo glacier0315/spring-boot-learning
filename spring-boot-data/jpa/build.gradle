@@ -1,6 +1,9 @@
 subprojects {
+    apply plugin: 'org.springframework.boot'
+
     dependencies {
-        implementation "com.alibaba:druid-spring-boot-starter:${druidVersion}"
+        implementation("com.alibaba:druid-spring-boot-starter:${druidVersion}")
+        developmentOnly("org.springframework.boot:spring-boot-devtools")
     }
 }
 

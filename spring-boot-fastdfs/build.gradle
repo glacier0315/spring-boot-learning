@@ -1,11 +1,15 @@
 subprojects {
+    apply plugin: 'org.springframework.boot'
+
     dependencies {
-        implementation "org.springframework.boot:spring-boot-starter-web"
+        implementation("org.springframework.boot:spring-boot-starter-web")
 
         implementation("com.github.tobato:fastdfs-client:1.27.2") {
             exclude group: 'commons-io', module: 'commons-io'
         }
         implementation("commons-io:commons-io:2.7")
+
+        developmentOnly("org.springframework.boot:spring-boot-devtools")
     }
 }
 

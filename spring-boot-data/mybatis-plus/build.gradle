@@ -1,6 +1,10 @@
 subprojects {
+    apply plugin: 'org.springframework.boot'
+
     dependencies {
-        implementation  "com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}"
-        implementation "com.alibaba:druid-spring-boot-starter:${druidVersion}"
+        implementation("com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}")
+        implementation("com.alibaba:druid-spring-boot-starter:${druidVersion}")
+
+        developmentOnly("org.springframework.boot:spring-boot-devtools")
     }
 }
