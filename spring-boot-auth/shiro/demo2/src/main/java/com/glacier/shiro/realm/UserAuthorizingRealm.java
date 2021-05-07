@@ -40,6 +40,10 @@ public class UserAuthorizingRealm extends AuthorizingRealm {
         this.permissionService = permissionService;
     }
     
+    @Override
+    public boolean supports(AuthenticationToken token) {
+        return super.supports(token);
+    }
     
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
@@ -60,6 +64,7 @@ public class UserAuthorizingRealm extends AuthorizingRealm {
                 .stream()
                 .map(Permission::getCode)
                 .collect(Collectors.toSet());
+        authInfo.setRoles(roles);
         authInfo.addStringPermissions(perms);
         return authInfo;
     }
