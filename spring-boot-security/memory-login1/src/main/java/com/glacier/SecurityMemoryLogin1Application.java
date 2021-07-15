@@ -9,9 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since <pre>2017/4/15 0015</pre>
  */
 @SpringBootApplication
-public class SecurityLogin1Application {
+public class SecurityMemoryLogin1Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(SecurityLogin1Application.class, args);
+        SpringApplication.run(SecurityMemoryLogin1Application.class, args);
     }
 }
