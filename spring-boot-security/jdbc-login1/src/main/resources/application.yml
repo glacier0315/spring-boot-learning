@@ -1,0 +1,42 @@
+spring:
+  profiles:
+    active: dev
+  thymeleaf:
+    cache: false
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_empty
+  datasource:
+    name: mysql1
+    type: com.zaxxer.hikari.HikariDataSource
+
+
+
+mybatis:
+  # 映射文件位置
+  mapper-locations: classpath*:mybatis/mapper/**/*.xml
+  #config-location:  classpath:mybatis/mybatis-config.xml
+  type-aliases-package: com.glacier.modules.sys.entity
+  configuration:
+    lazy-loading-enabled: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+    aggressive-lazy-loading: false
+    auto-mapping-unknown-column-behavior: warning
+
+# pagehelper
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always

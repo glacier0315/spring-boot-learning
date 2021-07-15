@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>用户</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>passwd</td>
+        <td>sex</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user: ${users}">
+        <td th:text="${user.id}">123</td>
+        <td th:text="${user.userName}">xm</td>
+        <td th:text="${user.passWord}">11234</td>
+        <td th:text="${user.sex}">1</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+<script type="text/javascript" th:src="@{js/jquery-1.12.4.min.js}"></script>
+</html>
