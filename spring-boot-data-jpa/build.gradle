@@ -2,8 +2,8 @@ subprojects {
     apply plugin: 'org.springframework.boot'
 
     dependencies {
-        implementation("org.springframework.boot:spring-boot-starter-freemarker")
-
+        implementation("org.springframework.boot:spring-boot-starter-web")
+        implementation("com.alibaba:druid-spring-boot-starter:${druidVersion}")
         developmentOnly("org.springframework.boot:spring-boot-devtools")
     }
 }

@@ -2,6 +2,7 @@ subprojects {
     apply plugin: 'org.springframework.boot'
 
     dependencies {
+        implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisVersion}")
         implementation("com.github.pagehelper:pagehelper-spring-boot-starter:${pagehelperVersion}")
 

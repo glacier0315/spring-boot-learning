@@ -11,29 +11,29 @@ rootProject.name = 'spring-boot-learning'
 // web
 include("spring-boot-web:demo1")
 // 集成 spring-boot-data
-include("spring-boot-data:jpa:demo1")
-include("spring-boot-data:mybatis:demo1")
-include("spring-boot-data:mybatis:demo2")
-include("spring-boot-data:mybatis-plus:demo1")
-include("spring-boot-data:mybatis-plus:dynamic1")
+include("spring-boot-data-jpa:demo1")
+include("spring-boot-mybatis:demo1")
+include("spring-boot-mybatis:demo2")
+include("spring-boot-mybatis-plus:demo1")
+include("spring-boot-mybatis-plus:dynamic1")
 // 集成 spring-boot-jersey
 include("spring-boot-jersey:demo1")
 // 模板引擎
-include("spring-boot-templates:freemarker:demo1")
-include("spring-boot-templates:thymeleaf:demo1")
-include("spring-boot-templates:thymeleaf:demo2")
+include("spring-boot-freemarker:demo1")
+include("spring-boot-thymeleaf:demo1")
+include("spring-boot-thymeleaf:demo2")
 // 登录认证 security
-include("spring-boot-auth:spring-security:custom-login1")
-include("spring-boot-auth:shiro:demo1")
-include("spring-boot-auth:shiro:demo2")
+include("spring-boot-security:custom-login1")
+include("spring-boot-shiro:demo1")
+include("spring-boot-shiro:demo2")
 // openapi
-include("spring-boot-api-doc:swagger3:demo1")
-include("spring-boot-api-doc:openapi:demo1")
+include("spring-boot-swagger3:demo1")
+include("spring-boot-openapi:demo1")
 // scheduled
 // 集成quartz
-include("spring-boot-time-task:scheduled:demo1")
-include("spring-boot-time-task:quartz:demo1")
-include("spring-boot-time-task:quartz:demo2")
+include("spring-boot-scheduled:demo1")
+include("spring-boot-quartz:demo1")
+include("spring-boot-quartz:demo2")
 // 文件管理
 include("spring-boot-fastdfs:demo1")
 // office

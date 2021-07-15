@@ -2,6 +2,7 @@ subprojects {
     apply plugin: 'org.springframework.boot'
 
     dependencies {
+        implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}")
         implementation("com.alibaba:druid-spring-boot-starter:${druidVersion}")
 

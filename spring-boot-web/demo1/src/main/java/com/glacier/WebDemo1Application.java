@@ -9,9 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since <pre>2017/4/15 0015</pre>
  */
 @SpringBootApplication
-public class ActuatorDemo1Application {
+public class WebDemo1Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(ActuatorDemo1Application.class, args);
+        SpringApplication.run(WebDemo1Application.class, args);
     }
 }
