@@ -9,9 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since <pre>2017/4/15 0015</pre>
  */
 @SpringBootApplication
-public class SecurityThymeleaf1Application {
+public class SecurityLogin1Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(SecurityThymeleaf1Application.class, args);
+        SpringApplication.run(SecurityLogin1Application.class, args);
     }
 }

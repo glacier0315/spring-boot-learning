@@ -41,7 +41,7 @@
 
 ### 权限
 #### [spring-boot-security](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-security)
-    * custom-login1: spring-boot集成security 的示例。
+    * memory-login1: spring-boot集成security 的示例。
 #### [spring-boot-shiro](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-shiro)
     * demo1: spring-boot集成shiro 的示例。
     * demo2: spring-boot集成shiro 持久化到数据库的示例。
