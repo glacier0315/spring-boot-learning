@@ -24,6 +24,7 @@ include("spring-boot-thymeleaf:demo1")
 include("spring-boot-thymeleaf:demo2")
 // 登录认证 security
 include("spring-boot-security:memory-login1")
+include("spring-boot-security:memory-login2")
 include("spring-boot-security:jdbc-login1")
 include("spring-boot-shiro:demo1")
 include("spring-boot-shiro:demo2")
