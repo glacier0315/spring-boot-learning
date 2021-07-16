@@ -1,0 +1,25 @@
+spring:
+  profiles:
+    active: dev
+  thymeleaf:
+    cache: false
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_empty
+
+
+settings:
+  jwt:
+    expireTime: 5
+    expireTimeRemember: 10080
+    secret: bfskgisbkhsibksygdbflnkerdu
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always

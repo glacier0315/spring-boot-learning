@@ -1,0 +1,9 @@
+dependencies {
+    // 本地依赖
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
+    implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:${thymeleafLayoutVersion}")
+
+    implementation("com.auth0:java-jwt:3.18.1")
+}
