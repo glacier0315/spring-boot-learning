@@ -3,9 +3,12 @@ package com.glacier.common.core.security.filter;
 import com.glacier.common.core.security.provider.JwtTokenProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -24,6 +27,7 @@ import java.util.stream.Collectors;
  */
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
 	private final static Logger LOGGER = LoggerFactory.getLogger(JwtAuthorizationFilter.class);
+	public static final String AUTHENTICATION_SCHEME_BEARER = "Bearer ";
 	private final JwtTokenProvider jwtTokenProvider;
 	
 	public JwtAuthorizationFilter(JwtTokenProvider jwtTokenProvider) {
@@ -34,38 +38,23 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
 									FilterChain filterChain) throws ServletException, IOException {
-		if (isSupported(request)) {
-			Optional.ofNullable(verefyToken(getTokenFromRequestHeader(request)))
-					.ifPresent(authentication -> {
-						LOGGER.info("token令牌验证成功, {}", authentication);
-						SecurityContextHolder.getContext().setAuthentication(authentication);
-					});
+		String header = request.getHeader(HttpHeaders.AUTHORIZATION);
+		if (header == null || !StringUtils.startsWithIgnoreCase(header.trim(), AUTHENTICATION_SCHEME_BEARER)) {
+			filterChain.doFilter(request, response);
+			return;
 		}
-		// 即便验证失败，也继续调用过滤链，匿名过滤器生成匿名令牌
+		header = header.trim();
+		if (header.equalsIgnoreCase(AUTHENTICATION_SCHEME_BEARER)) {
+			throw new BadCredentialsException("令牌为空！");
+		}
+		String token = header.substring(AUTHENTICATION_SCHEME_BEARER.length()).trim();
+		UsernamePasswordAuthenticationToken authenticationToken = verefyToken(token);
+		if (authenticationToken == null) {
+			throw new BadCredentialsException("无效令牌！");
+		}
+		LOGGER.info("token令牌验证成功, {}", authenticationToken);
+		SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 		filterChain.doFilter(request, response);
-	}
-	
-	/**
-	 * 是否支持
-	 *
-	 * @param request
-	 * @return
-	 */
-	private boolean isSupported(HttpServletRequest request) {
-		String header = request.getHeader(JwtTokenProvider.TOKEN_HEADER);
-		return header != null && !header.isEmpty() && header.startsWith(JwtTokenProvider.TOKEN_PREFIX);
-	}
-	
-	
-	/**
-	 * 从请求头获取token
-	 *
-	 * @param request
-	 * @return
-	 */
-	private String getTokenFromRequestHeader(HttpServletRequest request) {
-		return request.getHeader(JwtTokenProvider.TOKEN_HEADER)
-				.replaceFirst(JwtTokenProvider.TOKEN_PREFIX, "");
 	}
 	
 	/**

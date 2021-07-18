@@ -20,6 +20,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -44,6 +45,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private AccessDeniedHandler accessDeniedHandler;
 	@Autowired
 	private AuthenticationEntryPoint authenticationEntryPoint;
+	@Autowired
+	private AuthenticationFailureHandler authenticationFailureHandler;
 	
 	
 	/**
@@ -102,18 +105,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.formLogin(formLogin -> {
 					formLogin.loginPage("/login")
 							.permitAll()
-							.successHandler(authenticationSuccessHandler);
+							.successHandler(authenticationSuccessHandler)
+							.failureHandler(authenticationFailureHandler);
 				})
 				.sessionManagement(sessionManagement -> {
 					sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 				})
-				.exceptionHandling(exceptionHandling -> {
-					exceptionHandling.accessDeniedHandler(accessDeniedHandler)
-							.authenticationEntryPoint(authenticationEntryPoint);
-				})
+//				.exceptionHandling(exceptionHandling -> {
+//					exceptionHandling.accessDeniedHandler(accessDeniedHandler)
+//							.authenticationEntryPoint(authenticationEntryPoint);
+//				})
 				// 添加自定义过滤器
-				.addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
+				.addFilterAfter(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
 				.httpBasic(Customizer.withDefaults());
 	}
-
+	
 }

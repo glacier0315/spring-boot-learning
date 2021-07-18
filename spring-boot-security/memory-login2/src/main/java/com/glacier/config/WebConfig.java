@@ -3,6 +3,7 @@ package com.glacier.config;
 import com.glacier.common.core.security.filter.JwtAuthorizationFilter;
 import com.glacier.common.core.security.handler.CustomAccessDeniedHandler;
 import com.glacier.common.core.security.handler.CustomAuthenticationEntryPoint;
+import com.glacier.common.core.security.handler.CustomAuthenticationFailureHandler;
 import com.glacier.common.core.security.handler.CustomAuthenticationSuccessHandler;
 import com.glacier.common.core.security.properties.JwtProperties;
 import com.glacier.common.core.security.provider.JwtTokenProvider;
@@ -13,6 +14,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 /**
  * date 2021-07-16 11:36
@@ -52,8 +55,17 @@ public class WebConfig {
 	 * @return
 	 */
 	@Bean
-	CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler(JwtTokenProvider jwtTokenProvider) {
+	AuthenticationSuccessHandler authenticationSuccessHandler(JwtTokenProvider jwtTokenProvider) {
 		return new CustomAuthenticationSuccessHandler(jwtTokenProvider);
+	}
+	
+	/**
+	 * 登陆失败处理器
+	 * @return
+	 */
+	@Bean
+	AuthenticationFailureHandler authenticationFailureHandler(){
+		return new CustomAuthenticationFailureHandler();
 	}
 	
 	/**

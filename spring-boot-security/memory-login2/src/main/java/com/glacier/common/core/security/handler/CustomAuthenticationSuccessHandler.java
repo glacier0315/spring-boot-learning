@@ -42,7 +42,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 						.stream()
 						.map(GrantedAuthority::getAuthority)
 						.collect(Collectors.toList()),
-				true);
+				false);
 		// 为了跨域，把token放到响应头Authenticate里
 		response.setHeader(JwtTokenProvider.TOKEN_HEADER, JwtTokenProvider.TOKEN_PREFIX + token);
 		// 写入响应里
