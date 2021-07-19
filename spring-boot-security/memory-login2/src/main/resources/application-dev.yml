@@ -1,4 +1,7 @@
+debug: true
+
 spring:
   devtools:
     restart:
       trigger-file: trigger.txt
+

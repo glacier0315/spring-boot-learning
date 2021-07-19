@@ -5,6 +5,7 @@ import com.glacier.sys.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,15 @@ public class UserController {
 	
 	@GetMapping("")
 	public List<User> index() {
+		return userService.findList(User.UserBuilder
+				.anUser()
+				.username("admin")
+				.build());
+	}
+	
+	@PreAuthorize("hasAuthority('nginx')")
+	@GetMapping("list")
+	public List<User> list() {
 		return userService.findList(User.UserBuilder
 				.anUser()
 				.username("admin")

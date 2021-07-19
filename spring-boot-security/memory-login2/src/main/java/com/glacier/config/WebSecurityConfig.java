@@ -23,6 +23,11 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 /**
  * security配置
@@ -111,13 +116,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.sessionManagement(sessionManagement -> {
 					sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 				})
-//				.exceptionHandling(exceptionHandling -> {
-//					exceptionHandling.accessDeniedHandler(accessDeniedHandler)
-//							.authenticationEntryPoint(authenticationEntryPoint);
-//				})
+				.exceptionHandling(exceptionHandling -> {
+					exceptionHandling.accessDeniedHandler(accessDeniedHandler)
+							.authenticationEntryPoint(authenticationEntryPoint);
+				})
+				.cors(cors -> {
+					cors.configurationSource(corsConfigurationSource());
+				})
 				// 添加自定义过滤器
 				.addFilterAfter(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
 				.httpBasic(Customizer.withDefaults());
 	}
 	
+	/**
+	 * 设置跨域
+	 * @return
+	 */
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.setAllowedOrigins(Arrays.asList("*"));
+		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "HEAD", "PUT", "DELETE", "OPTION"));
+		configuration.setAllowedHeaders(Arrays.asList("*"));
+		configuration.addExposedHeader("Authorization");
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
+	}
 }
