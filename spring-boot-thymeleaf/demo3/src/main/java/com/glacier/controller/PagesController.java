@@ -39,4 +39,39 @@ public class PagesController {
 	public String charts(@PathVariable("file") String file) {
 		return "pages/charts/" + file;
 	}
+	
+	@GetMapping("/examples/{file}")
+	public String examples(@PathVariable("file") String file) {
+		return "pages/examples/" + file;
+	}
+	
+	@GetMapping("/forms/{file}")
+	public String forms(@PathVariable("file") String file) {
+		return "pages/forms/" + file;
+	}
+	
+	@GetMapping("/layout/{file}")
+	public String layout(@PathVariable("file") String file) {
+		return "pages/layout/" + file;
+	}
+	
+	@GetMapping("/mailbox/{file}")
+	public String mailbox(@PathVariable("file") String file) {
+		return "pages/mailbox/" + file;
+	}
+	
+	@GetMapping("/search/{file}")
+	public String search(@PathVariable("file") String file) {
+		return "pages/search/" + file;
+	}
+	
+	@GetMapping("/tables/{file}")
+	public String tables(@PathVariable("file") String file) {
+		return "pages/tables/" + file;
+	}
+	
+	@GetMapping("/UI/{file}")
+	public String ui(@PathVariable("file") String file) {
+		return "pages/UI/" + file;
+	}
 }

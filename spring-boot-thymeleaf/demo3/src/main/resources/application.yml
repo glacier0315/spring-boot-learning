@@ -3,7 +3,6 @@ spring:
     active: dev
   thymeleaf:
     enabled: true
-    mode: HTML5
     cache: false
     encoding: UTF-8
     prefix: classpath:/templates/
