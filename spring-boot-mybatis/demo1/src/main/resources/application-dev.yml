@@ -1,9 +1,16 @@
-debug: true
-
 # datasource
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://192.168.10.130:3306/eboot_sys?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false
     username: root
-    password: root
+    #    password: root
+    password: pw76mSy1ZN1Ouc2CnU5Ov6hyWX6UaKNIRQz9MFX8VmRksxQKgFTKq0a+dFq50B3IogbJl1SSkPtkaMRxfZfd2w==
+    #druid相关配置
+    druid:
+      filter:
+        config:
+          enabled: true
+      connect-properties:
+        config.decrypt: true
+        config.decrypt.key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBANOm4vHXHv3n0Q4aUMnS3Kzkg9eJryqUi2FlMxM81Wwaa8oKaLkubY9PcikV0SKs+5CYwU/IuFvgxhl3Yf6jdMUCAwEAAQ==
