@@ -26,6 +26,16 @@ public class IndexController {
 	
 	@GetMapping("/dashboard")
 	public String dashboard(Model model) {
-		return "dashboard";
+		return "pages/dashboard/index";
+	}
+	
+	@GetMapping("/dashboard2")
+	public String dashboard2(Model model) {
+		return "pages/dashboard/index2";
+	}
+	
+	@GetMapping("/dashboard3")
+	public String dashboard3(Model model) {
+		return "pages/dashboard/index3";
 	}
 }
