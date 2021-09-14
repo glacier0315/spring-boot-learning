@@ -18,7 +18,11 @@ import java.util.List;
  *
  * @author glacier
  * @version 1.0.0
- * @since <pre>2017-03-29</pre>
+ * @since
+ * 
+ *        <pre>
+ *        2017 - 03 - 29
+ *        </pre>
  */
 @RestController
 @RequestMapping("user")
@@ -43,7 +47,7 @@ public class UserController {
      * @return
      */
     @RequestMapping(method = RequestMethod.POST)
-    public Result create(User user) {
+    public Result<User> create(User user) {
         logger.info("添加用户", user);
         this.userService.saveOrUpdate(user);
         return Result.ok("添加用户成功！", user);
@@ -54,7 +58,7 @@ public class UserController {
      * @return
      */
     @RequestMapping(method = RequestMethod.PUT)
-    public Result update(User user) {
+    public Result<User> update(User user) {
         logger.info("更新用户", user);
         this.userService.saveOrUpdate(user);
         return Result.ok("更新用户成功！", user);
@@ -65,7 +69,7 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Result findOne(@PathVariable String id) {
+    public Result<User> findOne(@PathVariable String id) {
         logger.info("获取id为" + id + "用户！");
         User user = this.userService.findOne(id);
         return Result.ok("获取用户成功！", user);
@@ -76,11 +80,10 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public Result delete(@PathVariable String id) {
+    public Result<User> delete(@PathVariable String id) {
         logger.info("输出id为：" + id + " 的用户！");
         this.userService.deleteById(id);
         return Result.ok("删除用户成功！", null);
     }
-
 
 }
