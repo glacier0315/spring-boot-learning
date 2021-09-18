@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: dev
+  thymeleaf:
+    enabled: true
+    mode: HTML
+    cache: false
+    encoding: UTF-8
+    prefix: classpath:/templates/
+    suffix: .html
+

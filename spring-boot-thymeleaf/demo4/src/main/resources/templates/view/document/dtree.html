@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{components/layout.html}">
+<head>
+    <title>树形结构</title>
+</head>
+<body class="pear-container">
+<section layout:fragment="content">
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">开发环境</div>
+                <div class="layui-card-body">Dtree 提供 树状态 的数据结构展示</div>
+            </div>
+        </div>
+        <div class="layui-col-md12">
+            <div class="layui-collapse">
+                <div class="layui-colla-item">
+                    <h2 class="layui-colla-title">显示代码</h2>
+                    <div class="layui-colla-content">
+							<pre class="layui-code" lay-encode="true">
+								<link rel="stylesheet" th:href="@{/plugin/pear/css/pear.css}"/>
+								 并
+								<script th:src="@{/plugin/layui/layui.js}"></script>
+								 并
+								<script th:src="@{/plugin/pear/pear.js}"></script>
+							</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    嵌套数据格式
+                </div>
+                <div class="layui-card-body">
+                    <ul id="demoTree" class="dtree" data-id="0"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12">
+            <div class="layui-collapse">
+                <div class="layui-colla-item">
+                    <h2 class="layui-colla-title">显示代码</h2>
+                    <div class="layui-colla-content">
+							<pre class="layui-code" lay-encode="true">
+								layui.use(['dtree'], function () {
+								    dtree = layui.dtree;
+
+								    dtree.render({
+								        elem: "#demoTree",
+								        initLevel: "1",
+								        method: 'get',
+								        url: "/data/dtree.json"
+								    });
+								});
+							</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    嵌套数据格式
+                </div>
+                <div class="layui-card-body">
+                    <ul id="demoTree3" class="dtree" data-id="0"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12">
+            <div class="layui-collapse">
+                <div class="layui-colla-item">
+                    <h2 class="layui-colla-title">显示代码</h2>
+                    <div class="layui-colla-content">
+							<pre class="layui-code" lay-encode="true">
+								layui.use(['dtree'], function () {
+								    dtree = layui.dtree;
+
+								    dtree.render({
+								        elem: "#demoTree",
+								        initLevel: "1",
+								        method: 'get',
+								        url: "/data/dtree.json",
+								        dataFormat: "list",
+								        checkbar: true
+								    });
+								});
+							</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    下拉树
+                </div>
+                <div class="layui-card-body">
+                    <ul id="demoTree2" class="dtree" data-id="0"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12">
+            <div class="layui-collapse">
+                <div class="layui-colla-item">
+                    <h2 class="layui-colla-title">显示代码</h2>
+                    <div class="layui-colla-content">
+							<pre class="layui-code" lay-encode="true">
+								layui.use(['dtree'], function () {
+								    dtree = layui.dtree;
+
+								    dtree.render({
+								        elem: "#demoTree2",
+								        initLevel: "1",
+								        method: 'get',
+								        url: "/data/dtree.json",
+								        select: true
+								    });
+								});
+							</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        layui.use(['dtree', 'jquery', 'element', 'code'], function() {
+            var $ = layui.jquery,
+                dtree = layui.dtree;
+
+            layui.code();
+
+            // 初始化树
+            dtree.render({
+                elem: '#demoTree',
+                initLevel: '1',
+                method: 'get',
+                url: '/data/dtree.json',
+            });
+
+            dtree.render({
+                elem: '#demoTree3',
+                initLevel: '1',
+                method: 'get',
+                url: '/data/dataTree2.json',
+                dataFormat: 'list', //配置data的风格为list
+                checkbar: true, //开启复选框
+            });
+
+            dtree.render({
+                elem: '#demoTree2',
+                initLevel: '1',
+                method: 'get',
+                url: '/data/dtree.json',
+                select: true,
+            });
+        });
+    </script>
+</section>
+</body>
+</html>

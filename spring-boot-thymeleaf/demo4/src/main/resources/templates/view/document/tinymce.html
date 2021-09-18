@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{components/layout.html}">
+<head>
+    <title>文本编辑</title>
+</head>
+<body class="pear-container">
+<section layout:fragment="content">
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    开发环境
+                </div>
+                <div class="layui-card-body">
+                    Tinymce 文本编辑器
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12">
+            <div class="layui-collapse">
+                <div class="layui-colla-item">
+                    <h2 class="layui-colla-title">显示代码</h2>
+                    <div class="layui-colla-content">
+							<pre class="layui-code" lay-encode="true">
+								<link rel="stylesheet" th:href="@{/plugin/pear/css/pear.css}"/>
+								 并
+								<script th:src="@{/plugin/layui/layui.js}"></script>
+								 并
+								<script th:src="@{/plugin/pear/pear.js}"></script>
+							</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">富文本编辑器</div>
+                <div class="layui-card-body">
+                    <textarea name="" id="edit" cols="30" rows="10"></textarea>
+                    <div class="layui-btn-group" style="margin-top: 10px">
+                        <button class="layui-btn" lay-event="getContent">获取内容</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12">
+            <div class="layui-collapse">
+                <div class="layui-colla-item">
+                    <h2 class="layui-colla-title">显示代码</h2>
+                    <div class="layui-colla-content">
+							<pre class="layui-code" lay-encode="true">
+								layui.use(['tinymce'], function() {
+								    var tinymce = layui.tinymce
+
+								    var edit = tinymce.render({
+								        elem: "#edit",
+								        height: 400
+								    });
+
+								    edit.getContent()
+								});
+							</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        layui.use(['tinymce', 'util', 'layer', 'code', 'element'], function() {
+            var tinymce = layui.tinymce;
+            var util = layui.util;
+
+            layui.code();
+
+            var edit = tinymce.render({
+                elem: '#edit',
+                height: 400,
+            });
+
+            util.event('lay-event', {
+                getContent: function() {
+                    console.log(edit.getContent());
+                    layer.msg('展开控制台查看');
+                },
+            });
+        });
+    </script>
+</section>
+</body>
+</html>

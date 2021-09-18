@@ -23,6 +23,7 @@ include("spring-boot-freemarker:demo1")
 include("spring-boot-thymeleaf:demo1")
 include("spring-boot-thymeleaf:demo2")
 include("spring-boot-thymeleaf:demo3")
+include("spring-boot-thymeleaf:demo4")
 // 登录认证 security
 include("spring-boot-security:memory-login1")
 include("spring-boot-security:memory-login2")
