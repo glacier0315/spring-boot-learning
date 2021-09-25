@@ -6,31 +6,11 @@ plugins {
 // 配置所有项目
 allprojects {
     apply plugin: 'java-library'
+    apply plugin: 'com.glacier.java-common-conventions'
     apply from: "$rootDir/version.gradle"
-
-    // 指定jdk版本
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
 
     group = 'com.glacier'
     description = 'spring-boot-learning'
-
-    // 指定仓库
-    repositories {
-        mavenLocal()
-        maven { url 'https://maven.aliyun.com/repository/public' }
-        maven { url 'https://maven.aliyun.com/repository/central' }
-        maven { url 'https://maven.aliyun.com/repository/google' }
-        maven { url 'https://maven.aliyun.com/repository/spring' }
-        maven { url 'https://maven.aliyun.com/repository/spring-plugin' }
-        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
-        mavenCentral()
-    }
-
-    // 设置编码为UTF-8
-    tasks.withType(JavaCompile) {
-        options.encoding = "UTF-8"
-    }
 
     javadoc {
         options{
@@ -39,32 +19,6 @@ allprojects {
             author true
             version true
         }
-    }
-
-    //配置 删除文件夹
-    task cleanTempFiles {
-        doLast {
-            delete "out"
-            delete "logs"
-        }
-    }
-    clean.dependsOn cleanTempFiles
-
-    // 配置 创建源文件夹
-    task mkdirs {
-        sourceSets*.java.srcDirs*.each {
-            it.mkdirs()
-        }
-        sourceSets*.resources.srcDirs*.each {
-            it.mkdirs()
-        }
-    }
-    // 拷贝jar包
-    task copyJars(type: Copy) {
-        // 运行时
-        from configurations.runtimeClasspath
-        // 目标位置
-        into "$buildDir/libs"
     }
 }
 
@@ -81,12 +35,7 @@ subprojects {
     dependencies {
         implementation('org.springframework.boot:spring-boot-starter-actuator')
 
-        testImplementation('org.springframework.boot:spring-boot-starter-test') {
-            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-        }
+        testImplementation('org.springframework.boot:spring-boot-starter-test')
     }
 
-    test {
-        useJUnitPlatform()
-    }
 }
