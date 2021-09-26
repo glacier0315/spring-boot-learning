@@ -30,6 +30,7 @@ include("spring-boot-security:memory-login2")
 include("spring-boot-security:jdbc-login1")
 include("spring-boot-shiro:demo1")
 include("spring-boot-shiro:demo2")
+include("spring-boot-shiro:demo3")
 // openapi
 include("spring-boot-swagger3:demo1")
 include("spring-boot-openapi:demo1")
