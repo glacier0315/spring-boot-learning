@@ -70,6 +70,9 @@ task cleanTempFiles {
     doLast {
         delete "out"
         delete "logs"
+        delete ".settings"
+        delete ".classpath"
+        delete ".project"
     }
 }
 clean.dependsOn cleanTempFiles
