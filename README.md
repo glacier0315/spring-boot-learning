@@ -45,6 +45,7 @@
 #### [spring-boot-shiro](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-shiro)
     * demo1: spring-boot集成shiro 的示例。
     * demo2: spring-boot集成shiro 持久化到数据库的示例。
+    * demo3: spring-boot集成shiro 配置多realm。
 ***
 
 ### api doc
