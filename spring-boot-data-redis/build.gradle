@@ -1,0 +1,14 @@
+subprojects {
+    apply plugin: 'org.springframework.boot'
+
+    dependencies {
+        implementation("org.springframework.boot:spring-boot-starter-web")
+        implementation("org.springframework.boot:spring-boot-starter-data-redis")
+        implementation("org.springframework.boot:spring-boot-starter-cache")
+        implementation("org.apache.commons:commons-pool2")
+
+        developmentOnly("org.springframework.boot:spring-boot-devtools")
+    }
+}
+
+

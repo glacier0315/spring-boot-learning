@@ -16,6 +16,7 @@ include("spring-boot-mybatis:demo1")
 include("spring-boot-mybatis:demo2")
 include("spring-boot-mybatis-plus:demo1")
 include("spring-boot-mybatis-plus:dynamic1")
+include("spring-boot-data-redis:demo1")
 // 集成 spring-boot-jersey
 include("spring-boot-jersey:demo1")
 // 模板引擎
