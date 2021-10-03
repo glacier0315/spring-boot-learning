@@ -1,0 +1,33 @@
+spring:
+  profiles:
+    active: dev
+  thymeleaf:
+    enabled: true
+    cache: false
+    encoding: UTF-8
+    prefix: classpath:/templates/
+    suffix: .html
+  redis:
+    cluster:
+      nodes:
+        - 192.168.10.128:6371
+        - 192.168.10.128:6372
+        - 192.168.10.128:6373
+        - 192.168.10.128:6374
+        - 192.168.10.128:6375
+        - 192.168.10.128:6376
+    client-type: lettuce
+  jackson:
+    #设置空如何序列化
+    default-property-inclusion: non_empty
+    time-zone: GMT+8
+    #日期格式化
+    date-format: yyyy-MM-dd HH:mm:ss
+
+
+shiro:
+  web:
+    enabled: true
+  loginUrl: /login
+  successUrl: /
+  unauthorizedUrl: /403
