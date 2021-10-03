@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
 			userInfo.setUsername(username);
 			userInfo.setNickname("超级管理员");
 			userInfo.setRoles(Set.of("admin", "manager"));
-			userInfo.setPermissions(Set.of("user:add", "user:delete"));
+			userInfo.setPermissions(Set.of("user:add", "user:delete", "hello"));
 			// 与配置里的保持一致
 			userInfo.setPassword(new SimpleHash("MD5", "admin",
 					ByteSource.Util.bytes(username), 1024)

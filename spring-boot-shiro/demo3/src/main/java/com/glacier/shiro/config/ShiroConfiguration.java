@@ -1,6 +1,7 @@
 package com.glacier.shiro.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+import com.glacier.shiro.authc.ShiroAdvisor;
 import com.glacier.shiro.realm.CertRealm;
 import com.glacier.shiro.realm.UserRealm;
 import com.glacier.shiro.service.CertService;
@@ -10,11 +11,13 @@ import org.apache.shiro.authc.pam.FirstSuccessfulStrategy;
 import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
+import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.Realm;
+import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
 import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,7 +31,7 @@ import java.util.Arrays;
  * @version 1.0
  */
 @Configuration
-public class ShiroConfig {
+public class ShiroConfiguration {
 	
 	@Bean
 	protected CacheManager cacheManager() {
@@ -129,5 +132,40 @@ public class ShiroConfig {
 	@Bean
 	public ShiroDialect getShiroDialect(){
 		return new ShiroDialect();
+	}
+	
+	/**
+	 * 保证实现了Shiro内部lifecycle函数的bean执行
+	 *
+	 * @return
+	 */
+	@Bean
+	LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+		return new LifecycleBeanPostProcessor();
+	}
+	
+	/**
+	 * 自定义，添加扩展
+	 *
+	 * @param securityManager
+	 * @return
+	 */
+	@Bean
+	ShiroAdvisor shiroAdvisor(SecurityManager securityManager) {
+		ShiroAdvisor shiroAdvisor = new ShiroAdvisor();
+		shiroAdvisor.setSecurityManager(securityManager);
+		return shiroAdvisor;
+	}
+
+	/**
+	 * AOP式方法级权限检查
+	 *
+	 * @return
+	 */
+	@Bean
+	DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+		DefaultAdvisorAutoProxyCreator proxyCreator = new DefaultAdvisorAutoProxyCreator();
+		proxyCreator.setProxyTargetClass(true);
+		return proxyCreator;
 	}
 }

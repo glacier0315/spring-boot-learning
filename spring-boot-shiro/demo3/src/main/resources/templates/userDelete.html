@@ -27,6 +27,9 @@
         已登陆
     </div>
     <div>
+        userDelete
+    </div>
+    <div>
         <a th:href="@{/hello}">测试</a>
     </div>
     <div>
@@ -35,8 +38,8 @@
     <div shiro:hasPermission="user:add">
         <a th:href="@{/user/add}">用户添加</a>
     </div>
-    <div shiro:hasPermission="user:delete">
-        <a th:href="@{/user/delete}">用户删除</a>
+    <div>
+        <a th:href="@{/}">首页</a>
     </div>
     <div>
         <a th:href="@{/logout}">退出</a>

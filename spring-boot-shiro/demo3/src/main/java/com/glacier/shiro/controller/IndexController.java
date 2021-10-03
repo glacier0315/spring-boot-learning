@@ -1,6 +1,7 @@
 package com.glacier.shiro.controller;
 
 import com.glacier.shiro.authc.CustomToken;
+import com.glacier.shiro.authc.UserTypePermission;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.slf4j.Logger;
@@ -65,6 +66,18 @@ public class IndexController {
 	@GetMapping("")
 	public String index() {
 		return "index";
+	}
+	
+	
+	/**
+	 * 登录后可访问
+	 *
+	 * @return
+	 */
+	@UserTypePermission(userTypes ={"hello"})
+	@GetMapping("/hello")
+	public String hello() {
+		return "hello";
 	}
 	
 	/**
