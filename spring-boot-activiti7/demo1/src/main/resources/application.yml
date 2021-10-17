@@ -1,0 +1,30 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    name: mysql1
+    type: com.zaxxer.hikari.HikariDataSource
+  #activiti 配置
+  activiti:
+    #自动部署验证设置:true-开启（默认）、false-关闭
+    check-process-definitions: false
+    # true activiti会对数据库中所有表进行更新操作。如果表不存在，则自动创建。（开发时常用）
+    #flase 默认值。activiti在启动时，会对比数据库表中保存的版本，如果没有表或者版本不匹配，将抛出异常。（生产环境常用）
+    #可以在创建好表后，将其设置为false
+    database-schema-update: true
+    #保存历史数据级别设置为full最高级别，便于历史数据的追溯
+    history-level: full
+
+mybatis:
+  # 映射文件位置
+  mapper-locations: classpath*:mybatis/mapper/*.xml
+  config-location:  classpath:mybatis/mybatis-config.xml
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always

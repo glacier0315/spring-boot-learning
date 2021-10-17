@@ -1,0 +1,26 @@
+subprojects {
+    apply plugin: "org.springframework.boot"
+
+    ext {
+        activitiVersion = "7.1.0.M6"
+    }
+
+    dependencies {
+        implementation platform("org.activiti.dependencies:activiti-dependencies:$activitiVersion")
+
+        implementation("org.springframework.boot:spring-boot-starter-web")
+        implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+        implementation("org.activiti:activiti-spring-boot-starter")
+        implementation("org.activiti:activiti-image-generator")
+
+
+        implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisVersion}")
+        implementation("com.github.pagehelper:pagehelper-spring-boot-starter:${pagehelperVersion}")
+        implementation("mysql:mysql-connector-java")
+
+        implementation("commons-io:commons-io:2.5")
+        developmentOnly("org.springframework.boot:spring-boot-devtools")
+    }
+}
+
+
