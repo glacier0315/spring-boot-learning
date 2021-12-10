@@ -12,8 +12,10 @@ rootProject.name = 'spring-boot-learning'
 include("spring-boot-web:demo1")
 // 集成 spring-boot-data
 include("spring-boot-data-jpa:demo1")
+// 集成 spring-boot-mybatis
 include("spring-boot-mybatis:demo1")
 include("spring-boot-mybatis:demo2")
+include("spring-boot-mybatis:demo3")
 include("spring-boot-mybatis-plus:demo1")
 include("spring-boot-mybatis-plus:dynamic1")
 include("spring-boot-data-redis:demo1")

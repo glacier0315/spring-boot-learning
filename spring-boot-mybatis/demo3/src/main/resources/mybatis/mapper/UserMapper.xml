@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.glacier.mybatis.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.glacier.mybatis.entity.User">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="id_card" jdbcType="VARCHAR" property="idCard"/>
+        <result column="birthday" jdbcType="DATE" property="birthday"/>
+        <result column="sex" jdbcType="INTEGER" property="sex"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="post_id" jdbcType="VARCHAR" property="postId"/>
+        <result column="dept_id" jdbcType="VARCHAR" property="deptId"/>
+        <result column="dept_name" jdbcType="VARCHAR" property="deptName"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+        <result column="update_date" jdbcType="TIMESTAMP" property="updateDate"/>
+        <result column="del_flag" jdbcType="VARCHAR" property="delFlag"/>
+    </resultMap>
+
+    <sql id="base_columns">
+        a.id, a.username, a.password, a.nickname, a.id_card, a.birthday, a.sex, a.email, a.mobile, a.post_id, a.dept_id, a.dept_name,
+        a.status, a.avatar, a.create_by, a.create_date, a.update_by, a.update_date, a.del_flag
+    </sql>
+
+    <sql id="join_columns">
+    </sql>
+
+    <sql id="joins">
+    </sql>
+
+    <update id="deleteByPrimaryKey" parameterType="java.lang.String">
+        update sys_user a
+        set a.del_flag='1'
+        where id = #{id}
+    </update>
+
+    <insert id="insert" parameterType="com.glacier.mybatis.entity.User">
+        insert into sys_user (id, username, password,
+                              nickname, id_card, birthday,
+                              sex, email, mobile, post_id,
+                              dept_id, dept_name, status, avatar,
+                              create_by, create_date, update_by,
+                              update_date, del_flag)
+        values (#{id}, #{username}, #{password},
+                #{nickname}, #{idCard}, #{birthday},
+                #{sex}, #{email}, #{mobile}, #{postId},
+                #{deptId}, #{deptName}, #{status}, #{avatar},
+                #{createBy}, #{createDate}, #{updateBy},
+                #{updateDate}, #{delFlag})
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.glacier.mybatis.entity.User">
+        update sys_user
+        set nickname    = #{nickname},
+            id_card     = #{idCard},
+            birthday    = #{birthday},
+            sex         = #{sex},
+            email       = #{email},
+            mobile      = #{mobile},
+            post_id     = #{postId},
+            dept_id     = #{deptId},
+            dept_name   = #{deptName},
+            status      = #{status},
+            avatar      = #{avatar},
+            update_by   = #{updateBy},
+            update_date = #{updateDate}
+        where id = #{id}
+    </update>
+
+    <update id="updateDeptByDeptId" parameterType="com.glacier.mybatis.entity.User">
+        update sys_user
+        set dept_name = #{deptName}
+        where dept_id = #{deptId}
+    </update>
+
+    <update id="updateProfileByPrimaryKey">
+        update sys_user
+        set nickname    = #{nickname},
+            sex         = #{sex},
+            email       = #{email},
+            mobile      = #{mobile},
+            update_by   = #{updateBy},
+            update_date = #{updateDate}
+        where id = #{id}
+    </update>
+
+    <update id="updateAvatarByPrimaryKey">
+        update sys_user
+        set avatar      = #{avatar},
+            update_by   = #{updateBy},
+            update_date = #{updateDate}
+        where id = #{id}
+    </update>
+
+    <update id="updatePasswordByPrimaryKey">
+        update sys_user
+        set password    = #{password},
+            update_by   = #{updateBy},
+            update_date = #{updateDate}
+        where id = #{id}
+    </update>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="base_columns"/>
+        from sys_user a
+        where a.del_flag='0'
+        and a.id = #{id}
+    </select>
+
+    <select id="selectOneByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="base_columns"/>
+        from sys_user a
+        where a.del_flag='0'
+        and a.username=#{username}
+    </select>
+
+    <select id="selectList" resultMap="BaseResultMap">
+        select
+        <include refid="base_columns"/>
+        from sys_user a
+        <where>
+            a.del_flag='0'
+            <if test="nickname != null and nickname != '' ">
+                and a.nickname like concat('%',#{nickname},'%')
+            </if>
+            <if test="email != null and email != '' ">
+                and a.email=#{email}
+            </if>
+            <if test="sex != null and sex != '' ">
+                and a.sex=#{sex}
+            </if>
+            <if test="birthday != null and birthday != '' ">
+                and a.birthday=#{birthday}
+            </if>
+            <if test="postId != null and postId != '' ">
+                and a.post_id=#{postId}
+            </if>
+            <if test="deptId != null and deptId != '' ">
+                and a.dept_id=#{deptId}
+            </if>
+            <if test="idCard != null and idCard != '' ">
+                and a.id_card=#{idCard}
+            </if>
+            <if test="mobile != null and mobile != '' ">
+                and a.mobile=#{mobile}
+            </if>
+            <if test="status != null and status != '' ">
+                and a.status=#{status}
+            </if>
+            <if test="username != null and username != '' ">
+                and a.username=#{username}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="base_columns"/>
+        from sys_user a
+        where a.del_flag='0'
+    </select>
+</mapper>

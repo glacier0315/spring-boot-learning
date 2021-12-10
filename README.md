@@ -21,6 +21,7 @@
 ### [mybatis](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-mybatis)  
     * demo1: spring-boot集成mybatis和alibaba druid 的示例。
     * demo2: spring-boot集成mybatis和hikari 的示例。
+    * demo3: spring-boot集成mybatis和hikari 的示例。
 ### [mybatis-plus](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-mybatis-plus)
     * demo1: spring-boot集成mybatis-plus和alibaba druid 的示例。
     * dynamic1: spring-boot集成mybatis-plus、alibaba druid和dynamic-datasource（动态数据源） 的示例。
