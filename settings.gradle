@@ -50,4 +50,4 @@ include("spring-boot-office:office-to-pdf1")
 include("spring-boot-office:easyexcel1")
 // activiti
 include("spring-boot-activiti6:demo1")
-//include("spring-boot-activiti7:demo1")
+include("spring-boot-activiti7:demo1")

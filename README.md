@@ -74,3 +74,10 @@
     * office-to-pdf1: spring-boot集成office转pdf 的示例。
     * easyexcel1: spring-boot集成alibaba easyexcel 的示例。
 ***
+
+### 工作流
+#### [spring-boot-activiti6](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-activiti6)
+    * demo1: spring-boot集成activiti6 的示例。
+#### [spring-boot-activiti7](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-activiti7)
+    * demo1: spring-boot集成activiti7 的示例。
+***
