@@ -4,7 +4,7 @@ plugins {
 }
 
 // 配置所有项目
-allprojects {
+subprojects {
     apply plugin: 'java-library'
     apply plugin: 'com.glacier.java-common-conventions'
     apply from: "$rootDir/version.gradle"
@@ -20,19 +20,10 @@ allprojects {
             version true
         }
     }
-}
-
-subprojects {
-    apply plugin: 'io.spring.dependency-management'
-
-    dependencyManagement {
-        // 导入依赖管理
-        imports {
-            mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
-        }
-    }
 
     dependencies {
+        implementation platform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+
         implementation('org.springframework.boot:spring-boot-starter-actuator')
 
         testImplementation('org.springframework.boot:spring-boot-starter-test')
