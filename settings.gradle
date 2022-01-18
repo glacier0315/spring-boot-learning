@@ -54,5 +54,7 @@ rootProject.name = 'spring-boot-learning'
 //// spring-boot-admin
 //include("spring-boot-admin:server1")
 //include("spring-boot-admin:client1")
-// jar 2 war
-include("spring-boot-jar2war")
+//// jar 2 war
+//include("spring-boot-jar2war")
+// spring boot others
+include("spring-boot-aop:demo1")
