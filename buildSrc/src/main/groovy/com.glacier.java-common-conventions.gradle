@@ -26,6 +26,11 @@ java {
     }
 }
 
+configurations {
+    // 全局排除依赖
+    all*.exclude group: "junit", module: "junit"
+}
+
 dependencies {
     // Use JUnit Jupiter for testing.
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
