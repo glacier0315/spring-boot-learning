@@ -20,11 +20,11 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    private static final Logger log = LoggerFactory.getLogger(UserController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<User> index(Model model) {
-        log.info("测试freemarker");
+        LOGGER.info("测试web");
         List<User> list = new ArrayList<>();
         User user = null;
         for (int i = 0; i < 50; i++) {

@@ -14,7 +14,6 @@ public class IndexController {
 
     @RequestMapping()
     public String[] index(Model model) {
-        String[] gnzy = {"我是1", "我是2", "我是3", "我是4"};
-        return gnzy;
+		return new String[]{"我是1", "我是2", "我是3", "我是4"};
     }
 }
