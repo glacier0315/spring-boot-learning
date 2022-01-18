@@ -27,6 +27,12 @@ ext {
     easyExcelVerision = "2.2.10"
     poiVersion = "5.0.0"
 
+    // 工作流
+    activiti6Version = "6.0.0"
+    activiti7Version = "7.1.0.M6"
+    activitiModelerVersion = "5.23.0"
+
     // 工具
     commonsLang3Version = "3.12.0"
+    commonsIoVersion = "2.6"
 }

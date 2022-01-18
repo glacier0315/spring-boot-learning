@@ -2,22 +2,18 @@ subprojects {
     apply plugin: "org.springframework.boot"
     apply plugin: 'io.spring.dependency-management'
 
-    ext {
-        activitiVersion = "6.0.0"
-    }
-
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
-        implementation("org.activiti:activiti-spring-boot-starter-basic:$activitiVersion")
-        implementation("org.activiti:activiti-spring-boot-starter-jpa:$activitiVersion")
+        implementation("org.activiti:activiti-spring-boot-starter-basic:${activiti6Version}")
+        implementation("org.activiti:activiti-spring-boot-starter-jpa:${activiti6Version}")
 
 
         implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisVersion}")
         implementation("com.github.pagehelper:pagehelper-spring-boot-starter:${pagehelperVersion}")
         implementation("mysql:mysql-connector-java")
 
-        implementation("commons-io:commons-io:2.5")
+        implementation("commons-io:commons-io:${commonsIoVersion}")
         developmentOnly("org.springframework.boot:spring-boot-devtools")
     }
 }

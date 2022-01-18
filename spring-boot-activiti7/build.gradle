@@ -2,11 +2,6 @@ subprojects {
     apply plugin: "org.springframework.boot"
     apply plugin: 'io.spring.dependency-management'
 
-    ext {
-        activitiVersion = "7.1.0.M6"
-        activitiModelerVersion = "5.23.0"
-    }
-
     configurations {
         // 全局排除依赖
         all*.exclude group: "org.activiti.core.common", module: "activiti-core-common-dependencies"
@@ -21,8 +16,8 @@ subprojects {
         developmentOnly("org.springframework.boot:spring-boot-devtools")
 
         // activiti
-        implementation("org.activiti:activiti-spring-boot-starter:${activitiVersion}")
-        implementation("org.activiti:activiti-image-generator:${activitiVersion}")
+        implementation("org.activiti:activiti-spring-boot-starter:${activiti7Version}")
+        implementation("org.activiti:activiti-image-generator:${activiti7Version}")
         // activiti-modeler
         implementation("org.activiti:activiti-modeler:${activitiModelerVersion}")
         implementation("org.activiti:activiti-diagram-rest:${activitiModelerVersion}")
@@ -32,7 +27,7 @@ subprojects {
         implementation("com.github.pagehelper:pagehelper-spring-boot-starter:${pagehelperVersion}")
         implementation("mysql:mysql-connector-java")
 
-        implementation("commons-io:commons-io:2.6")
+        implementation("commons-io:commons-io:${commonsIoVersion}")
     }
 }
 
