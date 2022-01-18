@@ -1,0 +1,23 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: spring-boot-admin-client1
+  boot:
+    admin:
+      client:
+        url: http://localhost:8000
+
+server:
+  port: ${random.int[10000,19999]}
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+

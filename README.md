@@ -81,3 +81,10 @@
 #### [spring-boot-activiti7](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-activiti7)
     * demo1: spring-boot集成activiti7 的示例。
 ***
+
+# spring-boot-admin
+#### [spring-boot-admin:server1](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-admin:server1)
+    * server1: spring-boot集成spring-boot-admin-server 的示例。
+#### [spring-boot-admin:client1](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-admin:client1)
+    * client1: spring-boot集成spring-boot-admin-client 的示例。
+***

@@ -51,3 +51,6 @@ include("spring-boot-office:easyexcel1")
 // activiti
 include("spring-boot-activiti6:demo1")
 include("spring-boot-activiti7:demo1")
+// spring-boot-admin
+include("spring-boot-admin:server1")
+include("spring-boot-admin:client1")
