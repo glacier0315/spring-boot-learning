@@ -8,49 +8,49 @@
  */
 rootProject.name = 'spring-boot-learning'
 
-// web
-include("spring-boot-web:demo1")
-// 集成 spring-boot-data
-include("spring-boot-data-jpa:demo1")
-// 集成 spring-boot-mybatis
-include("spring-boot-mybatis:demo1")
-include("spring-boot-mybatis:demo2")
-include("spring-boot-mybatis:demo3")
-include("spring-boot-mybatis-plus:demo1")
-include("spring-boot-mybatis-plus:dynamic1")
-include("spring-boot-data-redis:demo1")
-// 集成 spring-boot-jersey
-include("spring-boot-jersey:demo1")
-// 模板引擎
-include("spring-boot-freemarker:demo1")
-include("spring-boot-thymeleaf:demo1")
-include("spring-boot-thymeleaf:demo2")
-include("spring-boot-thymeleaf:demo3")
-include("spring-boot-thymeleaf:demo4")
-// 登录认证 security
-include("spring-boot-security:memory-login1")
-include("spring-boot-security:memory-login2")
-include("spring-boot-security:jdbc-login1")
-include("spring-boot-shiro:demo1")
-include("spring-boot-shiro:demo2")
-include("spring-boot-shiro:demo3")
-include("spring-boot-shiro:demo4")
-// openapi
-include("spring-boot-swagger3:demo1")
-include("spring-boot-openapi:demo1")
-// scheduled
-// 集成quartz
-include("spring-boot-scheduled:demo1")
-include("spring-boot-quartz:demo1")
-include("spring-boot-quartz:demo2")
-// 文件管理
-include("spring-boot-fastdfs:demo1")
-// office
-include("spring-boot-office:office-to-pdf1")
-include("spring-boot-office:easyexcel1")
-// activiti
-include("spring-boot-activiti6:demo1")
-include("spring-boot-activiti7:demo1")
-// spring-boot-admin
-include("spring-boot-admin:server1")
-include("spring-boot-admin:client1")
+//// web
+//include("spring-boot-web:demo1")
+//// 集成 spring-boot-data
+//include("spring-boot-data-jpa:demo1")
+//// 集成 spring-boot-mybatis
+//include("spring-boot-mybatis:demo1")
+//include("spring-boot-mybatis:demo2")
+//include("spring-boot-mybatis:demo3")
+//include("spring-boot-mybatis-plus:demo1")
+//include("spring-boot-mybatis-plus:dynamic1")
+//include("spring-boot-data-redis:demo1")
+//// 集成 spring-boot-jersey
+//include("spring-boot-jersey:demo1")
+//// 模板引擎
+//include("spring-boot-freemarker:demo1")
+//include("spring-boot-thymeleaf:demo1")
+//include("spring-boot-thymeleaf:demo2")
+//include("spring-boot-thymeleaf:demo3")
+//include("spring-boot-thymeleaf:demo4")
+//// 登录认证 security
+//include("spring-boot-security:memory-login1")
+//include("spring-boot-security:memory-login2")
+//include("spring-boot-security:jdbc-login1")
+//include("spring-boot-shiro:demo1")
+//include("spring-boot-shiro:demo2")
+//include("spring-boot-shiro:demo3")
+//include("spring-boot-shiro:demo4")
+//// openapi
+//include("spring-boot-swagger3:demo1")
+//include("spring-boot-openapi:demo1")
+//// scheduled
+//// 集成quartz
+//include("spring-boot-scheduled:demo1")
+//include("spring-boot-quartz:demo1")
+//include("spring-boot-quartz:demo2")
+//// 文件管理
+//include("spring-boot-fastdfs:demo1")
+//// office
+//include("spring-boot-office:office-to-pdf1")
+//include("spring-boot-office:easyexcel1")
+//// activiti
+//include("spring-boot-activiti6:demo1")
+//include("spring-boot-activiti7:demo1")
+//// spring-boot-admin
+//include("spring-boot-admin:server1")
+//include("spring-boot-admin:client1")
