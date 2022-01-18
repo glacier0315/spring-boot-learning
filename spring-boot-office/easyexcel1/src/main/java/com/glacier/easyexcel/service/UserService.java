@@ -2,7 +2,7 @@ package com.glacier.easyexcel.service;
 
 import com.glacier.easyexcel.domain.User;
 
-import javax.servlet.http.HttpServletResponse;
+import java.io.OutputStream;
 import java.util.List;
 
 /**
@@ -11,10 +11,24 @@ import java.util.List;
  * @date 2020-10-16 15:04
  */
 public interface UserService {
-
+	
+	/**
+	 * 查询所有
+	 * @return
+	 */
     List<User> findAll();
-
+	
+	/**
+	 * 查询
+	 * @param user
+	 * @return
+	 */
     List<User> findList(User user);
-
-    void export(User user, HttpServletResponse response);
+	
+	/**
+	 * 导出
+	 * @param user
+	 * @param out
+	 */
+	void export(User user, OutputStream out);
 }

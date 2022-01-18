@@ -2,7 +2,7 @@ ext {
     jsoupVersion = "1.10.3"
     coreRendererVersion="R8"
     itextVersion="4.2.2"
-    poiVersion = "3.16"
+    poi3Version = "3.16"
     commonsIoVersion = "2.5"
 }
 
@@ -13,7 +13,7 @@ dependencies {
     implementation(
             "commons-io:commons-io:${commonsIoVersion}",
             "org.apache.poi:poi:${poiVersion}",
-            "org.apache.poi:poi-ooxml:${poiVersion}",
+            "org.apache.poi:poi-ooxml:${poi3Version}",
             "org.jsoup:jsoup:${jsoupVersion}",
             "org.xhtmlrenderer:core-renderer:${coreRendererVersion}",
             "com.lowagie:itext:${itextVersion}"

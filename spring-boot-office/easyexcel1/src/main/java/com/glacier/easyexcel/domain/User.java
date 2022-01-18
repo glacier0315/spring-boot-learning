@@ -7,6 +7,8 @@ import com.glacier.easyexcel.converter.LocalDateConverter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * @author glacier
@@ -38,8 +40,8 @@ public class User implements Serializable {
     @ExcelProperty(value = {"用户信息", "岗位"}, index = 5)
     private String duty;
 
-    @ExcelProperty(value = {"用户信息", "入职日期"}, index = 6, converter = LocalDateConverter.class)
-    private LocalDate joinDate;
+    @ExcelProperty(value = {"用户信息", "入职日期"}, index = 6)
+    private LocalDateTime joinDate;
 
     @NumberFormat("#.##%")
     @ExcelProperty(value = {"用户信息", "数字标题"}, index = 7)
@@ -113,11 +115,11 @@ public class User implements Serializable {
         this.duty = duty;
     }
 
-    public LocalDate getJoinDate() {
+    public LocalDateTime getJoinDate() {
         return joinDate;
     }
 
-    public void setJoinDate(LocalDate joinDate) {
+    public void setJoinDate(LocalDateTime joinDate) {
         this.joinDate = joinDate;
     }
 
@@ -128,4 +130,37 @@ public class User implements Serializable {
     public void setDoubleData(Double doubleData) {
         this.doubleData = doubleData;
     }
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof User)) {
+			return false;
+		}
+		User user = (User) o;
+		return Objects.equals(id, user.id);
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+	
+	@Override
+	public String toString() {
+		return "User{" +
+				"id='" + id + '\'' +
+				", username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", nickname='" + nickname + '\'' +
+				", birthday=" + birthday +
+				", idCard='" + idCard + '\'' +
+				", sex='" + sex + '\'' +
+				", duty='" + duty + '\'' +
+				", joinDate=" + joinDate +
+				", doubleData=" + doubleData +
+				'}';
+	}
 }
