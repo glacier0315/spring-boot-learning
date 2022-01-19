@@ -6,9 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 /**
+ * date 2022-01-18 16:37
+ *
  * @author glacier
- * @version v1.0.0
- * @since <pre>2017/4/15 0015</pre>
+ * @version 1.0
  */
 @SpringBootApplication
 public class WebDemo1Application {

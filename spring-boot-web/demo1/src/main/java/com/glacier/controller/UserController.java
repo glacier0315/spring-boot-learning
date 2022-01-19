@@ -1,38 +1,44 @@
 package com.glacier.controller;
 
 import com.glacier.domain.User;
+import com.glacier.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * date 2022-01-18 16:06
+ *
  * @author glacier
- * @version v1.0.0
- * @since <pre>2017/4/15 0015</pre>
+ * @version 1.0
  */
 @RestController
-@RequestMapping("/user")
 public class UserController {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
-
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<User> index(Model model) {
-        LOGGER.info("测试web");
-        List<User> list = new ArrayList<>();
-        User user = null;
-        for (int i = 0; i < 50; i++) {
-            user = new User("id_" + i, "name_" + i, "pw_" + i, i % 2);
-            list.add(user);
-        }
-        return list;
-    }
-
-
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+	
+	private final UserService userService;
+	
+	@Autowired
+	public UserController(UserService userService) {
+		this.userService = userService;
+	}
+	
+	@GetMapping(value = "/user")
+	public List<User> index(Model model) {
+		LOGGER.info("测试web");
+		return userService.findAll();
+	}
+	
+	@GetMapping(value = "/user/{username}")
+	public User user(@PathVariable("username") String username, Model model) {
+		LOGGER.info("查询用户 username: {}", username);
+		return userService.findByUsername(username);
+	}
 }
