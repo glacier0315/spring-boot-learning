@@ -1,0 +1,75 @@
+spring:
+  profiles:
+    active: dev
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+
+
+
+
+## 定义属性
+app:
+  info:
+    name: 张三
+    name1: 张三1
+    name2: 张三2
+    name3: 张三3
+    name4: 张三4
+    name5: 张三5
+    name6: 张三6
+    name7: 张三7
+    name8: 张三8
+#    # 类型匹配
+#    property0: ${random.long}
+#    property1: ${random.int}
+#    property2: ${random.uuid}
+#    property3: 12.12
+#    property4: 10.13
+#    property5: 2021/12/11
+#    property6: 2021/05/02
+#    # localDateTime 暂未匹配上
+#    property7: 2021/05/02 16:50:20
+#    # String[]
+#    property8:
+#      - a1
+#      - a2
+#      - a3
+#    # List<User>
+#    property9:
+#      - { id: 1,username: admin,password: admin }
+#      - { id: 2,username: admin2,password: admin2 }
+#      - id: 3
+#        username: admin3
+#    # set
+#    property10: [a, b]
+#    # 定义map
+#    property11:
+#      name: 张1
+#      sex: 1
+#    # 定义 List<Map<String, Object>>
+#    property12:
+#      - name: 张三
+#        sex: 男
+#        age: 12
+#        birthday: 1992-10-11
+#      - name: 李四
+#        sex: 男
+#        age: 14
+#        birthday: 1992-10-11 15:30:00
+#    # User
+#    property13:
+#      id: 1
+#      username: admin
+#    # List<Map<String, User>>
+#    property14:
+#      - map1: { id: 1,username: admin,password: admin }
+#      - map2: { id: 2,username: admin2,password: admin2 }
