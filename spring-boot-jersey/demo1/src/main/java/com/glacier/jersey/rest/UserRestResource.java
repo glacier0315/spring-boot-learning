@@ -17,17 +17,17 @@ import java.util.List;
 @Singleton
 @Path("/user")
 @Produces(MediaType.APPLICATION_JSON)
-public class UserService {
-
-    /**
-     * 查询user 列表
-     *
-     * @return 用户集合
-     */
-    @GET
-    public List<User> list() {
-        List<User> users = new ArrayList<>();
-        User user = new User("123", "xm", "123456", 1);
+public class UserRestResource {
+	
+	/**
+	 * 查询user 列表
+	 *
+	 * @return 用户集合
+	 */
+	@GET
+	public List<User> list() {
+		List<User> users = new ArrayList<>();
+		User user = new User("123", "xm", "123456", 1);
         users.add(user);
         return users;
     }
@@ -41,8 +41,7 @@ public class UserService {
     @GET
     @Path("/{id}")
     public User find(@PathParam("id") String id) {
-        User user = new User(id, "xm", "123456", 1);
-        return user;
+		return new User(id, "xm", "123456", 1);
     }
 
     /**
