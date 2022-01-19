@@ -9,35 +9,38 @@ import com.glacier.modules.sys.domain.Role;
 import com.glacier.modules.sys.domain.User;
 import com.glacier.modules.sys.domain.UserRole;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.annotation.Resource;
-import java.util.*;
+import java.security.SecureRandom;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootTest
-public class InitDaoTest {
-
-    @Resource
-    private UserRepository userRepository;
-    @Resource
-    private ProvinceRepository provinceRepository;
-    @Resource
-    private RoleRepository roleRepository;
-    @Resource
-    private UserRoleRepository userRoleRepository;
-
-    @Test
-    public void init() {
-        // 初始化角色
-        Random random = new Random();
-        List<Role> roles = new ArrayList<>();
-        Role role = null;
-        char a = 'a';
-        StringBuilder name = null;
-        for (int i = 0; i < 10; i++) {
-            name = new StringBuilder("r_");
-            for (int j = 0; j < random.nextInt(10); j++) {
-                a = (char) ('a' + random.nextInt(26));
+class InitDaoTest {
+	
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+	private ProvinceRepository provinceRepository;
+	@Autowired
+	private RoleRepository roleRepository;
+	@Autowired
+	private UserRoleRepository userRoleRepository;
+	
+	@Test
+	void init() {
+		// 初始化角色
+		SecureRandom random = new SecureRandom();
+		List<Role> roles = new ArrayList<>();
+		Role role = null;
+		char a = 'a';
+		StringBuilder name = null;
+		for (int i = 0; i < 10; i++) {
+			name = new StringBuilder("r_");
+			for (int j = 0; j < random.nextInt(10); j++) {
+				a = (char) ('a' + random.nextInt(26));
                 name.append(a);
             }
             name.append(i + 1);
@@ -52,11 +55,10 @@ public class InitDaoTest {
         this.roleRepository.saveAll(roles);
 
         // 初始化城市
-        Date today = Calendar.getInstance().getTime();
-        Province province = null;
+		LocalDateTime today = LocalDateTime.now();
+		Province province = null;
         Province city = null;
-        a = 'A';
-        // 保存省份
+		// 保存省份
         for (int i = 0; i < 60; i++) {
             name = new StringBuilder("P_");
             for (int j = 0; j < random.nextInt(10); j++) {
@@ -91,48 +93,47 @@ public class InitDaoTest {
         }
 
         // 初始化用户
-        List<Province> citys = this.provinceRepository.findProvinceByType(1);
-        List<User> users = new ArrayList<User>();
-        User user = null;
-        a = 'a';
-        for (int i = 0; i < 500; i++) {
-            name = new StringBuilder("n_");
-            for (int j = 0; j < random.nextInt(10); j++) {
-                a = (char) ('a' + random.nextInt(26));
-                name.append(a);
-            }
-            name.append(i + 1);
-            user = new User();
-            user.setUserName(name.toString());
-            user.setRealName(name.toString());
-            user.setUserKey(name.toString());
-            user.setPassWord(name.toString());
-            user.setEmail(name + "@126.com");
-            user.setStatus(random.nextInt(3));
-            user.setAdress(name.toString());
-            user.setCity(citys.get(random.nextInt(citys.size())));
-
-            users.add(user);
-        }
-
-        this.userRepository.saveAll(users);
-
-        // 初始化
-        roles = this.roleRepository.findAll();
-        users = this.userRepository.findAll();
-        List<UserRole> userRoles = new ArrayList<UserRole>();
-        UserRole userRole = null;
-        for (int i = 0; i < users.size(); i++) {
-            for (int j = 0; j < random.nextInt(2) + 1; j++) {
-                userRole = new UserRole();
-                userRole.setUser(users.get(i));
-                userRole.setRole(roles.get(random.nextInt(roles.size())));
-
-                userRoles.add(userRole);
-            }
-        }
-
-        this.userRoleRepository.saveAll(userRoles);
-    }
+		List<Province> citys = this.provinceRepository.findProvinceByType(1);
+		List<User> users = new ArrayList<>();
+		User user = null;
+		for (int i = 0; i < 500; i++) {
+			name = new StringBuilder("n_");
+			for (int j = 0; j < random.nextInt(10); j++) {
+				a = (char) ('a' + random.nextInt(26));
+				name.append(a);
+			}
+			name.append(i + 1);
+			user = new User();
+			user.setUsername(name.toString());
+			user.setRealName(name.toString());
+			user.setUserKey(name.toString());
+			user.setPassword(name.toString());
+			user.setEmail(name + "@126.com");
+			user.setStatus(random.nextInt(3));
+			user.setAddress(name.toString());
+			user.setCity(citys.get(random.nextInt(citys.size())));
+			
+			users.add(user);
+		}
+		
+		this.userRepository.saveAll(users);
+		
+		// 初始化
+		roles = this.roleRepository.findAll();
+		users = this.userRepository.findAll();
+		List<UserRole> userRoles = new ArrayList<>();
+		UserRole userRole = null;
+		for (User value : users) {
+			for (int j = 0; j < random.nextInt(2) + 1; j++) {
+				userRole = new UserRole();
+				userRole.setUser(value);
+				userRole.setRole(roles.get(random.nextInt(roles.size())));
+				
+				userRoles.add(userRole);
+			}
+		}
+		
+		this.userRoleRepository.saveAll(userRoles);
+	}
 
 }

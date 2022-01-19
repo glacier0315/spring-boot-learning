@@ -7,14 +7,14 @@ import javax.annotation.Resource;
 
 
 @SpringBootTest
-public class UserRepositoryTest {
-
-    @Resource
-    private UserRepository userDao;
-
-    @Test
-    public void testSaveS() {
-        this.userDao.test();
-    }
-
+class UserRepositoryTest {
+	
+	@Resource
+	private UserRepository userDao;
+	
+	@Test
+	void testSaveS() {
+		this.userDao.test();
+	}
+	
 }

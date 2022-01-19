@@ -16,26 +16,32 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "t_s_role")
 public class Role extends IdEntity {
-
-    /**
-     *
-     */
-    private static final long serialVersionUID = 2964821693102548580L;
-    // 名称
-    private String name;
-    // 编码
-    private String code;
-    // 备注
-    private String remark;
-
-    @Column(name = "name", length = 50)
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+	
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 2964821693102548580L;
+	/**
+	 * 名称
+	 */
+	private String name;
+	/**
+	 * 编码
+	 */
+	private String code;
+	/**
+	 * 备注
+	 */
+	private String remark;
+	
+	@Column(name = "name", length = 50)
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
 
     @Column(name = "code", length = 20)
     public String getCode() {
@@ -66,12 +72,6 @@ public class Role extends IdEntity {
                 ", code='" + code + '\'' +
                 ", remark='" + remark + '\'' +
                 ", id='" + id + '\'' +
-                ", createTime=" + createTime +
-                ", createBy='" + createBy + '\'' +
-                ", createName='" + createName + '\'' +
-                ", updateTime=" + updateTime +
-                ", updateBy='" + updateBy + '\'' +
-                ", updateName='" + updateName + '\'' +
                 '}';
     }
 }

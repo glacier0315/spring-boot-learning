@@ -38,9 +38,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findOne(String id) {
-        return this.userRepository.getOne(id);
-    }
+	public User findById(String id) {
+		return this.userRepository.getById(id);
+	}
 
     @Override
     public User save(User user) {
@@ -49,23 +49,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveOrUpdate(User user) {
-        if (user.getId() != null && user.getId().trim().length() > 0) {
-            this.update(user);
-        } else {
-
-            this.save(user);
-        }
+		if (user.getId() != null && !user.getId().isEmpty()) {
+			this.update(user);
+		} else {
+			this.save(user);
+		}
     }
 
     @Override
     public void update(User user) {
         this.userRepository.update(user);
     }
-
-    @Override
-    public void updateUserPassWord(String passWord, String id) {
-        this.userRepository.updateUserPassWord(passWord, id);
-    }
+	
+	@Override
+	public void updateUserPassWord(String password, String id) {
+		this.userRepository.updateUserPassWord(password, id);
+	}
 
 
 }

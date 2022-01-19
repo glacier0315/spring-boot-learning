@@ -13,59 +13,71 @@ import javax.persistence.*;
 @Entity
 @Table(name = "t_s_user")
 public class User extends BaseUser {
-
-    /**
-     *
-     */
-    private static final long serialVersionUID = -7453820457810766645L;
-    // 身份证号码
-    private String idCardNo;
-    // 邮箱
-    private String email;
-    // 地址
-    private String adress;
-    // 手机号码
-    private String mobilePhone;
-    // 办公室电话
-    private String officePhone;
-    // 城市 ID
-    private Province city;
-
-    @Column(name = "id_card_no", length = 50)
-    public String getIdCardNo() {
-        return idCardNo;
-    }
-
-    public void setIdCardNo(String idCardNo) {
-        this.idCardNo = idCardNo;
-    }
-
-    @Column(name = "email", length = 100)
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Column(name = "adress", length = 200)
-    public String getAdress() {
-        return adress;
-    }
-
-    public void setAdress(String adress) {
-        this.adress = adress;
-    }
-
-    @Column(name = "mobile_phone", length = 50)
-    public String getMobilePhone() {
-        return mobilePhone;
-    }
-
-    public void setMobilePhone(String mobilePhone) {
-        this.mobilePhone = mobilePhone;
-    }
+	
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = -7453820457810766645L;
+	/**
+	 * 身份证号码
+	 */
+	private String idCard;
+	/**
+	 * 邮箱
+	 */
+	private String email;
+	/**
+	 * 地址
+	 */
+	private String address;
+	/**
+	 * 手机号码
+	 */
+	private String mobilePhone;
+	/**
+	 * 办公室电话
+	 */
+	private String officePhone;
+	/**
+	 * 城市 ID
+	 */
+	private Province city;
+	
+	@Column(name = "id_card", length = 50)
+	public String getIdCard() {
+		return idCard;
+	}
+	
+	public void setIdCard(String idCard) {
+		this.idCard = idCard;
+	}
+	
+	@Column(name = "email", length = 100)
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	@Column(name = "address", length = 200)
+	public String getAddress() {
+		return address;
+	}
+	
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
+	@Column(name = "mobile_phone", length = 50)
+	public String getMobilePhone() {
+		return mobilePhone;
+	}
+	
+	public void setMobilePhone(String mobilePhone) {
+		this.mobilePhone = mobilePhone;
+	}
 
     @Column(name = "office_phone", length = 50)
     public String getOfficePhone() {
@@ -92,20 +104,14 @@ public class User extends BaseUser {
 
     @Override
     public String toString() {
-        return "User{" +
-                "idCardNo='" + idCardNo + '\'' +
-                ", email='" + email + '\'' +
-                ", adress='" + adress + '\'' +
-                ", mobilePhone='" + mobilePhone + '\'' +
-                ", officePhone='" + officePhone + '\'' +
-                ", city=" + city +
-                ", id='" + id + '\'' +
-                ", createTime=" + createTime +
-                ", createBy='" + createBy + '\'' +
-                ", createName='" + createName + '\'' +
-                ", updateTime=" + updateTime +
-                ", updateBy='" + updateBy + '\'' +
-                ", updateName='" + updateName + '\'' +
+		return "User{" +
+				"idCardNo='" + idCard + '\'' +
+				", email='" + email + '\'' +
+				", adress='" + address + '\'' +
+				", mobilePhone='" + mobilePhone + '\'' +
+				", officePhone='" + officePhone + '\'' +
+				", city=" + city +
+				", id='" + id + '\'' +
                 '}';
     }
 }

@@ -19,7 +19,7 @@ import java.util.List;
  * @author glacier
  * @version 1.0.0
  * @since
- * 
+ *
  *        <pre>
  *        2017 - 03 - 29
  *        </pre>
@@ -71,7 +71,7 @@ public class UserController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Result<User> findOne(@PathVariable String id) {
         logger.info("获取id为" + id + "用户！");
-        User user = this.userService.findOne(id);
+		User user = this.userService.findById(id);
         return Result.ok("获取用户成功！", user);
     }
 

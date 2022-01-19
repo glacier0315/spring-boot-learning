@@ -15,49 +15,59 @@ import javax.persistence.*;
 @Table(name = "t_s_base_user")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class BaseUser extends IdEntity {
-
-    /**
-     *
-     */
-    private static final long serialVersionUID = -7453820457810766645L;
-
-    // 用户名
-    private String userName;
-    // 密码
-    private String passWord;
-    // 真实姓名
-    private String realName;
-    // 用户验证唯一标示
-    private String userKey;
-    // 状态
-    private Integer status;
-
-    @Column(name = "user_name", length = 50)
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    @Column(name = "pass_word", length = 100)
-    public String getPassWord() {
-        return passWord;
-    }
-
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
-    }
-
-    @Column(name = "real_name", length = 50)
-    public String getRealName() {
-        return realName;
-    }
-
-    public void setRealName(String realName) {
-        this.realName = realName;
-    }
+	
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = -7453820457810766645L;
+	
+	/**
+	 * 用户名
+	 */
+	private String username;
+	/**
+	 * 密码
+	 */
+	private String password;
+	/**
+	 * 真实姓名
+	 */
+	private String realName;
+	/**
+	 * 用户验证唯一标示
+	 */
+	private String userKey;
+	/**
+	 * 状态
+	 */
+	private Integer status;
+	
+	@Column(name = "username", length = 64)
+	public String getUsername() {
+		return username;
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	@Column(name = "password", length = 100)
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	@Column(name = "real_name", length = 50)
+	public String getRealName() {
+		return realName;
+	}
+	
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
 
     @Column(name = "user_key", length = 50)
     public String getUserKey() {
@@ -83,19 +93,13 @@ public class BaseUser extends IdEntity {
 
     @Override
     public String toString() {
-        return "BaseUser{" +
-                "userName='" + userName + '\'' +
-                ", passWord='" + passWord + '\'' +
-                ", realName='" + realName + '\'' +
-                ", userKey='" + userKey + '\'' +
-                ", status=" + status +
-                ", id='" + id + '\'' +
-                ", createTime=" + createTime +
-                ", createBy='" + createBy + '\'' +
-                ", createName='" + createName + '\'' +
-                ", updateTime=" + updateTime +
-                ", updateBy='" + updateBy + '\'' +
-                ", updateName='" + updateName + '\'' +
+		return "BaseUser{" +
+				"userName='" + username + '\'' +
+				", passWord='" + password + '\'' +
+				", realName='" + realName + '\'' +
+				", userKey='" + userKey + '\'' +
+				", status=" + status +
+				", id='" + id + '\'' +
                 '}';
     }
 }

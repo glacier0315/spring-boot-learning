@@ -53,12 +53,6 @@ public class UserRole extends IdEntity {
                 "user=" + user +
                 ", Role=" + Role +
                 ", id='" + id + '\'' +
-                ", createTime=" + createTime +
-                ", createBy='" + createBy + '\'' +
-                ", createName='" + createName + '\'' +
-                ", updateTime=" + updateTime +
-                ", updateBy='" + updateBy + '\'' +
-                ", updateName='" + updateName + '\'' +
                 '}';
     }
 }
