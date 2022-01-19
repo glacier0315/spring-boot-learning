@@ -58,3 +58,4 @@ include("spring-boot-admin:client1")
 include("spring-boot-jar2war")
 // spring boot others
 include("spring-boot-aop:demo1")
+include("spring-boot-async:demo1")
