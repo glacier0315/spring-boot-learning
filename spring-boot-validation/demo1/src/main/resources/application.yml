@@ -1,0 +1,20 @@
+spring:
+  profiles:
+    active: dev
+server:
+  servlet:
+    encoding:
+      # 修改编码，否则乱码
+      charset: UTF-8
+      force: true
+      enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
