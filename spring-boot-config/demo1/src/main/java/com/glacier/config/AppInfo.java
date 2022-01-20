@@ -19,7 +19,6 @@ import java.util.*;
 @ConfigurationProperties(prefix = "app.info", ignoreInvalidFields = true)
 public class AppInfo implements Serializable {
 	private static final long serialVersionUID = 5567913933019958102L;
-	private String name;
 	private String name1;
 	private String name2;
 	private String name3;
@@ -44,14 +43,6 @@ public class AppInfo implements Serializable {
 	private List<Map<String, Object>> property12;
 	private User property13;
 	private List<Map<String, User>> property14;
-	
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
 	
 	public String getName1() {
 		return name1;
@@ -240,7 +231,6 @@ public class AppInfo implements Serializable {
 	@Override
 	public String toString() {
 		return "AppInfo{" +
-				"name='" + name + '\'' +
 				", name1='" + name1 + '\'' +
 				", name2='" + name2 + '\'' +
 				", name3='" + name3 + '\'' +

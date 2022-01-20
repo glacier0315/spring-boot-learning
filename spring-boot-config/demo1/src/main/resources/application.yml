@@ -19,14 +19,13 @@ management:
 ## 定义属性
 app:
   info:
-    name: 张三
-    name1: 张三1
-    name2: 张三2
-    name3: 张三3
-    name4: 张三4
-    name5: 张三5
-    name6: 张三6
-    name7: 张三7
+    name1: 张三8
+    name2: 张三8
+    name3: 张三8
+    name4: 张三8
+    name5: 张三8
+    name6: 张三8
+    name7: 张三8
     name8: 张三8
 #    # 类型匹配
 #    property0: ${random.long}
