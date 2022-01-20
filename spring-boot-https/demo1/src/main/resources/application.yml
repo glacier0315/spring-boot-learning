@@ -1,0 +1,35 @@
+spring:
+  profiles:
+    active: dev
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+server:
+  servlet:
+    encoding:
+      # 修改编码
+      charset: UTF-8
+      force: true
+      enabled: true
+  #https默认端口：443，http默认端口：80
+  port: 443
+  http:
+    port: 80
+  #开启https，配置跟证书一一对应
+  ssl:
+    enabled: true
+    key-store: classpath:keystore.p12
+    key-store-type: PKCS12
+    # 别名
+    key-alias: tomcat
+    #密码
+    key-store-password: 123456
+
