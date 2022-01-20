@@ -1,8 +1,16 @@
 server:
   port: 8081
+  servlet:
+    encoding:
+      # 修改编码
+      charset: UTF-8
+      force: true
+      enabled: true
 
 # spring的datasource等配置未贴出
 spring:
+  profiles:
+    active: dev
   datasource:
     name: quartzDataSource
     type: com.zaxxer.hikari.HikariDataSource

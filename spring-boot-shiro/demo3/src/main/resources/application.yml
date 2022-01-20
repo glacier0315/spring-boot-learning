@@ -12,3 +12,11 @@ shiro:
     enabled: true
   loginUrl: /login
   unauthorizedUrl: /403
+
+server:
+  servlet:
+    encoding:
+      # 修改编码
+      charset: UTF-8
+      force: true
+      enabled: true

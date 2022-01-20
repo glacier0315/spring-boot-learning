@@ -6,5 +6,9 @@ spring:
 server:
   servlet:
     context-path: /rest
-
+    encoding:
+      # 修改编码
+      charset: UTF-8
+      force: true
+      enabled: true
 

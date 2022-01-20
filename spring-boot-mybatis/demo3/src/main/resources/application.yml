@@ -37,10 +37,18 @@ spring:
 mybatis:
   # 映射文件位置
   mapper-locations: classpath*:mybatis/mapper/*.xml
-  config-location:  classpath:mybatis/mybatis-config.xml
+  config-location: classpath:mybatis/mybatis-config.xml
 
 
 # 添加jvm启动参数 java -jar -Djasypt.encryptor.password=abc123456 xxx.jar
 jasypt:
   encryptor:
     password: abc123456
+
+server:
+  servlet:
+    encoding:
+      # 修改编码
+      charset: UTF-8
+      force: true
+      enabled: true

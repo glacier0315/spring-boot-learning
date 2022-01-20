@@ -1,5 +1,7 @@
 # spring的datasource等配置未贴出
 spring:
+  profiles:
+    active: dev
   quartz:
     # Job 存储器类型。默认为 memory 表示内存，可选 jdbc 使用数据库。
     job-store-type: memory
@@ -19,3 +21,11 @@ spring:
             # 线程优先级
             threadPriority: 5
             threadsInheritContextClassLoaderOfInitializingThread: true
+
+server:
+  servlet:
+    encoding:
+      # 修改编码
+      charset: UTF-8
+      force: true
+      enabled: true

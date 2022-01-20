@@ -10,7 +10,12 @@ spring:
 
 server:
   port: ${random.int[10000,19999]}
-
+  servlet:
+    encoding:
+      # 修改编码
+      charset: UTF-8
+      force: true
+      enabled: true
 
 management:
   endpoints:

@@ -15,10 +15,18 @@ spring:
     #保存历史数据级别设置为full最高级别，便于历史数据的追溯
     history-level: full
 
+server:
+  servlet:
+    encoding:
+      # 修改编码
+      charset: UTF-8
+      force: true
+      enabled: true
+
 mybatis:
   # 映射文件位置
   mapper-locations: classpath*:mybatis/mapper/*.xml
-  config-location:  classpath:mybatis/mybatis-config.xml
+  config-location: classpath:mybatis/mybatis-config.xml
 
 management:
   endpoints:

@@ -4,3 +4,10 @@ spring:
   thymeleaf:
     cache: false
 
+server:
+  servlet:
+    encoding:
+      # 修改编码
+      charset: UTF-8
+      force: true
+      enabled: true

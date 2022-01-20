@@ -41,3 +41,12 @@ spring:
     # Hibernate ddl auto (create, create-drop, update, )
     hibernate:
       ddl-auto: update
+
+
+server:
+  servlet:
+    encoding:
+      # 修改编码
+      charset: UTF-8
+      force: true
+      enabled: true

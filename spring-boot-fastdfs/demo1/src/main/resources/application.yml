@@ -12,6 +12,14 @@ spring:
         jwt:
           public-key-location: classpath:pubkey.pub
 
+server:
+  servlet:
+    encoding:
+      # 修改编码
+      charset: UTF-8
+      force: true
+      enabled: true
+
 
 # 分布式文件系统FDFS配置
 fdfs:

@@ -24,10 +24,18 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
 
+server:
+  servlet:
+    encoding:
+      # 修改编码
+      charset: UTF-8
+      force: true
+      enabled: true
+
 mybatis:
   # 映射文件位置
   mapper-locations: classpath*:mybatis/mapper/*.xml
-  config-location:  classpath:mybatis/mybatis-config.xml
+  config-location: classpath:mybatis/mybatis-config.xml
 
 management:
   endpoints:

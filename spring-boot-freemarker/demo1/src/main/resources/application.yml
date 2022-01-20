@@ -10,3 +10,10 @@ spring:
       additional-paths: src/main/java
       exclude: static/**, public/**
 
+server:
+  servlet:
+    encoding:
+      # 修改编码
+      charset: UTF-8
+      force: true
+      enabled: true

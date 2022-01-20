@@ -11,3 +11,11 @@ shiro:
   web:
     enabled: true
   loginUrl: /login
+
+server:
+  servlet:
+    encoding:
+      # 修改编码
+      charset: UTF-8
+      force: true
+      enabled: true
