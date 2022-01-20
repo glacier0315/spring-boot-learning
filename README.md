@@ -10,12 +10,13 @@
   [码云工程地址](https://gitee.com/glacier0315/spring-boot-learning.git)
 
 ## 工程说明
-### 监控
+### web层
 #### [spring-boot-web](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-web)
 * demo1: spring-boot-web 示例。
 ***
 
-### 数据源 和持久层
+### 数据层
+
 ### [spring data jpa](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-data-jpa)
     * demo1: spring-boot-data-jpa 示例。
 ### [mybatis](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-mybatis)  
@@ -25,32 +26,48 @@
 ### [mybatis-plus](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-mybatis-plus)
     * demo1: spring-boot集成mybatis-plus和alibaba druid 的示例。
     * dynamic1: spring-boot集成mybatis-plus、alibaba druid和dynamic-datasource（动态数据源） 的示例。
+
 ***
 
 ### 模板
-#### [spring-boot-freemarker](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-freemarker)
+
+#### [freemarker](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-freemarker)
+
     * demo1: spring-boot集成freemarker 的示例。
-#### [spring-boot-thymeleaf](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-thymeleaf)
+
+#### [thymeleaf](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-thymeleaf)
+
     * demo1: spring-boot集成thymeleaf 的示例。
     * demo2: spring-boot集成thymeleaf和thymeleaf-layout 的示例。
+
 ***
 
-### rest
-#### [spring-boot-jersey](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-jersey)
+### rest服务
+
+#### [jersey](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-jersey)
+
     * demo1: spring-boot集成jersey 的示例。
+
 ***
 
-### 权限
-#### [spring-boot-security](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-security)
+### 权限管理
+
+#### [spring-security](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-security)
+
     * memory-login1: spring-boot集成security 的示例。
-#### [spring-boot-shiro](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-shiro)
+
+#### [shiro](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-shiro)
+
     * demo1: spring-boot集成shiro 的示例。
     * demo2: spring-boot集成shiro 持久化到数据库的示例。
     * demo3: spring-boot集成shiro 配置多realm。
+
 ***
 
 ### api doc
+
 #### [spring-boot-openapi](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-openapi)
+
     * demo1: spring-boot集成openapi 的示例。
 #### [spring-boot-swagger3](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-swagger3)
     * demo1: spring-boot集成swagger3 的示例。
@@ -76,15 +93,48 @@
 ***
 
 ### 工作流
-#### [spring-boot-activiti6](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-activiti6)
+
+#### [activiti6](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-activiti6)
+
     * demo1: spring-boot集成activiti6 的示例。
-#### [spring-boot-activiti7](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-activiti7)
+
+#### [activiti7](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-activiti7)
+
     * demo1: spring-boot集成activiti7 的示例。
+
 ***
 
-# spring-boot-admin
-#### [spring-boot-admin:server1](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-admin:server1)
+### [spring-boot-admin](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-admin)
+
     * server1: spring-boot集成spring-boot-admin-server 的示例。
-#### [spring-boot-admin:client1](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-admin:client1)
     * client1: spring-boot集成spring-boot-admin-client 的示例。
+
+***
+
+### 其他
+
+#### [spring-boot-jar2war](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-jar2war)
+
+    * spring-boot集成打war包 的示例。
+
+#### [spring-boot-config](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-config:demo1)
+
+    * demo1: spring-boot 读取配置文件顺序 的示例。
+
+#### [spring-boot-async](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-async:demo1)
+
+    * demo1: spring-boot 异步调用 的示例。
+
+#### [spring-boot-aop](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-aop:demo1)
+
+    * demo1: spring-boot 切面编程 的示例。
+
+#### [spring-boot-logback](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-logback:demo1)
+
+    * demo1: spring-boot logback配置 的示例。
+
+#### [spring-boot-validation](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-validation:demo1)
+
+    * demo1: spring-boot validation校验 的示例。
+
 ***
