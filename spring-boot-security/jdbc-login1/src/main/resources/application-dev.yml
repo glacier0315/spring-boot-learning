@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.10.130:3306/eboot_sys?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
-    username: eboot_sys
-    password: eboot_sys
+    url: jdbc:mysql://192.168.10.130:3306/sb_learn?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
   devtools:
     restart:
       trigger-file: trigger.txt
