@@ -6,6 +6,7 @@ import org.quartz.impl.matchers.EverythingMatcher;
 import org.quartz.impl.matchers.KeyMatcher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
 /**
@@ -16,6 +17,7 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
  * @author glacier
  * @version 1.0
  */
+@EnableScheduling
 @Configuration
 public class QuartzConfig {
 
@@ -49,15 +51,15 @@ public class QuartzConfig {
         return scheduler;
     }
 
-//    @Bean
+    //@Bean
     public JobDetail jobDetail() {
         return JobBuilder.newJob(PrintJob.class)
                 .withIdentity("print_job")
                 .storeDurably()
                 .build();
     }
-
-//    @Bean
+	
+	//@Bean
     public Trigger trigger(JobDetail job) {
         return TriggerBuilder.newTrigger()
                 .forJob(job)

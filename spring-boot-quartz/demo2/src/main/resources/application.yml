@@ -12,12 +12,8 @@ spring:
   profiles:
     active: dev
   datasource:
-    name: quartzDataSource
+    name: mysql1
     type: com.zaxxer.hikari.HikariDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.10.130:3306/sb_learning?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
-    username: sb_learning
-    password: sb_learning
   quartz:
     job-store-type: jdbc # Job 存储器类型。默认为 memory 表示内存，可选 jdbc 使用数据库。
     jdbc:
@@ -28,11 +24,22 @@ spring:
     properties:
       org:
         quartz:
+          # 数据源
+          dataSource:
+            globalJobDataSource:
+              # URL必须大写
+              URL: jdbc:mysql://192.168.10.130:3306/quartz?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+              driver: com.mysql.cj.jdbc.Driver
+              maxConnections: 5
+              username: root
+              password: root
+              # 必须指定数据源类型
+              provider: hikaricp
           scheduler:
             instanceId: AUTO #默认主机名和时间戳生成实例ID,可以是任何字符串，但对于所有调度程序来说，必须是唯一的 对应qrtz_scheduler_state INSTANCE_NAME字段
           # JobStore 相关配置
           jobStore:
-            dataSource: quartzDataSource # 使用的数据源
+            dataSource: globalJobDataSource # 使用的数据源
             class: org.quartz.impl.jdbcjobstore.JobStoreTX # JobStore 实现类
             driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
             tablePrefix: QRTZ_ # Quartz 表前缀
