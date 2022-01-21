@@ -1,11 +1,10 @@
 package com.glacier.controller;
 
 import com.glacier.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.Resource;
 
 /**
  * @author glacier
@@ -16,11 +15,15 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping(value = "users")
 public class UserController {
-    @Resource
-    private UserService userService;
-
-    @GetMapping
-    public String index() {
-        return "users";
-    }
+	private final UserService userService;
+	
+	@Autowired
+	public UserController(UserService userService) {
+		this.userService = userService;
+	}
+	
+	@GetMapping
+	public String index() {
+		return "users";
+	}
 }

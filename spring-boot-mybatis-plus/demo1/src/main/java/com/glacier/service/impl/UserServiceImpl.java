@@ -2,10 +2,9 @@ package com.glacier.service.impl;
 
 import com.glacier.mapper.UserMapper;
 import com.glacier.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.annotation.Resource;
 
 /**
  * @author glacier
@@ -16,11 +15,10 @@ import javax.annotation.Resource;
 @Transactional(readOnly = true)
 @Service
 public class UserServiceImpl implements UserService {
-    @Resource
-    private UserMapper userMapper;
-
-    public void test() {
-
-    }
-
+	private final UserMapper userMapper;
+	
+	@Autowired
+	public UserServiceImpl(UserMapper userMapper) {
+		this.userMapper = userMapper;
+	}
 }
