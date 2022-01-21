@@ -7,11 +7,11 @@ package com.glacier.constant;
  */
 public interface Constant {
     /**
-     * 主数据源
-     */
-    String DATASOURCE_AUTH = "auth";
-    /**
-     * 第二数据源
-     */
-    String DATASOURCE_EBOOT_SYS = "eboot_sys";
+	 * 主数据源
+	 */
+	String DATASOURCE_1 = "db1";
+	/**
+	 * 第二数据源
+	 */
+	String DATASOURCE_2 = "db2";
 }

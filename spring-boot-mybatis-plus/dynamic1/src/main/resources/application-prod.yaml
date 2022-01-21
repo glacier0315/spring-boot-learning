@@ -1,17 +1,14 @@
-server:
-  port: 8081
-
 spring:
   datasource:
     dynamic:
       datasource:
-        auth:
+        db1:
           driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://192.168.10.130:3306/auth?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+          url: jdbc:mysql://192.168.10.130:3306/sb_learn?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
           username: root
           password: root
-        eboot_sys:
+        db2:
           driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://192.168.10.130:3306/eboot?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+          url: jdbc:mysql://192.168.10.130:3306/sb_learn2?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
           username: root
           password: root

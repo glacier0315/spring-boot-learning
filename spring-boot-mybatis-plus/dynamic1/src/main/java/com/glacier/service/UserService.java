@@ -15,12 +15,12 @@ import java.util.List;
 public interface UserService {
 
     /**
-     * 根据用户唯一标识获取用户信息
-     *
-     * @param username
-     * @return
-     */
-    User getByUsername(String username);
+	 * 根据用户唯一标识获取用户信息
+	 *
+	 * @param username
+	 * @return
+	 */
+	User findByUsername(String username);
 
     /**
      * 查找所有用户
