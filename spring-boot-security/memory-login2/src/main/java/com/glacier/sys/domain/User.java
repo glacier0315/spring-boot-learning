@@ -64,46 +64,4 @@ public class User implements Serializable {
     }
 	
 	
-	public static final class UserBuilder {
-		private String id;
-		private String username;
-		private String password;
-		private Integer sex;
-		
-		private UserBuilder() {
-		}
-		
-		public static UserBuilder anUser() {
-			return new UserBuilder();
-		}
-		
-		public UserBuilder id(String id) {
-			this.id = id;
-			return this;
-		}
-		
-		public UserBuilder username(String username) {
-			this.username = username;
-			return this;
-		}
-		
-		public UserBuilder password(String password) {
-			this.password = password;
-			return this;
-		}
-		
-		public UserBuilder sex(Integer sex) {
-			this.sex = sex;
-			return this;
-		}
-		
-		public User build() {
-			User user = new User();
-			user.setId(id);
-			user.setUsername(username);
-			user.setPassword(password);
-			user.setSex(sex);
-			return user;
-		}
-	}
 }

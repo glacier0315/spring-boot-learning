@@ -60,42 +60,10 @@ public interface UserMapper {
 	List<User> selectList(User user);
 	
 	/**
-	 * 根据组织机构id 更新组织机构名称
-	 *
-	 * @param user 记录
-	 * @return 更新行数
-	 */
-	int updateDeptByDeptId(User user);
-	
-	/**
 	 * 根据用户名查询用户
 	 *
 	 * @param username 用户名
 	 * @return 用户
 	 */
 	User selectOneByUsername(String username);
-	
-	/**
-	 * 更新个人信息
-	 *
-	 * @param user  记录
-	 * @return 更新行数
-	 */
-	int updateProfileByPrimaryKey(User user);
-	
-	/**
-	 * 更新头像
-	 *
-	 * @param user 记录
-	 * @return 更新行数
-	 */
-	int updateAvatarByPrimaryKey(User user);
-	
-	/**
-	 * 更新密码
-	 *
-	 * @param user 记录
-	 * @return 更新行数
-	 */
-	int updatePasswordByPrimaryKey(User user);
 }

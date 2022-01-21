@@ -73,39 +73,6 @@
         where id = #{id}
     </update>
 
-    <update id="updateDeptByDeptId" parameterType="com.glacier.mybatis.entity.User">
-        update sys_user
-        set dept_name = #{deptName}
-        where dept_id = #{deptId}
-    </update>
-
-    <update id="updateProfileByPrimaryKey">
-        update sys_user
-        set nickname    = #{nickname},
-            sex         = #{sex},
-            email       = #{email},
-            mobile      = #{mobile},
-            update_by   = #{updateBy},
-            update_date = #{updateDate}
-        where id = #{id}
-    </update>
-
-    <update id="updateAvatarByPrimaryKey">
-        update sys_user
-        set avatar      = #{avatar},
-            update_by   = #{updateBy},
-            update_date = #{updateDate}
-        where id = #{id}
-    </update>
-
-    <update id="updatePasswordByPrimaryKey">
-        update sys_user
-        set password    = #{password},
-            update_by   = #{updateBy},
-            update_date = #{updateDate}
-        where id = #{id}
-    </update>
-
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="base_columns"/>
