@@ -62,15 +62,16 @@ VALUES ('c35d5b94aca547799fbe56ddd90bcfc4', 'ceshi', '$2a$10$RP6MGP8lFqKhh0.2/Sr
         '0');
 
 
+DROP DATABASE sb_learn2;
 CREATE DATABASE sb_learn2 CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
 
 use sb_learn2;
 
 -- ----------------------------
--- Table structure for sys_role
+-- Table structure for t_role
 -- ----------------------------
-DROP TABLE IF EXISTS sys_role;
-CREATE TABLE sys_role
+DROP TABLE IF EXISTS t_role;
+CREATE TABLE t_role
 (
     id          varchar(64) NOT NULL COMMENT '主键',
     name        varchar(200) COMMENT '角色名',
@@ -92,12 +93,12 @@ CREATE TABLE sys_role
   ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of sys_role
+-- Records of t_role
 -- ----------------------------
-INSERT INTO sys_role (id, name, code, status, data_scope, description, create_by, create_date, update_by, update_date,
-                      del_flag)
+INSERT INTO t_role (id, name, code, status, data_scope, description, create_by, create_date, update_by, update_date,
+                    del_flag)
 VALUES ('1', '超级管理员', 'admin', '1', '1', null, null, '2020-06-25 07:45:59', '1', '2020-09-03 20:40:19', '0');
-INSERT INTO sys_role (id, name, code, status, data_scope, description, create_by, create_date, update_by, update_date,
-                      del_flag)
+INSERT INTO t_role (id, name, code, status, data_scope, description, create_by, create_date, update_by, update_date,
+                    del_flag)
 VALUES ('d1ece8903278fe25e8be2804fd755025', '普通用户', 'user', '1', '2', null, null, '2020-07-04 01:49:03', '1',
         '2020-09-03 20:40:55', '0');

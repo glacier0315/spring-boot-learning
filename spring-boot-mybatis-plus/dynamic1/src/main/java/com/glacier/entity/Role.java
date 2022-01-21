@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
  * @author glacier
  * @version 1.0
  */
-@TableName("sys_role")
+@TableName("t_role")
 public class Role implements Serializable {
 	
 	private static final long serialVersionUID = -3318599726827564559L;
