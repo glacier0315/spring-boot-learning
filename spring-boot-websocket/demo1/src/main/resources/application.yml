@@ -1,0 +1,24 @@
+spring:
+  profiles:
+    active: dev
+  thymeleaf:
+    enabled: true
+    cache: false
+    encoding: UTF-8
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+server:
+  servlet:
+    encoding:
+      # 修改编码
+      charset: UTF-8
+      force: true
+      enabled: true
