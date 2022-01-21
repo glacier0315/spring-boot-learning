@@ -10,9 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version 1.0
  */
 @SpringBootApplication
-public class ShiroDemo2Application {
-
-    public static void main(String[] args) {
-        SpringApplication.run(ShiroDemo2Application.class, args);
-    }
+public class ShiroJdbc1Application {
+	
+	public static void main(String[] args) {
+		SpringApplication.run(ShiroJdbc1Application.class, args);
+	}
 }

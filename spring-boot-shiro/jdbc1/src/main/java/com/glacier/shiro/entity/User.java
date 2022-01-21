@@ -13,7 +13,6 @@ public class User implements Serializable {
     private String username;
     private String nickname;
     private String password;
-    private String passwordSalt;
     
     public String getId() {
         return id;
@@ -47,14 +46,6 @@ public class User implements Serializable {
         this.password = password;
     }
     
-    public String getPasswordSalt() {
-        return passwordSalt;
-    }
-    
-    public void setPasswordSalt(String passwordSalt) {
-        this.passwordSalt = passwordSalt;
-    }
-    
     @Override
     public String toString() {
         return "User{" +
@@ -62,7 +53,6 @@ public class User implements Serializable {
                 ", username='" + username + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", password='" + password + '\'' +
-                ", passwordSalt='" + passwordSalt + '\'' +
                 '}';
     }
 }

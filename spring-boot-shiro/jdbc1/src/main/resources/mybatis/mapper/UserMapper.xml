@@ -21,7 +21,7 @@
     <select id="findByUsername" resultMap="BaseResultMap">
         select
         <include refid="base_columns"/>
-        from users a
+        from sys_user a
         <where>
             a.username=#{username}
         </where>
@@ -30,17 +30,17 @@
     <select id="findAll" resultMap="BaseResultMap">
         select
         <include refid="base_columns"/>
-        from users a
+        from sys_user a
     </select>
 
     <delete id="deleteById" parameterType="java.lang.String">
         delete
-        from users
+        from sys_user
         where id = #{id}
     </delete>
 
     <insert id="insert">
-        insert into users (id, username, password, nickname)
+        insert into sys_user (id, username, password, nickname)
         values (#{id}, #{username}, #{password}, #{nickname})
     </insert>
 
