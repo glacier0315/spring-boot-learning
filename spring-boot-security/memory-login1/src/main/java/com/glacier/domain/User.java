@@ -10,17 +10,17 @@ import java.io.Serializable;
 public class User implements Serializable {
     private static final long serialVersionUID = 1459552861236715606L;
     private String id;
-    private String userName;
-    private String passWord;
+    private String username;
+    private String password;
     private Integer sex;
 
     public User() {
     }
 
-    public User(String id, String userName, String passWord, Integer sex) {
+    public User(String id, String username, String password, Integer sex) {
         this.id = id;
-        this.userName = userName;
-        this.passWord = passWord;
+        this.username = username;
+        this.password = password;
         this.sex = sex;
     }
 
@@ -36,20 +36,20 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getPassWord() {
-        return passWord;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Integer getSex() {
@@ -64,8 +64,8 @@ public class User implements Serializable {
     public String toString() {
         return "User{" +
                 "id='" + id + '\'' +
-                ", userName='" + userName + '\'' +
-                ", passWord='" + passWord + '\'' +
+                ", userName='" + username + '\'' +
+                ", passWord='" + password + '\'' +
                 ", sex=" + sex +
                 '}';
     }
