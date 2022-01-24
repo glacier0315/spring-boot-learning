@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.glacier.constant.Constant;
 import com.glacier.entity.User;
-import com.glacier.entity.builder.UserBuilder;
 import com.glacier.mapper.UserMapper;
 import com.glacier.service.UserService;
 import org.springframework.stereotype.Service;
@@ -27,7 +26,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 	public User findByUsername(String username) {
 		return this.baseMapper.selectOne(
 				new QueryWrapper<>(
-						UserBuilder.anUser()
+						User.UserBuilder.anUser()
 								.username(username)
 								.build()));
 	}

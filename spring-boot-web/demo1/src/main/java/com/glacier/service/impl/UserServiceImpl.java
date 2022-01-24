@@ -1,5 +1,6 @@
 package com.glacier.service.impl;
 
+import com.glacier.domain.Address;
 import com.glacier.domain.User;
 import com.glacier.service.UserService;
 import org.slf4j.Logger;
@@ -27,22 +28,27 @@ public class UserServiceImpl implements UserService {
 	
 	@PostConstruct
 	public void init() {
-		User user = null;
 		SecureRandom random = new SecureRandom();
 		for (int i = 0; i < 150; i++) {
-			user = new User();
-			user.setId(UUID.randomUUID().toString().replace("-", ""));
-			user.setUsername("user_" + i);
-			user.setPassword("passwd_" + i);
-			user.setNickname("昵称_" + i);
-			user.setBirthday(LocalDate.now());
-			user.setIdCard("123748909876543254654785" + i);
-			user.setSex(String.valueOf(random.nextInt(1)));
-			user.setDuty("duty_" + i);
-			user.setJoinDate(LocalDateTime.now());
-			user.setDoubleData(random.nextDouble() + random.nextInt(1));
-			
-			this.users.add(user);
+			this.users.add(User.UserBuilder.anUser()
+					.id(UUID.randomUUID().toString().replace("-", ""))
+					.username("user_" + i)
+					.password("passwd_" + i)
+					.nickname("昵称_" + i)
+					.birthday(LocalDate.now())
+					.idCard("123748909876543254654785" + i)
+					.sex(String.valueOf(random.nextInt(1)))
+					.duty("duty_" + i)
+					.joinDate(LocalDateTime.now())
+					.height(random.nextDouble())
+					.weight(random.nextDouble())
+					.address(Address.AddressBuilder.anAddress()
+							.country("country_" + i)
+							.province("province_" + i)
+							.city("city_" + i)
+							.detail("detail_" + i)
+							.build())
+					.build());
 		}
 	}
 	

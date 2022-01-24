@@ -1,5 +1,6 @@
 package com.glacier.controller;
 
+import com.glacier.domain.Address;
 import com.glacier.domain.User;
 import com.glacier.service.UserService;
 import org.junit.jupiter.api.AfterEach;
@@ -64,17 +65,25 @@ class UserControllerTest {
 	 */
 	private User bookServiceMockBean(String username) {
 		SecureRandom random = new SecureRandom();
-		User user = new User();
-		user.setId(UUID.randomUUID().toString().replace("-", ""));
-		user.setUsername(username);
-		user.setPassword("passwd_1");
-		user.setNickname("昵称_1");
-		user.setBirthday(LocalDate.now());
-		user.setIdCard("123748909876543254654785");
-		user.setSex(String.valueOf(random.nextInt(1)));
-		user.setDuty("duty_");
-		user.setJoinDate(LocalDateTime.now());
-		user.setDoubleData(random.nextDouble() + random.nextInt(1));
+		User user = User.UserBuilder.anUser()
+				.id(UUID.randomUUID().toString().replace("-", ""))
+				.username("user_1")
+				.password("passwd_1")
+				.nickname("昵称_1")
+				.birthday(LocalDate.now())
+				.idCard("1237489098765432546547851")
+				.sex(String.valueOf(random.nextInt(1)))
+				.duty("duty_1")
+				.joinDate(LocalDateTime.now())
+				.height(random.nextDouble())
+				.weight(random.nextDouble())
+				.address(Address.AddressBuilder.anAddress()
+						.country("country_1")
+						.province("province_1")
+						.city("city_1")
+						.detail("detail_1")
+						.build())
+				.build();
 		
 		BDDMockito.given(userService.findByUsername(username))
 				.willReturn(user);

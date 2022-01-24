@@ -1,7 +1,6 @@
 package com.glacier.mybatis.mapper;
 
 import com.glacier.mybatis.entity.User;
-import com.glacier.mybatis.entity.builder.UserBuilder;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,7 +39,7 @@ class UserMapperTest {
 	
 	@Test
 	void insert() {
-		User user = UserBuilder.anUser()
+		User user = User.UserBuilder.anUser()
 				.id(UUID.randomUUID().toString().replace("-", ""))
 				.username("zhangsan")
 				.password("zhangsanpw")
@@ -66,7 +65,7 @@ class UserMapperTest {
 	
 	@Test
 	void updateByPrimaryKey() {
-		User user = UserBuilder.anUser()
+		User user = User.UserBuilder.anUser()
 				.id("651c74980f0f40729b28d6bd9fe32c80")
 				.username("zhangsan")
 				.password("zhangsanpw")
@@ -79,7 +78,7 @@ class UserMapperTest {
 	@Test
 	void selectList() {
 		List<User> users = userMapper.selectList(
-				UserBuilder.anUser()
+				User.UserBuilder.anUser()
 						.status("1")
 						.build());
 		Assertions.assertNotNull(users);

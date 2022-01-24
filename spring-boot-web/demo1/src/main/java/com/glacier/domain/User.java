@@ -22,7 +22,9 @@ public class User implements Serializable {
 	private String sex;
 	private String duty;
 	private LocalDateTime joinDate;
-	private Double doubleData;
+	private Double weight;
+	private Double height;
+	private Address address;
 	
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
@@ -100,12 +102,28 @@ public class User implements Serializable {
 		this.joinDate = joinDate;
 	}
 	
-	public Double getDoubleData() {
-		return doubleData;
+	public Double getWeight() {
+		return weight;
 	}
 	
-	public void setDoubleData(Double doubleData) {
-		this.doubleData = doubleData;
+	public void setWeight(Double weight) {
+		this.weight = weight;
+	}
+	
+	public Double getHeight() {
+		return height;
+	}
+	
+	public void setHeight(Double height) {
+		this.height = height;
+	}
+	
+	public Address getAddress() {
+		return address;
+	}
+	
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 	
 	@Override
@@ -137,7 +155,108 @@ public class User implements Serializable {
 				", sex='" + sex + '\'' +
 				", duty='" + duty + '\'' +
 				", joinDate=" + joinDate +
-				", doubleData=" + doubleData +
+				", weight=" + weight +
+				", height=" + height +
+				", address=" + address +
 				'}';
+	}
+	
+	public static final class UserBuilder {
+		private String id;
+		private String username;
+		private String password;
+		private String nickname;
+		private LocalDate birthday;
+		private String idCard;
+		private String sex;
+		private String duty;
+		private LocalDateTime joinDate;
+		private Double weight;
+		private Double height;
+		private Address address;
+		
+		private UserBuilder() {
+		}
+		
+		public static UserBuilder anUser() {
+			return new UserBuilder();
+		}
+		
+		public UserBuilder id(String id) {
+			this.id = id;
+			return this;
+		}
+		
+		public UserBuilder username(String username) {
+			this.username = username;
+			return this;
+		}
+		
+		public UserBuilder password(String password) {
+			this.password = password;
+			return this;
+		}
+		
+		public UserBuilder nickname(String nickname) {
+			this.nickname = nickname;
+			return this;
+		}
+		
+		public UserBuilder birthday(LocalDate birthday) {
+			this.birthday = birthday;
+			return this;
+		}
+		
+		public UserBuilder idCard(String idCard) {
+			this.idCard = idCard;
+			return this;
+		}
+		
+		public UserBuilder sex(String sex) {
+			this.sex = sex;
+			return this;
+		}
+		
+		public UserBuilder duty(String duty) {
+			this.duty = duty;
+			return this;
+		}
+		
+		public UserBuilder joinDate(LocalDateTime joinDate) {
+			this.joinDate = joinDate;
+			return this;
+		}
+		
+		public UserBuilder weight(Double weight) {
+			this.weight = weight;
+			return this;
+		}
+		
+		public UserBuilder height(Double height) {
+			this.height = height;
+			return this;
+		}
+		
+		public UserBuilder address(Address address) {
+			this.address = address;
+			return this;
+		}
+		
+		public User build() {
+			User user = new User();
+			user.setId(id);
+			user.setUsername(username);
+			user.setPassword(password);
+			user.setNickname(nickname);
+			user.setBirthday(birthday);
+			user.setIdCard(idCard);
+			user.setSex(sex);
+			user.setDuty(duty);
+			user.setJoinDate(joinDate);
+			user.setWeight(weight);
+			user.setHeight(height);
+			user.setAddress(address);
+			return user;
+		}
 	}
 }

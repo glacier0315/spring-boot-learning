@@ -1,15 +1,12 @@
 package com.glacier.service;
 
 import com.glacier.entity.User;
-import com.glacier.entity.builder.UserBuilder;
 import com.glacier.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.event.annotation.BeforeTestClass;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -30,7 +27,7 @@ class UserServiceTest {
 		System.out.println("初始化数据");
 		UserServiceImpl.userMap
 				.put("admin",
-						UserBuilder.anUser()
+						User.UserBuilder.anUser()
 								.id("1")
 								.username("admin")
 								.password("admin")
@@ -42,7 +39,7 @@ class UserServiceTest {
 								.build());
 		UserServiceImpl.userMap
 				.put("admin9",
-						UserBuilder.anUser()
+						User.UserBuilder.anUser()
 								.id("9")
 								.username("admin9")
 								.password("admin")
@@ -70,7 +67,7 @@ class UserServiceTest {
 	
 	@Test
 	void addUser() {
-		User user = UserBuilder.anUser()
+		User user = User.UserBuilder.anUser()
 				.id("5")
 				.username("admin4")
 				.password("admin")
@@ -101,7 +98,7 @@ class UserServiceTest {
 	
 	@Test
 	void updateUser1() {
-		final User user = UserBuilder.anUser()
+		final User user = User.UserBuilder.anUser()
 				.id("1")
 				.username("admin1")
 				.password("admin")
@@ -117,7 +114,7 @@ class UserServiceTest {
 	@Test
 	void updateUser2() {
 		final String id = "2";
-		User user = UserBuilder.anUser()
+		User user = User.UserBuilder.anUser()
 				.id(id)
 				.username("admin")
 				.password("admin2")
