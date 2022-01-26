@@ -1,0 +1,39 @@
+version: "3.9"
+networks:
+  mysql:
+    driver: bridge
+
+services:
+  mysql:
+    container_name: mysql
+    image: nacos/nacos-mysql:8.0.16
+    privileged: true
+    env_file:
+      - ./env/mysql.env
+    volumes:
+      - ./datas/mysql-master:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - mysql
+    restart: always
+  redis:
+    container_name: redis
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - ./datas/redis:/data
+    networks:
+      - mysql
+  elasticsearch:
+    container_name: elasticsearch
+    image: elasticsearch:7.16.3
+    networks:
+      - mysql
+    environment:
+      - "discovery.type=single-node"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
