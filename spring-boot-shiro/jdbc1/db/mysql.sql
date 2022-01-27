@@ -1,5 +1,7 @@
+/*
+DROP DATABASE if exists sb_learn;
 CREATE DATABASE sb_learn CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
-
+*/
 use sb_learn;
 
 -- ----------------------------
