@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: dev
+  rabbitmq:
+    host: 192.168.20.129
+    port: 5672
+    username: ems
+    password: ems
+    virtual-host: ems
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+server:
+  servlet:
+    encoding:
+      # 修改编码
+      charset: UTF-8
+      force: true
+      enabled: true
