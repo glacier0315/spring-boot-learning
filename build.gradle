@@ -1,6 +1,6 @@
 // 定义插件版本,不立即应用
 plugins {
-    id "org.springframework.boot" version "2.6.2" apply false
+    id "org.springframework.boot" version "2.6.2" apply(false)
 }
 
 // 配置所有项目
@@ -31,4 +31,8 @@ subprojects {
         }
     }
 
+}
+
+wrapper {
+    gradleVersion = '7.3.3'
 }
