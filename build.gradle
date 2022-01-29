@@ -5,7 +5,6 @@ plugins {
 
 // 配置所有项目
 subprojects {
-    apply plugin: 'java-library'
     apply plugin: 'com.glacier.java-common-conventions'
     apply from: "$rootDir/version.gradle"
 

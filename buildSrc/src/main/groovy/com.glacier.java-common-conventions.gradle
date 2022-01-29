@@ -5,6 +5,7 @@
 plugins {
     // Apply the java Plugin to add support for Java.
     id 'java'
+    id 'java-library'
 }
 
 // 指定仓库
@@ -20,6 +21,31 @@ repositories {
     mavenCentral()
 }
 
+import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
+// 取当前时间
+def buildTimeAndDate = OffsetDateTime.now()
+
+// 根据时间生成字符串变量
+ext {
+    projectVersion = project.version
+    buildDate = DateTimeFormatter.ISO_LOCAL_DATE.format(buildTimeAndDate)
+    buildTime = DateTimeFormatter.ofPattern('HH:mm:ss.SSSZ').format(buildTimeAndDate)
+    manifestMap = [
+            'Created-By': "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']})".toString(),
+            'Built-By': 'gradle',
+            'Build-Date': buildDate,
+            'Build-Time': buildTime,
+            'Built-OS': "${System.properties['os.name']}",
+            'Specification-Title': project.name,
+            'Specification-Version': project.version,
+            'Specification-Vendor': 'glacier',
+            'Implementation-Title': project.name,
+            'Implementation-Version': project.version,
+            'Implementation-Vendor': 'glacier'
+    ]
+}
+
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(11)
@@ -33,10 +59,10 @@ configurations {
 
 dependencies {
     // Use JUnit Jupiter for testing.
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
+    testImplementation('org.junit.jupiter:junit-jupiter:5.7.2')
 }
 
-tasks.named('test') {
+test {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform() {
         excludeEngines 'junit-vintage'
@@ -53,14 +79,22 @@ tasks.withType(JavaCompile) {
     }
 }
 
+// Copy LICENSE
+tasks.withType(Jar) {
+    from(project.rootDir) {
+        include 'LICENSE'
+        into 'META-INF'
+    }
+}
+
 // 配置 创建源文件夹
 task mkdirs {
-    sourceSets*.java.srcDirs*.each {
-        it.mkdirs()
-    }
-    sourceSets*.resources.srcDirs*.each {
-        it.mkdirs()
-    }
+    sourceSets*.java.srcDirs*.forEach(f -> {
+        f.mkdirs()
+    })
+    sourceSets*.resources.srcDirs*.forEach(f -> {
+        f.mkdirs()
+    })
 }
 
 // 拷贝jar包
@@ -68,7 +102,7 @@ task copyJars(type: Copy) {
     // 运行时
     from configurations.runtimeClasspath
     // 目标位置
-    into "$buildDir/libs"
+    into "$buildDir/jars"
 }
 
 //配置 删除文件夹
@@ -83,3 +117,10 @@ task cleanTempFiles {
     }
 }
 clean.dependsOn cleanTempFiles
+
+// 生成jar文件时，MANIFEST.MF的内容如下
+jar {
+    manifest {
+        attributes(manifestMap)
+    }
+}

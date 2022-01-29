@@ -7,6 +7,13 @@ subprojects {
         implementation("com.alibaba:druid-spring-boot-starter:${druidVersion}")
         developmentOnly("org.springframework.boot:spring-boot-devtools")
     }
+
+    // 生成jar文件时，MANIFEST.MF的内容如下
+    bootJar {
+        manifest {
+            attributes(manifestMap)
+        }
+    }
 }
 
 
