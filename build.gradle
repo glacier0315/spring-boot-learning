@@ -1,6 +1,8 @@
 // 定义插件版本,不立即应用
 plugins {
     id "org.springframework.boot" version "2.6.2" apply(false)
+    id "com.bmuschko.docker-remote-api" version "7.2.0" apply(false)
+    id "com.bmuschko.docker-spring-boot-application" version "7.2.0" apply(false)
 }
 
 // 配置所有项目
