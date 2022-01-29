@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: dev
+
+
+rocketmq:
+  name-server: 192.168.20.134:9876
+  producer:
+    group: my-group
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+server:
+  servlet:
+    encoding:
+      # 修改编码
+      charset: UTF-8
+      force: true
+      enabled: true

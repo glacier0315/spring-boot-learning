@@ -10,6 +10,8 @@ ext {
 
     //spring boot admin
     springBootAdminVersion = "2.6.1"
+    // rocketmq
+    rocketmqStarter = "2.2.1"
 
     // openapi
     openapiVersion = "1.6.4"
