@@ -1,6 +1,6 @@
 version: "3.9"
 networks:
-  mysql:
+  net1:
     driver: bridge
 
 services:
@@ -15,7 +15,7 @@ services:
     ports:
       - "3306:3306"
     networks:
-      - mysql
+      - net1
     restart: always
   redis:
     container_name: redis
@@ -26,22 +26,14 @@ services:
     volumes:
       - ./datas/redis:/data
     networks:
-      - mysql
+      - net1
   elasticsearch:
     container_name: elasticsearch
     image: elasticsearch:7.16.3
     networks:
-      - mysql
+      - net1
     environment:
       - "discovery.type=single-node"
     ports:
       - "9200:9200"
       - "9300:9300"
-  rabbitmq:
-    container_name: rabbitmq
-    image: rabbitmq:3.9-management
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    networks:
-      - mysql

@@ -1,0 +1,64 @@
+version: "3.9"
+services:
+  rmqnamesrv:
+    image: foxiswho/rocketmq:4.8.0
+    container_name: rmqnamesrv
+    ports:
+      - "9876:9876"
+    volumes:
+      - ./datas/rmqs/logs:/home/rocketmq/logs
+      - ./datas/rmqs/store:/home/rocketmq/store
+    environment:
+      JAVA_OPT_EXT: "-Duser.home=/home/rocketmq -Xms512M -Xmx512M -Xmn128m"
+    command: [ "sh", "mqnamesrv" ]
+    networks:
+      - net1
+  rmqbroker:
+    image: foxiswho/rocketmq:4.8.0
+    container_name: rmqbroker
+    ports:
+      - "10909:10909"
+      - "10911:10911"
+    volumes:
+      - ./datas/rmq/logs:/home/rocketmq/logs
+      - ./datas/rmq/store:/home/rocketmq/store
+      - ./init/rmq/broker.conf:/etc/rocketmq/broker.conf
+    environment:
+      JAVA_OPT_EXT: "-Duser.home=/home/rocketmq -Xms512M -Xmx512M -Xmn128m"
+    command:
+      [
+        "sh",
+        "mqbroker",
+        "-c",
+        "/etc/rocketmq/broker.conf",
+        "-n",
+        "rmqnamesrv:9876",
+        "autoCreateTopicEnable=true"
+      ]
+    depends_on:
+      - rmqnamesrv
+    networks:
+      - net1
+  rmqconsole:
+    image: styletang/rocketmq-console-ng
+    container_name: rmqconsole
+    ports:
+      - "8180:8080"
+    environment:
+      JAVA_OPTS: "-Drocketmq.namesrv.addr=rmqnamesrv:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false"
+    depends_on:
+      - rmqnamesrv
+    networks:
+      - net1
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.9-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - net1
+
+networks:
+  mq:
+    driver: bridge
