@@ -27,13 +27,3 @@ services:
       - ./datas/redis:/data
     networks:
       - net1
-  elasticsearch:
-    container_name: elasticsearch
-    image: elasticsearch:7.16.3
-    networks:
-      - net1
-    environment:
-      - "discovery.type=single-node"
-    ports:
-      - "9200:9200"
-      - "9300:9300"

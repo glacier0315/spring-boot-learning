@@ -1,0 +1,21 @@
+version: "3.9"
+networks:
+  net1:
+    driver: bridge
+
+services:
+  elasticsearch:
+    container_name: elasticsearch
+    image: elasticsearch:7.16.3
+    hostname: elasticsearch
+    environment:
+      - "discovery.type=single-node"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - ./init/es/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./datas/es/data:/usr/share/elasticsearch/data
+      - ./datas/es/plugins:/usr/share/elasticsearch/plugins
+    networks:
+      - net1
