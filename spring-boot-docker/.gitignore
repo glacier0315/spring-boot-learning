@@ -1,32 +1,54 @@
-# java
+### common ###
+HELP.md
+
+### java ###
 *.class
 
-
-# gradle ignore
+### gradle ###
 .gradle/
 gradle/
 build/
-gradlew
-gradlew.bat
 
-# maven ignore
+### maven ###
 target/
 
-
-# eclipse ignore
+### eclipse ###
 .settings/
 .project
 .classpath
 
-# idea ignore
-.idea/
-out/
-classes/
-*.ipr
-*.iml
-*.iws
+### STS ###
+.apt_generated
+.factorypath
+.settings
+.springBeans
+.sts4-cache
 
-# temp ignore
+### IntelliJ IDEA ###
+.idea
+classes/
+/out/
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+.history/
+
+### lombock ###
+lombok.config
+
+### temp ###
+temp/
+logs/
 *.log
 *.cache
 *.diff
@@ -36,6 +58,6 @@ classes/
 *.properties~
 *.xml~
 
-# system ignore
+### system ignore ###
 .DS_Store
 Thumbs.db
