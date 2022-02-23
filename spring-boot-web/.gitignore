@@ -42,6 +42,7 @@ classes/
 ### VS Code ###
 .vscode/
 .history/
+bin/
 
 ### lombock ###
 lombok.config
