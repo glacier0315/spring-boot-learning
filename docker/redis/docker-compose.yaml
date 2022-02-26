@@ -1,0 +1,125 @@
+version: '3.9'
+services:
+  redis1:
+    image: redis
+    container_name: redis1
+    hostname: redis1
+    volumes:
+      - ./data/redis/r1:/data
+      - ./init/redis/r1/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./logs/redis/r1:/logs
+    restart: always
+    privileged: true
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=en_US.UTF-8
+    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+    ports:
+      - "6371:6371"
+      - "16371:16371"
+    networks:
+      - net1
+
+  redis2:
+    image: redis
+    container_name: redis2
+    hostname: redis2
+    volumes:
+      - ./data/redis/r2:/data
+      - ./init/redis/r2/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./logs/redis/r2:/logs
+    restart: always
+    privileged: true
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=en_US.UTF-8
+    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+    ports:
+      - "6372:6372"
+      - "16372:16372"
+    networks:
+      - net1
+
+  redis3:
+    image: redis
+    container_name: redis3
+    hostname: redis3
+    volumes:
+      - ./data/redis/r3:/data
+      - ./init/redis/r3/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./logs/redis/r3:/logs
+    restart: always
+    privileged: true
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=en_US.UTF-8
+    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+    ports:
+      - "6373:6373"
+      - "16373:16373"
+    networks:
+      - net1
+
+  redis4:
+    image: redis
+    container_name: redis4
+    hostname: redis4
+    volumes:
+      - ./data/redis/r4:/data
+      - ./init/redis/r4/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./logs/redis/r4:/logs
+    restart: always
+    privileged: true
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=en_US.UTF-8
+    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+    ports:
+      - "6374:6374"
+      - "16374:16374"
+    networks:
+      - net1
+
+  redis5:
+    image: redis
+    container_name: redis5
+    hostname: redis5
+    volumes:
+      - ./data/redis/r5:/data
+      - ./init/redis/r5/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./logs/redis/r5:/logs
+    restart: always
+    privileged: true
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=en_US.UTF-8
+    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+    ports:
+      - "6375:6375"
+      - "16375:16375"
+    networks:
+      - net1
+
+  redis6:
+    image: redis
+    container_name: redis6
+    hostname: redis6
+    volumes:
+      - ./data/redis/r6:/data
+      - ./init/redis/r6/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./logs/redis/r6:/logs
+    restart: always
+    privileged: true
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=en_US.UTF-8
+    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+    ports:
+      - "6376:6376"
+      - "16376:16376"
+    networks:
+      - net1
+
+networks:
+  net1:
+    driver: bridge
