@@ -46,6 +46,13 @@
 # *.svg    binary
 *.eps      binary
 
+# font
+*.ttf           binary
+*.otf           binary
+*.eot           binary
+*.woff          binary
+*.woff2         binary
+
 # Scripts
 *.bash     text eol=lf
 *.fish     text eol=lf
@@ -100,7 +107,6 @@
 
 # These files are binary and should be left untouched
 # (binary is a macro for -text -diff)
-*.ttf           binary
 *.class         binary
 *.dll           binary
 *.ear           binary
