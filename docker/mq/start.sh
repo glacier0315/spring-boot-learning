@@ -1,12 +1,12 @@
 #!/bin/bash
 
 echo '设置权限'
-mkdir -p ./datas/rmqs/logs
-mkdir -p ./datas/rmqs/store
-mkdir -p ./datas/rmq/logs
-mkdir -p ./datas/rmq/store
+mkdir -p ./data/rmqs/logs
+mkdir -p ./data/rmqs/store
+mkdir -p ./data/rmq/logs
+mkdir -p ./data/rmq/store
 
-chmod -R 777 ./datas
+chmod -R 777 ./data
 
 echo '启动容器'
 docker-compose up -d

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 echo '创建文件'
-mkdir -p datas/es/{data,plugins}
-chmod -R 777 datas/es
+mkdir -p data/es/{data,plugins}
+chmod -R 777 data/es
 
 echo '开放端口'
 firewall-cmd --zone=public --add-port=9200/tcp --permanent
@@ -16,6 +16,7 @@ echo '安装分词器'
 docker cp ./init/es/plugins/elasticsearch-analysis-ik-7.16.3.zip elasticsearch:/root
 docker exec -it elasticsearch elasticsearch-plugin install file:///root/elasticsearch-analysis-ik-7.16.3.zip
 
+echo '重启容器'
 docker-compose restart elasticsearch
 
 echo '查看容器'

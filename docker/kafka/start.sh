@@ -9,11 +9,11 @@ firewall-cmd --zone=public --add-port=9000/tcp --permanent
 firewall-cmd --reload
 
 echo '创建文件夹'
-mkdir -p datas/{zookeeper,kafka}
-chmod -R 777 datas
+mkdir -p data/{zookeeper,kafka}
+chmod -R 777 data
 
 echo '启动容器'
 docker-compose up -d
 
 echo '查看容器'
-docker ps
+docker-compose ps

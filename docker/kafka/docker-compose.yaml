@@ -13,7 +13,7 @@ services:
       - "2181:2181"
       - "8080:8080"
     volumes:
-      - ./datas/zookeeper:/bitnami/zookeeper
+      - ./data/zookeeper:/bitnami/zookeeper
     networks:
       - net1
 
@@ -41,7 +41,7 @@ services:
       - "9092:9092"
       - "9999:9999"
     volumes:
-      - ./datas/kafka:/bitnami/kafka
+      - ./data/kafka:/bitnami/kafka
     depends_on:
       - zookeeper
     networks:

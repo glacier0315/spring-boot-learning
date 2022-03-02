@@ -5,12 +5,12 @@
 
 
 ## 设置权限
-    mkdir -p ./datas/rmqs/logs
-    mkdir -p ./datas/rmqs/store
-    mkdir -p ./datas/rmq/logs
-    mkdir -p ./datas/rmq/store
+    mkdir -p ./data/rmqs/logs
+    mkdir -p ./data/rmqs/store
+    mkdir -p ./data/rmq/logs
+    mkdir -p ./data/rmq/store
     
-    chmod -R 777 ./datas
+    chmod -R 777 ./data
 
 ## 下载并启动容器，且为 后台 自动启动
     docker-compose up -d
@@ -22,8 +22,8 @@
     firewall-cmd --zone=public --add-port=8180/tcp --permanent
     firewall-cmd --reload
 
-## 显示 rocketmq 容器
-    docker ps |grep rocketmq
+## 显示容器
+    docker-compose ps
 
 ## 设置可执行权限
     chmod +x start.sh
