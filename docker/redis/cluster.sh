@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 主机ip
-ip=192.168.20.120
+ip=192.168.20.100
 
 echo '集群配置'
 docker exec -it redis1 \
