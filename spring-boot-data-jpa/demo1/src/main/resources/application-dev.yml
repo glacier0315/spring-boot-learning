@@ -4,7 +4,7 @@ debug: true
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.10.130:3306/sb_learn?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+    url: jdbc:mysql://192.168.20.100:3306/sb_learn?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&useSSL=false
     username: root
     password: root
 

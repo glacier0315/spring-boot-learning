@@ -28,7 +28,7 @@ spring:
           dataSource:
             globalJobDataSource:
               # URL必须大写
-              URL: jdbc:mysql://192.168.10.130:3306/quartz?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+              URL: jdbc:mysql://192.168.20.100:3306/quartz?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false
               driver: com.mysql.cj.jdbc.Driver
               maxConnections: 5
               username: root

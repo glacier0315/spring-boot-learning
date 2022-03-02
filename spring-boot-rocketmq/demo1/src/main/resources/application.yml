@@ -4,7 +4,7 @@ spring:
 
 
 rocketmq:
-  name-server: 192.168.20.134:9876
+  name-server: 192.168.20.100:9876
   producer:
     group: my-group
 

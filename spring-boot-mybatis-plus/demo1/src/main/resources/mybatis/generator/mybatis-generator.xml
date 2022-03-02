@@ -20,7 +20,7 @@
 
         <!--数据库基本信息-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.10.128:3306/eboot"
+                        connectionURL="jdbc:mysql://192.168.20.100:3306/eboot"
                         userId="root"
                         password="root">
         </jdbcConnection>
