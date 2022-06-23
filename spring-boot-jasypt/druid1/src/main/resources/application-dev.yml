@@ -1,0 +1,10 @@
+# datasource
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ENC(c/NqYbMMCw6FJS7SezukKnnGnk//SKxWeUm7eGy3sde8KoNC/It5Vj19GAtNuxGS2r/xtQSB/3s0Y6asMKILb9dxykqI/pAMf6ZT71MHl+L9M01ylfVQzHpUel62yketTKbeUr1zMSWBSOJzFo+zJh6BScPNL+91vmiAhuvbGFNwnXLGqmgkpQ/hzoE6L8K7vWc6zsZpLLCjcbA/c8VmxeAPnmO1SpxRU3Lc7HdIO3tuT44lTssezMNZUqVp3OPVMaCS0j5Bp8MvKfrQNj/8eg==)
+    username: ENC(iA6XhdDJsSnn3FU+WZU1+3yjFWEsu+kJjB6gzfgaMk1a9vDWN6CUK8ukniShsvyv)
+    password: ENC(sCVBbsG3UEaK56IZY+HjfGwKAB4rz1vvLtXmYyOjlTBVxsxdnH0SORkCYXIhgpuC)
+#    url: jdbc:mysql://192.168.20.100:3306/sb_learn?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false
+#    username: root
+#    password: root
