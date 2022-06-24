@@ -64,10 +64,8 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public void export(User user, OutputStream out) {
-		List<User> users = this.findList(user);
-		LOGGER.info("users: {}", users);
 		EasyExcelFactory.write(out, User.class)
 				.sheet("模板")
-				.doWrite(users);
+				.doWrite(this.findList(user));
 	}
 }
