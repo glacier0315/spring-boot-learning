@@ -1,6 +1,6 @@
 ext {
     // spring cloud 和spring boot
-    springBootVersion = "2.6.2"
+    springBootVersion = "2.6.9"
 
     // shiro
     shiroStarterVersion = "1.8.0"
