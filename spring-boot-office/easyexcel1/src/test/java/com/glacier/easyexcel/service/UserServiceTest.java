@@ -7,12 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.io.*;
 
 /**
  * date 2022-01-18 11:39
@@ -39,18 +34,22 @@ class UserServiceTest {
 	}
 	
 	@Test
-	void findList() {
+	void findList() throws IOException {
+	
 	}
 	
 	@Test
-	void export() {
+	void exportExcel() throws IOException {
 		User user = new User();
-		try (OutputStream out = new FileOutputStream("d:\\test.xlsx")) {
-			userService.export(user, out);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		try(OutputStream outputStream = new FileOutputStream("d:\\test_" + System.currentTimeMillis() + ".xlsx")) {
+			userService.exportExcel(user, outputStream);
+		}
+	}
+	
+	@Test
+	void importExcel() throws IOException {
+		try (InputStream ins = new FileInputStream("d:\\test_1656578453126.xlsx")) {
+			userService.importExcel(ins);
 		}
 	}
 }

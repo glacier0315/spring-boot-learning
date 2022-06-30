@@ -2,6 +2,7 @@ package com.glacier.easyexcel.service;
 
 import com.glacier.easyexcel.domain.User;
 
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
 
@@ -30,5 +31,12 @@ public interface UserService {
 	 * @param user
 	 * @param out
 	 */
-	void export(User user, OutputStream out);
+	void exportExcel(User user, OutputStream out);
+	
+	/**
+	 * 导入 excel
+	 * @param ins
+	 * @return
+	 */
+	int importExcel(InputStream ins);
 }

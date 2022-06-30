@@ -44,7 +44,7 @@ public class UserController {
 		try (ServletOutputStream out = response.getOutputStream()) {
 			response.setHeader("Content-disposition",
 					"attachment;filename=" + URLEncoder.encode("测试.xlsx", StandardCharsets.UTF_8));
-			this.userService.export(user, out);
+			this.userService.exportExcel(user, out);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
