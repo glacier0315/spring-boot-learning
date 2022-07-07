@@ -5,7 +5,7 @@ import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.annotation.format.DateTimeFormat;
 import com.alibaba.excel.annotation.format.NumberFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.glacier.easyexcel.converter.LocalDateStringConverter;
+import com.glacier.easyexcel.converters.localdate.CustomLocalDateStringConverter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -31,7 +31,7 @@ public class User implements Serializable {
 	private String nickname;
 	
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-	@ExcelProperty(value = {"用户信息", "出生日期"}, index = 4, converter = LocalDateStringConverter.class)
+	@ExcelProperty(value = {"用户信息", "出生日期"}, index = 4, converter = CustomLocalDateStringConverter.class)
 	private LocalDate birthday;
 	
 	@ExcelProperty(value = {"用户信息", "身份证号"}, index = 3)

@@ -19,12 +19,12 @@ public class UserListener implements ReadListener<User> {
 	/**
 	 * When analysis one row trigger invoke function.
 	 *
-	 * @param data    one row value. Is is same as {@link AnalysisContext#readRowHolder()}
+	 * @param user    one row value. Is is same as {@link AnalysisContext#readRowHolder()}
 	 * @param context analysis context
 	 */
 	@Override
-	public void invoke(User data, AnalysisContext context) {
-		LOGGER.info("解析到一条数据:{}", data);
+	public void invoke(User user, AnalysisContext context) {
+		LOGGER.info("解析到一条数据:{}", user);
 	}
 	
 	/**

@@ -1,4 +1,4 @@
-package com.glacier.easyexcel.converter;
+package com.glacier.easyexcel.converters.localdate;
 
 import com.alibaba.excel.converters.Converter;
 import com.alibaba.excel.enums.CellDataTypeEnum;
@@ -6,10 +6,11 @@ import com.alibaba.excel.metadata.GlobalConfiguration;
 import com.alibaba.excel.metadata.data.ReadCellData;
 import com.alibaba.excel.metadata.data.WriteCellData;
 import com.alibaba.excel.metadata.property.ExcelContentProperty;
-import org.apache.poi.ss.usermodel.DateUtil;
+import com.alibaba.excel.util.DateUtils;
 
-import java.math.BigDecimal;
+import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.ZoneId;
 
 /**
  * date 2022-06-30 15:47
@@ -17,8 +18,7 @@ import java.time.LocalDate;
  * @author glacier
  * @version 1.0
  */
-public class LocalDateNumberConverter implements Converter<LocalDate> {
-	
+public class CustomLocalDateStringConverter implements Converter<LocalDate> {
 	@Override
 	public Class<?> supportJavaTypeKey() {
 		return LocalDate.class;
@@ -26,15 +26,17 @@ public class LocalDateNumberConverter implements Converter<LocalDate> {
 	
 	@Override
 	public CellDataTypeEnum supportExcelTypeKey() {
-		return CellDataTypeEnum.NUMBER;
+		return CellDataTypeEnum.STRING;
 	}
 	
 	@Override
 	public LocalDate convertToJavaData(
 			ReadCellData<?> cellData, ExcelContentProperty contentProperty,
-			GlobalConfiguration globalConfiguration) {
-		return DateUtil.getLocalDateTime(cellData.getNumberValue().doubleValue(),
-						this.getUse1904windowing(contentProperty, globalConfiguration))
+			GlobalConfiguration globalConfiguration) throws ParseException {
+		return DateUtils.parseDate(cellData.getStringValue(),
+						this.getDateFormat(contentProperty))
+				.toInstant()
+				.atZone(ZoneId.systemDefault())
 				.toLocalDate();
 	}
 	
@@ -42,16 +44,18 @@ public class LocalDateNumberConverter implements Converter<LocalDate> {
 	public WriteCellData<?> convertToExcelData(
 			LocalDate value, ExcelContentProperty contentProperty,
 			GlobalConfiguration globalConfiguration) {
-		return new WriteCellData<>(BigDecimal.valueOf(
-				DateUtil.getExcelDate(value, this.getUse1904windowing(contentProperty, globalConfiguration))));
+		return new WriteCellData<>(
+				DateUtils.format(value.atStartOfDay(),
+						this.getDateFormat(contentProperty),
+						globalConfiguration.getLocale()));
 	}
 	
-	private boolean getUse1904windowing(ExcelContentProperty contentProperty, GlobalConfiguration globalConfiguration) {
+	private String getDateFormat(ExcelContentProperty contentProperty) {
 		if (contentProperty == null
 				|| contentProperty.getDateTimeFormatProperty() == null) {
-			return globalConfiguration.getUse1904windowing();
+			return DateUtils.DATE_FORMAT_10;
 		}
 		return contentProperty.getDateTimeFormatProperty()
-				.getUse1904windowing();
+				.getFormat();
 	}
 }

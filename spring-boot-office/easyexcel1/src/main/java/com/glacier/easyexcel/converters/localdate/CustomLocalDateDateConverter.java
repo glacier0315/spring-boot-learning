@@ -1,4 +1,4 @@
-package com.glacier.easyexcel.converter;
+package com.glacier.easyexcel.converters.localdate;
 
 import com.alibaba.excel.converters.Converter;
 import com.alibaba.excel.metadata.GlobalConfiguration;
@@ -15,7 +15,7 @@ import java.time.LocalDate;
  * @author glacier
  * @version 1.0
  */
-public class LocalDateDateConverter implements Converter<LocalDate> {
+public class CustomLocalDateDateConverter implements Converter<LocalDate> {
 	
 	@Override
 	public Class<LocalDate> supportJavaTypeKey() {
