@@ -1,9 +1,9 @@
-package com.glacier.easyexcel.service.impl;
+package com.glacier.excel.service.impl;
 
 import com.alibaba.excel.EasyExcelFactory;
-import com.glacier.easyexcel.domain.User;
-import com.glacier.easyexcel.listener.UserListener;
-import com.glacier.easyexcel.service.UserService;
+import com.glacier.excel.domain.User;
+import com.glacier.excel.listener.UserAnalysisEventListener;
+import com.glacier.excel.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int importExcel(InputStream ins) {
 		// 方式一
-		EasyExcelFactory.read(ins, User.class, new UserListener())
+		EasyExcelFactory.read(ins, User.class, new UserAnalysisEventListener())
 				.sheet(0)
 				.doRead();
 		// 方式二 读取多个sheet

@@ -1,11 +1,11 @@
-package com.glacier.easyexcel.domain;
+package com.glacier.excel.domain;
 
 import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.annotation.format.DateTimeFormat;
 import com.alibaba.excel.annotation.format.NumberFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.glacier.easyexcel.converters.localdate.CustomLocalDateStringConverter;
+import com.glacier.excel.converters.localdate.CustomLocalDateStringConverter;
 
 import java.io.Serializable;
 import java.time.LocalDate;

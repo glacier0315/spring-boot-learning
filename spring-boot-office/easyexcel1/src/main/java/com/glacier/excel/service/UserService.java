@@ -1,6 +1,6 @@
-package com.glacier.easyexcel.service;
+package com.glacier.excel.service;
 
-import com.glacier.easyexcel.domain.User;
+import com.glacier.excel.domain.User;
 
 import java.io.InputStream;
 import java.io.OutputStream;

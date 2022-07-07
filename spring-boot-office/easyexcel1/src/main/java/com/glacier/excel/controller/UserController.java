@@ -1,7 +1,7 @@
-package com.glacier.easyexcel.controller;
+package com.glacier.excel.controller;
 
-import com.glacier.easyexcel.domain.User;
-import com.glacier.easyexcel.service.UserService;
+import com.glacier.excel.domain.User;
+import com.glacier.excel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

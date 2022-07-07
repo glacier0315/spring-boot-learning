@@ -1,6 +1,6 @@
-package com.glacier.easyexcel.service;
+package com.glacier.excel.service;
 
-import com.glacier.easyexcel.domain.User;
+import com.glacier.excel.domain.User;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -48,7 +48,7 @@ class UserServiceTest {
 	
 	@Test
 	void importExcel() throws IOException {
-		try (InputStream ins = new FileInputStream("d:\\test_1656578453126.xlsx")) {
+		try (InputStream ins = new FileInputStream("d:\\test_1657181704366.xlsx")) {
 			userService.importExcel(ins);
 		}
 	}
