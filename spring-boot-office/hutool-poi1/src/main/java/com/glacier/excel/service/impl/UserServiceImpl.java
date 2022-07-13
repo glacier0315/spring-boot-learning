@@ -1,5 +1,7 @@
 package com.glacier.excel.service.impl;
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.poi.excel.ExcelReader;
 import cn.hutool.poi.excel.ExcelUtil;
 import cn.hutool.poi.excel.ExcelWriter;
 import com.glacier.excel.domain.User;
@@ -12,8 +14,10 @@ import javax.annotation.PostConstruct;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.security.SecureRandom;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -67,30 +71,50 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public void exportExcel(User user, OutputStream out) {
+		// 表头
+		List<String> headers = CollUtil.newArrayList("用户名", "昵称", "性别", "身份证号", "出生日期", "岗位",
+				"入职日期", "得分", "年龄", "占比", "登录日期");
+		// 数据
+		List<List<?>> datas = this.findAll().stream()
+				.map(item ->
+						CollUtil.newArrayList(
+								item.getUsername(),
+								item.getNickname(),
+								item.getSex(),
+								item.getIdCard(),
+								Optional.ofNullable(item.getBirthday())
+										.map(date -> date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+										.orElse(""),
+								item.getDuty(),
+								Optional.ofNullable(item.getJoinDate())
+										.map(date -> date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+										.orElse(""),
+								item.getScore(),
+								item.getAge(),
+								Optional.ofNullable(item.getRate())
+										.map(rate -> new DecimalFormat("0.00%").format(rate))
+										.orElse(""),
+								Optional.ofNullable(item.getLastLoginDate())
+										.map(date -> date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+										.orElse("")))
+				.collect(Collectors.toList());
 		ExcelWriter writer = ExcelUtil.getWriter();
 		writer.renameSheet("用户信息")
-				.addHeaderAlias("username", "用户名")
-				.addHeaderAlias("nickname", "昵称")
-				.addHeaderAlias("sex", "性别")
-				.addHeaderAlias("idCard", "身份证号")
-				.addHeaderAlias("birthday", "出生日期")
-				.addHeaderAlias("duty", "岗位")
-				.addHeaderAlias("joinDate", "入职日期")
-				.addHeaderAlias("score", "得分")
-				.addHeaderAlias("age", "年龄")
-				.addHeaderAlias("rate", "占比")
-				.addHeaderAlias("lastLoginDate", "最后登录时间")
-				.setOnlyAlias(true)
-				.merge(writer.getHeaderAlias().size(), "用户信息")
+				.merge(headers.size() - 1, "用户信息")
+				.writeHeadRow(headers)
+				.write(datas)
 				.autoSizeColumnAll()
-				.write(this.findAll(), true)
 				.flush(out)
 				.close();
 	}
 	
 	@Override
 	public int importExcel(InputStream ins) {
-		
+		ExcelReader reader = ExcelUtil.getReader(ins);
+		// 读取第一个sheet
+		// ExcelReader reader = ExcelUtil.getReader(ins, 0);
+		List<List<Object>> lists = reader.read(2);
+		lists.forEach(System.out::println);
 		return 0;
 	}
 }
