@@ -71,6 +71,6 @@ class UserServiceImplTest {
 	
 	@Test
 	void testUpdateUserPassWord() throws Exception {
-		this.userService.updateUserPassWord("passWord", "id");
+		this.userService.updateUserPassWord("password", "id");
 	}
 }

@@ -103,7 +103,7 @@
             <!--用来修改表中某个列的属性,一个table元素中可以有多个columnOverride元素哈.
                 property属性来指定列要生成的属性名称.
              -->
-            <!--<columnOverride column="username" property="userName" />-->
+            <!--<columnOverride column="username" property="username" />-->
             <domainObjectRenamingRule searchString="^Sys" replaceString=""/>
         </table>
 

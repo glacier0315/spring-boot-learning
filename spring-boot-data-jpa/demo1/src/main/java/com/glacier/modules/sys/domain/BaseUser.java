@@ -94,8 +94,8 @@ public class BaseUser extends IdEntity {
     @Override
     public String toString() {
 		return "BaseUser{" +
-				"userName='" + username + '\'' +
-				", passWord='" + password + '\'' +
+				"username='" + username + '\'' +
+				", password='" + password + '\'' +
 				", realName='" + realName + '\'' +
 				", userKey='" + userKey + '\'' +
 				", status=" + status +

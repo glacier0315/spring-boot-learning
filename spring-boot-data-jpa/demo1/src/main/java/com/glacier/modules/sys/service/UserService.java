@@ -26,6 +26,6 @@ public interface UserService {
 
     void update(User user);
 
-    void updateUserPassWord(String passWord, String id);
+    void updateUserPassWord(String password, String id);
 
 }

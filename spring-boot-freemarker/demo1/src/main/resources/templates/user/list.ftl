@@ -14,8 +14,8 @@
             <#list users as user>
                 <tr>
                     <td>${user.id}</td>
-                    <td>${user.userName}</td>
-                    <td>${user.passWord}</td>
+                    <td>${user.username}</td>
+                    <td>${user.password}</td>
                     <td>${user.sex}</td>
                 </tr>
             </#list>
