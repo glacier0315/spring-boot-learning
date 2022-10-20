@@ -1,29 +1,29 @@
 ext {
     // spring cloud 和spring boot
-    springBootVersion = "2.6.9"
+    springBootVersion = "2.7.4"
 
     // shiro
-    shiroStarterVersion = "1.8.0"
+    shiroStarterVersion = "1.10.0"
 
     // 模板布局
-    thymeleafLayoutVersion = "3.0.0"
+    thymeleafLayoutVersion = "3.1.0"
 
     //spring boot admin
-    springBootAdminVersion = "2.6.1"
+    springBootAdminVersion = "2.7.6"
     // rocketmq
-    rocketmqStarter = "2.2.1"
+    rocketmqStarter = "2.2.2"
 
     // openapi
-    openapiVersion = "1.6.4"
+    openapiVersion = "1.6.12"
     swaggerVersion = "3.0.0"
 
     // 数据库相关
-    druidVersion = "1.2.8"
-    dynamicDatasourceVersion = "3.5.0"
+    druidVersion = "1.2.13"
+    dynamicDatasourceVersion = "3.5.2"
     // 数据库操作
-    mybatisVersion = "2.2.1"
-    pagehelperVersion = "1.4.1"
-    mybatisPlusVersion = "3.5.0"
+    mybatisVersion = "2.2.2"
+    pagehelperVersion = "1.4.5"
+    mybatisPlusVersion = "3.5.2"
 
     // 加密
     jasyptStarterVersion = "3.0.4"
