@@ -483,19 +483,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../mailbox/mailbox.html" class="nav-link active">
+                <a th:href="@{/pages/mailbox/mailbox}" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>收件箱</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../mailbox/compose.html" class="nav-link">
+                <a th:href="@{/pages/mailbox/compose}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>写信</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../mailbox/read-mail.html" class="nav-link">
+                <a th:href="@{/pages/mailbox/read-mail}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>查看</p>
                 </a>
@@ -852,7 +852,7 @@
     <section class="content">
       <div class="row">
         <div class="col-md-3">
-          <a href="compose.html" class="btn btn-primary btn-block mb-3">撰写</a>
+          <a th:href="@{/pages/mailbox/compose}" class="btn btn-primary btn-block mb-3">撰写</a>
 
           <div class="card">
             <div class="card-header">
@@ -997,7 +997,7 @@
                       </div>
                     </td>
                     <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                    <td class="mailbox-name"><a th:href="@{/pages/mailbox/read-mail}">Alexander Pierce</a></td>
                     <td class="mailbox-subject"><b>AdminLTE 3.0 问题</b> - 试图找到解决问题的方法……
                     </td>
                     <td class="mailbox-attachment"></td>
@@ -1011,7 +1011,7 @@
                       </div>
                     </td>
                     <td class="mailbox-star"><a href="#"><i class="fas fa-star-o text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                    <td class="mailbox-name"><a th:href="@{/pages/mailbox/read-mail}">Alexander Pierce</a></td>
                     <td class="mailbox-subject"><b>AdminLTE 3.0 问题</b> - 试图找到解决问题的方法……
                     </td>
                     <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
@@ -1025,7 +1025,7 @@
                       </div>
                     </td>
                     <td class="mailbox-star"><a href="#"><i class="fas fa-star-o text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                    <td class="mailbox-name"><a th:href="@{/pages/mailbox/read-mail}">Alexander Pierce</a></td>
                     <td class="mailbox-subject"><b>AdminLTE 3.0 问题</b> - 试图找到解决问题的方法……
                     </td>
                     <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
@@ -1039,7 +1039,7 @@
                       </div>
                     </td>
                     <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                    <td class="mailbox-name"><a th:href="@{/pages/mailbox/read-mail}">Alexander Pierce</a></td>
                     <td class="mailbox-subject"><b>AdminLTE 3.0 问题</b> - 试图找到解决问题的方法……
                     </td>
                     <td class="mailbox-attachment"></td>
@@ -1053,7 +1053,7 @@
                       </div>
                     </td>
                     <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                    <td class="mailbox-name"><a th:href="@{/pages/mailbox/read-mail}">Alexander Pierce</a></td>
                     <td class="mailbox-subject"><b>AdminLTE 3.0 问题</b> - 试图找到解决问题的方法……
                     </td>
                     <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
@@ -1067,7 +1067,7 @@
                       </div>
                     </td>
                     <td class="mailbox-star"><a href="#"><i class="fas fa-star-o text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                    <td class="mailbox-name"><a th:href="@{/pages/mailbox/read-mail}">Alexander Pierce</a></td>
                     <td class="mailbox-subject"><b>AdminLTE 3.0 问题</b> - 试图找到解决问题的方法……
                     </td>
                     <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
@@ -1081,7 +1081,7 @@
                       </div>
                     </td>
                     <td class="mailbox-star"><a href="#"><i class="fas fa-star-o text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                    <td class="mailbox-name"><a th:href="@{/pages/mailbox/read-mail}">Alexander Pierce</a></td>
                     <td class="mailbox-subject"><b>AdminLTE 3.0 问题</b> - 试图找到解决问题的方法……
                     </td>
                     <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
@@ -1095,7 +1095,7 @@
                       </div>
                     </td>
                     <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                    <td class="mailbox-name"><a th:href="@{/pages/mailbox/read-mail}">Alexander Pierce</a></td>
                     <td class="mailbox-subject"><b>AdminLTE 3.0 问题</b> - 试图找到解决问题的方法……
                     </td>
                     <td class="mailbox-attachment"></td>
@@ -1109,7 +1109,7 @@
                       </div>
                     </td>
                     <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                    <td class="mailbox-name"><a th:href="@{/pages/mailbox/read-mail}">Alexander Pierce</a></td>
                     <td class="mailbox-subject"><b>AdminLTE 3.0 问题</b> - 试图找到解决问题的方法……
                     </td>
                     <td class="mailbox-attachment"></td>
@@ -1123,7 +1123,7 @@
                       </div>
                     </td>
                     <td class="mailbox-star"><a href="#"><i class="fas fa-star-o text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                    <td class="mailbox-name"><a th:href="@{/pages/mailbox/read-mail}">Alexander Pierce</a></td>
                     <td class="mailbox-subject"><b>AdminLTE 3.0 问题</b> - 试图找到解决问题的方法……
                     </td>
                     <td class="mailbox-attachment"></td>
@@ -1137,7 +1137,7 @@
                       </div>
                     </td>
                     <td class="mailbox-star"><a href="#"><i class="fas fa-star-o text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                    <td class="mailbox-name"><a th:href="@{/pages/mailbox/read-mail}">Alexander Pierce</a></td>
                     <td class="mailbox-subject"><b>AdminLTE 3.0 问题</b> - 试图找到解决问题的方法……
                     </td>
                     <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
@@ -1151,7 +1151,7 @@
                       </div>
                     </td>
                     <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                    <td class="mailbox-name"><a th:href="@{/pages/mailbox/read-mail}">Alexander Pierce</a></td>
                     <td class="mailbox-subject"><b>AdminLTE 3.0 问题</b> - 试图找到解决问题的方法……
                     </td>
                     <td class="mailbox-attachment"></td>
@@ -1165,7 +1165,7 @@
                       </div>
                     </td>
                     <td class="mailbox-star"><a href="#"><i class="fas fa-star-o text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                    <td class="mailbox-name"><a th:href="@{/pages/mailbox/read-mail}">Alexander Pierce</a></td>
                     <td class="mailbox-subject"><b>AdminLTE 3.0 问题</b> - 试图找到解决问题的方法……
                     </td>
                     <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
@@ -1179,7 +1179,7 @@
                       </div>
                     </td>
                     <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                    <td class="mailbox-name"><a th:href="@{/pages/mailbox/read-mail}">Alexander Pierce</a></td>
                     <td class="mailbox-subject"><b>AdminLTE 3.0 问题</b> - 试图找到解决问题的方法……
                     </td>
                     <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
@@ -1193,7 +1193,7 @@
                       </div>
                     </td>
                     <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                    <td class="mailbox-name"><a th:href="@{/pages/mailbox/read-mail}">Alexander Pierce</a></td>
                     <td class="mailbox-subject"><b>AdminLTE 3.0 问题</b> - 试图找到解决问题的方法……
                     </td>
                     <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
