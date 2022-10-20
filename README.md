@@ -42,6 +42,7 @@
     * demo1: spring-boot集成thymeleaf 的示例。
     * demo2: spring-boot集成thymeleaf和thymeleaf-layout 的示例。
     * layui-admin: spring-boot集成thymeleaf、thymeleaf-layout和layui-admin 的示例。
+    * AdminLTE_CN: spring-boot集成thymeleaf、thymeleaf-layout和AdminLTE_CN 的示例。
 ***
 
 ### rest服务
