@@ -39,7 +39,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
 	public User findById(String id) {
-		return this.userRepository.getById(id);
+		return this.userRepository.findById(id)
+				.orElse(null);
 	}
 
     @Override
