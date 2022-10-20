@@ -8,9 +8,9 @@
   <!-- 离线 Google 字体: Source Sans Pro -->
   <link rel="stylesheet" th:href="@{/css/googleapis/google.css?family=Source+Sans+Pro:300,400,400i,700&display=fallback}">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
   <!-- Ekko Lightbox -->
-  <link rel="stylesheet" href="../plugins/ekko-lightbox/ekko-lightbox.css">
+  <link rel="stylesheet" th:href="@{/plugins/ekko-lightbox/ekko-lightbox.css}">
   <!-- 主题样式 -->
   <link rel="stylesheet" href="../dist/css/adminlte.min.css">
 </head>
@@ -1042,15 +1042,15 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="../plugins/jquery/jquery.min.js"></script>
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
 <!-- Bootstrap -->
-<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 <!-- Ekko Lightbox -->
-<script src="../plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
+<script th:src="@{/plugins/ekko-lightbox/ekko-lightbox.min.js}"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
 <!-- Filterizr-->
-<script src="../plugins/filterizr/jquery.filterizr.min.js"></script>
+<script th:src="@{/plugins/filterizr/jquery.filterizr.min.js}"></script>
 <!-- 用于演示 AdminLTE  -->
 <script src="../dist/js/demo.js"></script>
 <!-- 特定页面脚本 -->
