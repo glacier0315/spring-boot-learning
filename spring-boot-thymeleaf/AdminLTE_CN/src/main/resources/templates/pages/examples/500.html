@@ -22,7 +22,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="../../index3.html" class="nav-link">首页</a>
+        <a th:href="@{/index3}" class="nav-link">首页</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">联系</a>
@@ -155,7 +155,7 @@
   <!-- 主侧边栏容器 -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- 品牌 Logo -->
-    <a href="../../index3.html" class="brand-link">
+    <a th:href="@{/index3}" class="brand-link">
       <img th:src="@{/img/AdminLTELogo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
@@ -199,19 +199,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../../index.html" class="nav-link">
+                <a th:href="@{/index}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>仪表盘 v1</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../index2.html" class="nav-link">
+                <a th:href="@{/index2}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>仪表盘 v2</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../index3.html" class="nav-link">
+                <a th:href="@{/index3}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>仪表盘 v3</p>
                 </a>
@@ -693,7 +693,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../starter.html" class="nav-link">
+                <a th:href="@{/starter}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>起始页</p>
                 </a>
@@ -725,7 +725,7 @@
           </li>
           <li class="nav-header">杂项</li>
           <li class="nav-item">
-            <a href="../../iframe.html" class="nav-link">
+            <a th:href="@{/iframe}" class="nav-link">
               <i class="nav-icon fas fa-ellipsis-h"></i>
               <p>选项卡式框架插件</p>
             </a>
@@ -856,7 +856,7 @@
 
           <p>
             我们将马上解决这个问题。
-            另外，你可以<a href="../../index.html">返回仪表盘</a>或尝试使用搜索。
+            另外，你可以<a th:href="@{/index}">返回仪表盘</a>或尝试使用搜索。
           </p>
 
           <form class="search-form">

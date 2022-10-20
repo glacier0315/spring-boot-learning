@@ -18,12 +18,12 @@
 <div class="register-box">
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
+      <a th:href="@{/index2}" class="h1"><b>Admin</b>LTE</a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">注册新会员</p>
 
-      <form action="../../index.html" method="post">
+      <form th:action="@{/index}" method="post">
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="全名">
           <div class="input-group-append">

@@ -17,14 +17,14 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a th:href="@{/index2}"><b>Admin</b>LTE</a>
   </div>
 
   <div class="card">
     <div class="card-body register-card-body">
       <p class="login-box-msg">注册新会员</p>
 
-      <form action="../../index.html" method="post">
+      <form th:action="@{/index}" method="post">
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="全名">
           <div class="input-group-append">
