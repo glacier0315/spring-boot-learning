@@ -710,13 +710,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../search/simple.html" class="nav-link active">
+                <a th:href="@{/pages/search/simple}" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>普通搜索</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../search/enhanced.html" class="nav-link">
+                <a th:href="@{/pages/search/enhanced}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>高级</p>
                 </a>
@@ -841,7 +841,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
-                    <form action="simple-results.html">
+                    <form th:action="@{/pages/search/simple-results}">
                         <div class="input-group input-group-lg">
                             <input type="search" class="form-control form-control-lg" placeholder="在这里输入关键字" value="兰晓龙">
                             <div class="input-group-append">
