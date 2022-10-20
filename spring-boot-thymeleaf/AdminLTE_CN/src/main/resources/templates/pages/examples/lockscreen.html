@@ -10,7 +10,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
   <!-- 主题样式 -->
-  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <link rel="stylesheet" th:href="@{/css/adminlte.min.css}">
 </head>
 <body class="hold-transition lockscreen">
 <!-- Automatic element centering -->
@@ -25,7 +25,7 @@
   <div class="lockscreen-item">
     <!-- 锁屏图片 -->
     <div class="lockscreen-image">
-      <img src="../../dist/img/user1-128x128.jpg" alt="用户头像">
+      <img th:src="@{/img/user1-128x128.jpg}" alt="用户头像">
     </div>
     <!-- /.lockscreen-image -->
 

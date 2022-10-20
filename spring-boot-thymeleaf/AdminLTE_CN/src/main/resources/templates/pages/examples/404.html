@@ -10,7 +10,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
   <!-- 主题样式 -->
-  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <link rel="stylesheet" th:href="@{/css/adminlte.min.css}">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -63,7 +63,7 @@
           <a href="#" class="dropdown-item">
             <!-- 消息开始 -->
             <div class="media">
-              <img src="../../dist/img/user1-128x128.jpg" alt="用户头像" class="img-size-50 mr-3 img-circle">
+              <img th:src="@{/img/user1-128x128.jpg}" alt="用户头像" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -79,7 +79,7 @@
           <a href="#" class="dropdown-item">
             <!-- 消息开始 -->
             <div class="media">
-              <img src="../../dist/img/user8-128x128.jpg" alt="用户头像" class="img-size-50 img-circle mr-3">
+              <img th:src="@{/img/user8-128x128.jpg}" alt="用户头像" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
@@ -95,7 +95,7 @@
           <a href="#" class="dropdown-item">
             <!-- 消息开始 -->
             <div class="media">
-              <img src="../../dist/img/user3-128x128.jpg" alt="用户头像" class="img-size-50 img-circle mr-3">
+              <img th:src="@{/img/user3-128x128.jpg}" alt="用户头像" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Nora Silvester
@@ -156,7 +156,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- 品牌 Logo -->
     <a href="../../index3.html" class="brand-link">
-      <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img th:src="@{/img/AdminLTELogo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
 
@@ -165,7 +165,7 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="用户头像">
+          <img th:src="@{/img/user2-160x160.jpg}" class="img-circle elevation-2" alt="用户头像">
         </div>
         <div class="info">
           <a href="#" class="d-block">Alexander Pierce</a>
@@ -898,8 +898,8 @@
 <!-- Bootstrap 4 -->
 <script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 <!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
+<script th:src="@{/js/adminlte.min.js}"></script>
 <!-- 用于演示 AdminLTE  -->
-<script src="../../dist/js/demo.js"></script>
+<script th:src="@{/js/demo.js}"></script>
 </body>
 </html>

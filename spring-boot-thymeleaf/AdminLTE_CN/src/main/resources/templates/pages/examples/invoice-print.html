@@ -10,7 +10,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
   <!-- 主题样式 -->
-  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <link rel="stylesheet" th:href="@{/css/adminlte.min.css}">
 </head>
 <body>
 <div class="wrapper">
@@ -114,10 +114,10 @@
       <!-- 接受付款栏 -->
       <div class="col-6">
         <p class="lead">付款方式：</p>
-        <img src="../../dist/img/credit/visa.png" alt="Visa">
-        <img src="../../dist/img/credit/mastercard.png" alt="万事达">
-        <img src="../../dist/img/credit/american-express.png" 美国运通>
-        <img src="../../dist/img/credit/paypal2.png" alt="贝宝">
+        <img th:src="@{/img/credit/visa.png}" alt="Visa">
+        <img th:src="@{/img/credit/mastercard.png}" alt="万事达">
+        <img th:src="@{/img/credit/american-express.png}" 美国运通>
+        <img th:src="@{/img/credit/paypal2.png}" alt="贝宝">
 
         <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
           那帮家伙——那帮贪生怕死的人渣，兵痞中的破落户， plugg dopplr

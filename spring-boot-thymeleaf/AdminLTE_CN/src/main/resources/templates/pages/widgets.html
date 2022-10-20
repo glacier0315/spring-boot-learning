@@ -12,7 +12,7 @@
   <!-- Ionicons -->
   <link rel="stylesheet" th:href="@{/css/ionicons/ionicons.min.css}">
   <!-- 主题样式 -->
-  <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+  <link rel="stylesheet" th:href="@{/css/adminlte.min.css}">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -65,7 +65,7 @@
           <a href="#" class="dropdown-item">
             <!-- 消息开始 -->
             <div class="media">
-              <img src="../dist/img/user1-128x128.jpg" alt="用户头像" class="img-size-50 mr-3 img-circle">
+              <img th:src="@{/img/user1-128x128.jpg}" alt="用户头像" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -81,7 +81,7 @@
           <a href="#" class="dropdown-item">
             <!-- 消息开始 -->
             <div class="media">
-              <img src="../dist/img/user8-128x128.jpg" alt="用户头像" class="img-size-50 img-circle mr-3">
+              <img th:src="@{/img/user8-128x128.jpg}" alt="用户头像" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
@@ -97,7 +97,7 @@
           <a href="#" class="dropdown-item">
             <!-- 消息开始 -->
             <div class="media">
-              <img src="../dist/img/user3-128x128.jpg" alt="用户头像" class="img-size-50 img-circle mr-3">
+              <img th:src="@{/img/user3-128x128.jpg}" alt="用户头像" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Nora Silvester
@@ -158,7 +158,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- 品牌 Logo -->
     <a href="../index3.html" class="brand-link">
-      <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img th:src="@{/img/AdminLTELogo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
 
@@ -167,7 +167,7 @@
       <!-- 侧边栏用户面板（可选） -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="用户头像">
+          <img th:src="@{/img/user2-160x160.jpg}" class="img-circle elevation-2" alt="用户头像">
         </div>
         <div class="info">
           <a href="#" class="d-block">Alexander Pierce</a>
@@ -1887,7 +1887,7 @@
                       <span class="direct-chat-timestamp float-right">1月23日 下午2:00</span>
                     </div>
                     <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="Message User Image">
+                    <img class="direct-chat-img" th:src="@{/img/user1-128x128.jpg}" alt="Message User Image">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
                       这个模板真的是免费的吗？太不可思议了！
@@ -1903,7 +1903,7 @@
                       <span class="direct-chat-timestamp float-left">1月23日 下午2:05</span>
                     </div>
                     <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="../dist/img/user3-128x128.jpg" alt="Message User Image">
+                    <img class="direct-chat-img" th:src="@{/img/user3-128x128.jpg}" alt="Message User Image">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
                       是的，确实如此！
@@ -1919,7 +1919,7 @@
                   <ul class="contacts-list">
                     <li>
                       <a href="#">
-                        <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg" alt="用户头像">
+                        <img class="contacts-list-img" th:src="@{/img/user1-128x128.jpg}" alt="用户头像">
 
                         <div class="contacts-list-info">
                           <span class="contacts-list-name">
@@ -1984,7 +1984,7 @@
                       <span class="direct-chat-timestamp float-right">1月23日 下午2:00</span>
                     </div>
                     <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="Message User Image">
+                    <img class="direct-chat-img" th:src="@{/img/user1-128x128.jpg}" alt="Message User Image">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
                       这个模板真的是免费的吗？太不可思议了！
@@ -2000,7 +2000,7 @@
                       <span class="direct-chat-timestamp float-left">1月23日 下午2:05</span>
                     </div>
                     <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="../dist/img/user3-128x128.jpg" alt="Message User Image">
+                    <img class="direct-chat-img" th:src="@{/img/user3-128x128.jpg}" alt="Message User Image">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
                       是的，确实如此！
@@ -2016,7 +2016,7 @@
                   <ul class="contacts-list">
                     <li>
                       <a href="#">
-                        <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg" alt="用户头像">
+                        <img class="contacts-list-img" th:src="@{/img/user1-128x128.jpg}" alt="用户头像">
 
                         <div class="contacts-list-info">
                           <span class="contacts-list-name">
@@ -2081,7 +2081,7 @@
                       <span class="direct-chat-timestamp float-right">1月23日 下午2:00</span>
                     </div>
                     <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="Message User Image">
+                    <img class="direct-chat-img" th:src="@{/img/user1-128x128.jpg}" alt="Message User Image">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
                       这个模板真的是免费的吗？太不可思议了！
@@ -2097,7 +2097,7 @@
                       <span class="direct-chat-timestamp float-left">1月23日 下午2:05</span>
                     </div>
                     <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="../dist/img/user3-128x128.jpg" alt="Message User Image">
+                    <img class="direct-chat-img" th:src="@{/img/user3-128x128.jpg}" alt="Message User Image">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
                       是的，确实如此！
@@ -2113,7 +2113,7 @@
                   <ul class="contacts-list">
                     <li>
                       <a href="#">
-                        <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg" alt="用户头像">
+                        <img class="contacts-list-img" th:src="@{/img/user1-128x128.jpg}" alt="用户头像">
 
                         <div class="contacts-list-info">
                           <span class="contacts-list-name">
@@ -2178,7 +2178,7 @@
                       <span class="direct-chat-timestamp float-right">1月23日 下午2:00</span>
                     </div>
                     <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="Message User Image">
+                    <img class="direct-chat-img" th:src="@{/img/user1-128x128.jpg}" alt="Message User Image">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
                       这个模板真的是免费的吗？太不可思议了！
@@ -2194,7 +2194,7 @@
                       <span class="direct-chat-timestamp float-left">1月23日 下午2:05</span>
                     </div>
                     <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="../dist/img/user3-128x128.jpg" alt="Message User Image">
+                    <img class="direct-chat-img" th:src="@{/img/user3-128x128.jpg}" alt="Message User Image">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
                       是的，确实如此！
@@ -2210,7 +2210,7 @@
                   <ul class="contacts-list">
                     <li>
                       <a href="#">
-                        <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg" alt="用户头像">
+                        <img class="contacts-list-img" th:src="@{/img/user1-128x128.jpg}" alt="用户头像">
 
                         <div class="contacts-list-info">
                           <span class="contacts-list-name">
@@ -2280,7 +2280,7 @@
                       <span class="direct-chat-timestamp float-right">1月23日 下午2:00</span>
                     </div>
                     <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="Message User Image">
+                    <img class="direct-chat-img" th:src="@{/img/user1-128x128.jpg}" alt="Message User Image">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
                       这个模板真的是免费的吗？太不可思议了！
@@ -2296,7 +2296,7 @@
                       <span class="direct-chat-timestamp float-left">1月23日 下午2:05</span>
                     </div>
                     <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="../dist/img/user3-128x128.jpg" alt="Message User Image">
+                    <img class="direct-chat-img" th:src="@{/img/user3-128x128.jpg}" alt="Message User Image">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
                       是的，确实如此！
@@ -2312,7 +2312,7 @@
                   <ul class="contacts-list">
                     <li>
                       <a href="#">
-                        <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg" alt="用户头像">
+                        <img class="contacts-list-img" th:src="@{/img/user1-128x128.jpg}" alt="用户头像">
 
                         <div class="contacts-list-info">
                           <span class="contacts-list-name">
@@ -2377,7 +2377,7 @@
                       <span class="direct-chat-timestamp float-right">1月23日 下午2:00</span>
                     </div>
                     <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="Message User Image">
+                    <img class="direct-chat-img" th:src="@{/img/user1-128x128.jpg}" alt="Message User Image">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
                       这个模板真的是免费的吗？太不可思议了！
@@ -2393,7 +2393,7 @@
                       <span class="direct-chat-timestamp float-left">1月23日 下午2:05</span>
                     </div>
                     <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="../dist/img/user3-128x128.jpg" alt="Message User Image">
+                    <img class="direct-chat-img" th:src="@{/img/user3-128x128.jpg}" alt="Message User Image">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
                       是的，确实如此！
@@ -2409,7 +2409,7 @@
                   <ul class="contacts-list">
                     <li>
                       <a href="#">
-                        <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg" alt="用户头像">
+                        <img class="contacts-list-img" th:src="@{/img/user1-128x128.jpg}" alt="用户头像">
 
                         <div class="contacts-list-info">
                           <span class="contacts-list-name">
@@ -2474,7 +2474,7 @@
                       <span class="direct-chat-timestamp float-right">1月23日 下午2:00</span>
                     </div>
                     <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="Message User Image">
+                    <img class="direct-chat-img" th:src="@{/img/user1-128x128.jpg}" alt="Message User Image">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
                       这个模板真的是免费的吗？太不可思议了！
@@ -2490,7 +2490,7 @@
                       <span class="direct-chat-timestamp float-left">1月23日 下午2:05</span>
                     </div>
                     <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="../dist/img/user3-128x128.jpg" alt="Message User Image">
+                    <img class="direct-chat-img" th:src="@{/img/user3-128x128.jpg}" alt="Message User Image">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
                       是的，确实如此！
@@ -2506,7 +2506,7 @@
                   <ul class="contacts-list">
                     <li>
                       <a href="#">
-                        <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg" alt="用户头像">
+                        <img class="contacts-list-img" th:src="@{/img/user1-128x128.jpg}" alt="用户头像">
 
                         <div class="contacts-list-info">
                           <span class="contacts-list-name">
@@ -2571,7 +2571,7 @@
                       <span class="direct-chat-timestamp float-right">1月23日 下午2:00</span>
                     </div>
                     <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="Message User Image">
+                    <img class="direct-chat-img" th:src="@{/img/user1-128x128.jpg}" alt="Message User Image">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
                       这个模板真的是免费的吗？太不可思议了！
@@ -2587,7 +2587,7 @@
                       <span class="direct-chat-timestamp float-left">1月23日 下午2:05</span>
                     </div>
                     <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="../dist/img/user3-128x128.jpg" alt="Message User Image">
+                    <img class="direct-chat-img" th:src="@{/img/user3-128x128.jpg}" alt="Message User Image">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
                       是的，确实如此！
@@ -2603,7 +2603,7 @@
                   <ul class="contacts-list">
                     <li>
                       <a href="#">
-                        <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg" alt="用户头像">
+                        <img class="contacts-list-img" th:src="@{/img/user1-128x128.jpg}" alt="用户头像">
 
                         <div class="contacts-list-info">
                           <span class="contacts-list-name">
@@ -2649,7 +2649,7 @@
               <!-- 将 bg-* 类添加到标题中 -->
               <div class="widget-user-header bg-warning">
                 <div class="widget-user-image">
-                  <img class="img-circle elevation-2" src="../dist/img/user7-128x128.jpg" alt="用户头像">
+                  <img class="img-circle elevation-2" th:src="@{/img/user7-128x128.jpg}" alt="用户头像">
                 </div>
                 <!-- /.widget-user-image -->
                 <h3 class="widget-user-username">Nadia Carmichael</h3>
@@ -2692,7 +2692,7 @@
                 <h5 class="widget-user-desc">创始人 & CEO</h5>
               </div>
               <div class="widget-user-image">
-                <img class="img-circle elevation-2" src="../dist/img/user1-128x128.jpg" alt="用户头像">
+                <img class="img-circle elevation-2" th:src="@{/img/user1-128x128.jpg}" alt="用户头像">
               </div>
               <div class="card-footer">
                 <div class="row">
@@ -2737,7 +2737,7 @@
                 <h5 class="widget-user-desc text-right">Web 设计师</h5>
               </div>
               <div class="widget-user-image">
-                <img class="img-circle" src="../dist/img/user3-128x128.jpg" alt="用户头像">
+                <img class="img-circle" th:src="@{/img/user3-128x128.jpg}" alt="用户头像">
               </div>
               <div class="card-footer">
                 <div class="row">
@@ -2781,7 +2781,7 @@
             <div class="card card-widget">
               <div class="card-header">
                 <div class="user-block">
-                  <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="用户头像">
+                  <img class="img-circle" th:src="@{/img/user1-128x128.jpg}" alt="用户头像">
                   <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
                   <span class="description">公开分享 - 今天下午7:30</span>
                 </div>
@@ -2801,7 +2801,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <img class="img-fluid pad" src="../dist/img/photo2.png" alt="图片">
+                <img class="img-fluid pad" th:src="@{/img/photo2.png}" alt="图片">
 
                 <p>我今天早上拍了这张照片。你感觉怎么样？</p>
                 <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i> 分享</button>
@@ -2812,7 +2812,7 @@
               <div class="card-footer card-comments">
                 <div class="card-comment">
                   <!-- User image -->
-                  <img class="img-circle img-sm" src="../dist/img/user3-128x128.jpg" alt="用户头像">
+                  <img class="img-circle img-sm" th:src="@{/img/user3-128x128.jpg}" alt="用户头像">
 
                   <div class="comment-text">
                     <span class="username">
@@ -2827,7 +2827,7 @@
                 <!-- /.card-comment -->
                 <div class="card-comment">
                   <!-- User image -->
-                  <img class="img-circle img-sm" src="../dist/img/user4-128x128.jpg" alt="用户头像">
+                  <img class="img-circle img-sm" th:src="@{/img/user4-128x128.jpg}" alt="用户头像">
 
                   <div class="comment-text">
                     <span class="username">
@@ -2844,7 +2844,7 @@
               <!-- /.card-footer -->
               <div class="card-footer">
                 <form action="#" method="post">
-                  <img class="img-fluid img-circle img-sm" src="../dist/img/user4-128x128.jpg" alt="替代文字">
+                  <img class="img-fluid img-circle img-sm" th:src="@{/img/user4-128x128.jpg}" alt="替代文字">
                   <!-- .img-push 用于在浮动图像元素上添加边距 -->
                   <div class="img-push">
                     <input type="text" class="form-control form-control-sm" placeholder="按 Enter 发表评论">
@@ -2861,7 +2861,7 @@
             <div class="card card-widget">
               <div class="card-header">
                 <div class="user-block">
-                  <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="用户头像">
+                  <img class="img-circle" th:src="@{/img/user1-128x128.jpg}" alt="用户头像">
                   <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
                   <span class="description">公开分享 - 今天下午7:30</span>
                 </div>
@@ -2894,7 +2894,7 @@
 
                 <!-- Attachment -->
                 <div class="attachment-block clearfix">
-                  <img class="attachment-img" src="../dist/img/photo1.png" alt="附件图片">
+                  <img class="attachment-img" th:src="@{/img/photo1.png}" alt="附件图片">
 
                   <div class="attachment-pushed">
                     <h4 class="attachment-heading"><a href="https://www.lipsum.com/">Lorem ipsum 文本生成器</a></h4>
@@ -2918,7 +2918,7 @@
               <div class="card-footer card-comments">
                 <div class="card-comment">
                   <!-- User image -->
-                  <img class="img-circle img-sm" src="../dist/img/user3-128x128.jpg" alt="用户头像">
+                  <img class="img-circle img-sm" th:src="@{/img/user3-128x128.jpg}" alt="用户头像">
 
                   <div class="comment-text">
                     <span class="username">
@@ -2933,7 +2933,7 @@
                 <!-- /.card-comment -->
                 <div class="card-comment">
                   <!-- User image -->
-                  <img class="img-circle img-sm" src="../dist/img/user5-128x128.jpg" alt="用户头像">
+                  <img class="img-circle img-sm" th:src="@{/img/user5-128x128.jpg}" alt="用户头像">
 
                   <div class="comment-text">
                     <span class="username">
@@ -2951,7 +2951,7 @@
               <!-- /.card-footer -->
               <div class="card-footer">
                 <form action="#" method="post">
-                  <img class="img-fluid img-circle img-sm" src="../dist/img/user4-128x128.jpg" alt="替代文字">
+                  <img class="img-fluid img-circle img-sm" th:src="@{/img/user4-128x128.jpg}" alt="替代文字">
                   <!-- .img-push 用于在浮动图像元素上添加边距 -->
                   <div class="img-push">
                     <input type="text" class="form-control form-control-sm" placeholder="按 Enter 发表评论">
@@ -2975,7 +2975,7 @@
               <!-- 将 bg-* 类添加到标题中 -->
               <div class="widget-user-header bg-warning">
                 <div class="widget-user-image">
-                  <img class="img-circle elevation-2" src="../dist/img/user7-128x128.jpg" alt="用户头像">
+                  <img class="img-circle elevation-2" th:src="@{/img/user7-128x128.jpg}" alt="用户头像">
                 </div>
                 <!-- /.widget-user-image -->
                 <h3 class="widget-user-username">Nadia Carmichael</h3>
@@ -3018,7 +3018,7 @@
                 <h5 class="widget-user-desc">创始人 & CEO</h5>
               </div>
               <div class="widget-user-image">
-                <img class="img-circle elevation-2" src="../dist/img/user1-128x128.jpg" alt="用户头像">
+                <img class="img-circle elevation-2" th:src="@{/img/user1-128x128.jpg}" alt="用户头像">
               </div>
               <div class="card-footer">
                 <div class="row">
@@ -3063,7 +3063,7 @@
                 <h5 class="widget-user-desc text-right">Web 设计师</h5>
               </div>
               <div class="widget-user-image">
-                <img class="img-circle" src="../dist/img/user3-128x128.jpg" alt="用户头像">
+                <img class="img-circle" th:src="@{/img/user3-128x128.jpg}" alt="用户头像">
               </div>
               <div class="card-footer">
                 <div class="row">
@@ -3107,7 +3107,7 @@
             <div class="row">
               <div class="col-md-12 col-lg-6 col-xl-4">
                 <div class="card mb-2 bg-gradient-dark">
-                  <img class="card-img-top" src="../dist/img/photo1.png" alt="Dist Photo 1">
+                  <img class="card-img-top" th:src="@{/img/photo1.png}" alt="Dist Photo 1">
                   <div class="card-img-overlay d-flex flex-column justify-content-end">
                     <h5 class="card-title text-primary text-white">卡片标题</h5>
                     <p class="card-text text-white pb-2 pt-1">人老了，思绪就会常常飘忽，和灵魂一样。</p>
@@ -3117,7 +3117,7 @@
               </div>
               <div class="col-md-12 col-lg-6 col-xl-4">
                 <div class="card mb-2">
-                  <img class="card-img-top" src="../dist/img/photo2.png" alt="Dist Photo 2">
+                  <img class="card-img-top" th:src="@{/img/photo2.png}" alt="Dist Photo 2">
                   <div class="card-img-overlay d-flex flex-column justify-content-center">
                     <h5 class="card-title text-white mt-5 pt-2">卡片标题</h5>
                     <p class="card-text pb-2 pt-1 text-white">
@@ -3131,7 +3131,7 @@
               </div>
               <div class="col-md-12 col-lg-6 col-xl-4">
                 <div class="card mb-2">
-                  <img class="card-img-top" src="../dist/img/photo3.jpg" alt="Dist Photo 3">
+                  <img class="card-img-top" th:src="@{/img/photo3.jpg}" alt="Dist Photo 3">
                   <div class="card-img-overlay">
                     <h5 class="card-title text-primary">卡片标题</h5>
                     <p class="card-text pb-1 pt-1 text-white">
@@ -3176,8 +3176,8 @@
 <!-- Bootstrap 4 -->
 <script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 <!-- AdminLTE App -->
-<script src="../dist/js/adminlte.min.js"></script>
+<script th:src="@{/js/adminlte.min.js}"></script>
 <!-- 用于演示 AdminLTE  -->
-<script src="../dist/js/demo.js"></script>
+<script th:src="@{/js/demo.js}"></script>
 </body>
 </html>
