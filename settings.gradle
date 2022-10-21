@@ -8,43 +8,92 @@
  */
 rootProject.name = 'spring-boot-learning'
 
-// 忽略的目录，如果有不想自动注册的目录也可以放进来
-def ignoreDirs = [
-        ".gradle",
-        ".idea",
-        ".git",
-        "gradle",
-        "logs",
-        "buildSrc",
-        "build",
-        "out",
-        "doc",
-        "libs",
-        "db",
-        "src"
-]
+//include(":spring-boot-activiti6:demo1")
+//include(":spring-boot-activiti7:demo1")
+//include(":spring-boot-admin:client1")
+//include(":spring-boot-admin:server1")
+//include(":spring-boot-aop:demo1")
+//include(":spring-boot-async:demo1")
+//include(":spring-boot-config:demo1")
+//include(":spring-boot-data-jpa:demo1")
+//include(":spring-boot-data-redis:demo1")
+//include(":spring-boot-docker:demo1")
+//include(":spring-boot-elasticsearch:demo1")
+//include(":spring-boot-fastdfs:demo1")
+//include(":spring-boot-freemarker:demo1")
+//include(":spring-boot-https:demo1")
+//include(":spring-boot-jar2war")
+//include(":spring-boot-jasypt:druid1")
+//include(":spring-boot-jersey:demo1")
+//include(":spring-boot-kafka:demo1")
+//include(":spring-boot-logback:demo1")
+//include(":spring-boot-mybatis:druid1")
+//include(":spring-boot-mybatis:druid2")
+//include(":spring-boot-mybatis:hikari1")
+//include(":spring-boot-mybatis-plus:demo1")
+//include(":spring-boot-mybatis-plus:dynamic1")
+//include(":spring-boot-office:easyexcel1")
+//include(":spring-boot-office:hutool-poi1")
+//include(":spring-boot-office:office-to-pdf1")
+//include(":spring-boot-openapi:demo1")
+//include(":spring-boot-quartz:demo1")
+//include(":spring-boot-quartz:demo2")
+//include(":spring-boot-rabbitmq:demo1")
+//include(":spring-boot-rocketmq:demo1")
+//include(":spring-boot-scheduled:demo1")
+//include(":spring-boot-security:jdbc-login1")
+//include(":spring-boot-security:memory-login1")
+//include(":spring-boot-security:memory-login2")
+//include(":spring-boot-shiro:demo1")
+//include(":spring-boot-shiro:demo3")
+//include(":spring-boot-shiro:demo4")
+//include(":spring-boot-shiro:jdbc1")
+//include(":spring-boot-swagger3:demo1")
+//include(":spring-boot-thymeleaf:AdminLTE_CN")
+//include(":spring-boot-thymeleaf:demo1")
+//include(":spring-boot-thymeleaf:demo2")
+//include(":spring-boot-thymeleaf:layui-admin")
+//include(":spring-boot-validation:demo1")
+include(":spring-boot-web:demo1")
+//include(":spring-boot-websocket:demo1")
 
-autoRegisterModule(settingsDir, ignoreDirs)
-
-// 自动注册当前所有子目录下的模块
-def autoRegisterModule(def dir, def ignoreDirs = []) {
-    def moduleSymbol = ["build.gradle", "build.gradle.kts"]
-
-    if (dir.isDirectory() && !ignoreDirs.contains(dir.getName())) {
-        dir.eachFile { f ->
-            autoRegisterModule(f, ignoreDirs)
-        }
-    } else if (!dir.isDirectory() && moduleSymbol.contains(dir.getName())) {
-        // 相对目录
-        def path = dir.getParentFile()
-                .getPath()
-                .replace("$rootDir", "")
-        // 排除根目录
-        if (path.isEmpty()) return
-        // 组装模块
-        def modelName = path.replace(File.separator, ":")
-        // 是模块，可以注册
-        println "include(\"$modelName\")"
-        include("$modelName")
-    }
-}
+//// 忽略的目录，如果有不想自动注册的目录也可以放进来
+//def ignoreDirs = [
+//        ".gradle",
+//        ".idea",
+//        ".git",
+//        "gradle",
+//        "logs",
+//        "buildSrc",
+//        "build",
+//        "out",
+//        "doc",
+//        "libs",
+//        "db",
+//        "src"
+//]
+//
+//autoRegisterModule(settingsDir, ignoreDirs)
+//
+//// 自动注册当前所有子目录下的模块
+//def autoRegisterModule(def dir, def ignoreDirs = []) {
+//    def moduleSymbol = ["build.gradle", "build.gradle.kts"]
+//
+//    if (dir.isDirectory() && !ignoreDirs.contains(dir.getName())) {
+//        dir.eachFile { f ->
+//            autoRegisterModule(f, ignoreDirs)
+//        }
+//    } else if (!dir.isDirectory() && moduleSymbol.contains(dir.getName())) {
+//        // 相对目录
+//        def path = dir.getParentFile()
+//                .getPath()
+//                .replace("$rootDir", "")
+//        // 排除根目录
+//        if (path.isEmpty()) return
+//        // 组装模块
+//        def modelName = path.replace(File.separator, ":")
+//        // 是模块，可以注册
+//        println "include(\"$modelName\")"
+//        include("$modelName")
+//    }
+//}
