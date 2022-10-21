@@ -44,7 +44,7 @@ def autoRegisterModule(def dir, def ignoreDirs = []) {
         // 组装模块
         def modelName = path.replace(File.separator, ":")
         // 是模块，可以注册
-        println "注册模块\t $modelName"
+        println "include(\"$modelName\")"
         include("$modelName")
     }
 }
