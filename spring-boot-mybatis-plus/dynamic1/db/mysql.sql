@@ -1,4 +1,4 @@
-CREATE DATABASE sb_learn CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
+CREATE DATABASE sb_learn CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci';
 
 use sb_learn;
 
@@ -32,8 +32,7 @@ CREATE TABLE sys_user
     INDEX sys_user_2 (id_card) USING BTREE,
     INDEX sys_user_3 (status) USING BTREE
 ) ENGINE = InnoDB
-  CHARACTER SET = utf8
-  COLLATE = utf8_general_ci COMMENT = '用户表'
+  COMMENT = '用户表'
   ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -63,7 +62,7 @@ VALUES ('c35d5b94aca547799fbe56ddd90bcfc4', 'ceshi', '$2a$10$RP6MGP8lFqKhh0.2/Sr
 
 
 DROP DATABASE sb_learn2;
-CREATE DATABASE sb_learn2 CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
+CREATE DATABASE sb_learn2 CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci';
 
 use sb_learn2;
 
@@ -88,8 +87,7 @@ CREATE TABLE t_role
     INDEX sys_role_1 (code) USING BTREE,
     INDEX sys_role_2 (status) USING BTREE
 ) ENGINE = InnoDB
-  CHARACTER SET = utf8
-  COLLATE = utf8_general_ci COMMENT = '角色表'
+  COMMENT = '角色表'
   ROW_FORMAT = Dynamic;
 
 -- ----------------------------

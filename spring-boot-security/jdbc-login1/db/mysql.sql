@@ -1,6 +1,6 @@
 /*
 DROP DATABASE if exists sb_learn;
-CREATE DATABASE sb_learn CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
+CREATE DATABASE sb_learn CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci';
 */
 use sb_learn;
 
@@ -34,8 +34,7 @@ CREATE TABLE sys_user
     INDEX sys_user_2 (id_card) USING BTREE,
     INDEX sys_user_3 (status) USING BTREE
 ) ENGINE = InnoDB
-  CHARACTER SET = utf8
-  COLLATE = utf8_general_ci COMMENT = '用户表'
+  COMMENT = '用户表'
   ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -84,8 +83,7 @@ CREATE TABLE sys_role
     INDEX sys_role_1 (code) USING BTREE,
     INDEX sys_role_2 (status) USING BTREE
 ) ENGINE = InnoDB
-  CHARACTER SET = utf8
-  COLLATE = utf8_general_ci COMMENT = '角色表'
+  COMMENT = '角色表'
   ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -112,8 +110,7 @@ CREATE TABLE sys_user_role
     INDEX sys_user_role_1 (user_id) USING BTREE,
     INDEX sys_user_role_2 (role_id) USING BTREE
 ) ENGINE = InnoDB
-  CHARACTER SET = utf8
-  COLLATE = utf8_general_ci COMMENT = '用户角色关联表'
+  COMMENT = '用户角色关联表'
   ROW_FORMAT = Dynamic;
 
 -- ----------------------------
