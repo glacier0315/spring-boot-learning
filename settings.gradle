@@ -8,7 +8,7 @@
  */
 rootProject.name = 'spring-boot-learning'
 
-include(":spring-boot-thymeleaf:AdminLTE_CN")
+include(":template-engine:thymeleaf:AdminLTE_CN")
 
 // 忽略的目录，如果有不想自动注册的目录也可以放进来
 def ignoreDirs = [
@@ -47,6 +47,6 @@ def autoRegisterModule(def dir, def ignoreDirs = []) {
         def modelName = path.replace(File.separator, ":")
         // 是模块，可以注册
         println "include(\"$modelName\")"
-        // include("$modelName")
+//        include("$modelName")
     }
 }
