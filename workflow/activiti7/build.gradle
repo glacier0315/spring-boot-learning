@@ -1,7 +1,4 @@
 subprojects {
-    apply plugin: "org.springframework.boot"
-    apply plugin: 'io.spring.dependency-management'
-
     configurations {
         // 全局排除依赖
         all*.exclude group: "org.activiti.core.common", module: "activiti-core-common-dependencies"
@@ -9,11 +6,8 @@ subprojects {
     }
 
     dependencies {
-        // spring boot
-        implementation("org.springframework.boot:spring-boot-starter-web")
-        implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+        // spring boot security
         implementation("org.springframework.boot:spring-boot-starter-security")
-        developmentOnly("org.springframework.boot:spring-boot-devtools")
 
         // activiti
         implementation("org.activiti:activiti-spring-boot-starter:${activiti7Version}")
@@ -21,13 +15,6 @@ subprojects {
         // activiti-modeler
         implementation("org.activiti:activiti-modeler:${activitiModelerVersion}")
         implementation("org.activiti:activiti-diagram-rest:${activitiModelerVersion}")
-
-        // mybatis
-        implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisVersion}")
-        implementation("com.github.pagehelper:pagehelper-spring-boot-starter:${pagehelperVersion}")
-        implementation("mysql:mysql-connector-java")
-
-        implementation("commons-io:commons-io:${commonsIoVersion}")
     }
 
     // 生成jar文件时，MANIFEST.MF的内容如下
@@ -37,5 +24,3 @@ subprojects {
         }
     }
 }
-
-
