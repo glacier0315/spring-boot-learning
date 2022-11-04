@@ -12,9 +12,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version 1.0
  */
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
-public class ActDemo1Application {
+public class Activiti6Demo1Application {
 	
 	public static void main(String[] args) {
-		SpringApplication.run(ActDemo1Application.class, args);
+		SpringApplication.run(Activiti6Demo1Application.class, args);
 	}
 }

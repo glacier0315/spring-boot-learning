@@ -9,9 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since <pre>2017/4/15 0015</pre>
  */
 @SpringBootApplication
-public class ThymeleafDemo4Application {
+public class ThymeleafLayuiAdminApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ThymeleafDemo4Application.class, args);
+        SpringApplication.run(ThymeleafLayuiAdminApplication.class, args);
     }
 }
