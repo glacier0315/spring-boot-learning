@@ -122,7 +122,7 @@
     * demo1: spring-boot 读取配置文件顺序 的示例。
 #### [async](https://github.com/glacier0315/spring-boot-learning/tree/main/features/async)
     * demo1: spring-boot 异步调用 的示例。
-#### [aop](https://github.com/glacier0315/spring-boot-learning/tree/main/spring-boot-aop)
+#### [aop](https://github.com/glacier0315/spring-boot-learning/tree/main/features/aop)
     * demo1: spring-boot 切面编程 的示例。
 #### [validation](https://github.com/glacier0315/spring-boot-learning/tree/main/features/validation)
     * demo1: spring-boot validation校验 的示例。
