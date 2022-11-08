@@ -4,5 +4,8 @@ dependencies {
 
     implementation("com.alibaba:druid-spring-boot-starter:${druidVersion}")
 
+    implementation("org.flywaydb:flyway-mysql")
+
     runtimeOnly("mysql:mysql-connector-java")
+
 }

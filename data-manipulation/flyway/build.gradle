@@ -7,7 +7,7 @@ subprojects {
         implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisVersion}")
         implementation("com.github.pagehelper:pagehelper-spring-boot-starter:${pagehelperVersion}")
 
-        implementation("org.flywaydb:flyway-core:${flywayVersion}")
+        implementation("org.flywaydb:flyway-core")
 
         developmentOnly("org.springframework.boot:spring-boot-devtools")
     }
