@@ -14,11 +14,11 @@ import java.util.Optional;
  * @author glacier
  * @version 1.0
  */
-public class Servlets {
+public class ServletUtils {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(Servlets.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ServletUtils.class);
 	
-	private Servlets() {
+	private ServletUtils() {
 	}
 	
 	

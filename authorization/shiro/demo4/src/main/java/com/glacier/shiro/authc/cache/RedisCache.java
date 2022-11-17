@@ -1,6 +1,6 @@
 package com.glacier.shiro.authc.cache;
 
-import com.glacier.shiro.utils.Servlets;
+import com.glacier.shiro.utils.ServletUtils;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
 import org.slf4j.Logger;
@@ -31,6 +31,7 @@ public class RedisCache<K, V> implements Cache<K, V> {
 		this.cacheName = cacheName;
 	}
 	
+	@SuppressWarnings({"unchecked"})
 	@Override
 	public V get(K key) throws CacheException {
 		if (key == null) {
@@ -38,7 +39,7 @@ public class RedisCache<K, V> implements Cache<K, V> {
 			return null;
 		}
 		V value;
-		HttpServletRequest request = Servlets.getRequest();
+		HttpServletRequest request = ServletUtils.getRequest();
 		if (request != null) {
 			value = (V) request.getAttribute(cacheName + key);
 			if (value != null) {
@@ -67,6 +68,7 @@ public class RedisCache<K, V> implements Cache<K, V> {
 		return value;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public V remove(K key) throws CacheException {
 		if (key == null) {
@@ -94,6 +96,7 @@ public class RedisCache<K, V> implements Cache<K, V> {
 		return size;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public Set<K> keys() {
 		Set<K> keys = (Set<K>) redisTemplate.boundHashOps(cacheName)
@@ -102,6 +105,7 @@ public class RedisCache<K, V> implements Cache<K, V> {
 		return keys;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public Collection<V> values() {
 		Collection<V> values = (Collection<V>) redisTemplate.boundHashOps(cacheName)
