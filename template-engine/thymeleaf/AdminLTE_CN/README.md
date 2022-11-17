@@ -91,3 +91,9 @@ th:$1"@{/pages/tables/$5}"
 # 替换
 th:$1"@{/pages/UI/$5}"
 ```
+8. 修改script
+```text
+../../plugins/datatables/Chinese.json
+# 替换
+[[@{/plugins/datatables/Chinese.json}]]
+```
