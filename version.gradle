@@ -5,9 +5,6 @@ ext {
     // shiro
     shiroStarterVersion = "1.10.0"
 
-    // 模板布局
-    thymeleafLayoutVersion = "3.1.0"
-
     //spring boot admin
     springBootAdminVersion = "2.7.6"
     // rocketmq
