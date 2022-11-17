@@ -7,5 +7,4 @@ dependencies {
     implementation("org.flywaydb:flyway-mysql")
 
     runtimeOnly("mysql:mysql-connector-java")
-
 }

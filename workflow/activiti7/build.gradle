@@ -16,11 +16,4 @@ subprojects {
         implementation("org.activiti:activiti-modeler:${activitiModelerVersion}")
         implementation("org.activiti:activiti-diagram-rest:${activitiModelerVersion}")
     }
-
-    // 生成jar文件时，MANIFEST.MF的内容如下
-    bootJar {
-        manifest {
-            attributes(manifestMap)
-        }
-    }
 }

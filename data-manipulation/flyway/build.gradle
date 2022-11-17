@@ -1,23 +1,8 @@
 subprojects {
-    apply plugin: 'org.springframework.boot'
-    apply plugin: 'io.spring.dependency-management'
-
     dependencies {
-        implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisVersion}")
         implementation("com.github.pagehelper:pagehelper-spring-boot-starter:${pagehelperVersion}")
 
         implementation("org.flywaydb:flyway-core")
-
-        developmentOnly("org.springframework.boot:spring-boot-devtools")
-    }
-
-    // 生成jar文件时，MANIFEST.MF的内容如下
-    bootJar {
-        manifest {
-            attributes(manifestMap)
-        }
     }
 }
-
-

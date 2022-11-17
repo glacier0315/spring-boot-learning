@@ -3,7 +3,6 @@ ext {
     coreRendererVersion="R8"
     itextVersion="4.2.2"
     poi3Version = "3.16"
-    commonsIoVersion = "2.5"
 }
 
 dependencies {

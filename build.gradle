@@ -9,6 +9,8 @@ plugins {
 subprojects {
     apply plugin: 'com.glacier.java-common-conventions'
     apply from: "$rootDir/version.gradle"
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
 
     group = 'com.glacier'
     description = 'spring-boot-learning'
@@ -25,6 +27,7 @@ subprojects {
     dependencies {
         implementation platform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
 
+        implementation('org.springframework.boot:spring-boot-starter-web')
         implementation('org.springframework.boot:spring-boot-starter-actuator')
 
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
@@ -32,6 +35,12 @@ subprojects {
         }
     }
 
+    // 生成jar文件时，MANIFEST.MF的内容如下
+    bootJar {
+        manifest {
+            attributes(manifestMap)
+        }
+    }
 }
 
 wrapper {
