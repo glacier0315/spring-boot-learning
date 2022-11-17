@@ -2,7 +2,7 @@ dependencies {
     // 本地依赖
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation("com.baomidou:dynamic-datasource-spring-boot-starter:$dynamicDatasourceVersion")
+    implementation("com.baomidou:dynamic-datasource-spring-boot-starter")
 
     runtimeOnly("mysql:mysql-connector-java")
 }

@@ -1,6 +1,6 @@
 subprojects {
     dependencies {
-        implementation("org.apache.rocketmq:rocketmq-spring-boot-starter:${rocketmqStarter}") {
+        implementation("org.apache.rocketmq:rocketmq-spring-boot-starter") {
             exclude(group: 'org.springframework.boot', module: 'spring-boot-starter-validation')
         }
         implementation('org.springframework.boot:spring-boot-starter-validation')

@@ -10,8 +10,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation(
-            "commons-io:commons-io:${commonsIoVersion}",
-            "org.apache.poi:poi:${poiVersion}",
+            "commons-io:commons-io",
+            "org.apache.poi:poi:${poi3Version}",
             "org.apache.poi:poi-ooxml:${poi3Version}",
             "org.jsoup:jsoup:${jsoupVersion}",
             "org.xhtmlrenderer:core-renderer:${coreRendererVersion}",

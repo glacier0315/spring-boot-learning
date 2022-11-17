@@ -2,10 +2,10 @@ subprojects {
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 
-        implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisVersion}")
-        implementation("com.github.pagehelper:pagehelper-spring-boot-starter:${pagehelperVersion}")
+        implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter")
+        implementation("com.github.pagehelper:pagehelper-spring-boot-starter")
         implementation("mysql:mysql-connector-java")
 
-        implementation("commons-io:commons-io:${commonsIoVersion}")
+        implementation("commons-io:commons-io")
     }
 }

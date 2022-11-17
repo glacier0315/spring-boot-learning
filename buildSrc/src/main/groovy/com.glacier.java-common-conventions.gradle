@@ -6,19 +6,7 @@ plugins {
     // Apply the java Plugin to add support for Java.
     id 'java'
     id 'java-library'
-}
-
-// 指定仓库
-repositories {
-    mavenLocal()
-    maven { url 'https://maven.aliyun.com/repository/public' }
-    maven { url 'https://maven.aliyun.com/repository/central' }
-    maven { url 'https://maven.aliyun.com/repository/jcenter' }
-    maven { url 'https://maven.aliyun.com/repository/google' }
-    maven { url 'https://maven.aliyun.com/repository/spring' }
-    maven { url 'https://maven.aliyun.com/repository/spring-plugin' }
-    maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
-    mavenCentral()
+    id 'com.glacier.dependencies-conventions'
 }
 
 import java.time.OffsetDateTime
@@ -59,7 +47,7 @@ configurations {
 
 dependencies {
     // Use JUnit Jupiter for testing.
-    testImplementation('org.junit.jupiter:junit-jupiter:5.7.2')
+    testImplementation('org.junit.jupiter:junit-jupiter')
 }
 
 test {

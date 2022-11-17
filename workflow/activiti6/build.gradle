@@ -1,8 +1,8 @@
 subprojects {
     dependencies {
-        implementation("org.activiti:activiti-spring-boot-starter-basic:${activiti6Version}")
-        implementation("org.activiti:activiti-spring-boot-starter-jpa:${activiti6Version}")
+        implementation("org.activiti:activiti-spring-boot-starter-basic")
+        implementation("org.activiti:activiti-spring-boot-starter-jpa")
 
-        implementation("commons-io:commons-io:${commonsIoVersion}")
+        implementation("commons-io:commons-io")
     }
 }

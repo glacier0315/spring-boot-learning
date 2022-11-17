@@ -1,9 +1,6 @@
 subprojects {
     dependencies {
-        implementation("com.github.tobato:fastdfs-client:1.27.2") {
-            exclude group: 'commons-io', module: 'commons-io'
-        }
-        implementation("commons-io:commons-io:${commonsIoVersion}")
+        implementation("com.github.tobato:fastdfs-client:1.27.2")
     }
 
 }

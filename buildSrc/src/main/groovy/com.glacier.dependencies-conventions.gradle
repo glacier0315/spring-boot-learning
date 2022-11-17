@@ -1,0 +1,71 @@
+// 指定仓库
+repositories {
+    mavenLocal()
+    maven { url 'https://maven.aliyun.com/repository/public' }
+    maven { url 'https://maven.aliyun.com/repository/central' }
+    maven { url 'https://maven.aliyun.com/repository/jcenter' }
+    maven { url 'https://maven.aliyun.com/repository/google' }
+    maven { url 'https://maven.aliyun.com/repository/spring' }
+    maven { url 'https://maven.aliyun.com/repository/spring-plugin' }
+    maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+    mavenCentral()
+}
+
+configurations {
+    // 全局排除依赖
+    // 解决activiti 7 依赖问题
+    all*.exclude group: "org.activiti.core.common", module: "activiti-core-common-dependencies"
+    all*.exclude group: "org.activiti.api", module: "activiti-api-dependencies"
+    // 解决easyExcel 升级poi 5 依赖问题
+    all*.exclude group: "org.apache.poi", module: "poi-ooxml-schemas"
+}
+
+dependencies {
+    // 引入其他 bom
+    api platform('org.springframework.boot:spring-boot-dependencies:2.7.5')
+    api platform("cn.hutool:hutool-bom:5.8.9")
+
+    //在constraints块中定义依赖版本约束
+    constraints {
+        api 'org.apache.shiro:shiro-spring-boot-starter:1.10.0'
+        api 'org.apache.shiro:shiro-spring-boot-web-starter:1.10.0'
+
+        api 'de.codecentric:spring-boot-admin-starter-server:2.7.7'
+        api 'de.codecentric:spring-boot-admin-starter-client:2.7.7'
+
+        api 'org.apache.rocketmq:rocketmq-spring-boot-starter:2.2.2'
+
+        // mybatis-plus
+        api 'com.baomidou:mybatis-plus-boot-starter:3.5.2'
+        api 'com.baomidou:dynamic-datasource-spring-boot-starter:3.5.2'
+        // mybatis mapper
+        api 'tk.mybatis:mapper-spring-boot-starter:4.2.2'
+        // mybatis
+        api 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
+        api 'com.github.pagehelper:pagehelper-spring-boot-starter:1.4.5'
+        api 'com.alibaba:druid-spring-boot-starter:1.2.14'
+        api 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4'
+
+        // activiti 6
+        api 'org.activiti:activiti-spring-boot-starter-basic:6.0.0'
+        api 'org.activiti:activiti-spring-boot-starter-jpa:6.0.0'
+        // activiti 7
+        api 'org.activiti:activiti-spring-boot-starter:7.1.0.M6'
+        api 'org.activiti:activiti-image-generator:7.1.0.M6'
+        // activiti-modeler
+        api 'org.activiti:activiti-modeler:5.23.0'
+        api 'org.activiti:activiti-diagram-rest:5.23.0'
+        // openapi
+        api 'org.springdoc:springdoc-openapi-ui:1.6.12'
+        api 'io.springfox:springfox-boot-starter:3.0.0'
+
+        // 其他
+        api 'com.alibaba:easyexcel:3.1.2'
+        api 'org.apache.poi:poi:5.2.2'
+        api 'org.apache.poi:poi-ooxml:5.2.2'
+        api 'commons-io:commons-io:2.11.0'
+        api 'org.apache.commons:commons-lang3:3.12.0'
+
+        api 'org.junit.jupiter:junit-jupiter:5.7.2'
+    }
+}

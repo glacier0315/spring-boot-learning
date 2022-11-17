@@ -1,5 +1,5 @@
 subprojects {
     dependencies {
-        implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:${jasyptStarterVersion}")
+        implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter")
     }
 }

@@ -2,8 +2,8 @@ dependencies {
     // 本地依赖
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation("cn.hutool:hutool-poi:${hutoolVersion}")
-    implementation("org.apache.poi:poi-ooxml:${poiVersion}")
+    implementation("cn.hutool:hutool-poi")
+    implementation("org.apache.poi:poi-ooxml")
 
-    implementation("commons-io:commons-io:${commonsIoVersion}")
+    implementation("commons-io:commons-io")
 }

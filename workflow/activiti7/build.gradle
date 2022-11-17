@@ -1,19 +1,13 @@
 subprojects {
-    configurations {
-        // 全局排除依赖
-        all*.exclude group: "org.activiti.core.common", module: "activiti-core-common-dependencies"
-        all*.exclude group: "org.activiti.api", module: "activiti-api-dependencies"
-    }
-
     dependencies {
         // spring boot security
         implementation("org.springframework.boot:spring-boot-starter-security")
 
         // activiti
-        implementation("org.activiti:activiti-spring-boot-starter:${activiti7Version}")
-        implementation("org.activiti:activiti-image-generator:${activiti7Version}")
+        implementation("org.activiti:activiti-spring-boot-starter")
+        implementation("org.activiti:activiti-image-generator")
         // activiti-modeler
-        implementation("org.activiti:activiti-modeler:${activitiModelerVersion}")
-        implementation("org.activiti:activiti-diagram-rest:${activitiModelerVersion}")
+        implementation("org.activiti:activiti-modeler")
+        implementation("org.activiti:activiti-diagram-rest")
     }
 }
