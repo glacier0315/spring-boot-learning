@@ -9,6 +9,9 @@ configurations {
     all*.exclude group: "org.activiti.api", module: "activiti-api-dependencies"
     // 解决easyExcel 升级poi 5 依赖问题
     all*.exclude group: "org.apache.poi", module: "poi-ooxml-schemas"
+    // 排除junit
+    all*.exclude group: "junit", module: "junit"
+    all*.exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 }
 
 dependencies {

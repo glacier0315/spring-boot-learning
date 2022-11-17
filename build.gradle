@@ -28,9 +28,7 @@ subprojects {
         implementation('org.springframework.boot:spring-boot-starter-web')
         implementation('org.springframework.boot:spring-boot-starter-actuator')
 
-        testImplementation('org.springframework.boot:spring-boot-starter-test') {
-            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-        }
+        testImplementation('org.springframework.boot:spring-boot-starter-test')
     }
 
     // 生成jar文件时，MANIFEST.MF的内容如下
