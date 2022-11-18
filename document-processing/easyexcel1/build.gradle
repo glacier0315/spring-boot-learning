@@ -2,8 +2,10 @@ dependencies {
     // 本地依赖
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation("com.alibaba:easyexcel")
-    // implementation("org.apache.poi:poi-ooxml")
+    implementation("com.alibaba:easyexcel") {
+        exclude(group: "org.apache.poi", module: "poi-ooxml-schemas")
+    }
+    implementation("org.apache.poi:poi-ooxml")
 
     implementation("commons-io:commons-io")
 }

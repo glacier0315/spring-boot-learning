@@ -5,21 +5,41 @@ plugins {
     id "com.bmuschko.docker-spring-boot-application" version "${dockerPlugin}" apply(false)
 }
 
-// 配置所有项目
-subprojects {
+allprojects {
+    group = 'com.glacier'
+    description = 'spring-boot-learning'
+}
+
+def springBootProjects() {
+    return subprojects.findAll { it.name != 'platform' }
+}
+
+configure(springBootProjects()) {
     apply plugin: 'com.glacier.java-conventions'
-    apply plugin: 'com.glacier.library-conventions'
+    // 方式一
+//    apply plugin: 'com.glacier.library-conventions'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
 
-    group = 'com.glacier'
-    description = 'spring-boot-learning'
+    configurations {
+        // 全局排除依赖
+        // 解决activiti 7 依赖问题
+        all*.exclude group: "org.activiti.core.common", module: "activiti-core-common-dependencies"
+        all*.exclude group: "org.activiti.api", module: "activiti-api-dependencies"
+        // 排除junit
+        all*.exclude group: "junit", module: "junit"
+    }
 
     dependencies {
+        // 方式二
+        implementation platform(project(':platform'))
+
         implementation('org.springframework.boot:spring-boot-starter-web')
         implementation('org.springframework.boot:spring-boot-starter-actuator')
 
-        testImplementation('org.springframework.boot:spring-boot-starter-test')
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude(group: 'org.junit.vintage', module: 'junit-vintage-engine')
+        }
     }
 
     // 生成jar文件时，MANIFEST.MF的内容如下
