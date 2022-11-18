@@ -2,8 +2,23 @@ plugins {
     id 'java'
 }
 
+// 指定仓库
+repositories {
+    mavenLocal()
+    maven { url 'https://maven.aliyun.com/repository/public' }
+    maven { url 'https://maven.aliyun.com/repository/central' }
+    maven { url 'https://maven.aliyun.com/repository/jcenter' }
+    maven { url 'https://maven.aliyun.com/repository/google' }
+    maven { url 'https://maven.aliyun.com/repository/spring' }
+    maven { url 'https://maven.aliyun.com/repository/spring-plugin' }
+    maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+    mavenCentral()
+}
+
+
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
+
 // 取当前时间
 def buildTimeAndDate = OffsetDateTime.now()
 
@@ -13,23 +28,32 @@ ext {
     buildDate = DateTimeFormatter.ISO_LOCAL_DATE.format(buildTimeAndDate)
     buildTime = DateTimeFormatter.ofPattern('HH:mm:ss.SSSZ').format(buildTimeAndDate)
     manifestMap = [
-            'Created-By': "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']})".toString(),
-            'Built-By': 'gradle',
-            'Build-Date': buildDate,
-            'Build-Time': buildTime,
-            'Built-OS': "${System.properties['os.name']}",
-            'Specification-Title': project.name,
-            'Specification-Version': project.version,
-            'Specification-Vendor': 'glacier',
-            'Implementation-Title': project.name,
+            'Created-By'            : "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']})".toString(),
+            'Built-By'              : 'gradle',
+            'Build-Date'            : buildDate,
+            'Build-Time'            : buildTime,
+            'Built-OS'              : "${System.properties['os.name']}",
+            'Specification-Title'   : project.name,
+            'Specification-Version' : project.version,
+            'Specification-Vendor'  : 'glacier',
+            'Implementation-Title'  : project.name,
             'Implementation-Version': project.version,
-            'Implementation-Vendor': 'glacier'
+            'Implementation-Vendor' : 'glacier'
     ]
 }
 
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(11)
+    }
+}
+
+javadoc {
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
     }
 }
 
@@ -40,7 +64,7 @@ configurations {
 
 dependencies {
     // Use JUnit Jupiter for testing.
-    testImplementation('org.junit.jupiter:junit-jupiter')
+    testImplementation('org.junit.jupiter:junit-jupiter:5.8.2')
 }
 
 test {
