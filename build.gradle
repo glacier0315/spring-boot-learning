@@ -17,22 +17,22 @@ def springBootProjects() {
 configure(springBootProjects()) {
     apply plugin: 'com.glacier.java-conventions'
     // 方式一
-//    apply plugin: 'com.glacier.library-conventions'
+    apply plugin: 'com.glacier.library-conventions'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
 
-    configurations {
-        // 全局排除依赖
-        // 解决activiti 7 依赖问题
-        all*.exclude group: "org.activiti.core.common", module: "activiti-core-common-dependencies"
-        all*.exclude group: "org.activiti.api", module: "activiti-api-dependencies"
-        // 排除junit
-        all*.exclude group: "junit", module: "junit"
-    }
+//    configurations {
+//        // 全局排除依赖
+//        // 解决activiti 7 依赖问题
+//        all*.exclude group: "org.activiti.core.common", module: "activiti-core-common-dependencies"
+//        all*.exclude group: "org.activiti.api", module: "activiti-api-dependencies"
+//        // 排除junit
+//        all*.exclude group: "junit", module: "junit"
+//    }
 
     dependencies {
         // 方式二
-        implementation platform(project(':platform'))
+//        implementation platform(project(':platform'))
 
         implementation('org.springframework.boot:spring-boot-starter-web')
         implementation('org.springframework.boot:spring-boot-starter-actuator')
