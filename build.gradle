@@ -15,15 +15,6 @@ subprojects {
     group = 'com.glacier'
     description = 'spring-boot-learning'
 
-    javadoc {
-        options{
-            encoding "UTF-8"
-            charSet 'UTF-8'
-            author true
-            version true
-        }
-    }
-
     dependencies {
         implementation('org.springframework.boot:spring-boot-starter-web')
         implementation('org.springframework.boot:spring-boot-starter-actuator')
