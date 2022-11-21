@@ -1,0 +1,9 @@
+debug: true
+
+# datasource
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.20.100:3306/camunda?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&nullCatalogMeansCurrent=true
+    username: root
+    password: root
