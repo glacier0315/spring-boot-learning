@@ -29,58 +29,72 @@ configurations {
     all*.exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 }
 */
+ext {
+    shiro = "1.10.0"
+    springBootAdmin = "2.7.7"
+    mybatisPlus = "3.5.2"
+
+    camunda = "7.18.0"
+    activiti6 = "6.0.0"
+    activiti7 = "7.1.0.M6"
+
+    activitiModeler = "5.23.0"
+
+    poi = "5.2.2"
+}
 
 dependencies {
     // 引入其他 bom
-    api platform('org.springframework.boot:spring-boot-dependencies:2.7.5')
-    api platform("cn.hutool:hutool-bom:5.8.9")
+    api platform("org.springframework.boot:spring-boot-dependencies:2.7.5")
+    api platform("cn.hutool:hutool-bom:5.8.10")
 
     //在constraints块中定义依赖版本约束
     constraints {
-        api 'org.apache.shiro:shiro-spring-boot-starter:1.10.0'
-        api 'org.apache.shiro:shiro-spring-boot-web-starter:1.10.0'
+        api "org.apache.shiro:shiro-spring-boot-starter:${shiro}"
+        api "org.apache.shiro:shiro-spring-boot-web-starter:${shiro}"
 
-        api 'de.codecentric:spring-boot-admin-starter-server:2.7.7'
-        api 'de.codecentric:spring-boot-admin-starter-client:2.7.7'
+        api "de.codecentric:spring-boot-admin-starter-server:${springBootAdmin}"
+        api "de.codecentric:spring-boot-admin-starter-client:${springBootAdmin}"
 
-        api 'org.apache.rocketmq:rocketmq-spring-boot-starter:2.2.2'
+        api "org.apache.rocketmq:rocketmq-spring-boot-starter:2.2.2"
 
         // mybatis-plus
-        api 'com.baomidou:mybatis-plus-boot-starter:3.5.2'
-        api 'com.baomidou:dynamic-datasource-spring-boot-starter:3.5.2'
+        api "com.baomidou:mybatis-plus-boot-starter:${mybatisPlus}"
+        api "com.baomidou:dynamic-datasource-spring-boot-starter:${mybatisPlus}"
         // mybatis mapper
-        api 'tk.mybatis:mapper-spring-boot-starter:4.2.2'
+        api "tk.mybatis:mapper-spring-boot-starter:4.2.2"
         // mybatis
-        api 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
-        api 'com.github.pagehelper:pagehelper-spring-boot-starter:1.4.5'
-        api 'com.alibaba:druid-spring-boot-starter:1.2.14'
-        api 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4'
+        api "org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2"
+        api "com.github.pagehelper:pagehelper-spring-boot-starter:1.4.5"
+        api "com.alibaba:druid-spring-boot-starter:1.2.14"
+        api "com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4"
 
         // camunda
-        api 'org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp:7.18.0'
-        api 'org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-rest:7.18.0'
+        api "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp:${camunda}"
+        api "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-rest:${camunda}"
 
         // activiti 6
-        api 'org.activiti:activiti-spring-boot-starter-basic:6.0.0'
-        api 'org.activiti:activiti-spring-boot-starter-jpa:6.0.0'
+        api "org.activiti:activiti-spring-boot-starter-basic:${activiti6}"
+        api "org.activiti:activiti-spring-boot-starter-jpa:${activiti6}"
         // activiti 7
-        api('org.activiti:activiti-spring-boot-starter:7.1.0.M6')
-        api 'org.activiti:activiti-image-generator:7.1.0.M6'
+
+        api "org.activiti:activiti-spring-boot-starter:${activiti7}"
+        api "org.activiti:activiti-image-generator:${activiti7}"
         // activiti-modeler
-        api 'org.activiti:activiti-modeler:5.23.0'
-        api 'org.activiti:activiti-diagram-rest:5.23.0'
+        api "org.activiti:activiti-modeler:${activitiModeler}"
+        api "org.activiti:activiti-diagram-rest:${activitiModeler}"
         // openapi
-        api 'org.springdoc:springdoc-openapi-ui:1.6.12'
-        api 'io.springfox:springfox-boot-starter:3.0.0'
+        api "org.springdoc:springdoc-openapi-ui:1.6.12"
+        api "io.springfox:springfox-boot-starter:3.0.0"
 
         // 其他
-        api 'com.alibaba:easyexcel:3.1.2'
-        api 'org.apache.poi:poi:5.2.2'
-        api 'org.apache.poi:poi-ooxml:5.2.2'
-        api 'commons-io:commons-io:2.11.0'
-        api 'org.apache.commons:commons-lang3:3.12.0'
+        api "com.alibaba:easyexcel:3.1.2"
+        api "org.apache.poi:poi:${poi}"
+        api "org.apache.poi:poi-ooxml:${poi}"
+        api "commons-io:commons-io:2.11.0"
+        api "org.apache.commons:commons-lang3:3.12.0"
 
-        api 'org.junit.jupiter:junit-jupiter:5.9.1'
+        api "org.junit.jupiter:junit-jupiter:5.9.1"
     }
 }
 
