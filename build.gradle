@@ -9,9 +9,12 @@ allprojects {
     group = 'com.glacier'
     description = 'spring-boot-learning'
 }
-
+/**
+ * 排除平台 配置
+ * @return
+ */
 def springBootProjects() {
-    return subprojects.findAll { it.name != 'platform' }
+    return subprojects.findAll { it.name.indexOf('platform') < 0 }
 }
 
 configure(springBootProjects()) {

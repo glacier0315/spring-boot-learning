@@ -1,6 +1,6 @@
 rootProject.name = 'spring-boot-learning'
 
-include(":platform")
+include(":platforms")
 include(":template-engine:thymeleaf:AdminLTE_CN")
 
 // 忽略的目录，如果有不想自动注册的目录也可以放进来
