@@ -1,45 +1,68 @@
 rootProject.name = 'spring-boot-learning'
 
 include(":platforms")
+
+//include(":api-manage:openapi:demo1")
+//include(":api-manage:swagger3:demo1")
+//
+//include(":authorization:shiro:demo1")
+//include(":authorization:shiro:demo3")
+//include(":authorization:shiro:demo4")
+//include(":authorization:shiro:jdbc1")
+//include(":authorization:spring-security:jdbc-login1")
+//include(":authorization:spring-security:memory-login1")
+//include(":authorization:spring-security:memory-login2")
+//
+//include(":container-image:docker:demo1")
+//
+//include(":data-manipulation:elasticsearch:demo1")
+//include(":data-manipulation:flyway:druid1")
+//include(":data-manipulation:jasypt:druid1")
+//include(":data-manipulation:mybatis:druid1")
+//include(":data-manipulation:mybatis:druid2")
+//include(":data-manipulation:mybatis:hikari1")
+//include(":data-manipulation:mybatis-plus:demo1")
+//include(":data-manipulation:mybatis-plus:dynamic1")
+//include(":data-manipulation:redis:demo1")
+//include(":data-manipulation:spring-data-jpa:demo1")
+//
+//include(":document-processing:easyexcel1")
+//include(":document-processing:hutool-poi1")
+//include(":document-processing:office-to-pdf1")
+//
+//include(":features:aop:demo1")
+//include(":features:async:demo1")
+//include(":features:config-order:demo1")
+//include(":features:https:demo1")
+//include(":features:jar2war")
+//include(":features:validation:demo1")
+//include(":features:websocket:demo1")
+//
+//include(":file-service:fastdfs:demo1")
+//
+//include(":logging:logback:demo1")
+//
+//include(":message-queuing:kafka:demo1")
+//include(":message-queuing:rabbitmq:demo1")
+//include(":message-queuing:rocketmq:demo1")
+//
+//include(":monitor:spring-boot-actuator:demo1")
+//include(":monitor:spring-boot-admin:client1")
+//include(":monitor:spring-boot-admin:server1")
+//
+//include(":restful-service:jersey:demo1")
+//
+//include(":scheduled-tasks:quartz:demo1")
+//include(":scheduled-tasks:quartz:demo2")
+//include(":scheduled-tasks:scheduled:demo1")
+//
+//include(":template-engine:freemarker:demo1")
 include(":template-engine:thymeleaf:AdminLTE_CN")
-
-// 忽略的目录，如果有不想自动注册的目录也可以放进来
-def ignoreDirs = [
-        ".gradle",
-        ".idea",
-        ".git",
-        "gradle",
-        "logs",
-        "buildSrc",
-        "build",
-        "out",
-        "doc",
-        "libs",
-        "db",
-        "src"
-]
-
-autoRegisterModule(settingsDir, ignoreDirs)
-
-// 自动注册当前所有子目录下的模块
-def autoRegisterModule(def dir, def ignoreDirs = []) {
-    def moduleSymbol = ["build.gradle", "build.gradle.kts"]
-
-    if (dir.isDirectory() && !ignoreDirs.contains(dir.getName())) {
-        dir.eachFile { f ->
-            autoRegisterModule(f, ignoreDirs)
-        }
-    } else if (!dir.isDirectory() && moduleSymbol.contains(dir.getName())) {
-        // 相对目录
-        def path = dir.getParentFile()
-                .getPath()
-                .replace("$rootDir", "")
-        // 排除根目录
-        if (path.isEmpty()) return
-        // 组装模块
-        def modelName = path.replace(File.separator, ":")
-        // 是模块，可以注册
-        println "include(\"$modelName\")"
-//        include("$modelName")
-    }
-}
+//include(":template-engine:thymeleaf:demo1")
+//include(":template-engine:thymeleaf:demo2")
+//include(":template-engine:thymeleaf:generation")
+//include(":template-engine:thymeleaf:layui-admin")
+//
+//include(":workflow:activiti6:demo1")
+//include(":workflow:activiti7:demo1")
+include(":workflow:camunda:camunda-web1")
