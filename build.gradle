@@ -44,13 +44,6 @@ configure(springBootProjects()) {
             exclude(group: 'org.junit.vintage', module: 'junit-vintage-engine')
         }
     }
-
-    // 生成jar文件时，MANIFEST.MF的内容如下
-    bootJar {
-        manifest {
-            attributes(manifestMap)
-        }
-    }
 }
 
 wrapper {

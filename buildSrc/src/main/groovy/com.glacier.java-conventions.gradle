@@ -15,33 +15,6 @@ repositories {
     mavenCentral()
 }
 
-
-import java.time.OffsetDateTime
-import java.time.format.DateTimeFormatter
-
-// 取当前时间
-def buildTimeAndDate = OffsetDateTime.now()
-
-// 根据时间生成字符串变量
-ext {
-    projectVersion = project.version
-    buildDate = DateTimeFormatter.ISO_LOCAL_DATE.format(buildTimeAndDate)
-    buildTime = DateTimeFormatter.ofPattern('HH:mm:ss.SSSZ').format(buildTimeAndDate)
-    manifestMap = [
-            'Created-By'            : "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']})".toString(),
-            'Built-By'              : 'gradle',
-            'Build-Date'            : buildDate,
-            'Build-Time'            : buildTime,
-            'Built-OS'              : "${System.properties['os.name']}",
-            'Specification-Title'   : project.name,
-            'Specification-Version' : project.version,
-            'Specification-Vendor'  : 'glacier',
-            'Implementation-Title'  : project.name,
-            'Implementation-Version': project.version,
-            'Implementation-Vendor' : 'glacier'
-    ]
-}
-
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(11)
@@ -64,7 +37,7 @@ configurations {
 
 dependencies {
     // Use JUnit Jupiter for testing.
-    testImplementation('org.junit.jupiter:junit-jupiter:5.8.2')
+    testImplementation('org.junit.jupiter:junit-jupiter:5.9.1')
 }
 
 test {
@@ -75,7 +48,7 @@ test {
 }
 
 // 设置编码为UTF-8
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.encoding = "UTF-8"
     doFirst {
         options.compilerArgs += [
@@ -85,7 +58,7 @@ tasks.withType(JavaCompile) {
 }
 
 // Copy LICENSE
-tasks.withType(Jar) {
+tasks.withType(Jar).configureEach {
     from(project.rootDir) {
         include 'LICENSE'
         into 'META-INF'
@@ -93,7 +66,7 @@ tasks.withType(Jar) {
 }
 
 // 配置 创建源文件夹
-task mkdirs {
+tasks.register("mkdirs") {
     sourceSets*.java.srcDirs*.forEach(f -> {
         f.mkdirs()
     })
@@ -103,7 +76,7 @@ task mkdirs {
 }
 
 // 拷贝jar包
-task copyJars(type: Copy) {
+tasks.register('copyJars', Copy) {
     // 运行时
     from configurations.runtimeClasspath
     // 目标位置
@@ -111,7 +84,7 @@ task copyJars(type: Copy) {
 }
 
 //配置 删除文件夹
-task cleanTempFiles {
+def cleanTempFiles = tasks.register("cleanTempFiles") {
     doLast {
         delete "out"
         delete "logs"
@@ -121,11 +94,7 @@ task cleanTempFiles {
         delete ".project"
     }
 }
-clean.dependsOn cleanTempFiles
 
-// 生成jar文件时，MANIFEST.MF的内容如下
-jar {
-    manifest {
-        attributes(manifestMap)
-    }
+tasks.named("clean") {
+    dependsOn(cleanTempFiles)
 }
