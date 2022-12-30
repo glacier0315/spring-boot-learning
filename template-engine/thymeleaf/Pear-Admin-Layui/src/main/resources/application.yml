@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    active: dev
+  thymeleaf:
+    enabled: true
+    mode: HTML
+    cache: false
+    encoding: UTF-8
+    prefix: classpath:/templates/
+    suffix: .html
+
+server:
+  servlet:
+    encoding:
+      # 修改编码
+      charset: UTF-8
+      force: true
+      enabled: true
