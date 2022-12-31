@@ -133,12 +133,12 @@
 					ficon: ["1", "-1"], // 设定一级图标样式。0表示方形加减图标，8表示小圆点图标
 					icon: ["0", "2"], // 设定二级图标样式。0表示文件夹图标，5表示叶子图标
 					method: 'get',
-					url: "../../admin/data/organizationtree.json"
+					url: "[[@{/admin/data/organizationtree.json}]]"
 				});
 
 				table.render({
 					elem: '#organization-table',
-					url: '../../admin/data/organization.json',
+					url: '[[@{/admin/data/organization.json}]]',
 					height: 'full-150',
 					page: true,
 					cols: cols,

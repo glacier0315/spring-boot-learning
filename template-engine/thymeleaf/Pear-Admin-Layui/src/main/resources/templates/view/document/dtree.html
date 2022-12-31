@@ -54,7 +54,7 @@
 								        elem: "#demoTree",
 								        initLevel: "1",
 								        method: 'get',
-								        url: "admin/data/dtree.json"
+								        url: "[[@{/admin/data/dtree.json}]]"
 								    });
 								});
 							</pre>
@@ -85,7 +85,7 @@
 								        elem: "#demoTree",
 								        initLevel: "1",
 								        method: 'get',
-								        url: "admin/data/dtree.json",
+								        url: "[[@{/admin/data/dtree.json}]]",
 								        dataFormat: "list",
 								        checkbar: true
 								    });
@@ -118,7 +118,7 @@
 								        elem: "#demoTree2",
 								        initLevel: "1",
 								        method: 'get',
-								        url: "admin/data/dtree.json",
+								        url: "[[@{/admin/data/dtree.json}]]",
 								        select: true
 								    });
 								});
@@ -142,14 +142,14 @@
 					elem: "#demoTree",
 					initLevel: "1",
 					method: 'get',
-					url: "../../admin/data/dtree.json"
+					url: "[[@{/admin/data/dtree.json}]]"
 				});
 
 				dtree.render({
 					elem: "#demoTree3",
 					initLevel: "1",
 					method: 'get',
-					url: "../../admin/data/dataTree2.json",
+					url: "[[@{/admin/data/dataTree2.json}]]",
 					dataFormat: "list", //配置data的风格为list
 					checkbar: true //开启复选框
 				});
@@ -158,7 +158,7 @@
 					elem: "#demoTree2",
 					initLevel: "1",
 					method: 'get',
-					url: "../../admin/data/dtree.json",
+					url: "[[@{/admin/data/dtree.json}]]",
 					select: true
 				});
 			});

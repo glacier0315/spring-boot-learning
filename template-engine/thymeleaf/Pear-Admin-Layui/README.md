@@ -57,3 +57,10 @@ image.src = "../../admin/images/avatar.jpg";
 # 替换
 image.src = "[[@{/img/avatar.jpg}]]";
 ```
+
+6. 修改admin/css
+```text
+(../)*(admin/data/[a-zA-Z0-9]+.json)
+# 替换
+[[@{/$2}]]
+```
