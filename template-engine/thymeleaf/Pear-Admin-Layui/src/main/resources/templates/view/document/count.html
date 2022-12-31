@@ -25,7 +25,7 @@
 						<h2 class="layui-colla-title">显示代码</h2>
 						<div class="layui-colla-content">
 							<pre class="layui-code" lay-encode="true">
-								<script src="component/layui/layui.js"></script>
+								<script th:src="@{/plugin/layui/layui.js}"></script>
 								 并
 								<script th:src="@{/plugin/pear/pear.js}"></script>
 							</pre>
@@ -98,7 +98,7 @@
 
 
 		</div>
-		<script src="../../component/layui/layui.js"></script>
+		<script th:src="@{/plugin/layui/layui.js}"></script>
 		<script th:src="@{/plugin/pear/pear.js}"></script>
 		<script>
 			layui.use(['element', 'code', 'count'], function() {

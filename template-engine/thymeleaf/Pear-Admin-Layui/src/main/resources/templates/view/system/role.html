@@ -71,7 +71,7 @@
 			<input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="role-enable"  {{ d.enable== true ? 'checked' : '' }} />
 		</script>
 
-		<script src="../../component/layui/layui.js"></script>
+		<script th:src="@{/plugin/layui/layui.js}"></script>
 		<script th:src="@{/plugin/pear/pear.js}"></script>
 		<script>
 		    layui.use(['table','form','jquery'],function () {

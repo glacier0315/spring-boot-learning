@@ -90,7 +90,7 @@
 			{{layui.util.toDateString(d.createTime, 'yyyy-MM-dd')}}
 		</script>
 
-		<script src="../../component/layui/layui.js"></script>
+		<script th:src="@{/plugin/layui/layui.js}"></script>
 		<script th:src="@{/plugin/pear/pear.js}"></script>
 		<script>
 			layui.use(['table', 'form', 'jquery','common'], function() {

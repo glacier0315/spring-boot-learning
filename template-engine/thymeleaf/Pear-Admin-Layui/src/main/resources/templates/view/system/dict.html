@@ -117,7 +117,7 @@
 	<script type="text/html" id="dict-data-enable">
 		<input type="checkbox" value="{{d.dataId}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="dict-data-enable" {{d.enable== '0' ? 'checked' : '' }}>
 	</script>
-	<script src="../../component/layui/layui.js"></script>
+	<script th:src="@{/plugin/layui/layui.js}"></script>
 	<script th:src="@{/plugin/pear/pear.js}"></script>
 	<script>
 		layui.use(['table', 'form', 'jquery'], function() {

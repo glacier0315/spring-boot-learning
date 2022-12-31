@@ -32,3 +32,9 @@
 th:$1$2@{/plugin$5$6}$7
 ```
 
+3. 修改layui
+```text
+(href|src)(=")(../)*(component)(/layui/)(css/layui.css|layui.js)(")
+# 替换
+th:$1$2@{/plugin$5$6}$7
+```

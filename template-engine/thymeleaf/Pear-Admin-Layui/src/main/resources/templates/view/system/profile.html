@@ -31,7 +31,7 @@
             <div class="layui-form-mid layui-word-aux">建议:图片的尺寸宽高比为1:1,大小在5m以内。</div>
         </div>
     </div>
-    <script src="../../../component/layui/layui.js"></script>
+    <script th:src="@{/plugin/layui/layui.js}"></script>
     <script th:src="@{/plugin/pear/pear.js}"></script>
     <script>
         layui.use(['jquery','layer','cropper'], function () {

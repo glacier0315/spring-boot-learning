@@ -28,7 +28,7 @@
 								<pre class="layui-code" lay-encode="true">
 									<link rel="stylesheet" th:href="@{/plugin/pear/css/pear.css}" />
 									 并
-									<script src="component/layui/layui.js"></script>
+									<script th:src="@{/plugin/layui/layui.js}"></script>
 									 并
 									<script th:src="@{/plugin/pear/pear.js}"></script>
 								</pre>
@@ -129,7 +129,7 @@
     </div>
 </div>
 </body>
-<script src="../../component/layui/layui.js"></script>
+<script th:src="@{/plugin/layui/layui.js}"></script>
 <script th:src="@{/plugin/pear/pear.js}"></script>
 <script>
     layui.use(['popover', 'jquery', 'layer', 'code', 'element'], function() {

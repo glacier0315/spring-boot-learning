@@ -27,7 +27,7 @@
 							<pre class="layui-code" lay-encode="true">
 								<link th:href="@{/plugin/pear/css/pear.css}" rel="stylesheet" />
 								 并
-								<script src="component/layui/layui.js"></script>
+								<script th:src="@{/plugin/layui/layui.js}"></script>
 								 并
 								<script th:src="@{/plugin/pear/pear.js}"></script>
 							</pre>
@@ -206,7 +206,7 @@
 				</div>
 			</div>
 		</div>
-		<script src="../../component/layui/layui.js"></script>
+		<script th:src="@{/plugin/layui/layui.js}"></script>
 		<script th:src="@{/plugin/pear/pear.js}"></script>
 		<script>
 			layui.use(['select','code','element'], function() {

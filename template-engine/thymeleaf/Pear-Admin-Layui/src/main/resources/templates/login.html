@@ -40,7 +40,7 @@
 			</div>
 		</form>
 		<!-- 资 源 引 入 -->
-		<script src="component/layui/layui.js"></script>
+		<script th:src="@{/plugin/layui/layui.js}"></script>
 		<script th:src="@{/plugin/pear/pear.js}"></script>
 		<script>
 			layui.use(['form', 'button', 'popup'], function() {
