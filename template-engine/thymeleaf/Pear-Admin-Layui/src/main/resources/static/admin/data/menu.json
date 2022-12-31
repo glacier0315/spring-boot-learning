@@ -395,7 +395,7 @@
 			"icon": "layui-icon layui-icon-face-smile",
 			"type": 1,
 			"openType": "_iframe",
-			"href": "login.html"
+			"href": "/login"
 		}, {
 			"id": 702,
 			"title": "空白页面",
@@ -438,7 +438,7 @@
 			"icon": "layui-icon layui-icon-util",
 			"type": 1,
 			"openType": "_iframe",
-			"href": "component/code/index.html"
+			"href": "/view/code"
 		}]
 	}
 ]
