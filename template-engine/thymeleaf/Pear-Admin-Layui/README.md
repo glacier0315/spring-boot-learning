@@ -45,3 +45,15 @@ th:$1$2@{/plugin$5$6}$7
 # 替换
 th:$1@{$4$5$6$7}$8
 ```
+
+5. 修改admin/images
+```text
+(src="|background=")(../)*(admin)(/images/)([a-zA-Z0-9]+)(.svg|.jpg|.png|.gif)(")
+# 替换
+th:$1@{/img/$5$6}$7
+
+
+image.src = "../../admin/images/avatar.jpg";
+# 替换
+image.src = "[[@{/img/avatar.jpg}]]";
+```
