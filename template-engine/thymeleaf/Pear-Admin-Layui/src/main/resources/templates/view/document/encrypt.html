@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>哈希加密</title>
-		<link href="../../component/pear/css/pear.css" rel="stylesheet" />
+		<link th:href="@{/plugin/pear/css/pear.css}" rel="stylesheet" />
 	</head>
 	<body class="pear-container">
 		<div class="layui-row layui-col-space10">
@@ -27,7 +27,7 @@
 							<pre class="layui-code" lay-encode="true">
 								<script src="component/layui/layui.js"></script>
 								 并
-								<script src="component/pear/pear.js"></script>
+								<script th:src="@{/plugin/pear/pear.js}"></script>
 							</pre>
 						</div>
 					</div>
@@ -120,7 +120,7 @@
 			</div>
 		</div>
         <script src="../../component/layui/layui.js"></script>
-		<script src="../../component/pear/pear.js"></script>
+		<script th:src="@{/plugin/pear/pear.js}"></script>
 		<script>
 			layui.use(['encrypt', 'form', 'jquery','layer','element','code'], function() {
 				var encrypt = layui.encrypt;

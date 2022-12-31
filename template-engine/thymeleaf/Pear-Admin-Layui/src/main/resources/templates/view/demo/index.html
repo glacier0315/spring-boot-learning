@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
-		<link rel="stylesheet" href="../../component/pear/css/pear.css" />
+		<link rel="stylesheet" th:href="@{/plugin/pear/css/pear.css}" />
 		<style>
 			body {
 				margin: 0;
@@ -48,7 +48,7 @@
 			</button>
 		</div>
 		<script src="../../component/layui/layui.js"></script>
-		<script src="../../component/pear/pear.js"></script>
+		<script th:src="@{/plugin/pear/pear.js}"></script>
 		<script>
 			layui.use(['jquery'], function(){
 				var $ = layui.jquery;

@@ -25,3 +25,10 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 ```
 
+2. 修改pear
+```text
+(href|src)(=")(../)*(component)(/pear/)(css/pear.css|pear.js)(")
+# 替换
+th:$1$2@{/plugin$5$6}$7
+```
+

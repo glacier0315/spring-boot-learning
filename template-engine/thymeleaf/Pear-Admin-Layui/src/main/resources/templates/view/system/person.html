@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>个人资料</title>
-	<link rel="stylesheet" href="../../component/pear/css/pear.css" />
+	<link rel="stylesheet" th:href="@{/plugin/pear/css/pear.css}" />
 	<link rel="stylesheet" href="../../admin/css/other/person.css" />
 </head>
 <body class="pear-container">
@@ -145,7 +145,7 @@
 		</div>
 	</div>
 	<script src="../../component/layui/layui.js"></script>
-	<script src="../../component/pear/pear.js"></script>
+	<script th:src="@{/plugin/pear/pear.js}"></script>
 	<script>
 		layui.use(['jquery', 'element', 'layer', 'convert'], function () {
 			var element = layui.element,
