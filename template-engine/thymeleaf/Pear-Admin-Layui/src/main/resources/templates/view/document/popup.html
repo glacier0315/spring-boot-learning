@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
 		<meta charset="utf-8">
 		<title>封装弹窗</title>
@@ -49,7 +51,7 @@
 							<pre class="layui-code" lay-encode="true">
 								layui.use(['popup'], function() {
 								    var popup = layui.popup;
-								  
+
 								    popup.success("成功消息")
 								    popup.failure("失败消息")
 								    popup.warning("警告消息")
@@ -77,7 +79,7 @@
 							<pre class="layui-code" lay-encode="true">
 								layui.use(['popup'], function() {
 								    var popup = layui.popup;
-								  
+
 								    popup.success("成功消息",callback)
 								    popup.failure("失败消息",callback)
 								    popup.warning("警告消息",callback)

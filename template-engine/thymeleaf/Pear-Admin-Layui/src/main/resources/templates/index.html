@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -100,13 +102,13 @@
 				var $ = layui.jquery;
 				var admin = layui.admin;
 				var popup = layui.popup;
-				
+
 				admin.setConfigType("yml");
 				admin.setConfigPath("config/pear.config.yml");
-				
+
 				admin.render();
-				
-				// 登出逻辑 
+
+				// 登出逻辑
 				admin.logout(function(){
 					popup.success("注销成功",function(){
 						location.href = "login.html";
@@ -114,10 +116,10 @@
 					// 注销逻辑 返回 true / false
 					return true;
 				})
-				
+
 				// 消息点击回调
 				admin.message(function(id, title, context, form) {});
 			})
-		</script>		
+		</script>
 	</body>
 </html>

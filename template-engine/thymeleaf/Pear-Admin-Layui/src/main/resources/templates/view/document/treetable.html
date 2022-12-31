@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <title>树形表格</title>
@@ -137,13 +139,13 @@
 				 treetable.reload("#power-table");
 			}
         });
-		
+
 		form.on('submit(power-query)', function(data) {
             var keyword = data.field.keyword;
             treetable.search('#power-table',keyword);
             return false;
 		});
-	
+
         window.add = function(){
             layer.open({
                 type: 2,
@@ -163,7 +165,7 @@
                 content: MODULE_PATH + 'edit.html'
             });
         }
-		
+
         window.remove = function(obj){
             layer.confirm('确定要删除该权限', {icon: 3, title:'提示'}, function(index){
                 layer.close(index);
@@ -185,7 +187,7 @@
                 })
             });
         }
-		
+
 		window.batchRemove = function(obj) {
 			let data = table.checkStatus(obj.config.id).data;
 			if (data.length === 0) {

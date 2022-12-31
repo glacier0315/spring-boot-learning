@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
 		<meta charset="utf-8">
 		<title>数字滚动</title>
@@ -49,7 +51,7 @@
 							<pre class="layui-code" lay-encode="true">
 								layui.use(['count'], function() {
 								    var count = layui.count;
-									
+
 								    count.up("number1", {
 								        time: 8000,
 								        num: 4540.34,
@@ -79,7 +81,7 @@
 							<pre class="layui-code" lay-encode="true">
 							layui.use(['count'], function() {
 							    var count = layui.count;
-								
+
 							    count.up("number2", {
 							        time: 8000,
 							        num: 4540.34,

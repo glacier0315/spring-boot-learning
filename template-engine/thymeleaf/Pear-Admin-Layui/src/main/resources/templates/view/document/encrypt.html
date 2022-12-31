@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
 		<meta charset="utf-8">
 		<title>哈希加密</title>
@@ -62,7 +64,7 @@
 				<div class="layui-card">
 					<div class="layui-card-header">加密结果</div>
 					<div class="layui-card-body" id="end">
-				
+
 					</div>
 				</div>
 			</div>
@@ -74,11 +76,11 @@
 							<pre class="layui-code" lay-encode="true">
 								layui.use(['encrypt'], function() {
 									var encrypt = layui.encrypt;
-								
+
 								    encrypt.md5( str );
-									
+
 								    encrypt.sha1( str );
-									
+
 								    encrypt.sha256( str );
 								})
 							</pre>
@@ -114,7 +116,7 @@
 			    			<br>
 			    		</div>
 			    	</div>
-			    </div>	
+			    </div>
 			</div>
 		</div>
         <script src="../../component/layui/layui.js"></script>
@@ -126,7 +128,7 @@
 				var $ = layui.jquery;
 				var layer = layui.layer;
 				var element = layui.element;
-				
+
 				layui.code();
 
 				$("#encode").click(function() {

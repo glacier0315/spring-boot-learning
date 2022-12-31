@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
 		<meta charset="utf-8">
 		<title></title>
@@ -28,7 +30,7 @@
 				background-color: #2d8cf0;
 				margin-left: 200px;
 			}
-			
+
 			.mini .left{
 				width: 0px;
 			}
@@ -50,16 +52,16 @@
 		<script>
 			layui.use(['jquery'], function(){
 				var $ = layui.jquery;
-				
+
 				$("button").click(function(){
-					
+
 					if($(".pear-container").is(".mini")){
 						$(".pear-container").removeClass("mini");
 					} else {
 						$(".pear-container").addClass("mini");
 					}
 				})
-				
+
 			})
 		</script>
 	</body>

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
 		<meta charset="utf-8">
 		<title>多选项卡内容</title>
@@ -21,18 +23,18 @@
 			var $ = layui.jquery,
 				layer = layui.layer,
 				tab = layui.tab;
-				
+
 				$(".add").click(function(){
 					// ADD 添加方法
 					parent.layui.tab.addTabOnlyByElem('contents',{id:'demo',title:'Demo',url:'../system/space.html',close: true})
 				})
-				
+
 				$(".del").click(function(){
 					parent.layui.tab.delCurrentTabByElem('contents',function(id){
 						layer.msg("已删除 '"+id+"' 标签页")
 					});
 				})
-				
+
 		})
 	</script>
 </html>

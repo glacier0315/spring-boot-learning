@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -70,15 +72,15 @@
 								<pre class="layui-code" lay-encode="true">
 									layui.use(['toast', 'jquery', 'layer', 'code'], function() {
 									    var toast = layui.toast;
-										                         
+
 									    toast.success({title: 'Caution',message: 'You forgot important data',position: 'topRight'});
-									    
+
 										toast.info({title: 'Caution',message: 'You forgot important data',position: 'topRight'});
-									    
+
 										toast.warning({title: 'Caution',message: 'You forgot important data',position: 'topRight'});
-									    
+
 										toast.error({title: 'Caution',message: 'You forgot important data',position: 'topRight'});
-									    
+
 										toast.question({title: 'Caution',message: 'You forgot important data',position: 'topRight'});
 									})
 								</pre>
@@ -109,7 +111,7 @@
 								<pre class="layui-code" lay-encode="true">
 									layui.use(['toast', 'jquery', 'layer', 'code'], function() {
 									    var toast = layui.toast;
-										                         
+
 									    $(".toast-top-left-btn").click(function(){
 									        toast.success({title: 'Caution',message: 'You forgot important data',position: 'topLeft'});
 									    })
@@ -152,7 +154,7 @@
 								<pre class="layui-code" lay-encode="true">
 									layui.use(['toast', 'jquery', 'layer', 'code'], function() {
 									    var toast = layui.toast;
-										                         
+
 									    toast.destroy();
 									})
 								</pre>
@@ -236,7 +238,7 @@
 					position: 'topRight'
 				});
 			})
-			
+
 			$(".toast-top-left-btn").click(function(){
 				toast.info({
 					title: 'Caution',
@@ -258,7 +260,7 @@
 					position: 'topRight'
 				});
 			})
-			
+
 			$(".toast-bottom-left-btn").click(function(){
 				toast.info({
 					title: 'Caution',
@@ -280,7 +282,7 @@
 					position: 'bottomRight'
 				});
 			})
-			
+
 			$("#closeAll").click(function() {
 				toast.destroy();
 			});

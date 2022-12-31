@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
 		<meta charset="utf-8">
 		<title>按钮组件</title>
@@ -10,7 +12,7 @@
 			<div class="layui-col-md12">
 				<div class="layui-card">
 					<div class="layui-card-header">
-						开发环境 
+						开发环境
 					</div>
 					<div class="layui-card-body">
 						Pear Button 参考 Element UI 样式 ，提供 Button 服务
@@ -55,7 +57,7 @@
 							<pre class="layui-code" lay-encode="true">
 								<button class="pear-btn"> Default Button </button>
 								<button class="pear-btn" dashed> Dashed Button </button>
-								<button class="pear-btn pear-btn-primary"> Primary Button </button>							
+								<button class="pear-btn pear-btn-primary"> Primary Button </button>
 								<button class="pear-btn pear-btn-primary"> Button-Primary </button>
 								<button class="pear-btn pear-btn-success"> Button-Success </button>
 							</pre>
@@ -84,7 +86,7 @@
 							<pre class="layui-code" lay-encode="true">
 								<button class="pear-btn"> Default Button </button>
 								<button class="pear-btn" dashed> Dashed Button </button>
-								<button class="pear-btn pear-btn-primary"> Primary Button </button>							
+								<button class="pear-btn pear-btn-primary"> Primary Button </button>
 								<button class="pear-btn pear-btn-primary"> Button-Primary </button>
 								<button class="pear-btn pear-btn-success"> Button-Success </button>
 							</pre>
@@ -183,7 +185,7 @@
 							<pre class="layui-code" lay-encode="true">
 								layui.use(["button"], function() {
 								    var button = layui.button;
-								    
+
 									button.load({
 								        elem:'[load]',
 								        time: 600,
@@ -218,11 +220,11 @@
 							<pre class="layui-code" lay-encode="true">
 								layui.use(["button"], function() {
 								    var button = layui.button;
-								    
+
 									var dom = button.load({
 								        elem:'[load]',
 								    })
-									
+
 								    dom.stop(function() {
 								        popup.failure("已停止");
 								    });
@@ -250,7 +252,7 @@
 							<pre class="layui-code" lay-encode="true">
 								layui.use(["jquery"], function() {
 								    var $ = layui.jquery;
-								    
+
 								    $("[to]").click(function(){
 								        top.layui.frame.changePageByElement("content","http://www.baidu.com","百度一下",true)
 								    })
@@ -269,9 +271,9 @@
 				var $ = layui.jquery;
 				var popup = layui.popup;
 				var button = layui.button;
-				
+
 				layui.code();
-				
+
 				$("[load]").click(function() {
 					button.load({
 						elem: '[load]',
@@ -295,7 +297,7 @@
 						popup.failure("已停止");
 					});
 				})
-				
+
 				$("[to]").click(function(){
 					top.layui.admin.jump(14,"百度一下","http://www.bing.com",true)
 				})

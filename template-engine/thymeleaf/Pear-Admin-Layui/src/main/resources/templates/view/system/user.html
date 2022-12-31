@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
 		<meta charset="utf-8">
 		<title>用户管理</title>
@@ -248,9 +250,9 @@
 				}
 
 				window.batchRemove = function(obj) {
-					
+
 					var checkIds = common.checkField(obj,'userId');
-					
+
 					if (checkIds === "") {
 						layer.msg("未选中数据", {
 							icon: 3,
@@ -258,7 +260,7 @@
 						});
 						return false;
 					}
-					
+
 					layer.confirm('确定要删除这些用户', {
 						icon: 3,
 						title: '提示'

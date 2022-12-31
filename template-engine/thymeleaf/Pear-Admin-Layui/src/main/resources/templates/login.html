@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -45,14 +47,14 @@
 				var form = layui.form;
 				var button = layui.button;
 				var popup = layui.popup;
-				
+
                 // 登 录 提 交
 				form.on('submit(login)', function(data) {
-					
+
 					/// 验证
-					
+
 					/// 登录
-					
+
 					/// 动画
 					button.load({
 						elem: '.login',

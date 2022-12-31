@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -53,12 +55,12 @@
 							<pre class="layui-code" lay-encode="true">
 								layui.use(['tinymce'], function() {
 								    var tinymce = layui.tinymce
-								
+
 								    var edit = tinymce.render({
 								        elem: "#edit",
 								        height: 400
 								    });
-									
+
 								    edit.getContent()
 								});
 							</pre>
@@ -73,7 +75,7 @@
 			layui.use(['tinymce', 'util', 'layer','code','element'], function() {
 				var tinymce = layui.tinymce
 				var util = layui.util;
-				
+
 				layui.code();
 
 				var edit = tinymce.render({

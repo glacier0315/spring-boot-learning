@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -105,7 +107,7 @@
 							</select>
 						</div>
 					</div>
-				</div>	
+				</div>
 				<div class="layui-card layui-form" lay-filter="component-form-element">
 					<div class="layui-card-header">复选框</div>
 					<div class="layui-card-body layui-row layui-col-space10">
@@ -131,7 +133,7 @@
 						<div class="layui-col-md12">
 							<input type="text" name="title" failure placeholder="失败" autocomplete="off" class="layui-input">
 						</div>
-				
+
 					</div>
 				</div>
 				<div class="layui-card">
@@ -171,7 +173,7 @@
 			layui.use(['form','element','code'], function() {
 				var form = layui.form;
 				var element = layui.element;
-				
+
 				layui.code();
 
 			});

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="utf-8">
     <title>头像上传</title>
@@ -42,7 +44,7 @@
                 preview: '#previewImage', // 预览div
                 viewmode: 1
             };
-            
+
             $("#sourceImage").attr("src", parent.layui.$("#userAvatar").attr("src"));
             $("#sourceImage").cropper(options);
 
@@ -58,7 +60,7 @@
                     formData.append('file', blob, fileName);
                     formData.append('fileName', fileName);
                     formData.append('fileToken', timeStamp);
-                  
+
                     var reader = new FileReader();
                     reader.readAsDataURL(blob);
                     reader.onload = function (e) {

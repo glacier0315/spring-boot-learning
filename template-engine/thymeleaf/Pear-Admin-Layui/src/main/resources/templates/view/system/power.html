@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <title>权限管理</title>
@@ -192,7 +194,7 @@
                 })
             });
         }
-		
+
 		window.batchRemove = function(obj) {
 			let data = table.checkStatus(obj.config.id).data;
 			if (data.length === 0) {

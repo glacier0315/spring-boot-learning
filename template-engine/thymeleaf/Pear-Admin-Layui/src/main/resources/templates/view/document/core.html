@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
 		<meta charset="utf-8">
 		<title>数据卡片</title>
@@ -80,7 +82,7 @@
 				      <th>描述</th>
 				      <th>参数</th>
 					  <th>备注</th>
-				    </tr> 
+				    </tr>
 				  </thead>
 				  <tbody>
 				    <tr>
@@ -164,55 +166,55 @@
 		<script>
 			layui.use(['jquery','layer'], function() {
 				var $ = layui.jquery;
-				
+
 				$("#collapseSide").click(function(){
 					parent.layui.admin.collapseSide()
 				})
-				
+
 				$("#refreshThis").click(function(){
 					parent.layui.admin.refreshThis()
 				})
-				
+
 				$("#refresh").click(function(){
 					parent.layui.admin.refresh(14)
 				})
-				
+
 				$("#addTab").click(function(){
 					parent.layui.admin.addTab(14,"百度一下","http://www.bing.com")
 				})
-				
+
 				$("#closeTab").click(function(){
 					parent.layui.admin.closeTab(14)
 				})
-				
+
 				$("#closeThis").click(function(){
 					parent.layui.admin.closeCurrentTab()
 				})
-				
+
 				$("#closeAll").click(function(){
 					parent.layui.admin.closeAllTab()
 				})
-				
+
 				$("#changeTabTitle").click(function(){
 					parent.layui.admin.changeTabTitle(16,"修改标题")
 				})
-				
+
 				$("#closeOther").click(function(){
 					parent.layui.admin.closeOtherTab()
 				})
-				
+
 				$("#changeIframe").click(function(){
 					parent.layui.admin.changeIframe(14,"百度一下","http://www.bing.com")
 				})
-				
+
 				$("#jump").click(function(){
 					parent.layui.admin.jump(14,"百度一下","http://www.bing.com")
 				})
-				
+
 				$("#fullScreen").click(function(){
 					parent.layui.admin.fullScreen()
 				})
-				
+
 			})
 		</script>
 	</body>

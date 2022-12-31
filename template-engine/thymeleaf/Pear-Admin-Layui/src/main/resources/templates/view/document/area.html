@@ -1,4 +1,6 @@
-<html>
+<html lang="zh-CN"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -97,7 +99,7 @@
 							<pre class="layui-code" lay-encode="true">
 							layui.use(['area'], function () {
 							    var area = layui.area;
-								 
+
 							    area.render({
 							        elem: '#area-picker',
 							        change: function (res) {
@@ -128,7 +130,7 @@
 						console.log(res);
 					}
 				});
-				
+
 				area.render({
 					elem: '#area-picker-copy',
 					change: function(res) {
