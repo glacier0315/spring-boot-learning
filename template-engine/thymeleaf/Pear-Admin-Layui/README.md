@@ -30,9 +30,9 @@
 2. 修改pear
 
 ```text
-(href|src)(=")(../)*(component)(/pear/)(css/pear.css|pear.js)(")
+(href|src)(=")(../)*(component)(/pear/)(css/)?(pear-)?(module/)?([a-zA-Z0-9]+.)(css|js)(")
 # 替换
-th:$1$2@{/plugin$5$6}$7
+th:$1$2@{/plugin$5$6$8$9$10}$11
 ```
 
 3. 修改layui
