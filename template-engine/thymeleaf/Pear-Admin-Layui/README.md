@@ -6,14 +6,16 @@
 
 ### 目录放置
 
-|       **目录**        |      **新目录**      |
-|:-------------------:|:-----------------:|
-|      admin/css      |    static/css     |
-|    admin/images     |    static/img     |
-|     admin/data      | static/admin/data |
-|      component      |   static/plugin   |
-|       config        |   static/config   |
-| view/echarts/script | static/js/echarts |
+|          **目录**           |       **新目录**       |
+|:-------------------------:|:-------------------:|
+|         admin/css         |     static/css      |
+|       admin/images        |     static/img      |
+|        admin/data         |  static/admin/data  |
+|    component/code/css     |   static/css/code   |
+| component/code/index.html | templates/view/code |
+|         component         |    static/plugin    |
+|          config           |    static/config    |
+|    view/echarts/script    |  static/js/echarts  |
 
 ### 修改路径
 
