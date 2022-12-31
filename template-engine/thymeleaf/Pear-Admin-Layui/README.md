@@ -38,3 +38,10 @@ th:$1$2@{/plugin$5$6}$7
 # 替换
 th:$1$2@{/plugin$5$6}$7
 ```
+
+4. 修改admin/css
+```text
+(href=")(../)*(admin)(/css/)(other/)?([a-zA-Z0-9]+)(.css)(")
+# 替换
+th:$1@{$4$5$6$7}$8
+```
