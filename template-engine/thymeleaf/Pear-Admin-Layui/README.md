@@ -79,3 +79,11 @@ image.src = "[[@{/img/avatar.jpg}]]";
 # 替换
 th:$1@{/js/echarts/$3}$4
 ```
+
+8. 修改pear.config.yml
+
+```text
+(/)?(config/pear.config.yml)
+# 替换
+[[@{/$2}]]
+```
