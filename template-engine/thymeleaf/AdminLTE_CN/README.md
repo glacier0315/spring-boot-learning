@@ -1,5 +1,7 @@
 # 集成AdminLTE_CN-3.2
 
+基于[AdminLTE_CN](https://gitee.com/3Vshej/AdminLTE_CN) 3.2
+
 ### 目录放置
 1. dist、plugins  ->  static
 2. pages、*.html  ->  templates
@@ -93,7 +95,11 @@ th:$1"@{/pages/UI/$5}"
 ```
 8. 修改script
 ```text
-../../plugins/datatables/Chinese.json
+([./]*)(/plugins/datatables/Chinese.json)
 # 替换
-[[@{/plugins/datatables/Chinese.json}]]
+[[@{$2}]]
+```
+9. 修改修改flot.html 页面错误
+```text
+提取js
 ```
