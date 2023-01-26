@@ -1,6 +1,6 @@
 package com.glacier.modules.sys.domain;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 
 /**

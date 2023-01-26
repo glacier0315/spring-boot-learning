@@ -3,7 +3,7 @@ package com.glacier.modules.sys.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.glacier.core.domain.IdEntity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 

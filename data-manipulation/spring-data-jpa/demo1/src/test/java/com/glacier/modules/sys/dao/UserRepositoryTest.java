@@ -3,7 +3,7 @@ package com.glacier.modules.sys.dao;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 
 @SpringBootTest

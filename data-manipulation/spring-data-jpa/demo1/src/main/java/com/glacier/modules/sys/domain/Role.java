@@ -2,9 +2,9 @@ package com.glacier.modules.sys.domain;
 
 import com.glacier.core.domain.IdEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 /**
  * 角色

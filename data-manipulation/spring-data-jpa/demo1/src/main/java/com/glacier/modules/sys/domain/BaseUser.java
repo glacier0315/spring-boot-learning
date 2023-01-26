@@ -2,7 +2,7 @@ package com.glacier.modules.sys.domain;
 
 import com.glacier.core.domain.IdEntity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /**
  * 基本用户

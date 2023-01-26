@@ -27,12 +27,12 @@ import java.time.Duration;
 @Configuration
 @EnableCaching
 public class RedisConfiguration {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(RedisConfiguration.class);
-	
+
 	@Autowired
 	private ObjectMapper objectMapper;
-	
+
 	/**
 	 * RedisTemplate 相关配置
 	 *
@@ -54,7 +54,7 @@ public class RedisConfiguration {
 		redisTemplate.afterPropertiesSet();
 		return redisTemplate;
 	}
-	
+
 	/**
 	 * 配置缓存管理器
 	 *
@@ -70,7 +70,7 @@ public class RedisConfiguration {
 				.serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(keySerializer()))
 				.serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(valueSerializer()))
 				.disableCachingNullValues();
-		
+
 		// 生成两套默认配置，通过 Config 对象即可对缓存进行自定义配置
 		RedisCacheConfiguration config1 = RedisCacheConfiguration.defaultCacheConfig()
 				// 设置过期时间 10 分钟
@@ -85,7 +85,7 @@ public class RedisConfiguration {
 				.transactionAware()
 				.build();
 	}
-	
+
 	/**
 	 * key 序列化
 	 *
@@ -94,15 +94,13 @@ public class RedisConfiguration {
 	private RedisSerializer<String> keySerializer() {
 		return new StringRedisSerializer();
 	}
-	
+
 	/**
 	 * 值采用JSON序列化
 	 *
 	 * @return
 	 */
 	private RedisSerializer<Object> valueSerializer() {
-		Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
-		jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
-		return jackson2JsonRedisSerializer;
+		return new Jackson2JsonRedisSerializer<>(objectMapper, Object.class);
 	}
 }

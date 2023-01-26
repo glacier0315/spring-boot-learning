@@ -2,11 +2,11 @@ package com.glacier.service.impl;
 
 import com.glacier.domain.User;
 import com.glacier.service.UserService;
+import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -22,9 +22,9 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
-	
+
 	private final Set<User> users = new HashSet<>(200);
-	
+
 	@PostConstruct
 	public void init() {
 		User user = null;
@@ -41,16 +41,16 @@ public class UserServiceImpl implements UserService {
 			user.setDuty("duty_" + i);
 			user.setJoinDate(LocalDateTime.now());
 			user.setDoubleData(random.nextDouble() + random.nextInt(1));
-			
+
 			this.users.add(user);
 		}
 	}
-	
+
 	@Override
 	public List<User> findAll() {
 		return new ArrayList<>(this.users);
 	}
-	
+
 	@Override
 	public List<User> findList(User user) {
 		return this.users.parallelStream()

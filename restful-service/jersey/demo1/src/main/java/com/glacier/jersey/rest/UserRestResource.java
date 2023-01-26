@@ -2,10 +2,10 @@ package com.glacier.jersey.rest;
 
 import com.glacier.jersey.domain.Result;
 import com.glacier.jersey.domain.User;
+import jakarta.inject.Singleton;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 
-import javax.inject.Singleton;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +18,7 @@ import java.util.List;
 @Path("/user")
 @Produces(MediaType.APPLICATION_JSON)
 public class UserRestResource {
-	
+
 	/**
 	 * 查询user 列表
 	 *

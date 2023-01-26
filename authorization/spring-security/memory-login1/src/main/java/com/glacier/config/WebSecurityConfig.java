@@ -54,7 +54,7 @@ public class WebSecurityConfig {
 		http
 				.csrf(AbstractHttpConfigurer::disable)
 				.authorizeHttpRequests((authorize) ->
-						authorize.mvcMatchers("/favicon.ico",
+						authorize.requestMatchers("/favicon.ico",
 										"/error",
 										"/static/**",
 										"/webjars/**",
