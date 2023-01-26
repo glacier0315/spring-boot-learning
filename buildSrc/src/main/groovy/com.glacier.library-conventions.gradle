@@ -23,7 +23,6 @@ configurations {
 ext {
     shiro = "1.10.1"
     springBootAdmin = "2.7.10"
-    mybatisPlus = "3.5.3.1"
 
     camunda = "7.18.0"
     activiti6 = "6.0.0"
@@ -50,8 +49,8 @@ dependencies {
         api "org.apache.rocketmq:rocketmq-spring-boot-starter:2.2.2"
 
         // mybatis-plus
-        api "com.baomidou:mybatis-plus-boot-starter:${mybatisPlus}"
-        api "com.baomidou:dynamic-datasource-spring-boot-starter:${mybatisPlus}"
+        api "com.baomidou:mybatis-plus-boot-starter:3.5.3.1"
+        api "com.baomidou:dynamic-datasource-spring-boot-starter:3.6.1"
         // mybatis mapper
         api "tk.mybatis:mapper-spring-boot-starter:4.2.2"
         // mybatis
