@@ -26,7 +26,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class WebSecurityConfig {
-	
+
 	/**
 	 * 密码工具类
 	 *
@@ -36,7 +36,7 @@ public class WebSecurityConfig {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+
 	/**
 	 * 获取AuthenticationManager（认证管理器），登录时认证使用
 	 *
@@ -48,11 +48,11 @@ public class WebSecurityConfig {
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
 		return authenticationConfiguration.getAuthenticationManager();
 	}
-	
+
 	@Bean
 	SecurityFilterChain web(HttpSecurity http) throws Exception {
 		http
-				.cors(AbstractHttpConfigurer::disable)
+				.csrf(AbstractHttpConfigurer::disable)
 				.authorizeHttpRequests((authorize) ->
 						authorize.mvcMatchers("/favicon.ico",
 										"/error",
@@ -76,10 +76,10 @@ public class WebSecurityConfig {
 							.deleteCookies("JSESSIONID")
 							.logoutSuccessUrl("/login");
 				});
-		
+
 		return http.build();
 	}
-	
+
 	@Bean
 	public UserDetailsService userDetailsService() {
 		InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();

@@ -47,8 +47,8 @@ public class WebSecurityConfig {
 	private AuthenticationEntryPoint authenticationEntryPoint;
 	@Autowired
 	private AuthenticationFailureHandler authenticationFailureHandler;
-	
-	
+
+
 	/**
 	 * 密码工具类
 	 *
@@ -58,7 +58,7 @@ public class WebSecurityConfig {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+
 	/**
 	 * 获取AuthenticationManager（认证管理器），登录时认证使用
 	 *
@@ -70,11 +70,11 @@ public class WebSecurityConfig {
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
 		return authenticationConfiguration.getAuthenticationManager();
 	}
-	
+
 	@Bean
 	SecurityFilterChain web(HttpSecurity http) throws Exception {
 		http
-				.cors(AbstractHttpConfigurer::disable)
+				.csrf(AbstractHttpConfigurer::disable)
 				.authorizeHttpRequests((authorize) ->
 						authorize.mvcMatchers("/favicon.ico",
 										"/error",
@@ -112,10 +112,10 @@ public class WebSecurityConfig {
 				})
 				// 添加自定义过滤器
 				.addFilterAfter(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
-		
+
 		return http.build();
 	}
-	
+
 	/**
 	 * 设置跨域
 	 *
