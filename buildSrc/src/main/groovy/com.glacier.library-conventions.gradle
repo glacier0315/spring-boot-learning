@@ -21,8 +21,8 @@ configurations {
 }
 
 ext {
-    shiro = "1.10.1"
-    springBootAdmin = "2.7.10"
+    shiro = "1.11.0"
+    springBootAdmin = "3.0.0-M8"
 
     camunda = "7.18.0"
     activiti6 = "6.0.0"
@@ -35,7 +35,7 @@ ext {
 
 dependencies {
     // 引入其他 bom
-    api platform("org.springframework.boot:spring-boot-dependencies:2.7.7")
+    api platform("org.springframework.boot:spring-boot-dependencies:3.0.2")
     api platform("cn.hutool:hutool-bom:5.8.11")
 
     //在constraints块中定义依赖版本约束
@@ -54,7 +54,7 @@ dependencies {
         // mybatis mapper
         api "tk.mybatis:mapper-spring-boot-starter:4.2.2"
         // mybatis
-        api "org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.0"
+        api "org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.1"
         api "com.github.pagehelper:pagehelper-spring-boot-starter:1.4.6"
         api "com.alibaba:druid-spring-boot-starter:1.2.15"
         api "com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5"
@@ -74,7 +74,7 @@ dependencies {
         api "org.activiti:activiti-modeler:${activitiModeler}"
         api "org.activiti:activiti-diagram-rest:${activitiModeler}"
         // openapi
-        api "org.springdoc:springdoc-openapi-ui:1.6.14"
+        api 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
         api "io.springfox:springfox-boot-starter:3.0.0"
 
         // 其他

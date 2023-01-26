@@ -1,6 +1,6 @@
 subprojects {
     dependencies {
         // openapi
-        implementation("org.springdoc:springdoc-openapi-ui")
+        implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui")
     }
 }
