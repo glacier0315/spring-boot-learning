@@ -66,3 +66,48 @@ include(":template-engine:thymeleaf:Pear-Admin-Layui")
 //include(":workflow:activiti6:demo1")
 //include(":workflow:activiti7:demo1")
 //include(":workflow:camunda:camunda-web1")
+
+
+/**
+ * 自动注册模块
+ */
+// 忽略的目录，如果有不想自动注册的目录也可以放进来
+def ignoreDirs = [
+        ".gradle",
+        ".idea",
+        ".git",
+        "gradle",
+        "logs",
+        "buildSrc",
+        "build",
+        "out",
+        "doc",
+        "libs",
+        "db",
+        "src"
+]
+
+autoRegisterModule(settingsDir, ignoreDirs)
+
+// 自动注册当前所有子目录下的模块
+def autoRegisterModule(def dir, def ignoreDirs = []) {
+    def moduleSymbol = ["build.gradle", "build.gradle.kts"]
+
+    if (dir.isDirectory() && !ignoreDirs.contains(dir.getName())) {
+        dir.eachFile { f ->
+            autoRegisterModule(f, ignoreDirs)
+        }
+    } else if (!dir.isDirectory() && moduleSymbol.contains(dir.getName())) {
+        // 相对目录
+        def path = dir.getParentFile()
+                .getPath()
+                .replace("$rootDir", "")
+        // 排除根目录
+        if (path.isEmpty()) return
+        // 组装模块
+        def modelName = path.replace(File.separator, ":")
+        // 是模块，可以注册
+        println "include(\"$modelName\")"
+        // include("$modelName")
+    }
+}
