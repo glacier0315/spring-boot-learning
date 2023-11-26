@@ -1,19 +1,16 @@
 package com.glacier.mybatis.service;
 
 import com.glacier.mybatis.entity.User;
+import jakarta.annotation.Resource;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.annotation.Resource;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * date 2023-11-25 10:42
@@ -55,6 +52,13 @@ class UserServiceTest {
                 .birthday(LocalDate.of(1990, 10, 11))
                 .build();
         int update = userService.update(user);
+        Assertions.assertEquals(1, update);
+    }
+
+    @Test
+    void delete() {
+        String id = "651c74980f0f40729b28d6bd9fe32c80";
+        int update = userService.delete(id);
         Assertions.assertEquals(1, update);
     }
 

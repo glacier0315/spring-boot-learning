@@ -11,7 +11,6 @@ import java.util.List;
  * @version 1.0
  */
 public interface UserService {
-
     /**
      * 新增用户
      * @param user
@@ -25,10 +24,17 @@ public interface UserService {
      * @return
      */
     int update(User user);
-	/**
-	 * 查询所有
-	 *
-	 * @return 所有实例
-	 */
-	List<User> selectAll();
+
+    /**
+     * 删除用户
+     * @param id
+     * @return
+     */
+    int delete(String id);
+    /**
+     * 查询所有
+     *
+     * @return 所有实例
+     */
+    List<User> selectAll();
 }

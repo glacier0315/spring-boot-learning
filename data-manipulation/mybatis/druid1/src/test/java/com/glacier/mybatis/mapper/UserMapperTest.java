@@ -1,6 +1,7 @@
 package com.glacier.mybatis.mapper;
 
 import com.glacier.mybatis.entity.User;
+import jakarta.annotation.Resource;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,7 +22,7 @@ import java.util.UUID;
  */
 @SpringBootTest
 class UserMapperTest {
-    @Autowired
+    @Resource
     private UserMapper userMapper;
 
     @BeforeEach

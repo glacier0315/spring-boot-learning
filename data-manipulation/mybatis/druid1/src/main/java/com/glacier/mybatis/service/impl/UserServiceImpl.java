@@ -3,11 +3,11 @@ package com.glacier.mybatis.service.impl;
 import com.glacier.mybatis.entity.User;
 import com.glacier.mybatis.mapper.UserMapper;
 import com.glacier.mybatis.service.UserService;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,19 +19,10 @@ import java.util.Optional;
  */
 @Service
 public class UserServiceImpl implements UserService {
-
+    @Resource
     private TransactionTemplate transactionTemplate;
+    @Resource
     private UserMapper userMapper;
-
-    @Resource
-    public void setUserMapper(UserMapper userMapper) {
-        this.userMapper = userMapper;
-    }
-
-    @Resource
-    public void setTransactionTemplate(TransactionTemplate transactionTemplate) {
-        this.transactionTemplate = transactionTemplate;
-    }
 
     @Override
     public int add(User user) {
@@ -59,6 +50,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public int update(User user) {
         return userMapper.updateByPrimaryKey(user);
+    }
+
+    @Transactional()
+    @Override
+    public int delete(String id) {
+        return userMapper.deleteByPrimaryKey(id);
     }
 
     /**

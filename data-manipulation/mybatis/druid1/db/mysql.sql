@@ -4,7 +4,6 @@ CREATE DATABASE sb_learn CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci';
 */
 use sb_learn;
 
-
 -- ----------------------------
 -- Table structure for sys_user
 -- ----------------------------
@@ -35,7 +34,7 @@ CREATE TABLE sys_user
     INDEX sys_user_2 (id_card) USING BTREE,
     INDEX sys_user_3 (status) USING BTREE
 ) ENGINE = InnoDB
-   COMMENT = '用户表'
+  COMMENT = '用户表'
   ROW_FORMAT = Dynamic;
 
 -- ----------------------------

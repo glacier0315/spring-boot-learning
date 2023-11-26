@@ -3,6 +3,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation("com.alibaba:druid-spring-boot-starter")
+    implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter")
 
     runtimeOnly("mysql:mysql-connector-java")
 }

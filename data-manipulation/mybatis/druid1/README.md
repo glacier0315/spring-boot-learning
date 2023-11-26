@@ -1,5 +1,28 @@
-privateKey:
-MIIBUwIBADANBgkqhkiG9w0BAQEFAASCAT0wggE5AgEAAkEA06bi8dce/efRDhpQydLcrOSD14mvKpSLYWUzEzzVbBprygpouS5tj09yKRXRIqz7kJjBT8i4W+DGGXdh/qN0xQIDAQABAkBdhe3cTWFtcqTm5WvzcpB+eU9ky3syhob8V3p1Mrlf1ZMdBacWtzVq5DFHE24KccJD2ngA+tGMMvgpQ2KcagN1AiEA8Lqmr2ASjPIyRu844vMJm+Zf78bJjxrJUJCInk4KDZsCIQDhFAhcWyFyCoNwM+zQpMVklVyYd+tUA3sDUaaamlfdHwIgd7KnrS5dKv5G56SNqbNlRMKxU12J3YFZNpkXhXeSYh8CICtU2Ps2zCyRW5aZWIkef6YKn0X3KEYHWYJdEM8I0cuPAiBdWEVBCZqPaVCvtADR/IKGrwrd9S/W9Ktp8vrUdh54VA==
-publicKey:
-MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBANOm4vHXHv3n0Q4aUMnS3Kzkg9eJryqUi2FlMxM81Wwaa8oKaLkubY9PcikV0SKs+5CYwU/IuFvgxhl3Yf6jdMUCAwEAAQ==
-password:pw76mSy1ZN1Ouc2CnU5Ov6hyWX6UaKNIRQz9MFX8VmRksxQKgFTKq0a+dFq50B3IogbJl1SSkPtkaMRxfZfd2w==
+# mybatis
+
+
+##  连接加密
+1 引入依赖
+```
+implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:${jasyptStarterVersion}")
+```
+
+2 在application-dev.yml中添加如下配置
+
+```
+# datasource
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.20.100:3306/sb_learn?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&allowPublicKeyRetrieval=true
+#    username: root
+#    password: root
+    # 加密
+    username: ENC(iA6XhdDJsSnn3FU+WZU1+3yjFWEsu+kJjB6gzfgaMk1a9vDWN6CUK8ukniShsvyv)
+    password: ENC(sCVBbsG3UEaK56IZY+HjfGwKAB4rz1vvLtXmYyOjlTBVxsxdnH0SORkCYXIhgpuC)
+    
+# 添加jvm启动参数 java -jar -Djasypt.encryptor.password=abc123456 xxx.jar
+jasypt:
+  encryptor:
+    password: abc123456    
+```
