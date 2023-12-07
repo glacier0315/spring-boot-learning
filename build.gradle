@@ -35,7 +35,7 @@ configure(springBootProjects()) {
     }
 
     dependencies {
-        implementation platform(project(':platforms'))
+        implementation(platform("com.glacier.platforms:spring-boot-platform:1.0.0-SNAPSHOT"))
 
         implementation('org.springframework.boot:spring-boot-starter-web')
         implementation('org.springframework.boot:spring-boot-starter-actuator')

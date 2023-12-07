@@ -1,129 +1,14 @@
-plugins {
-    id 'java-platform' // 引入 java-platform插件
-    id 'maven-publish' // 发布插件，可用来发布 BOM 或 jar到本地与远程仓库
-}
+subprojects {
+    group "com.glacier.platforms"
 
-// 默认为防止用户错误地引入依赖，而不是引入依赖约束，如果引入依赖会报错失败。
-// 通过这个配置可以让Gradle允许引入依赖，当然这是可选的
-javaPlatform {
-    allowDependencies()
-}
-
-// 指定仓库
-repositories {
-    mavenLocal()
-    maven { url "https://maven.aliyun.com/repository/public" }
-}
-
-/*
-configurations {
-    // 全局排除依赖
-    // 解决activiti 7 依赖问题
-    all.exclude group: "org.activiti.core.common", module: "activiti-core-common-dependencies"
-    all.exclude group: "org.activiti.api", module: "activiti-api-dependencies"
-    // 解决easyExcel 升级poi 5 依赖问题
-    all.exclude group: "org.apache.poi", module: "poi-ooxml-schemas"
-    // 排除junit
-    all.exclude group: "junit", module: "junit"
-    all.exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-}
-*/
-
-ext {
-    shiro = "1.11.0"
-    springBootAdmin = "3.0.0-M8"
-
-    camunda = "7.18.0"
-    activiti6 = "6.0.0"
-    activiti7 = "7.1.0.M6"
-
-    activitiModeler = "5.23.0"
-
-    poi = "5.2.2"
-}
-
-dependencies {
-    // 引入其他 bom
-    api platform("org.springframework.boot:spring-boot-dependencies:3.0.2")
-    api platform("cn.hutool:hutool-bom:5.8.11")
-
-    //在constraints块中定义依赖版本约束
-    constraints {
-        api "org.apache.shiro:shiro-spring-boot-starter:${shiro}"
-        api "org.apache.shiro:shiro-spring-boot-web-starter:${shiro}"
-
-        api "de.codecentric:spring-boot-admin-starter-server:${springBootAdmin}"
-        api "de.codecentric:spring-boot-admin-starter-client:${springBootAdmin}"
-
-        api "org.apache.rocketmq:rocketmq-spring-boot-starter:2.2.2"
-
-        // mybatis-plus
-        api "com.baomidou:mybatis-plus-boot-starter:3.5.3.1"
-        api "com.baomidou:dynamic-datasource-spring-boot-starter:3.6.1"
-        // mybatis mapper
-        api "tk.mybatis:mapper-spring-boot-starter:4.2.2"
-        // mybatis
-        api "org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.1"
-        api "com.github.pagehelper:pagehelper-spring-boot-starter:1.4.6"
-        api "com.alibaba:druid-spring-boot-starter:1.2.15"
-        api "com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5"
-
-        // camunda
-        api "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp:${camunda}"
-        api "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-rest:${camunda}"
-
-        // activiti 6
-        api "org.activiti:activiti-spring-boot-starter-basic:${activiti6}"
-        api "org.activiti:activiti-spring-boot-starter-jpa:${activiti6}"
-        // activiti 7
-
-        api "org.activiti:activiti-spring-boot-starter:${activiti7}"
-        api "org.activiti:activiti-image-generator:${activiti7}"
-        // activiti-modeler
-        api "org.activiti:activiti-modeler:${activitiModeler}"
-        api "org.activiti:activiti-diagram-rest:${activitiModeler}"
-        // openapi
-        api 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
-        api "io.springfox:springfox-boot-starter:3.0.0"
-
-        // 其他
-        api "com.alibaba:easyexcel:3.1.5"
-        api "org.apache.poi:poi:${poi}"
-        api "org.apache.poi:poi-ooxml:${poi}"
-        api "commons-io:commons-io:2.11.0"
-        api "org.apache.commons:commons-lang3:3.12.0"
-
-        api "org.junit.jupiter:junit-jupiter:5.9.2"
+    // 指定仓库
+    repositories {
+        mavenLocal()
+        maven { url "https://maven.aliyun.com/repository/public" }
+        mavenCentral()
     }
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.javaPlatform
-
-            pom {
-                name = 'Glacier Library'
-                description = 'A concise description of my library'
-                url = 'http://www.glacier.com/library'
-                properties = [
-                        myProp: "value",
-                        "prop.with.dots": "anotherValue"
-                ]
-                licenses {
-                    license {
-                        name = 'The Apache License, Version 2.0'
-                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    }
-                }
-                developers {
-                    developer {
-                        id = 'glacier'
-                        name = 'glacier'
-                        email = 'glacier0315@126.com'
-                    }
-                }
-            }
-        }
-    }
-}
+//wrapper {
+//    gradleVersion = "8.4"
+//}
