@@ -90,7 +90,8 @@ def ignoreDirs = [
         "doc",
         "libs",
         "db",
-        "src"
+        "src",
+        "platforms"
 ]
 
 autoRegisterModule(settingsDir, ignoreDirs)
@@ -114,6 +115,6 @@ def autoRegisterModule(def dir, def ignoreDirs = []) {
         def modelName = path.replace(File.separator, ":")
         // 是模块，可以注册
         println "include(\"$modelName\")"
-        // include("$modelName")
+        include("$modelName")
     }
 }
