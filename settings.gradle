@@ -67,7 +67,7 @@ includeBuild("platforms")
 //include("template-engine:thymeleaf:demo1")
 //include("template-engine:thymeleaf:demo2")
 //include("template-engine:thymeleaf:generation")
-//include("template-engine:thymeleaf:Pear-Admin-Layui")
+include("template-engine:thymeleaf:Pear-Admin-Layui")
 //
 //include("workflow:activiti6:demo1")
 //include("workflow:activiti7:demo1")
@@ -115,6 +115,6 @@ def autoRegisterModule(def dir, def ignoreDirs = []) {
         def modelName = path.replace(File.separator, ":")
         // 是模块，可以注册
         println "include(\"$modelName\")"
-        include("$modelName")
+//        include("$modelName")
     }
 }
