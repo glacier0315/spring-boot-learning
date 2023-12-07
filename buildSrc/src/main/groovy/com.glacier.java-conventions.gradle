@@ -14,36 +14,24 @@ repositories {
     maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
 }
 
+// Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
-    }
-}
-
-javadoc {
-    options {
-        encoding "UTF-8"
-        charSet 'UTF-8'
-        author true
-        version true
+        vendor = JvmVendorSpec.ADOPTIUM
     }
 }
 
 configurations {
     // 全局排除依赖
-    all*.exclude group: "junit", module: "junit"
+    configureEach {
+        exclude group: "junit", module: "junit"
+    }
 }
 
 dependencies {
     // Use JUnit Jupiter for testing.
-    testImplementation('org.junit.jupiter:junit-jupiter:5.9.1')
-}
-
-test {
-    // Use JUnit Platform for unit tests.
-    useJUnitPlatform() {
-        excludeEngines 'junit-vintage'
-    }
+    testImplementation('org.junit.jupiter:junit-jupiter:5.10.0')
 }
 
 // 设置编码为UTF-8
@@ -56,11 +44,26 @@ tasks.withType(JavaCompile).configureEach {
     }
 }
 
+// 设置编码为UTF-8
+tasks.withType(Javadoc).configureEach {
+    options {
+        encoding "UTF-8"
+        version true
+    }
+}
+
 // Copy LICENSE
 tasks.withType(Jar).configureEach {
     from(project.rootDir) {
         include 'LICENSE'
         into 'META-INF'
+    }
+}
+
+// 设置测试环境
+tasks.withType(Test).configureEach {
+    useJUnitPlatform() {
+        excludeEngines 'junit-vintage'
     }
 }
 
