@@ -1,4 +1,3 @@
-
 plugins {
     // Apply the foojay-resolver plugin to allow automatic download of JDKs
     id 'org.gradle.toolchains.foojay-resolver-convention' version '0.7.0'
@@ -6,115 +5,148 @@ plugins {
 
 rootProject.name = 'spring-boot-learning'
 
-includeBuild("platforms")
-
-//include("api-manage:openapi:demo1")
-//include("api-manage:swagger3:demo1")
-//
-//include("authorization:shiro:demo1")
-//include("authorization:shiro:demo3")
-//include("authorization:shiro:demo4")
-//include("authorization:shiro:jdbc1")
-//include("authorization:spring-security:jdbc-login1")
-//include("authorization:spring-security:memory-login1")
-//include("authorization:spring-security:memory-login2")
-//
-//include("container-image:docker:demo1")
-//
-//include("data-manipulation:elasticsearch:demo1")
-//include("data-manipulation:flyway:druid1")
-//include("data-manipulation:jasypt:druid1")
-//include("data-manipulation:mybatis:druid1")
-//include("data-manipulation:mybatis:druid2")
-//include("data-manipulation:mybatis:hikari1")
-//include("data-manipulation:mybatis-plus:demo1")
-//include("data-manipulation:mybatis-plus:dynamic1")
-//include("data-manipulation:redis:demo1")
-//include("data-manipulation:spring-data-jpa:demo1")
-//
-//include("document-processing:easyexcel1")
-//include("document-processing:hutool-poi1")
-//include("document-processing:office-to-pdf1")
-//
-//include("features:aop:demo1")
-//include("features:async:demo1")
-//include("features:config-order:demo1")
-//include("features:https:demo1")
-//include("features:jar2war")
-//include("features:validation:demo1")
-//include("features:websocket:demo1")
-//
-//include("file-service:fastdfs:demo1")
-//
-//include("logging:logback:demo1")
-//
-//include("message-queuing:kafka:demo1")
-//include("message-queuing:rabbitmq:demo1")
-//include("message-queuing:rocketmq:demo1")
-//
-//include("monitor:spring-boot-actuator:demo1")
-//include("monitor:spring-boot-admin:client1")
-//include("monitor:spring-boot-admin:server1")
-//
-//include("restful-service:jersey:demo1")
-//
-//include("scheduled-tasks:quartz:demo1")
-//include("scheduled-tasks:quartz:demo2")
-//include("scheduled-tasks:scheduled:demo1")
-//
-//include("template-engine:freemarker:demo1")
-//include("template-engine:thymeleaf:AdminLTE_CN")
-//include("template-engine:thymeleaf:demo1")
-//include("template-engine:thymeleaf:demo2")
-//include("template-engine:thymeleaf:generation")
-include("template-engine:thymeleaf:Pear-Admin-Layui")
-//
-//include("workflow:activiti6:demo1")
-//include("workflow:activiti7:demo1")
-//include("workflow:camunda:camunda-web1")
+includeBuild('platforms')
+//include('api-manage:openapi:demo1')
+//include('api-manage:swagger3:demo1')
+//include('authorization:shiro:demo1')
+//include('authorization:shiro:demo3')
+//include('authorization:shiro:demo4')
+//include('authorization:shiro:jdbc1')
+//include('authorization:spring-security:jdbc-login1')
+//include('authorization:spring-security:memory-login1')
+//include('authorization:spring-security:memory-login2')
+//include('container-image:docker:demo1')
+//include('data-manipulation:elasticsearch:demo1')
+//include('data-manipulation:flyway:druid1')
+//include('data-manipulation:jasypt:druid1')
+//include('data-manipulation:mybatis:druid1')
+//include('data-manipulation:mybatis:hikari1')
+//include('data-manipulation:mybatis-plus:demo1')
+//include('data-manipulation:mybatis-plus:dynamic1')
+//include('data-manipulation:redis:demo1')
+//include('data-manipulation:spring-data-jpa:demo1')
+//include('document-processing:easyexcel1')
+//include('document-processing:hutool-poi1')
+//include('document-processing:office-to-pdf1')
+//include('features:aop:demo1')
+//include('features:async:demo1')
+//include('features:config-order:demo1')
+//include('features:https:demo1')
+//include('features:jar2war')
+//include('features:validation:demo1')
+//include('features:websocket:demo1')
+//include('file-service:fastdfs:demo1')
+//include('logging:logback:demo1')
+//include('message-queuing:kafka:demo1')
+//include('message-queuing:rabbitmq:demo1')
+//include('message-queuing:rocketmq:demo1')
+//include('monitor:spring-boot-actuator:demo1')
+//include('monitor:spring-boot-admin:client1')
+//include('monitor:spring-boot-admin:server1')
+//include('restful-service:jersey:demo1')
+//include('scheduled-tasks:quartz:demo1')
+//include('scheduled-tasks:quartz:demo2')
+//include('scheduled-tasks:scheduled:demo1')
+//include('template-engine:freemarker:demo1')
+//include('template-engine:thymeleaf:AdminLTE_CN')
+//include('template-engine:thymeleaf:demo1')
+//include('template-engine:thymeleaf:demo2')
+//include('template-engine:thymeleaf:generation')
+include('template-engine:thymeleaf:Pear-Admin-Layui')
+//include('workflow:activiti6:demo1')
+//include('workflow:activiti7:demo1')
+//include('workflow:camunda:camunda-web1')
 
 
 /**
- * 自动注册模块
+ * 判断目录是否忽略
+ * @param file 目标目录
+ * @return
  */
-// 忽略的目录，如果有不想自动注册的目录也可以放进来
-def ignoreDirs = [
-        ".gradle",
-        ".idea",
-        ".git",
-        "gradle",
-        "logs",
-        "buildSrc",
-        "build",
-        "out",
-        "doc",
-        "libs",
-        "db",
-        "src",
-        "platforms"
-]
+static def isIgnored(File file) {
+    // 忽略目录
+    def ignoreDirs = ["buildSrc", "gradle", "src", "build"]
+    return file.getName().startsWith(".") || ignoreDirs.contains(file.getName())
+}
 
-autoRegisterModule(settingsDir, ignoreDirs)
+/**
+ * 判断目录是否含有 集合中的文件
+ */
+static def hasFiles(File file, List<String> fileNames) {
+    return file.isDirectory() &&
+            file.listFiles({ !it.isDirectory() } as FileFilter)
+                    .any { fileNames.contains(it.getName()) }
+}
 
-// 自动注册当前所有子目录下的模块
-def autoRegisterModule(def dir, def ignoreDirs = []) {
-    def moduleSymbol = ["build.gradle", "build.gradle.kts"]
+/**
+ * 判断目录是否含有 settings.gradle
+ */
+static def hasSettings(File file) {
+    return hasFiles(file, ["settings.gradle", "settings.gradle.kts"])
+}
 
-    if (dir.isDirectory() && !ignoreDirs.contains(dir.getName())) {
-        dir.eachFile { f ->
-            autoRegisterModule(f, ignoreDirs)
+/**
+ * 判断目录是否含有 build.gradle
+ */
+static def hasBuildFile(File file) {
+    return hasFiles(file, ["build.gradle", "build.gradle.kts"])
+}
+
+/**
+ * 自动注册 includeBuild
+ * @param dirs 目标检查目录
+ * @return
+ */
+def autoRegisterIncludeBuild(File dir) {
+    dir.eachFile {
+        if (it.isDirectory() && !isIgnored(it) && hasSettings(it)) {
+            println "includeBuild('${it.getName()}')"
+            includeBuild(it.getName())
         }
-    } else if (!dir.isDirectory() && moduleSymbol.contains(dir.getName())) {
-        // 相对目录
-        def path = dir.getParentFile()
-                .getPath()
-                .replace("$rootDir", "")
-        // 排除根目录
-        if (path.isEmpty()) return
-        // 组装模块
-        def modelName = path.replace(File.separator, ":")
-        // 是模块，可以注册
-        println "include(\"$modelName\")"
-//        include("$modelName")
     }
 }
+
+/**
+ * 递归找出目录下所有含有 build.gradle 的目录
+ * @param files 目标目录
+ * @return
+ */
+static def findHasBuildFile(File[] files) {
+    List<String> modules = []
+    files.each {
+        // 排除忽略文件
+        if (isIgnored(it)) return
+        if (hasBuildFile(it)) {
+            modules.add(it.getPath())
+        }
+        modules.addAll(findHasBuildFile(it.listFiles({ it.isDirectory() && !isIgnored(it) && !hasSettings(it) } as FileFilter)));
+    }
+    return modules
+}
+
+/**
+ * 自动注册 include
+ * @param dirs 目标检查目录
+ * @return
+ */
+def autoRegisterInclude(File dirs) {
+    // 找出目标目录
+    List<String> modules = findHasBuildFile(dirs.listFiles({ it.isDirectory() && !isIgnored(it) && !hasSettings(it) } as FileFilter))
+
+    modules.stream()
+            .filter({ s -> !modules.any { it.startsWith(s) && it != s } })
+            .each {
+                // 组装模块
+                def modelName = it.substring(dirs.getPath().length() + 1)
+                        .replace(File.separator, ":")
+                println "include('$modelName')"
+                include(modelName)
+            }
+}
+//// 自动注册 includeBuild
+//autoRegisterIncludeBuild(settingsDir)
+//
+//// 自动注册 include
+//autoRegisterInclude(settingsDir)
+
+
