@@ -10,14 +10,16 @@ repositories {
 
 configurations {
     // 全局排除依赖
-    // 解决activiti 7 依赖问题
-    all*.exclude group: "org.activiti.core.common", module: "activiti-core-common-dependencies"
-    all*.exclude group: "org.activiti.api", module: "activiti-api-dependencies"
-    // 解决easyExcel 升级poi 5 依赖问题
-    all*.exclude group: "org.apache.poi", module: "poi-ooxml-schemas"
-    // 排除junit
-    all*.exclude group: "junit", module: "junit"
-    all*.exclude group: "org.junit.vintage", module: "junit-vintage-engine"
+    configureEach {
+        // 解决activiti 7 依赖问题
+        exclude group: "org.activiti.core.common", module: "activiti-core-common-dependencies"
+        exclude group: "org.activiti.api", module: "activiti-api-dependencies"
+        // 解决easyExcel 升级poi 5 依赖问题
+        exclude group: "org.apache.poi", module: "poi-ooxml-schemas"
+        // 排除junit
+        exclude group: "junit", module: "junit"
+        exclude group: "org.junit.vintage", module: "junit-vintage-engine"
+    }
 }
 
 ext {

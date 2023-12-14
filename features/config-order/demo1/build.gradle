@@ -4,11 +4,14 @@ dependencies {
 }
 
 // 定义文件拷贝
-task copyConfigDir(type: Copy) {
-    from "$projectDir/config/" into "$buildDir/libs/config"
+tasks.register('copyConfigDir', Copy) {
+    def configDir = project.layout.buildDirectory.dir("libs/config").get().asFile
+    from "$projectDir/config/" into configDir
 }
-task copyConfigFile(type: Copy) {
-    from "$projectDir/application.properties" into "$buildDir/libs/"
-    from "$projectDir/application.yml" into "$buildDir/libs/"
+
+tasks.register('copyConfigFile', Copy) {
+    def libsDir = project.layout.buildDirectory.dir("libs").get().asFile
+    from "$projectDir/application.properties" into libsDir
+    from "$projectDir/application.yml" into libsDir
 }
 processResources.dependsOn(copyConfigFile, copyConfigDir)

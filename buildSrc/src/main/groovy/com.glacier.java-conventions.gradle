@@ -79,10 +79,12 @@ tasks.register("mkdirs") {
 
 // 拷贝jar包
 tasks.register('copyJars', Copy) {
+//    def buildDir = project.layout.buildDirectory.get().asFile
+    def jarsDir = project.layout.buildDirectory.dir("jars").get().asFile
     // 运行时
     from configurations.runtimeClasspath
     // 目标位置
-    into "$buildDir/jars"
+    into jarsDir
 }
 
 //配置 删除文件夹
