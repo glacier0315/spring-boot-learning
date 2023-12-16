@@ -20,7 +20,6 @@ def springBootProjects() {
 configure(springBootProjects()) {
     apply plugin: 'com.glacier.java-conventions'
     apply plugin: 'org.springframework.boot'
-    apply plugin: 'io.spring.dependency-management'
 
     configurations {
         // 全局排除依赖
