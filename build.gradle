@@ -38,9 +38,6 @@ configure(springBootProjects()) {
     dependencies {
         implementation(platform("com.glacier.platforms:spring-boot-bom:1.0.0-SNAPSHOT"))
 
-        implementation('org.springframework.boot:spring-boot-starter-web')
-        implementation('org.springframework.boot:spring-boot-starter-actuator')
-
         // 引入 lombok
         compileOnly("org.projectlombok:lombok:${lombokVersion}")
         annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
