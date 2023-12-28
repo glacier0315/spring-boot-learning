@@ -5,14 +5,14 @@ plugins {
 
 rootProject.name = 'spring-boot-learning'
 
-includeBuild('platforms')
+//includeBuild('platforms')
 //include('api-manage:openapi:demo1')
 //include('api-manage:swagger3:demo1')
 //include('authorization:shiro:demo1')
 //include('authorization:shiro:demo3')
 //include('authorization:shiro:demo4')
 //include('authorization:shiro:jdbc1')
-include('authorization:spring-security:jdbc-login1')
+//include('authorization:spring-security:jdbc-login1')
 //include('authorization:spring-security:memory-login1')
 //include('authorization:spring-security:memory-login2')
 //include('container-image:docker:demo1')
