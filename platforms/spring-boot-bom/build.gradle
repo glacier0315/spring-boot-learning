@@ -35,7 +35,7 @@ ext {
 
     easyexcel = "3.3.2"
     // easyexcel 支持poi的版本
-    poi = "5.2.4"
+    poi = "5.2.5"
 }
 
 dependencies {
@@ -78,8 +78,7 @@ dependencies {
         api "org.activiti:activiti-modeler:${activitiModeler}"
         api "org.activiti:activiti-diagram-rest:${activitiModeler}"
         // openapi
-        api 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
-        api "io.springfox:springfox-boot-starter:3.0.0"
+        api 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
 
         // 其他
         api "com.alibaba:easyexcel:${easyexcel}"
