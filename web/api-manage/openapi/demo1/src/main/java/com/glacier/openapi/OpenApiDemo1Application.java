@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class OpenApiDemo1Application {
-
     public static void main(String[] args) {
         SpringApplication.run(OpenApiDemo1Application.class, args);
     }

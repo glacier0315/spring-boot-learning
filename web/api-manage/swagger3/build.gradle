@@ -1,5 +1,0 @@
-subprojects {
-    dependencies {
-        implementation("io.springfox:springfox-boot-starter")
-    }
-}
