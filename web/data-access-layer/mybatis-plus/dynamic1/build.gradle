@@ -4,5 +4,5 @@ dependencies {
 
     implementation("com.baomidou:dynamic-datasource-spring-boot-starter")
 
-    runtimeOnly("mysql:mysql-connector-java")
+    runtimeOnly("com.mysql:mysql-connector-j")
 }

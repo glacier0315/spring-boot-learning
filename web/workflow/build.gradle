@@ -4,7 +4,7 @@ subprojects {
 
         implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter")
         implementation("com.github.pagehelper:pagehelper-spring-boot-starter")
-        implementation("mysql:mysql-connector-java")
+        runtimeOnly("com.mysql:mysql-connector-j")
 
         implementation("commons-io:commons-io")
     }

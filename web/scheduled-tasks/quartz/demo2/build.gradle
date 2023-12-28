@@ -3,5 +3,5 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation('org.springframework.boot:spring-boot-starter-jdbc')
-    runtimeOnly("mysql:mysql-connector-java")
+    runtimeOnly("com.mysql:mysql-connector-j")
 }
