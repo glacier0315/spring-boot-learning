@@ -41,12 +41,13 @@ class UserMapperTest {
 
     @Test
     void insert() {
-        User user = User.UserBuilder.anUser()
+        User user = User.builder()
                 .id(UUID.randomUUID().toString().replace("-", ""))
                 .username("zhangsan")
                 .password("zhangsanpw")
                 .birthday(LocalDate.of(1990, 10, 11))
                 .build();
+
         int update = userMapper.insert(user);
         Assertions.assertEquals(1, update);
     }
@@ -67,8 +68,8 @@ class UserMapperTest {
 
     @Test
     void updateByPrimaryKey() {
-        User user = User.UserBuilder.anUser()
-                .id("651c74980f0f40729b28d6bd9fe32c80")
+        User user = User.builder()
+                .id("503ef063d6d24cb49adc3f3dee848bae")
                 .username("zhangsan")
                 .password("zhangsanpw")
                 .birthday(LocalDate.of(1990, 10, 11))
@@ -80,7 +81,7 @@ class UserMapperTest {
     @Test
     void selectList() {
         List<User> users = userMapper.selectList(
-                User.UserBuilder.anUser()
+                User.builder()
                         .status("1")
                         .build());
         Assertions.assertNotNull(users);
@@ -99,7 +100,7 @@ class UserMapperTest {
         int size = 200000;
         List<User> list = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            User user = User.UserBuilder.anUser()
+            User user = User.builder()
                     .id(UUID.randomUUID().toString().replace("-", ""))
                     .username("zhangsan_" + i)
                     .password("zhangsanpw_" + i)

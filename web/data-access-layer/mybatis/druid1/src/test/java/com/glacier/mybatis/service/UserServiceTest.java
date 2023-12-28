@@ -33,19 +33,20 @@ class UserServiceTest {
 
     @Test
     void add() {
-        User user = User.UserBuilder.anUser()
+        User user = User.builder()
                 .id(UUID.randomUUID().toString().replace("-", ""))
                 .username("zhangsan")
                 .password("zhangsanpw")
                 .birthday(LocalDate.of(1990, 10, 11))
                 .build();
+
         int update = userService.add(user);
         Assertions.assertEquals(1, update);
     }
 
     @Test
     void update() {
-        User user = User.UserBuilder.anUser()
+        User user = User.builder()
                 .id("651c74980f0f40729b28d6bd9fe32c80")
                 .username("zhangsan")
                 .password("zhangsanpw")

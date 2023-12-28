@@ -5,12 +5,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import java.util.List;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 /**
  * date 2023-01-26 17:19
@@ -18,9 +17,7 @@ import java.util.function.BiFunction;
  * @author glacier
  * @version 1.0.0
  */
-@Component
 public class MybatisBatchUtils {
-
     private static final Logger LOGGER = LoggerFactory.getLogger(MybatisBatchUtils.class);
 
     /**
@@ -30,7 +27,6 @@ public class MybatisBatchUtils {
 
     private final SqlSessionFactory sqlSessionFactory;
 
-    @Autowired
     public MybatisBatchUtils(SqlSessionFactory sqlSessionFactory) {
         this.sqlSessionFactory = sqlSessionFactory;
     }
@@ -48,29 +44,42 @@ public class MybatisBatchUtils {
      */
     public <T, U, R> int batchUpdateOrInsert(
             List<T> data, Class<U> mapperClass, BiFunction<T, U, R> function) {
-        int i = 1;
-        SqlSession batchSqlSession = sqlSessionFactory.openSession();
-        batchSqlSession.getConfiguration()
-                .setDefaultExecutorType(ExecutorType.BATCH);
-        try {
-            U mapper = batchSqlSession.getMapper(mapperClass);
+        return batchExecute(sqlSession -> {
+            int i = 0;
+            U mapper = sqlSession.getMapper(mapperClass);
             int size = data.size();
             for (T element : data) {
                 function.apply(element, mapper);
+                i++;
                 if ((i % BATCH_SIZE == 0) || i == size) {
-                    batchSqlSession.flushStatements();
+                    sqlSession.flushStatements();
                     LOGGER.info("batch update or insert {} row", i);
                 }
-                i++;
             }
+            return i;
+        });
+    }
+
+    /**
+     * 批量处理
+     *
+     * @param function 处理逻辑
+     * @return
+     */
+    public int batchExecute(Function<SqlSession, Integer> function) {
+        int i;
+        SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH, false);
+        try {
+            i = function.apply(sqlSession);
             // 非事务环境下强制commit，事务情况下该commit相当于无效
-            batchSqlSession.commit(!TransactionSynchronizationManager.isSynchronizationActive());
+            sqlSession.commit(!TransactionSynchronizationManager.isSynchronizationActive());
         } catch (Exception e) {
-            batchSqlSession.rollback();
+            sqlSession.rollback();
             throw new RuntimeException(e);
         } finally {
-            batchSqlSession.close();
+            sqlSession.close();
         }
-        return i - 1;
+        return i;
     }
+
 }

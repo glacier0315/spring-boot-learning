@@ -15,4 +15,7 @@
     </settings>
     <typeAliases>
     </typeAliases>
+    <plugins>
+        <plugin interceptor="com.glacier.mybatis.interceptor.CreateOrUpdateInterceptor"/>
+    </plugins>
 </configuration>

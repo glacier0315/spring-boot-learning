@@ -38,7 +38,7 @@ class MybatisBatchUtilsTest {
         int size = 200000;
         List<User> list = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            User user = User.UserBuilder.anUser()
+            User user = User.builder()
                     .id(UUID.randomUUID().toString().replace("-", ""))
                     .username("zhangsan_" + i)
                     .password("zhangsanpw_" + i)

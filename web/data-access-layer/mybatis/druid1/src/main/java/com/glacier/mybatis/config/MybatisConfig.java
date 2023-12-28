@@ -1,6 +1,9 @@
 package com.glacier.mybatis.config;
 
+import com.glacier.mybatis.utils.MybatisBatchUtils;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -16,4 +19,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @MapperScan("com.glacier.mybatis.mapper")
 public class MybatisConfig {
 
+    /**
+     * 批量插入
+     * @param sqlSessionFactory
+     * @return
+     */
+    @Bean
+    MybatisBatchUtils mybatisBatchUtils(SqlSessionFactory sqlSessionFactory){
+        return new MybatisBatchUtils(sqlSessionFactory);
+    }
 }
