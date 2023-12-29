@@ -12,12 +12,12 @@ import org.springframework.context.annotation.Bean;
  * @version 1.0
  */
 @SpringBootApplication
-public class WebDemo1Application {
-	
+public class ActuatorDemo1Application {
+
 	public static void main(String[] args) {
-		SpringApplication.run(WebDemo1Application.class, args);
+		SpringApplication.run(ActuatorDemo1Application.class, args);
 	}
-	
+
 	/**
 	 * 启动成功
 	 */
