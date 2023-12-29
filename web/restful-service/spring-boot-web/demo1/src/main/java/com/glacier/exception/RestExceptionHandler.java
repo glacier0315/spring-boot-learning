@@ -74,7 +74,7 @@ public class RestExceptionHandler {
      * @return
      */
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public Response<String> HttpRequestMethodNotSupportedException(HttpServletRequest req, Exception e) {
+    public Response<String> httpRequestMethodNotSupportedException(HttpServletRequest req, Exception e) {
         log.error("请求方式错误(405)异常 HttpRequestMethodNotSupportedException, method = {}, path = {}", req.getMethod(), req.getServletPath(), e);
         return Response.error(405, "请求方式错误，请检查后重试。");
     }
