@@ -8,10 +8,13 @@ subprojects {
     docker {
         url = 'tcp://192.168.20.100:2375'
         springBootApplication {
-            baseImage = 'openjdk:11-jre-slim'
+            baseImage = 'eclipse-temurin:17.0.9_9-jre'
             maintainer = 'glacier'
             ports = [8080]
-            images = ["${project.parent.name}/${project.name}:${version}"]
+            images = [
+                    "example.com/${project.parent.name}-${project.name}:${version}",
+                    "example.com/${project.parent.name}-${project.name}:latest"
+            ]
             jvmArgs = ['-Dspring.profiles.active=dev']
         }
     }
