@@ -49,6 +49,7 @@ configure(springBootProjects()) {
     }
 }
 
-wrapper {
-    gradleVersion = '8.4'
+tasks.named("wrapper") {
+    gradleVersion = "8.4"
+    distributionType = Wrapper.DistributionType.BIN
 }
