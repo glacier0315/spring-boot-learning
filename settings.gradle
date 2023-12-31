@@ -135,7 +135,7 @@ def autoRegisterInclude(File dirs) {
     List<String> modules = findHasBuildFile(dirs.listFiles({ it.isDirectory() && !isIgnored(it) && !hasSettings(it) } as FileFilter))
 
     modules.stream()
-            .filter({ s -> !modules.any { it.startsWith(s) && it != s } })
+            .filter({ s -> !modules.any { (it + File.separator).startsWith(s + File.separator) && it != s } })
             .each {
                 // 组装模块
                 def modelName = it.substring(dirs.getPath().length() + 1)
