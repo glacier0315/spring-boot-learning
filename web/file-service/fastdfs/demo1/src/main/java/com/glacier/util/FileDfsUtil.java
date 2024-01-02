@@ -5,13 +5,11 @@ import com.github.tobato.fastdfs.domain.fdfs.StorePath;
 import com.github.tobato.fastdfs.exception.FdfsUnsupportStorePathException;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import com.glacier.domain.Result;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,15 +27,10 @@ import java.util.Objects;
  * @version 1.0
  * date 2020-02-10 19:33
  */
-@Component
+@Slf4j
+@RequiredArgsConstructor
 public class FileDfsUtil {
-    private static final Logger log = LoggerFactory.getLogger(FileDfsUtil.class);
     private final FastFileStorageClient storageClient;
-
-    @Autowired
-    public FileDfsUtil(FastFileStorageClient storageClient) {
-        this.storageClient = storageClient;
-    }
 
     /**
      * MultipartFile类型的文件上传ַ
@@ -55,7 +48,6 @@ public class FileDfsUtil {
                     extension, null);
             return Result.ok(path.getFullPath());
         } catch (Exception e) {
-            e.printStackTrace();
             log.error("上传失败，错误：", e);
             return Result.error();
         }
@@ -75,7 +67,6 @@ public class FileDfsUtil {
                     FilenameUtils.getExtension(file.getName()), null);
             return Result.ok(path.getFullPath());
         } catch (Exception e) {
-            e.printStackTrace();
             log.error("上传失败，错误：", e);
             return Result.error("上传失败");
         } finally {
@@ -129,7 +120,6 @@ public class FileDfsUtil {
             this.storageClient.deleteFile(storePath.getGroup(), storePath.getPath());
             return Result.ok();
         } catch (FdfsUnsupportStorePathException e) {
-            e.printStackTrace();
             log.error("文件删除错误：", e);
             return Result.error("文件删除出现错误！");
         }

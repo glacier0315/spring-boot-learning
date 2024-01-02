@@ -1,12 +1,11 @@
 package com.glacier.controller;
 
-import com.glacier.config.DfsResConfig;
 import com.glacier.domain.Result;
+import com.glacier.properties.DfsProperties;
 import com.glacier.util.FileDfsUtil;
+import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,19 +19,14 @@ import org.springframework.web.multipart.MultipartFile;
  * @version 1.0
  * date 2020-02-10 19:33
  */
+@Slf4j
 @RestController
 @RequestMapping("/dfs")
 public class FileDfsController {
-    private static final Logger log = LoggerFactory.getLogger(FileDfsController.class);
-    private final FileDfsUtil fastDfsClientUtil;
-    private final DfsResConfig dfsResConfig;
-
-    @Autowired
-    public FileDfsController(FileDfsUtil fastDfsClientUtil,
-                             DfsResConfig dfsResConfig) {
-        this.fastDfsClientUtil = fastDfsClientUtil;
-        this.dfsResConfig = dfsResConfig;
-    }
+    @Resource
+    private FileDfsUtil fastDfsClientUtil;
+    @Resource
+    private DfsProperties dfsProperties;
 
     /**
      * 单文件上传
@@ -45,8 +39,8 @@ public class FileDfsController {
         Result<String> result = this.fastDfsClientUtil.uploadFile(file);
         if (StringUtils.equals(result.getCode(), Result.SUCCUSS)) {
             String url = String.format("%s://%s:%s/%s", "http",
-                    this.dfsResConfig.getResHost(),
-                    this.dfsResConfig.getResPort(),
+                    this.dfsProperties.getResHost(),
+                    this.dfsProperties.getResPort(),
                     result.getData());
             return Result.ok(url);
         }
