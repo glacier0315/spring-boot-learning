@@ -1,0 +1,29 @@
+spring:
+  profiles:
+    active: dev
+  #  关闭默认的静态资源路径映射
+  web:
+    resources:
+      add-mappings: false
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 200MB
+      location: ./tmp
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+server:
+  servlet:
+    encoding:
+      # 修改编码
+      charset: UTF-8
+      force: true
+      enabled: true
