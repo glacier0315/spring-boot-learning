@@ -23,6 +23,19 @@
         <result column="del_flag" jdbcType="VARCHAR" property="delFlag"/>
     </resultMap>
 
+    <sql id="queryByLike">
+        <choose>
+            <when test="_databaseId == 'mysql'">
+                and ${key} like concat('${prefix}',  ${value}, '${suffix}')
+            </when>
+            <when test="_databaseId == 'oracle' or _databaseId == 'postgresql' or _databaseId == 'dm'">
+                and ${key} like '${prefix}' || ${value} || '${suffix}'
+            </when>
+            <otherwise>
+            </otherwise>
+        </choose>
+    </sql>
+
     <sql id="base_columns">
         a.id, a.username, a.password, a.nickname, a.id_card, a.birthday, a.sex, a.email, a.mobile, a.post_id, a.dept_id, a.dept_name,
         a.status, a.avatar, a.create_by, a.create_date, a.update_by, a.update_date, a.del_flag
@@ -36,7 +49,7 @@
 
     <update id="deleteByPrimaryKey" parameterType="java.lang.String">
         update sys_user a
-        set a.del_flag='1'
+        set a.del_flag=#{DEL}
         where id = #{id}
     </update>
 
@@ -77,7 +90,7 @@
         select
         <include refid="base_columns"/>
         from sys_user a
-        where a.del_flag='0'
+        where a.del_flag=#{NORMAL}
         and a.id = #{id}
     </select>
 
@@ -85,7 +98,7 @@
         select
         <include refid="base_columns"/>
         from sys_user a
-        where a.del_flag='0'
+        where a.del_flag=#{NORMAL}
         and a.username=#{username}
     </select>
 
@@ -94,9 +107,14 @@
         <include refid="base_columns"/>
         from sys_user a
         <where>
-            a.del_flag='0'
-            <if test="nickname != null and nickname != '' ">
-                and a.nickname like concat('%',#{nickname},'%')
+            a.del_flag=#{NORMAL}
+            <if test="nickname != null and nickname != ''">
+                <include refid="queryByLike">
+                    <property name="key" value="a.nickname"/>
+                    <property name="prefix" value="%"/>
+                    <property name="suffix" value="%"/>
+                    <property name="value" value="#{nickname}"/>
+                </include>
             </if>
             <if test="email != null and email != '' ">
                 and a.email=#{email}
@@ -132,6 +150,6 @@
         select
         <include refid="base_columns"/>
         from sys_user a
-        where a.del_flag='0'
+        where a.del_flag= #{NORMAL}
     </select>
 </mapper>
