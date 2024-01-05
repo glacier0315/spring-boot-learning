@@ -78,7 +78,10 @@ dependencies {
         api "org.activiti:activiti-modeler:${activitiModeler}"
         api "org.activiti:activiti-diagram-rest:${activitiModeler}"
         // openapi
-        api 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
+        api "org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0"
+
+        // alibaba
+        api "io.seata:seata-spring-boot-starter:2.0.0"
 
         // 其他
         api "com.alibaba:easyexcel:${easyexcel}"
@@ -97,24 +100,24 @@ publishing {
             from components.javaPlatform
 
             pom {
-                name = 'Glacier Library'
-                description = 'A concise description of my library'
-                url = 'http://www.glacier.com/library'
+                name = "Glacier Library"
+                description = "A concise description of my library"
+                url = "http://www.glacier.com/library"
                 properties = [
                         myProp: "value",
                         "prop.with.dots": "anotherValue"
                 ]
                 licenses {
                     license {
-                        name = 'The Apache License, Version 2.0'
-                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        name = "The Apache License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
                     }
                 }
                 developers {
                     developer {
-                        id = 'glacier'
-                        name = 'glacier'
-                        email = 'glacier0315@126.com'
+                        id = "glacier"
+                        name = "glacier"
+                        email = "glacier0315@126.com"
                     }
                 }
             }
