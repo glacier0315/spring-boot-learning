@@ -1,0 +1,8 @@
+custom:
+  b:
+    name: bb
+    age: 20
+    props:
+      abc: 12
+      def: 434456
+      ghi: 'afs'
