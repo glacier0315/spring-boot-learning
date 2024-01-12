@@ -2,7 +2,7 @@ spring:
   profiles:
     active: dev
   elasticsearch:
-    uris: http://192.168.20.100:9200
+    uris: http://192.168.20.120:9200
 
 management:
   endpoints:

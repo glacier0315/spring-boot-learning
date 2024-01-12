@@ -2,7 +2,6 @@ package com.glacier.repository;
 
 import com.glacier.domain.Address;
 import com.glacier.domain.User;
-import com.glacier.service.UserService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,8 +14,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * date 2022-01-26 13:36
  *
@@ -25,40 +22,40 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @SpringBootTest
 class UserRepositoryTest {
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@BeforeEach
 	void setUp() {
 	}
-	
+
 	@AfterEach
 	void tearDown() {
 	}
-	
+
 	@Test
 	void findByUsername() {
 		User user = userRepository.findByUsername("admin");
 		System.out.println(user);
 	}
-	
+
 	@Test
 	void findByNickname() {
 		List<User> users = userRepository.findByNickname("12");
 		System.out.println(users);
 	}
-	
+
 	@Test
 	void deleteAll() {
 		userRepository.deleteAll();
 	}
-	
+
 	@Test
 	void save() {
 		SecureRandom random = new SecureRandom();
 		for (int i = 0; i < 150; i++) {
-			userRepository.save(User.UserBuilder.anUser()
+			userRepository.save(User.builder()
 					.id(UUID.randomUUID().toString().replace("-", ""))
 					.username("user_" + i)
 					.password("passwd_" + i)
@@ -70,7 +67,7 @@ class UserRepositoryTest {
 					.joinDate(LocalDateTime.now())
 					.height(random.nextDouble())
 					.weight(random.nextDouble())
-					.address(Address.AddressBuilder.anAddress()
+					.address(Address.builder()
 							.id(UUID.randomUUID().toString().replace("-", ""))
 							.country("country_" + i)
 							.province("province_" + i)
