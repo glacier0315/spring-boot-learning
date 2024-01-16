@@ -83,6 +83,8 @@ dependencies {
         // alibaba
         api "io.seata:seata-spring-boot-starter:2.0.0"
 
+        api "org.redisson:redisson-spring-boot-starter:3.25.2"
+
         // 其他
         api "com.alibaba:easyexcel:${easyexcel}"
         api "org.apache.poi:poi:${poi}"

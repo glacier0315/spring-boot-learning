@@ -1,0 +1,20 @@
+debug: true
+
+spring:
+  data:
+    redis:
+      host: 192.168.20.110
+      port: 6379
+      # 数据库
+      database: 0
+      # 用户名，如果有
+      # username:
+      # 密码，如果有
+      # password:
+      # 连接超时
+      connect-timeout: 5s
+      # 读超时
+      timeout: 5s
+  redis:
+    redisson:
+      file: classpath:redisson.yaml
