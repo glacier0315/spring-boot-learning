@@ -3,6 +3,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation("org.springframework.boot:spring-boot-starter-aop")
+    implementation("org.springframework.boot:spring-boot-starter-data-redis") {
+        exclude(group: "io.lettuce", module: "lettuce-core")
+    }
 
     implementation("redis.clients:jedis")
 }

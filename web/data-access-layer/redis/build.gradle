@@ -1,8 +1,5 @@
 subprojects {
     dependencies {
-        implementation("org.springframework.boot:spring-boot-starter-data-redis") {
-            exclude(group: "io.lettuce", module: "lettuce-core")
-        }
         implementation("org.springframework.boot:spring-boot-starter-cache")
         implementation("org.apache.commons:commons-pool2")
     }
