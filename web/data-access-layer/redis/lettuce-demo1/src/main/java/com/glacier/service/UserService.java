@@ -9,13 +9,13 @@ import com.glacier.entity.User;
  * @version 1.0
  */
 public interface UserService {
-	
+
 	void addUser(User user);
-	
+
 	User getUserByUsername(String username);
-	
+
 	User updateUser(User user);
-	
+
 	void deleteByUsername(String username);
 
     void deleteAll();
