@@ -26,15 +26,27 @@ public class AsyncConfig {
      */
     @Bean("taskExecutor")
     public TaskExecutor taskExecutor() {
-        // 创建线程池
-        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(5); // 设置核心池大小
-        executor.setMaxPoolSize(10); // 设置最大池大小，只有在缓冲队列满了之后才会申请超过核心线程数的线程
-        executor.setQueueCapacity(100); // 设置队列容量
-        executor.setKeepAliveSeconds(60); // 设置保持活动秒数，当超过了核心线程数之外的线程在空闲时间到达之后会被销毁
-        executor.setThreadNamePrefix("custom-Thread-"); // 设置线程名称前缀
-        // 设置拒绝的执行处理策略
-        executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
-        return executor;
+        ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
+        // 核心线程数
+        taskExecutor.setCorePoolSize(5);
+        // 最大线程数
+        taskExecutor.setMaxPoolSize(50);
+        // 缓冲队列数
+        taskExecutor.setQueueCapacity(100);
+        // 允许线程空闲时间
+        taskExecutor.setKeepAliveSeconds(30);
+        // 线程池前缀名
+        taskExecutor.setThreadNamePrefix("Task_Service_Async_");
+        /*
+         * allowCoreThreadTimeOut为true则线程池数量最后销毁到0个
+         * allowCoreThreadTimeOut为false
+         * 销毁机制：超过核心线程数时，而且（超过最大值或者timeout过），就会销毁。
+         * 默认是false
+         */
+        taskExecutor.setAllowCoreThreadTimeOut(false);
+        taskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+        //线程池初始化
+        taskExecutor.initialize();
+        return taskExecutor;
     }
 }
