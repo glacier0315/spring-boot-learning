@@ -1,20 +1,10 @@
 spring:
   profiles:
     active: dev
-  redis:
-    cluster:
-      nodes:
-        - 192.168.20.100:6371
-        - 192.168.20.100:6372
-        - 192.168.20.100:6373
-        - 192.168.20.100:6374
-        - 192.168.20.100:6375
-        - 192.168.20.100:6376
-    client-type: lettuce
 
 
 server:
-  port: 80
+  port: 8080
   servlet:
     encoding:
       # 修改编码
