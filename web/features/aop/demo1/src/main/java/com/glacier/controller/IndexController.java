@@ -1,7 +1,7 @@
 package com.glacier.controller;
 
 import com.glacier.aop.Log;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,10 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class IndexController {
-	
-	@Log("首页")
-    @RequestMapping()
-    public String[] index(Model model) {
-		return new String[]{"我是1", "我是2", "我是3", "我是4"};
+
+    @Log("首页")
+    @GetMapping("")
+    public String[] index() {
+        return new String[]{"我是1", "我是2", "我是3", "我是4"};
+    }
+
+    @Log("异常")
+    @GetMapping("/exp")
+    public String exception() {
+        throw new RuntimeException("异常1");
     }
 }

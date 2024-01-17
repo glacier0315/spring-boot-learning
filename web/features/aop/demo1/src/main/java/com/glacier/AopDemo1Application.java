@@ -12,12 +12,12 @@ import org.springframework.context.annotation.Bean;
  * @version 1.0
  */
 @SpringBootApplication
-public class SpringbootAop1Application {
-	
+public class AopDemo1Application {
+
 	public static void main(String[] args) {
-		SpringApplication.run(SpringbootAop1Application.class, args);
+		SpringApplication.run(AopDemo1Application.class, args);
 	}
-	
+
 	/**
 	 * 启动成功
 	 */
