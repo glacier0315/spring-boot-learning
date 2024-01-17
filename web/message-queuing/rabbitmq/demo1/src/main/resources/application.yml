@@ -2,10 +2,10 @@ spring:
   profiles:
     active: dev
   rabbitmq:
-    host: 192.168.20.100
+    host: 192.168.20.120
     port: 5672
-    username: ems
-    password: ems
+    username: guest
+    password: guest
     virtual-host: ems
 
 management:
