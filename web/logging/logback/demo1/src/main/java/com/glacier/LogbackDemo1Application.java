@@ -12,12 +12,12 @@ import org.springframework.context.annotation.Bean;
  * @version 1.0
  */
 @SpringBootApplication
-public class SpringbootLogback1Application {
-	
+public class LogbackDemo1Application {
+
 	public static void main(String[] args) {
-		SpringApplication.run(SpringbootLogback1Application.class, args);
+		SpringApplication.run(LogbackDemo1Application.class, args);
 	}
-	
+
 	/**
 	 * 启动成功
 	 */

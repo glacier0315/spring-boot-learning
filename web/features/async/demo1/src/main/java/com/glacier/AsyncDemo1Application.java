@@ -12,10 +12,10 @@ import org.springframework.context.annotation.Bean;
  * @version 1.0
  */
 @SpringBootApplication
-public class SpringbootAsync1Application {
+public class AsyncDemo1Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringbootAsync1Application.class, args);
+		SpringApplication.run(AsyncDemo1Application.class, args);
 	}
 
 	/**

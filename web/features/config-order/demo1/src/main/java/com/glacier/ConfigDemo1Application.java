@@ -14,12 +14,12 @@ import org.springframework.context.annotation.Bean;
  */
 @EnableConfigurationProperties
 @SpringBootApplication
-public class SpringbootConfigDemo1Application {
-	
+public class ConfigDemo1Application {
+
 	public static void main(String[] args) {
-		SpringApplication.run(SpringbootConfigDemo1Application.class, args);
+		SpringApplication.run(ConfigDemo1Application.class, args);
 	}
-	
+
 	/**
 	 * 启动成功
 	 */
