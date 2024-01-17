@@ -19,9 +19,9 @@ import jakarta.validation.ConstraintViolationException;
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
-	
+
 	/**
 	 * 异常 统一处理
 	 *
@@ -32,9 +32,9 @@ public class GlobalExceptionHandler {
 	@ResponseBody
 	public Result<String> handle500(BindException e) {
 		LOGGER.error("参数校验失败！", e);
-		return Result.fail(500, "参数校验失败！");
+		return Result.fail(500, e.getMessage());
 	}
-	
+
 	/**
 	 * 异常 统一处理
 	 *
@@ -47,7 +47,7 @@ public class GlobalExceptionHandler {
 		LOGGER.error("参数校验失败！", e);
 		return Result.fail(500, "参数校验失败！");
 	}
-	
+
 	/**
 	 * 异常 统一处理
 	 *

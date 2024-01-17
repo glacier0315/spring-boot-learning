@@ -1,6 +1,5 @@
 package com.glacier.controller;
 
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class IndexController {
 
     @RequestMapping()
-    public String[] index(String messge) {
+    public String[] index() {
 		return new String[]{"我是1", "我是2", "我是3", "我是4"};
     }
 }

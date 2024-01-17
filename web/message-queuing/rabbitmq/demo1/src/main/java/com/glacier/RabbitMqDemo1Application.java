@@ -12,12 +12,12 @@ import org.springframework.context.annotation.Bean;
  * @version 1.0
  */
 @SpringBootApplication
-public class RabbitmqDemo1Application {
-	
+public class RabbitMqDemo1Application {
+
 	public static void main(String[] args) {
-		SpringApplication.run(RabbitmqDemo1Application.class, args);
+		SpringApplication.run(RabbitMqDemo1Application.class, args);
 	}
-	
+
 	/**
 	 * 启动成功
 	 */

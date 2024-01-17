@@ -23,14 +23,14 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
-	
+
 	private final Set<User> users = new HashSet<>(200);
-	
+
 	@PostConstruct
 	public void init() {
 		SecureRandom random = new SecureRandom();
 		for (int i = 0; i < 150; i++) {
-			this.users.add(User.UserBuilder.anUser()
+			this.users.add(User.builder()
 					.id(UUID.randomUUID().toString().replace("-", ""))
 					.username("user_" + i)
 					.password("passwd_" + i)
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 					.joinDate(LocalDateTime.now())
 					.height(random.nextDouble())
 					.weight(random.nextDouble())
-					.address(Address.AddressBuilder.anAddress()
+					.address(Address.builder()
 							.country("country_" + i)
 							.province("province_" + i)
 							.city("city_" + i)
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
 					.build());
 		}
 	}
-	
+
 	/**
 	 * 查询用户
 	 *
@@ -65,12 +65,12 @@ public class UserServiceImpl implements UserService {
 				.findFirst()
 				.orElse(null);
 	}
-	
+
 	@Override
 	public List<User> findAll() {
 		return new ArrayList<>(this.users);
 	}
-	
+
 	@Override
 	public List<User> findList(User user) {
 		return this.users.parallelStream()

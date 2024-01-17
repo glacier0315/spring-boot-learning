@@ -30,24 +30,24 @@ import java.util.UUID;
 @AutoConfigureMockMvc
 @SpringBootTest
 class UserControllerTest {
-	
+
 	@Autowired
 	private MockMvc mockMvc;
 	@MockBean
 	private UserService userService;
-	
+
 	@BeforeEach
 	void setUp() {
 	}
-	
+
 	@AfterEach
 	void tearDown() {
 	}
-	
+
 	@Test
 	void index() throws Exception {
 		String username = "user_1";
-		
+
 		// mockbean 开始模拟
 		User user = bookServiceMockBean(username);
 		// 测试
@@ -57,7 +57,7 @@ class UserControllerTest {
 				.andExpect(MockMvcResultMatchers.jsonPath("$.password").value("passwd_1"))
 				.andDo(MockMvcResultHandlers.print());
 	}
-	
+
 	/**
 	 * 其他服务未开发，模拟
 	 *
@@ -65,7 +65,7 @@ class UserControllerTest {
 	 */
 	private User bookServiceMockBean(String username) {
 		SecureRandom random = new SecureRandom();
-		User user = User.UserBuilder.anUser()
+		User user = User.builder()
 				.id(UUID.randomUUID().toString().replace("-", ""))
 				.username("user_1")
 				.password("passwd_1")
@@ -77,14 +77,14 @@ class UserControllerTest {
 				.joinDate(LocalDateTime.now())
 				.height(random.nextDouble())
 				.weight(random.nextDouble())
-				.address(Address.AddressBuilder.anAddress()
+				.address(Address.builder()
 						.country("country_1")
 						.province("province_1")
 						.city("city_1")
 						.detail("detail_1")
 						.build())
 				.build();
-		
+
 		BDDMockito.given(userService.findByUsername(username))
 				.willReturn(user);
 		return user;

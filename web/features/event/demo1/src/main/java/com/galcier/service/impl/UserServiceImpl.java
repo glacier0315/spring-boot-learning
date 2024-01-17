@@ -7,8 +7,7 @@ import com.galcier.event.UserEvent;
 import com.galcier.service.UserService;
 import jakarta.annotation.Resource;
 import lombok.NonNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
@@ -23,12 +22,11 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author glacier
  * @version 1.0
  */
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService, ApplicationEventPublisherAware {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
-
-    Map<String, User> userMap = new ConcurrentHashMap<>();
+    private final static Map<String, User> USER_MAP = new ConcurrentHashMap<>();
     /**
      * 底层发送事件用的组件，SpringBoot会通过ApplicationEventPublisherAware接口自动注入给我们
      * 事件是广播出去的。所有监听这个事件的监听器都可以收到
@@ -40,8 +38,8 @@ public class UserServiceImpl implements UserService, ApplicationEventPublisherAw
 
     @Override
     public String register(User user) {
-        userMap.put(user.getUsername(), user);
-        LOGGER.info("register 当前线程： {}", Thread.currentThread().getName());
+        USER_MAP.put(user.getUsername(), user);
+        log.info("register 当前线程： {}", Thread.currentThread().getName());
         // 发布消息
         applicationEventPublisher.publishEvent(new UserEvent(user, HandleType.REGISTER));
         // 泛型
@@ -53,7 +51,7 @@ public class UserServiceImpl implements UserService, ApplicationEventPublisherAw
 
     @Override
     public String login(User user) {
-        LOGGER.info("login 当前线程： {}", Thread.currentThread().getName());
+        log.info("login 当前线程： {}", Thread.currentThread().getName());
         // 发布消息
         applicationContext.publishEvent(new UserEvent(user, HandleType.LOGIN));
         // 泛型
@@ -65,9 +63,9 @@ public class UserServiceImpl implements UserService, ApplicationEventPublisherAw
 
     @Override
     public String logout(String username) {
-        LOGGER.info("logout 当前线程： {}", Thread.currentThread().getName());
+        log.info("logout 当前线程： {}", Thread.currentThread().getName());
         // 发布消息
-        applicationEventPublisher.publishEvent(new UserEvent(userMap.get(username), HandleType.LOGIN));
+        applicationEventPublisher.publishEvent(new UserEvent(USER_MAP.get(username), HandleType.LOGIN));
         return "success";
     }
 

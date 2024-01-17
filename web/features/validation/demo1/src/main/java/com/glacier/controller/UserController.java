@@ -7,10 +7,7 @@ import org.hibernate.validator.constraints.Length;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
@@ -24,28 +21,28 @@ import jakarta.validation.constraints.NotEmpty;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
-	
+
 	private final UserService userService;
-	
+
 	@Autowired
 	public UserController(UserService userService) {
 		this.userService = userService;
 	}
-	
+
 	/**
 	 * 新增用户
 	 *
 	 * @param user
 	 */
 	@PostMapping("save")
-	public Result<String> save(@Valid User user) {
+	public Result<String> save(@RequestBody @Valid User user) {
 		LOGGER.info("新增用户 {}", user);
 		userService.save(user);
 		return Result.ok("操作成功！");
 	}
-	
+
 	/**
 	 * @param username
 	 * @return
