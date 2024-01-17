@@ -13,11 +13,9 @@ import java.util.concurrent.*;
  */
 @Slf4j
 public class CacheEventListener {
-    private final Cache cache;
     private final ThreadPoolExecutor executor;
 
-    public CacheEventListener(Cache cache) {
-        this.cache = cache;
+    public CacheEventListener() {
         executor = initThreadPool();
     }
 
@@ -40,6 +38,8 @@ public class CacheEventListener {
 
 
     public void evictCache(Cache cache, Object key) {
+        cache.evict(key);
+        log.info("缓存删除：{}, {}", cache.getName(), key);
         executor.execute(() -> {
             try {
                 Thread.sleep(500);
@@ -53,6 +53,8 @@ public class CacheEventListener {
     }
 
     public void clearCache(Cache cache) {
+        cache.clear();
+        log.info("缓存清空：{}", cache.getName());
         executor.execute(() -> {
             try {
                 Thread.sleep(500);

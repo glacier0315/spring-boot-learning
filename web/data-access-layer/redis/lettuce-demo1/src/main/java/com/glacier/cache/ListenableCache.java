@@ -18,7 +18,7 @@ public class ListenableCache implements Cache {
 
     public ListenableCache(Cache cache) {
         this.cache = cache;
-        this.cacheEventListener = new CacheEventListener(cache);
+        this.cacheEventListener = new CacheEventListener();
     }
 
     @Override
@@ -53,31 +53,11 @@ public class ListenableCache implements Cache {
 
     @Override
     public void evict(Object key) {
-        cache.evict(key);
-        if (log.isDebugEnabled()) {
-            log.debug("Evict cache");
-        }
-        try {
-            cacheEventListener.evictCache(cache, key);
-        } finally {
-            if (log.isDebugEnabled()) {
-                log.debug("Evict cache delayed operation published");
-            }
-        }
+        cacheEventListener.evictCache(cache, key);
     }
 
     @Override
     public void clear() {
-        cache.clear();
-        if (log.isDebugEnabled()) {
-            log.debug("Clear  cache");
-        }
-        try {
-            cacheEventListener.clearCache(cache);
-        } finally {
-            if (log.isDebugEnabled()) {
-                log.debug("Clear cache delayed operation published");
-            }
-        }
+        cacheEventListener.clearCache(cache);
     }
 }
