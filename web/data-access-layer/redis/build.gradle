@@ -2,5 +2,7 @@ subprojects {
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter-cache")
         implementation("org.apache.commons:commons-pool2")
+        // 处理localDateTime
+        implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
     }
 }

@@ -13,19 +13,15 @@ import java.util.List;
  */
 public interface ProductService {
 
-    int deleteById(Long id);
-
     int save(Product product);
 
     int update(Product product);
 
-    Product getById1(Long id);
+    Product getProductById(Long id);
 
-    Product getById2(Long id);
+    Product getProductByName(String name);
 
-    Product findById(Long id);
-
-    List<Product> findByName(String name);
+    Product getProductByCode(String code);
 
     List<Product> findList(Product product);
 }

@@ -9,9 +9,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.cache.annotation.*;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * date 2021-09-27 15:30
@@ -25,23 +24,7 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
-    public static final Map<String, User> USER_MAP = new ConcurrentHashMap<>(16);
-
-    @Override
-    public List<User> findAll() {
-        return new ArrayList<>(USER_MAP.values());
-    }
-
-    @Override
-    public List<User> findList(User user) {
-        if (user == null || user.getUsername() == null || user.getUsername().isBlank()) {
-            return new ArrayList<>(USER_MAP.values());
-        }
-        return USER_MAP.values()
-                .stream()
-                .filter(e -> Objects.equals(e.getUsername(), user.getUsername()))
-                .collect(Collectors.toList());
-    }
+    public static final Map<String, User> USER_MAP = new HashMap<>(16);
 
     @Override
     public void addUser(User user) {
