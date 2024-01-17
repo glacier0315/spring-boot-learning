@@ -34,7 +34,7 @@ import java.util.TimeZone;
  */
 @Configuration
 public class JsonConfiguration {
-	
+
 	/**
 	 * 自定义 LocalDate、LocalDateTime序列化器
 	 *
@@ -54,7 +54,7 @@ public class JsonConfiguration {
 				new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(dateTimePattern)));
 		return timeModule;
 	}
-	
+
 	/**
 	 * 配置 ObjectMapper
 	 *
@@ -67,10 +67,7 @@ public class JsonConfiguration {
 	public ObjectMapper jacksonObjectMapper(Jackson2ObjectMapperBuilder builder) {
 		ObjectMapper objectMapper = builder.createXmlMapper(false)
 				.build();
-		objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-		objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance,
-				ObjectMapper.DefaultTyping.NON_FINAL);
-		
+
 		// 忽略无法转换的对象
 		objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 		// PrettyPrinter 格式化输出
@@ -84,18 +81,18 @@ public class JsonConfiguration {
 		objectMapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
 		// 允许出现单引号
 		objectMapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
-		
+
 		// 指定时区
 		objectMapper.setTimeZone(TimeZone.getTimeZone("GMT+8:00"));
 		// 日期类型字符串处理
 		objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
-		
+
 		objectMapper.registerModule(javaTimeModule());
 		// 为objectMapper注册一个带有SerializerModifier的Factory
 		objectMapper.setSerializerFactory(
 				objectMapper.getSerializerFactory()
 						.withSerializerModifier(new MyBeanSerializerModifier()));
-		
+
 		SerializerProvider serializerProvider = objectMapper.getSerializerProvider();
 		serializerProvider.setNullValueSerializer(
 				new CustomizeNullJsonSerializer
