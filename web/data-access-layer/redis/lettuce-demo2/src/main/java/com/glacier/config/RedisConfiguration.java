@@ -13,10 +13,8 @@ import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.RedisSerializationContext;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.time.Duration;
 
@@ -43,16 +41,16 @@ public class RedisConfiguration {
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
+
         // key采用String的序列化方式
-        RedisSerializer<String> ksySerializer = keySerializer();
-        redisTemplate.setKeySerializer(ksySerializer);
-        // hash的key也采用String的序列化方式
-        redisTemplate.setHashKeySerializer(ksySerializer);
+        RedisSerializer<String> keySerializer = RedisSerializer.string();
+        redisTemplate.setKeySerializer(keySerializer);
+        redisTemplate.setHashKeySerializer(keySerializer);
         // value序列化方式采用jackson
-        RedisSerializer<Object> valueSerializer = valueSerializer();
+        RedisSerializer<Object> valueSerializer = new GenericJackson2JsonRedisSerializer(objectMapper);
         redisTemplate.setValueSerializer(valueSerializer);
-        // hash的value序列化方式采用jackson
         redisTemplate.setHashValueSerializer(valueSerializer);
+
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
     }
@@ -70,8 +68,6 @@ public class RedisConfiguration {
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
                 .entryTtl(Duration.ofSeconds(30))
                 .prefixCacheNameWith("cache:")
-                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(keySerializer()))
-                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(valueSerializer()))
                 .disableCachingNullValues();
 
         // 生成两套默认配置，通过 Config 对象即可对缓存进行自定义配置
@@ -79,8 +75,6 @@ public class RedisConfiguration {
                 // 设置过期时间 10 分钟
                 .entryTtl(Duration.ofMinutes(10))
                 .prefixCacheNameWith("cache:")
-                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(keySerializer()))
-                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(valueSerializer()))
                 .disableCachingNullValues();
         RedisCacheManager cacheManager = RedisCacheManager.builder(redisConnectionFactory)
                 .cacheDefaults(config)
@@ -88,23 +82,5 @@ public class RedisConfiguration {
                 .transactionAware()
                 .build();
         return new EnhancedCacheManager(cacheManager);
-    }
-
-    /**
-     * key 序列化
-     *
-     * @return
-     */
-    private RedisSerializer<String> keySerializer() {
-        return new StringRedisSerializer();
-    }
-
-    /**
-     * 值采用JSON序列化
-     *
-     * @return
-     */
-    private RedisSerializer<Object> valueSerializer() {
-        return new Jackson2JsonRedisSerializer<>(objectMapper, Object.class);
     }
 }
