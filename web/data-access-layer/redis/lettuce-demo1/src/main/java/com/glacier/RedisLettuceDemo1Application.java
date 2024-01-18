@@ -10,9 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version 1.0
  */
 @SpringBootApplication
-public class SpringDataRedisLettuceDemo3Application {
+public class RedisLettuceDemo1Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringDataRedisLettuceDemo3Application.class, args);
+		SpringApplication.run(RedisLettuceDemo1Application.class, args);
 	}
 }
