@@ -12,6 +12,9 @@ public interface StockService {
     void addSyncStock1(String key, long count);
     void addSyncStock2(String key, long count);
     void addSyncStock3(String key, long count);
-
+    void addSyncStock4(String key, long count);
+    void addSyncStock5(String key, long count);
+    void addSyncStock6(String key, long count);
+    void addSyncStock7(String key, long count);
     long getStock(String key);
 }

@@ -41,7 +41,6 @@ class StockServiceTest {
                     return thread;
                 },
                 new ThreadPoolExecutor.AbortPolicy());
-
     }
 
     @AfterAll
@@ -62,7 +61,7 @@ class StockServiceTest {
 
     @DisplayName("未加锁")
     @Test
-    void addClock() {
+    void addStock() {
         int max = 200;
         CountDownLatch countDownLatch = new CountDownLatch(max);
         String key = UUID.randomUUID().toString();
@@ -81,7 +80,7 @@ class StockServiceTest {
         }
     }
 
-    @DisplayName("分布式锁1")
+    @DisplayName("分布式锁 lock 有watchdog")
     @Test
     void addSyncStock1() {
         int max = 500;
@@ -102,7 +101,7 @@ class StockServiceTest {
         }
     }
 
-    @DisplayName("分布式锁2")
+    @DisplayName("分布式锁 lock 无watchdog")
     @Test
     void addSyncStock2() {
         int max = 500;
@@ -123,7 +122,7 @@ class StockServiceTest {
         }
     }
 
-    @DisplayName("分布式锁3")
+    @DisplayName("分布式锁 tryLock 有watchdog")
     @Test
     void addSyncStock3() {
         int max = 500;
@@ -133,6 +132,90 @@ class StockServiceTest {
         for (int i = 0; i < max; i++) {
             executor.execute(() -> {
                 stockService.addSyncStock3(key, 1);
+                countDownLatch.countDown();
+            });
+        }
+        try {
+            countDownLatch.await();
+            Assertions.assertEquals(max, stockService.getStock(key));
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @DisplayName("分布式锁 tryLock 无watchdog")
+    @Test
+    void addSyncStock4() {
+        int max = 500;
+        CountDownLatch countDownLatch = new CountDownLatch(max);
+        String key = UUID.randomUUID().toString();
+        System.out.println("key:\t" + key);
+        for (int i = 0; i < max; i++) {
+            executor.execute(() -> {
+                stockService.addSyncStock3(key, 1);
+                countDownLatch.countDown();
+            });
+        }
+        try {
+            countDownLatch.await();
+            Assertions.assertEquals(max, stockService.getStock(key));
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @DisplayName("分布式锁 重入")
+    @Test
+    void addSyncStock5() {
+        int max = 500;
+        CountDownLatch countDownLatch = new CountDownLatch(max);
+        String key = UUID.randomUUID().toString();
+        System.out.println("key:\t" + key);
+        for (int i = 0; i < max; i++) {
+            executor.execute(() -> {
+                stockService.addSyncStock3(key, 1);
+                countDownLatch.countDown();
+            });
+        }
+        try {
+            countDownLatch.await();
+            Assertions.assertEquals(max, stockService.getStock(key));
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @DisplayName("分布式锁 lock 有watchdog 案例")
+    @Test
+    void addSyncStock6() {
+        int max = 3;
+        CountDownLatch countDownLatch = new CountDownLatch(max);
+        String key = UUID.randomUUID().toString();
+        System.out.println("key:\t" + key);
+        for (int i = 0; i < max; i++) {
+            executor.execute(() -> {
+                stockService.addSyncStock6(key, 1);
+                countDownLatch.countDown();
+            });
+        }
+        try {
+            countDownLatch.await();
+            Assertions.assertEquals(max, stockService.getStock(key));
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @DisplayName("分布式锁 tryLock 有watchdog 案例")
+    @Test
+    void addSyncStock7() {
+        int max = 3;
+        CountDownLatch countDownLatch = new CountDownLatch(max);
+        String key = UUID.randomUUID().toString();
+        System.out.println("key:\t" + key);
+        for (int i = 0; i < max; i++) {
+            executor.execute(() -> {
+                stockService.addSyncStock7(key, 1);
                 countDownLatch.countDown();
             });
         }

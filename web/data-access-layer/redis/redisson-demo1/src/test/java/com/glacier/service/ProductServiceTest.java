@@ -4,8 +4,9 @@ import com.glacier.entity.Product;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * date 2024-01-18 11:36
@@ -18,6 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class ProductServiceTest {
     @Resource
     private ProductService productService;
+    @Resource
+    private ThreadPoolTaskExecutor taskExecutor;
 
     @BeforeEach
     void setUp() {
@@ -27,8 +30,15 @@ class ProductServiceTest {
     void tearDown() {
     }
 
+    @DisplayName("测试 删除")
     @Test
     void deleteById() {
+        long id = 1L;
+        Product product1 = productService.getById1(id);
+        Product product2 = productService.getById1(id);
+        System.out.println("product1:\t" + product1);
+        System.out.println("product2:\t" + product2);
+        productService.deleteById(id);
     }
 
     @Test
@@ -53,7 +63,7 @@ class ProductServiceTest {
     @DisplayName("测试 Cacheable 无法缓存null")
     @Test
     void getById1_2() {
-        Assertions.assertThrows(IllegalArgumentException.class,() -> {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             long id = 1000000L;
             Product product1 = productService.getById1(id);
             Product product2 = productService.getById1(id);
@@ -84,8 +94,25 @@ class ProductServiceTest {
         Assertions.assertNull(product2);
     }
 
+    @DisplayName("测试 布隆过滤器")
     @Test
     void findById() {
+        long id = 1L;
+        Product product1 = productService.findById(id);
+        Product product2 = productService.findById(id);
+        Assertions.assertNotNull(product1);
+        Assertions.assertNotNull(product2);
+        Assertions.assertEquals(product1.getName(), product2.getName());
+    }
+
+    @DisplayName("测试 布隆过滤器,key不存在")
+    @Test
+    void findById_2() {
+        long id = 1000000L;
+        Product product1 = productService.findById(id);
+        Product product2 = productService.findById(id);
+        Assertions.assertNull(product1);
+        Assertions.assertNull(product2);
     }
 
     @Test

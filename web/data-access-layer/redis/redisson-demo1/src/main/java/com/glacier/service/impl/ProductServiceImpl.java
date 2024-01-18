@@ -1,25 +1,29 @@
 package com.glacier.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.glacier.entity.Product;
+import com.glacier.enums.CacheConfigEnums;
 import com.glacier.service.ProductService;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RBloomFilter;
+import org.redisson.api.RBucket;
+import org.redisson.api.RMapCache;
 import org.redisson.api.RedissonClient;
-import org.redisson.client.codec.StringCodec;
+import org.redisson.codec.JsonJacksonCodec;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.LongAdder;
 import java.util.stream.Collectors;
 
@@ -30,8 +34,8 @@ import java.util.stream.Collectors;
  * @version 1.0
  */
 @Slf4j
-@Service
 @CacheConfig(cacheNames = "product")
+@Service
 public class ProductServiceImpl implements ProductService {
     public static final Map<Long, Product> PRODUCT_MAP = new ConcurrentHashMap<>(16);
     public static final long MAX_DATA = 10000;
@@ -41,17 +45,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Resource
     private ThreadPoolTaskExecutor taskExecutor;
+    @Resource
+    private ObjectMapper objectMapper;
 
     private RBloomFilter<String> bloomFilter;
 
     private static LongAdder count = new LongAdder();
-
-    /**
-     * 非法请求所返回的JSON
-     */
-    static String illegalJson = """
-            [com.glacier.entity.Product, {id:null}]
-            """;
 
     //    @PostConstruct
     public void init() {
@@ -89,7 +88,14 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public int deleteById(Long id) {
         if (PRODUCT_MAP.containsKey(id)) {
-            PRODUCT_MAP.remove(id);
+//            PRODUCT_MAP.remove(id);
+            String key = "id_" + id;
+//            RMapCache<String, Product> cache = redissonClient.getMapCache(getKeyPrefix(), new JsonJacksonCodec(objectMapper));
+//            log.info("查询缓存 {}", cache.get(key));
+//            cache.remove(key);
+            RBucket<Object> bucket = redissonClient.getBucket(getKeyPrefix() + key, new JsonJacksonCodec(objectMapper));
+            log.info("查询缓存 {}", bucket.get());
+            bucket.deleteAsync();
             return 1;
         }
         return 0;
@@ -120,6 +126,13 @@ public class ProductServiceImpl implements ProductService {
         return PRODUCT_MAP.get(id);
     }
 
+    /**
+     * 设置unless = "#result==null"并在非法访问的时候返回null的目的是不将该次查询返回的null使用
+     * RedissonConfig-->RedisCacheManager-->RedisCacheConfiguration-->entryTtl设置的过期时间存入缓存。
+     *
+     * @param id
+     * @return
+     */
     @Cacheable(key = "'id_' + #id", unless = "#result==null")
     @Override
     public Product getById2(Long id) {
@@ -130,6 +143,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product findById(Long id) {
         String key = "id_" + id;
+        SecureRandom random = new SecureRandom();
+        RBucket<Object> bucket = redissonClient.getBucket(getKeyPrefix() + key, new JsonJacksonCodec(objectMapper));
         if (!bloomFilter.contains(key)) {
             log.info("所要查询的数据既不在缓存中，也不在数据库中，为非法key");
             /*
@@ -143,17 +158,19 @@ public class ProductServiceImpl implements ProductService {
              *
              * 因为Spring Cache本身无法缓存null，因此选择设置为一个其中所有值均为null的JSON，
              */
-            SecureRandom random = new SecureRandom();
-            redissonClient.getBucket("product::id_" + id, new StringCodec()).set(illegalJson, random.nextInt(200) + 300, TimeUnit.SECONDS);
+            bucket.set(null, Duration.ofSeconds(random.nextInt(200) + 300));
             return null;
         }
-        Object object = redissonClient.getBucket("product::id_" + id, new StringCodec()).get();
+        Object object = bucket.get();
         if (object != null) {
             log.info("缓存中存在");
             return (Product) object;
         }
         log.info("不是非法访问，可以访问数据库");
-        return PRODUCT_MAP.get(id);
+        Product product = PRODUCT_MAP.get(id);
+        bucket.set(product);
+        bloomFilter.add(key);
+        return product;
     }
 
     @Cacheable(key = "'name_' + #name")
@@ -177,5 +194,23 @@ public class ProductServiceImpl implements ProductService {
                 .stream()
                 .filter(e -> Objects.equals(e.getName(), product.getName()))
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * 获取缓存前缀
+     *
+     * @return
+     */
+    private String getCachePrefix() {
+        return CacheConfigEnums.COMMON_CACHE_KEY + CacheConfigEnums.PRODUCT_CACHE.getCacheName();
+    }
+
+    /**
+     * 获取缓存key前缀
+     *
+     * @return
+     */
+    private String getKeyPrefix() {
+        return getCachePrefix() + "::";
     }
 }
