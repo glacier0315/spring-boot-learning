@@ -10,7 +10,9 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /**
  * date 2022-01-18 20:53
@@ -48,6 +50,13 @@ public class LogAspect {
         MethodSignature methodSignature = (MethodSignature) point.getSignature();
         // 方法对象
         Method targetMethod = methodSignature.getMethod();
+        Parameter[] parameters = targetMethod.getParameters();
+        if (parameters != null && parameters.length > 0) {
+            log.info("参数名称列表： {}, 值： {}", Arrays.stream(parameters)
+                            .map(Parameter::getName)
+                            .collect(Collectors.toList()),
+                    point.getArgs());
+        }
         // 反射得到自定义注解的方法对象
         Log aLog = targetMethod.getAnnotation(Log.class);
         try {

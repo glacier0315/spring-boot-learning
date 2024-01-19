@@ -4,6 +4,7 @@ import com.glacier.domain.User;
 import com.glacier.service.UserService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ import java.util.UUID;
  * @author glacier
  * @version 1.0
  */
+@DisplayName("测试UserController")
 @AutoConfigureMockMvc
 @SpringBootTest
 class UserControllerTest {
@@ -33,19 +35,20 @@ class UserControllerTest {
 	private MockMvc mockMvc;
 	@MockBean
 	private UserService userService;
-	
+
 	@BeforeEach
 	void setUp() {
 	}
-	
+
 	@AfterEach
 	void tearDown() {
 	}
-	
+
+    @DisplayName("用户列表")
 	@Test
-	void index() throws Exception {
+	void findByUsername() throws Exception {
 		String username = "user_1";
-		
+
 		// mockbean 开始模拟
 		User user = bookServiceMockBean(username);
 		// 测试
@@ -55,7 +58,7 @@ class UserControllerTest {
 				.andExpect(MockMvcResultMatchers.jsonPath("$.password").value("passwd_1"))
 				.andDo(MockMvcResultHandlers.print());
 	}
-	
+
 	/**
 	 * 其他服务未开发，模拟
 	 * @param username
@@ -73,7 +76,7 @@ class UserControllerTest {
 		user.setDuty("duty_");
 		user.setJoinDate(LocalDateTime.now());
 		user.setDoubleData(random.nextDouble() + random.nextInt(1));
-		
+
 		BDDMockito.given(userService.findByUsername(username))
 				.willReturn(user);
 		return user;
