@@ -1,7 +1,6 @@
 package com.glacier.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.glacier.cache.EnhancedCacheManager;
 import com.glacier.enums.CacheConfigEnums;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -88,11 +87,10 @@ public class RedisConfiguration {
                                 .serializeKeysWith((RedisSerializationContext.SerializationPair.fromSerializer(keySerializer)))
                                 .serializeValuesWith((RedisSerializationContext.SerializationPair.fromSerializer(valueSerializer)))));
 
-        RedisCacheManager cacheManager = RedisCacheManager.builder(redisConnectionFactory)
+        return RedisCacheManager.builder(redisConnectionFactory)
                 .cacheDefaults(config)
                 .withInitialCacheConfigurations(cacheMap)
                 .transactionAware()
                 .build();
-        return new EnhancedCacheManager(cacheManager);
     }
 }
