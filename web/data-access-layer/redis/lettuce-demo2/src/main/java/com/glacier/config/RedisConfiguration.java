@@ -2,6 +2,7 @@ package com.glacier.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.glacier.cache.EnhancedCacheManager;
+import com.glacier.enums.CacheConfigEnums;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.CacheManager;
@@ -14,9 +15,13 @@ import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializer;
 
 import java.time.Duration;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * date 2021-09-27 15:30
@@ -64,21 +69,28 @@ public class RedisConfiguration {
     @Bean
     @Primary
     public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
+        RedisSerializer<String> keySerializer = RedisSerializer.string();
+        RedisSerializer<Object> valueSerializer = new GenericJackson2JsonRedisSerializer(objectMapper);
+
         //配置 key value 序列化器，过期时间
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
                 .entryTtl(Duration.ofSeconds(30))
-                .prefixCacheNameWith("cache:")
+                .prefixCacheNameWith(CacheConfigEnums.COMMON_CACHE_KEY)
+                .serializeKeysWith((RedisSerializationContext.SerializationPair.fromSerializer(keySerializer)))
+                .serializeValuesWith((RedisSerializationContext.SerializationPair.fromSerializer(valueSerializer)))
                 .disableCachingNullValues();
 
-        // 生成两套默认配置，通过 Config 对象即可对缓存进行自定义配置
-        RedisCacheConfiguration config1 = RedisCacheConfiguration.defaultCacheConfig()
-                // 设置过期时间 10 分钟
-                .entryTtl(Duration.ofMinutes(10))
-                .prefixCacheNameWith("cache:")
-                .disableCachingNullValues();
+        Map<String, RedisCacheConfiguration> cacheMap = Arrays.stream(CacheConfigEnums.values())
+                .collect(Collectors.toMap(CacheConfigEnums::getCacheName,
+                        t -> RedisCacheConfiguration.defaultCacheConfig()
+                                .entryTtl(t.getTtl())
+                                .prefixCacheNameWith(CacheConfigEnums.COMMON_CACHE_KEY)
+                                .serializeKeysWith((RedisSerializationContext.SerializationPair.fromSerializer(keySerializer)))
+                                .serializeValuesWith((RedisSerializationContext.SerializationPair.fromSerializer(valueSerializer)))));
+
         RedisCacheManager cacheManager = RedisCacheManager.builder(redisConnectionFactory)
                 .cacheDefaults(config)
-                .withCacheConfiguration("user", config1)
+                .withInitialCacheConfigurations(cacheMap)
                 .transactionAware()
                 .build();
         return new EnhancedCacheManager(cacheManager);

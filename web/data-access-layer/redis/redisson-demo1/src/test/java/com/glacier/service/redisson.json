@@ -1,0 +1,11 @@
+{
+  "@class" : "com.glacier.entity.Product",
+  "detail" : "",
+  "id" : [ "java.lang.Long", 1 ],
+  "name" : "name1",
+  "photoAlbum" : "",
+  "pic" : "",
+  "productSn" : "productSn1",
+  "subTitle" : "",
+  "unit" : ""
+}

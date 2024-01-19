@@ -1,0 +1,10 @@
+[ "com.glacier.entity.Product", {
+  "id" : 1,
+  "name" : "name1",
+  "productSn" : "productSn1",
+  "pic" : "",
+  "photoAlbum" : "",
+  "subTitle" : "",
+  "unit" : "",
+  "detail" : ""
+} ]

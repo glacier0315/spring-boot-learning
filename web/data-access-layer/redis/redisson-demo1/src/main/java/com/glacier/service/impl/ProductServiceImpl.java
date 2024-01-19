@@ -9,11 +9,11 @@ import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RBloomFilter;
 import org.redisson.api.RBucket;
-import org.redisson.api.RMapCache;
 import org.redisson.api.RedissonClient;
 import org.redisson.codec.JsonJacksonCodec;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.core.annotation.Order;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
@@ -52,26 +52,7 @@ public class ProductServiceImpl implements ProductService {
 
     private static LongAdder count = new LongAdder();
 
-    //    @PostConstruct
-    public void init() {
-        initBloomFilter();
-        initData();
-    }
-
-    @PostConstruct
-    public void initBloomFilter() {
-        log.info("ProductService 布隆过滤器初始化");
-        // 定义一个布隆过滤器，指定布隆过滤器的名称
-        bloomFilter = redissonClient.getBloomFilter("product");
-        //定义布隆过滤器的大小，以及误差率
-        bloomFilter.tryInit(100000L, 0.003);
-
-        log.info("ProductService 布隆过滤器数据预热");
-        for (long i = 0; i < MAX_DATA; i++) {
-            bloomFilter.add("id_" + i);
-        }
-    }
-
+    @Order(3)
     @PostConstruct
     public void initData() {
         log.info("ProductService 数据初始化");
@@ -83,6 +64,27 @@ public class ProductServiceImpl implements ProductService {
                     .build());
         }
         count.add(MAX_DATA);
+    }
+
+    @Order(2)
+    @PostConstruct
+    public void initBloomFilter() {
+        log.info("ProductService 布隆过滤器初始化");
+        // 定义一个布隆过滤器，指定布隆过滤器的名称
+        bloomFilter = redissonClient.getBloomFilter("product");
+        //定义布隆过滤器的大小，以及误差率
+        bloomFilter.tryInit(100000L, 0.003);
+    }
+
+    @Order(1)
+    @PostConstruct
+    public void initBloomFilterData() {
+        log.info("ProductService 布隆过滤器数据预热");
+        if (bloomFilter != null) {
+            for (long i = 0; i < MAX_DATA; i++) {
+                bloomFilter.add("id2_" + i);
+            }
+        }
     }
 
     @Override
@@ -119,7 +121,7 @@ public class ProductServiceImpl implements ProductService {
         return 0;
     }
 
-    @Cacheable(key = "'id_' + #id")
+    @Cacheable(key = "'id1_' + #id")
     @Override
     public Product getById1(Long id) {
         log.info("访问数据库");
@@ -133,7 +135,7 @@ public class ProductServiceImpl implements ProductService {
      * @param id
      * @return
      */
-    @Cacheable(key = "'id_' + #id", unless = "#result==null")
+    @Cacheable(key = "'id1_' + #id", unless = "#result==null")
     @Override
     public Product getById2(Long id) {
         log.info("访问数据库");
@@ -142,7 +144,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findById(Long id) {
-        String key = "id_" + id;
+        String key = "id2_" + id;
         SecureRandom random = new SecureRandom();
         RBucket<Object> bucket = redissonClient.getBucket(getKeyPrefix() + key, new JsonJacksonCodec(objectMapper));
         if (!bloomFilter.contains(key)) {
