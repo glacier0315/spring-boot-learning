@@ -1,1 +1,29 @@
 #debug: true
+
+spring:
+  rabbitmq:
+    host: 192.168.20.120
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: ems
+    # 开启confirm机制
+    publisher-confirm-type: correlated
+    # 开启return机制
+    publisher-returns: true
+    # 开启return机制
+    listener:
+      type: simple
+      simple:
+        acknowledge-mode: manual # 设置自动确定(ack) manual:为手动确定(即需要调用channel.basicAck才会从队列中删除消息)
+        prefetch: 1              #表示消费者端每次从队列拉取多少个消息进行消费,直到手动确认消费完毕后,才会继续拉取下一条
+        default-requeue-rejected: true #消费被拒绝时 true：为重回队列 false为否
+        retry:
+          enabled: true         #是否支持重试,默认false
+          max-attempts: 3       #重试最大次数,默认3次
+          max-interval: 1000ms #重试最大间隔时间
+    template:
+      mandatory: true
+      retry:
+        enabled: true
+        initial-interval: "2s"

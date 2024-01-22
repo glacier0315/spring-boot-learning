@@ -2,6 +2,7 @@ package com.glacier.produce;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,23 +16,30 @@ import java.util.UUID;
  * @author glacier
  * @version 1.0
  */
+@DisplayName("RabbitTemplate测试")
 @SpringBootTest
 class RabbitTemplateTest {
-	
+
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
-	
+
 	@BeforeEach
 	void setUp() {
 	}
-	
+
 	@AfterEach
 	void tearDown() {
-	}
-	
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 	/**
 	 * hello world模型（点对点消费）
 	 */
+    @DisplayName("点对点消费")
 	@Test
 	void helloWorld() {
 		//第一个参数：发送的队列 第二个参数： 发送的信息
@@ -41,44 +49,49 @@ class RabbitTemplateTest {
 						.toString()
 						.replaceAll("-", ""));
 	}
-	
+
 	/**
 	 * workqueue模式（拿到消息即销毁）
 	 */
+    @DisplayName("workqueue模式（拿到消息即销毁）")
 	@Test
 	void work() {
 		for (int i = 0; i < 10; i++) {
 			rabbitTemplate.convertAndSend("helloQ", "hello spring boot rabbitmq" + i);
 		}
 	}
-	
+
 	/**
 	 * Publish模型（发布订阅/fanout模型）
 	 */
+    @DisplayName("Publish模型（发布订阅/fanout模型）")
 	@Test
 	void fanout() {
 		rabbitTemplate.convertAndSend("fanoutsr", "", "hello spring boot rabbitmq");
 	}
-	
+
 	/**
 	 * Routing（静态路由模型）
 	 */
+    @DisplayName("Routing（静态路由模型）1")
 	@Test
 	void route1() {
 		rabbitTemplate.convertAndSend("routesr", "info","hello spring boot rabbitmq");
 	}
-	
+
 	/**
 	 * Routing（静态路由模型）
 	 */
+    @DisplayName("Routing（静态路由模型）2")
 	@Test
 	void route2() {
 		rabbitTemplate.convertAndSend("routesr", "error","hello spring boot rabbitmq");
 	}
-	
+
 	/**
 	 * topics（动态路由）
 	 */
+    @DisplayName("topics（动态路由）")
 	@Test
 	void topic1() {
 		rabbitTemplate.convertAndSend("topicsr", "order.save.oid","hello spring boot rabbitmq");

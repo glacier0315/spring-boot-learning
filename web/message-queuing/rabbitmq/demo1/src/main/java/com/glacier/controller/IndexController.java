@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class IndexController {
 
     @RequestMapping()
-    public String[] index() {
-		return new String[]{"我是1", "我是2", "我是3", "我是4"};
+    public String index() {
+        return String.valueOf(System.currentTimeMillis());
     }
+
 }

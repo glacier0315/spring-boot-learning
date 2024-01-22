@@ -3,6 +3,7 @@ package com.glacier.service.impl;
 import com.glacier.domain.Address;
 import com.glacier.domain.User;
 import com.glacier.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -20,10 +21,9 @@ import java.util.stream.Collectors;
  * @author glacier
  * @version 1.0
  */
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
-	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
-
 	private final Set<User> users = new HashSet<>(200);
 
 	@PostConstruct
