@@ -1,4 +1,4 @@
-package com.glacier.constant;
+package com.glacier.consts;
 
 /**
  * date 2022-02-12 21:16
@@ -7,9 +7,9 @@ package com.glacier.constant;
  * @version 1.0
  */
 public interface Constant {
-	
+
 	String TOPIC = "my-replicated-topic";
-	
+
 	String GROUP_A = "A-" + TOPIC;
 	String GROUP_B = "B-" + TOPIC;
 }

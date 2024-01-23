@@ -4,10 +4,13 @@ spring:
   #kafka配置
   kafka:
     #这里改为你的kafka服务器ip和端口号
-    bootstrap-servers: 192.168.20.100:9092
+    #bootstrap-servers: 192.168.20.120:9092,192.168.20.130:9092
+    bootstrap-servers: 192.168.20.120:9093
     #=============== producer  =======================
     producer:
-      # 0-不应答。1-leader 应答。all-所有 leader 和 follower 应答。
+      # acks=0 ： 生产者在成功写入消息之前不会等待任何来自服务器的响应。
+      # acks=1 ： 只要集群的首领节点收到消息，生产者就会收到一个来自服务器成功响应。
+      # acks=all ：只有当所有参与复制的节点全部收到消息时，生产者才会收到一个来自服务器的成功响应。
       acks: 1
       #如果该值大于零时，表示启用重试失败的发送次数
       retries: 3
@@ -23,13 +26,14 @@ spring:
     consumer:
       #用于标识此使用者所属的使用者组的唯一字符串
       group-id: test-consumer-group
-      #当Kafka中没有初始偏移量或者服务器上不再存在当前偏移量时该怎么办，默认值为latest，表示自动将偏移重置为最新的偏移量
-      #可选的值为latest, earliest, none
+      # 该属性指定了消费者在读取一个没有偏移量的分区或者偏移量无效的情况下该作何处理：
+      # latest（默认值）在偏移量无效的情况下，消费者将从最新的记录开始读取数据（在消费者启动之后生成的记录）
+      # earliest ：在偏移量无效的情况下，消费者将从起始位置读取分区的记录
       auto-offset-reset: earliest
-      #消费者的偏移量将在后台定期提交，默认值为true
-      enable-auto-commit: true
-      #如果'enable-auto-commit'为true，则消费者偏移自动提交给Kafka的频率（以毫秒为单位），默认值为5000。
-      auto-commit-interval: 100
+      # 是否自动提交偏移量，默认值是true,为了避免出现重复数据和数据丢失，可以把它设置为false,然后手动提交偏移量
+      enable-auto-commit: false
+      #自动提交的时间间隔 这里采用的是值的类型为Duration 需要符合特定的格式，如1S,1M,2H,5D
+      auto-commit-interval: 1S
       #密钥的反序列化器类，实现类实现了接口org.apache.kafka.common.serialization.Deserializer
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       #值的反序列化器类，实现类实现了接口org.apache.kafka.common.serialization.Deserializer
@@ -40,8 +44,12 @@ spring:
             trusted:
               packages: com.glacier.domain
     listener:
-      # 消费监听接口监听的主题不存在时，默认会报错。所以通过设置为 false ，解决报错
-      missing-topics-fatal: true
+      # 消费监听接口监听的主题不存在时，默认会报错。所以通常设置为 false ，解决报错
+      missing-topics-fatal: false
+      # 在侦听器容器中运行的线程数。
+      concurrency: 5
+      #listner负责ack，每调用一次，就立即commit
+      ack-mode: manual_immediate
 
 management:
   endpoints:
