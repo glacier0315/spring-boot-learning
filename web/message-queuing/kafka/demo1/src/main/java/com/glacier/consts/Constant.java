@@ -8,8 +8,13 @@ package com.glacier.consts;
  */
 public interface Constant {
 
-	String TOPIC = "my-replicated-topic";
+    String TOPIC_1 = "my-replicated-topic";
 
-	String GROUP_A = "A-" + TOPIC;
-	String GROUP_B = "B-" + TOPIC;
+    String GROUP_1_A = "A-" + TOPIC_1;
+
+    String GROUP_1_B = "B-" + TOPIC_1;
+
+    String TOPIC_2 = "my-topic";
+
+    String GROUP_2_A = "A-" + TOPIC_2;
 }

@@ -22,6 +22,29 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       #value的Serializer类，实现类实现了接口org.apache.kafka.common.serialization.Serializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      #额外的，没有直接有properties对应的参数，将存放到下面这个Map对象中，一并初始化
+      properties:
+        #自定义拦截器，注意，这里结尾时classes(先于分区器，快递先贴了标签再指定地址)
+        interceptor.classes: com.glacier.produce.MyProducerInterceptor
+        #自定义分区器
+        #partitioner.class: com.alibaba.cola.kafka.test.customer.inteceptor.MyPartitioner
+        #即使达不到batch-size设定的大小，只要超过这个毫秒的时间，一样会发送消息出去
+        linger.ms: 1000
+        #最大请求大小，200M = 200*1024*1024，与服务器broker的message.max.bytes最好匹配一致
+        max.request.size: 209715200
+        #Producer.send()方法的最大阻塞时间(115秒)
+        # 发送消息的速度超过发送到服务器的速度，会导致空间不足。send方法要么被阻塞，要么抛异常
+        # 取决于如何设置max.block.ms，表示抛出异常前可以阻塞一段时间
+        max.block.ms: 115000
+        #该配置控制客户端等待服务器的响应的最长时间。
+        #如果超时之前仍未收到响应，则客户端将在必要时重新发送请求，如果重试次数（retries）已用尽，则会使请求失败。
+        #此值应大于replica.lag.time.max.ms（broker配置），以减少由于不必要的生产者重试而导致消息重复的可能性。
+        request.timeout.ms: 115000
+        #等待send回调的最大时间。常用语重试，如果一定要发送，retries则配Integer.MAX
+        #如果超过该时间：TimeoutException: Expiring 1 record(s) .. has passed since batch creation
+        delivery.timeout.ms: 120000
+        # 生产者在服务器响应之前能发多少个消息，若对消息顺序有严格限制，需要配置为1
+        # max.in.flight.requests.per.connection: 1
     #=============== consumer  =======================
     consumer:
       #用于标识此使用者所属的使用者组的唯一字符串
@@ -34,22 +57,42 @@ spring:
       enable-auto-commit: false
       #自动提交的时间间隔 这里采用的是值的类型为Duration 需要符合特定的格式，如1S,1M,2H,5D
       auto-commit-interval: 1S
+      max-poll-records: 2
       #密钥的反序列化器类，实现类实现了接口org.apache.kafka.common.serialization.Deserializer
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       #值的反序列化器类，实现类实现了接口org.apache.kafka.common.serialization.Deserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
-        spring:
-          json:
-            trusted:
-              packages: com.glacier.domain
+        #如果在这个时间内没有收到心跳，该消费者会被踢出组并触发{组再平衡 rebalance}
+        session.timeout.ms: 120000
+        #最大消费时间。此决定了获取消息后提交偏移量的最大时间，超过设定的时间（默认5分钟），服务端也会认为该消费者失效。踢出并再平衡
+        max.poll.interval.ms: 300000
+        #配置控制客户端等待请求响应的最长时间。
+        #如果在超时之前没有收到响应，客户端将在必要时重新发送请求，
+        #或者如果重试次数用尽，则请求失败。
+        request.timeout.ms: 60000
+        #订阅或分配主题时，允许自动创建主题。0.11之前，必须设置false
+        allow.auto.create.topics: true
+        #poll方法向协调器发送心跳的频率，为session.timeout.ms的三分之一
+        heartbeat.interval.ms: 40000
+        #每个分区里返回的记录最多不超max.partitions.fetch.bytes 指定的字节
+        #0.10.1版本后 如果 fetch 的第一个非空分区中的第一条消息大于这个限制
+        #仍然会返回该消息，以确保消费者可以进行
+        #max.partition.fetch.bytes=1048576  #1M
+        spring.json.trusted.packages: com.glacier.domain
     listener:
       # 消费监听接口监听的主题不存在时，默认会报错。所以通常设置为 false ，解决报错
       missing-topics-fatal: false
       # 在侦听器容器中运行的线程数。
       concurrency: 5
-      #listner负责ack，每调用一次，就立即commit
+      # 当enable.auto.commit的值设置为false时，该值会生效；为true时不会生效
+      # manual_immediate:需要手动调用Acknowledgment.acknowledge()后立即提交
       ack-mode: manual_immediate
+      # type: single #单条消费？批量消费？ #批量消费需要配合 consumer.max-poll-records
+      type: batch
+    template:
+      default-topic: test-topic
+
 
 management:
   endpoints:

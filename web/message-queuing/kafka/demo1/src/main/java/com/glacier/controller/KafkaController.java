@@ -1,5 +1,6 @@
 package com.glacier.controller;
 
+import com.glacier.consts.Constant;
 import com.glacier.domain.User;
 import com.glacier.produce.KafkaProducer;
 import jakarta.annotation.Resource;
@@ -21,13 +22,25 @@ public class KafkaController {
     private KafkaProducer kafkaProducer;
 
     @RequestMapping("/send1")
-    public String send(@RequestParam("nickname") String nickname) {
+    public String send() {
         kafkaProducer.send(User.builder()
                 .id(UUID.randomUUID()
                         .toString()
                         .replace("-", ""))
-                .nickname(nickname)
+                .nickname("Hello" + System.currentTimeMillis())
                 .build());
-        return String.format("消息 %s 发送成功！", nickname);
+        return "消息发送成功";
+    }
+
+    @RequestMapping("/send2")
+    public String send2() {
+        kafkaProducer.send(Constant.TOPIC_2,
+                User.builder()
+                        .id(UUID.randomUUID()
+                                .toString()
+                                .replace("-", ""))
+                        .nickname("glacier")
+                        .build());
+        return "消息发送成功";
     }
 }

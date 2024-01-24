@@ -29,7 +29,7 @@ public class KafkaProducer {
      * @param body 消息体
      */
     public void send(Object body) {
-        send(Constant.TOPIC, "", body);
+        send(Constant.TOPIC_1, "", body);
     }
 
     /**
@@ -54,6 +54,7 @@ public class KafkaProducer {
         log.info("准备发送消息：{}", msg);
         //发送消息
         CompletableFuture<SendResult<String, Object>> future = kafkaTemplate.send(topic, key, msg);
+
         // 发送成功
         future.thenAccept(result -> {
             log.info("发送成功 message={} with offset={}", msg, result.getRecordMetadata().offset());
