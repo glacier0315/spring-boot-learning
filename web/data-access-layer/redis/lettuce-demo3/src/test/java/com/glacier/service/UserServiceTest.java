@@ -61,11 +61,7 @@ class UserServiceTest {
 
     @AfterEach
     void tearDown() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
     @Test
@@ -134,6 +130,11 @@ class UserServiceTest {
     @Test
     void deleteByUsername() {
         userService.deleteByUsername("admin4");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Test
