@@ -90,7 +90,7 @@ class UserServiceTest {
         Assertions.assertEquals(user2.getId(), "5", "查询用户错误");
     }
 
-    @Test
+    @RepeatedTest(10)
     void getUserByUsername() {
         User user1 = userService.getUserByUsername("admin9");
         Assertions.assertEquals(user1.getId(), "9", "查询用户错误");
