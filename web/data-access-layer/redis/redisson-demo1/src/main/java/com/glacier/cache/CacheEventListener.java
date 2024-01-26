@@ -3,7 +3,7 @@ package com.glacier.cache;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.Cache;
 
-import java.util.concurrent.*;
+import java.util.concurrent.DelayQueue;
 
 /**
  * date 2024-01-16 15:33
@@ -13,54 +13,27 @@ import java.util.concurrent.*;
  */
 @Slf4j
 public class CacheEventListener {
+
+    /**
+     * 延迟队列
+     */
+    public static final DelayQueue<CacheDelayTrigger> DELAY_QUEUE = new DelayQueue<>();
+    /**
+     * 缓存
+     */
     private final Cache cache;
-    private final ThreadPoolExecutor executor;
 
     public CacheEventListener(Cache cache) {
         this.cache = cache;
-        executor = initThreadPool();
-    }
-
-    private ThreadPoolExecutor initThreadPool() {
-        SynchronousQueue<Runnable> workQueue = new SynchronousQueue<>();
-        ThreadFactory threadFactory = r -> {
-            Thread thread = new Thread(r);
-            thread.setName("glacier-cache-clear-thread");
-            return thread;
-        };
-        RejectedExecutionHandler defaultHandler = new ThreadPoolExecutor.AbortPolicy();
-        return new ThreadPoolExecutor(0,
-                Integer.MAX_VALUE,
-                60L,
-                TimeUnit.SECONDS,
-                workQueue,
-                threadFactory,
-                defaultHandler);
     }
 
 
     public void evictCache(Cache cache, Object key) {
-        executor.execute(() -> {
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            cache.evict(key);
-            log.info("缓存延迟删除：{}, {}", cache.getName(), key);
-        });
+        DELAY_QUEUE.put(new CacheDelayTrigger(CacheOperation.EVICT, cache.getName(), key, 1000));
 
     }
 
     public void clearCache(Cache cache) {
-        executor.execute(() -> {
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            cache.clear();
-            log.info("缓存延迟清空：{}", cache.getName());
-        });
+        DELAY_QUEUE.put(new CacheDelayTrigger(CacheOperation.CLEAR, cache.getName(), 1000));
     }
 }

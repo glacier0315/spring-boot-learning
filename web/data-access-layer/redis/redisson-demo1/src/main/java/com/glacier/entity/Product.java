@@ -5,6 +5,8 @@ import lombok.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -59,12 +61,12 @@ public class Product implements Serializable {
     /**
      * 促销开始时间
      */
-    private Date promotionStartTime;
+    private LocalDateTime promotionStartTime;
 
     /**
      * 促销结束时间
      */
-    private Date promotionEndTime;
+    private LocalDateTime promotionEndTime;
 
     /**
      * 副标题

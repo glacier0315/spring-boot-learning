@@ -1,6 +1,8 @@
 package com.glacier.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.glacier.entity.CacheRemoveDelayEvent;
+import com.glacier.entity.CacheRemoveEvent;
 import com.glacier.entity.Product;
 import com.glacier.enums.CacheConfigEnums;
 import com.glacier.service.ProductService;
@@ -8,22 +10,23 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RBloomFilter;
-import org.redisson.api.RBucket;
+import org.redisson.api.RDelayedQueue;
+import org.redisson.api.RMapCache;
 import org.redisson.api.RedissonClient;
-import org.redisson.codec.JsonJacksonCodec;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.annotation.Order;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
-import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.DelayQueue;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.LongAdder;
 import java.util.stream.Collectors;
 
@@ -42,12 +45,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Resource
     private RedissonClient redissonClient;
-
-    @Resource
-    private ThreadPoolTaskExecutor taskExecutor;
     @Resource
     private ObjectMapper objectMapper;
-
+    @Resource
+    private RDelayedQueue<CacheRemoveEvent> rDelayedQueue;
+    @Resource
+    DelayQueue<CacheRemoveDelayEvent> delayQueue;
     private RBloomFilter<String> bloomFilter;
 
     private static LongAdder count = new LongAdder();
@@ -61,6 +64,7 @@ public class ProductServiceImpl implements ProductService {
                     .id(i)
                     .name("name" + i)
                     .productSn("productSn" + i)
+                    .promotionStartTime(LocalDateTime.now())
                     .build());
         }
         count.add(MAX_DATA);
@@ -71,7 +75,7 @@ public class ProductServiceImpl implements ProductService {
     public void initBloomFilter() {
         log.info("ProductService 布隆过滤器初始化");
         // 定义一个布隆过滤器，指定布隆过滤器的名称
-        bloomFilter = redissonClient.getBloomFilter("product");
+        bloomFilter = redissonClient.getBloomFilter("product_bl");
         //定义布隆过滤器的大小，以及误差率
         bloomFilter.tryInit(100000L, 0.003);
     }
@@ -82,7 +86,7 @@ public class ProductServiceImpl implements ProductService {
         log.info("ProductService 布隆过滤器数据预热");
         if (bloomFilter != null) {
             for (long i = 0; i < MAX_DATA; i++) {
-                bloomFilter.add("id2_" + i);
+                bloomFilter.add("id_" + i);
             }
         }
     }
@@ -90,18 +94,21 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public int deleteById(Long id) {
         if (PRODUCT_MAP.containsKey(id)) {
-//            PRODUCT_MAP.remove(id);
             String key = "id_" + id;
-//            RMapCache<String, Product> cache = redissonClient.getMapCache(getKeyPrefix(), new JsonJacksonCodec(objectMapper));
-//            log.info("查询缓存 {}", cache.get(key));
-//            cache.remove(key);
-            RBucket<Object> bucket = redissonClient.getBucket(getKeyPrefix() + key, new JsonJacksonCodec(objectMapper));
-            log.info("查询缓存 {}", bucket.get());
-            bucket.deleteAsync();
+            RMapCache<String, Product> mapCache = getCache();
+            log.info("查询缓存1 {}", mapCache.get(key));
+            mapCache.remove(key);
+            log.info("查询缓存2 {}", mapCache.get(key));
+            // 删除数据
+            System.out.println("删除数据");
+            // 再次,延迟删除缓存
+            rDelayedQueue.offer(new CacheRemoveEvent(CacheConfigEnums.PRODUCT_CACHE.getCacheName(), key), 500, TimeUnit.MILLISECONDS);
+//            delayQueue.put(new CacheRemoveDelayEvent(CacheConfigEnums.PRODUCT_CACHE.getCacheName(), key, 500));
             return 1;
         }
         return 0;
     }
+
 
     @Override
     public int save(Product product) {
@@ -121,7 +128,7 @@ public class ProductServiceImpl implements ProductService {
         return 0;
     }
 
-    @Cacheable(key = "'id1_' + #id")
+    @Cacheable(key = "'id_' + #id")
     @Override
     public Product getById1(Long id) {
         log.info("访问数据库");
@@ -135,7 +142,7 @@ public class ProductServiceImpl implements ProductService {
      * @param id
      * @return
      */
-    @Cacheable(key = "'id1_' + #id", unless = "#result==null")
+    @Cacheable(key = "'id_' + #id", unless = "#result==null")
     @Override
     public Product getById2(Long id) {
         log.info("访问数据库");
@@ -144,33 +151,21 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findById(Long id) {
-        String key = "id2_" + id;
-        SecureRandom random = new SecureRandom();
-        RBucket<Object> bucket = redissonClient.getBucket(getKeyPrefix() + key, new JsonJacksonCodec(objectMapper));
+        String key = "id_" + id;
         if (!bloomFilter.contains(key)) {
             log.info("所要查询的数据既不在缓存中，也不在数据库中，为非法key");
-            /*
-             * 设置unless = "#result==null"并在非法访问的时候返回null的目的是不将该次查询返回的null使用
-             * RedissonConfig-->RedisCacheManager-->RedisCacheConfiguration-->entryTtl设置的过期时间存入缓存。
-             *
-             * 因为那段时间太长了，在那段时间内可能该非法key又添加到bloomFilter，比如之前不存在id为1234567的用户，
-             * 在那段时间可能刚好id为1234567的用户完成注册，使该key成为合法key。
-             *
-             * 所以我们需要在缓存中添加一个可容忍的短期过期的null或者是其它自定义的值,使得短时间内直接读取缓存中的该值。
-             *
-             * 因为Spring Cache本身无法缓存null，因此选择设置为一个其中所有值均为null的JSON，
-             */
-            bucket.set(null, Duration.ofSeconds(random.nextInt(200) + 300));
             return null;
         }
-        Object object = bucket.get();
+        SecureRandom random = new SecureRandom();
+        RMapCache<String, Product> mapCache = getCache();
+        Product object = mapCache.get(key);
         if (object != null) {
             log.info("缓存中存在");
-            return (Product) object;
+            return object;
         }
         log.info("不是非法访问，可以访问数据库");
         Product product = PRODUCT_MAP.get(id);
-        bucket.set(product);
+        mapCache.put(key, product, random.nextLong(200L) + 300, TimeUnit.MINUTES);
         bloomFilter.add(key);
         return product;
     }
@@ -197,6 +192,11 @@ public class ProductServiceImpl implements ProductService {
                 .filter(e -> Objects.equals(e.getName(), product.getName()))
                 .collect(Collectors.toList());
     }
+
+    private RMapCache<String, Product> getCache() {
+        return redissonClient.getMapCache(CacheConfigEnums.PRODUCT_CACHE.getCacheName());
+    }
+
 
     /**
      * 获取缓存前缀
