@@ -37,7 +37,7 @@ public class EnhancedProxyMethodInterceptor implements MethodInterceptor {
             // 提供增强代码
             log.info("[动态代理] {}，参数：{}", method.getName(), Arrays.toString(args));
             // 查询动态代理对象的相同签名的方法
-            Method targetMethod = target.getClass().getDeclaredMethod(method.getName(), method.getParameterTypes());
+            Method targetMethod = target.getClass().getMethod(method.getName(), method.getParameterTypes());
             //通过反射调用method对象所表示的方法,并获取该方法的返回值
             //在具有指定参数的指定对象上调用此method对象表示的底层方法。
             //此处就是通过target来确定调用的是具体哪个类中的方法

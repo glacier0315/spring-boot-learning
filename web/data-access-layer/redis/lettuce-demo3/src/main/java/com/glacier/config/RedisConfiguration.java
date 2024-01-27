@@ -5,10 +5,13 @@ import com.glacier.enums.CacheConfigEnums;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.cache.RedisCacheManagerBuilderCustomizer;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
+import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
@@ -57,34 +60,69 @@ public class RedisConfiguration {
         return redisTemplate;
     }
 
-    /**
+//    /**
+//     * 配置缓存管理器
+//     * @return
+//     */
+//    @Bean
+//    RedisCacheManagerBuilderCustomizer redisCacheManagerBuilderCustomizer() {
+//        return builder -> {
+//            RedisSerializer<String> keySerializer = RedisSerializer.string();
+//            RedisSerializer<Object> valueSerializer = new GenericJackson2JsonRedisSerializer(objectMapper);
+//
+//            //配置 key value 序列化器，过期时间
+//            RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
+//                    .entryTtl(Duration.ofSeconds(30))
+//                    .prefixCacheNameWith(CacheConfigEnums.COMMON_CACHE_KEY)
+//                    .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(keySerializer))
+//                    .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(valueSerializer))
+//                    .disableCachingNullValues();
+//
+//            Map<String, RedisCacheConfiguration> configMap = Arrays.stream(CacheConfigEnums.values())
+//                    .collect(Collectors.toMap(CacheConfigEnums::getCacheName,
+//                            t -> RedisCacheConfiguration.defaultCacheConfig()
+//                                    .entryTtl(t.getTtl())
+//                                    .prefixCacheNameWith(CacheConfigEnums.COMMON_CACHE_KEY)
+//                                    .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(keySerializer))
+//                                    .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(valueSerializer))));
+//            builder.cacheDefaults(config)
+//                    .withInitialCacheConfigurations(configMap)
+//                    .transactionAware();
+//        };
+//    }
+
+        /**
      * 配置缓存管理器
-     * @return
+     *
+     * @param redisConnectionFactory Redis 线程安全连接工厂
+     * @return 缓存管理器
      */
     @Bean
-    RedisCacheManagerBuilderCustomizer redisCacheManagerBuilderCustomizer() {
-        return builder -> {
-            RedisSerializer<String> keySerializer = RedisSerializer.string();
-            RedisSerializer<Object> valueSerializer = new GenericJackson2JsonRedisSerializer(objectMapper);
+    @Primary
+    public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
+        RedisSerializer<String> keySerializer = RedisSerializer.string();
+        RedisSerializer<Object> valueSerializer = new GenericJackson2JsonRedisSerializer(objectMapper);
 
-            //配置 key value 序列化器，过期时间
-            RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
-                    .entryTtl(Duration.ofSeconds(30))
-                    .prefixCacheNameWith(CacheConfigEnums.COMMON_CACHE_KEY)
-                    .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(keySerializer))
-                    .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(valueSerializer))
-                    .disableCachingNullValues();
+        //配置 key value 序列化器，过期时间
+        RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
+                .entryTtl(Duration.ofSeconds(30))
+                .prefixCacheNameWith(CacheConfigEnums.COMMON_CACHE_KEY)
+                .serializeKeysWith((RedisSerializationContext.SerializationPair.fromSerializer(keySerializer)))
+                .serializeValuesWith((RedisSerializationContext.SerializationPair.fromSerializer(valueSerializer)))
+                .disableCachingNullValues();
 
-            Map<String, RedisCacheConfiguration> configMap = Arrays.stream(CacheConfigEnums.values())
-                    .collect(Collectors.toMap(CacheConfigEnums::getCacheName,
-                            t -> RedisCacheConfiguration.defaultCacheConfig()
-                                    .entryTtl(t.getTtl())
-                                    .prefixCacheNameWith(CacheConfigEnums.COMMON_CACHE_KEY)
-                                    .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(keySerializer))
-                                    .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(valueSerializer))));
-            builder.cacheDefaults(config)
-                    .withInitialCacheConfigurations(configMap)
-                    .transactionAware();
-        };
+        Map<String, RedisCacheConfiguration> cacheMap = Arrays.stream(CacheConfigEnums.values())
+                .collect(Collectors.toMap(CacheConfigEnums::getCacheName,
+                        t -> RedisCacheConfiguration.defaultCacheConfig()
+                                .entryTtl(t.getTtl())
+                                .prefixCacheNameWith(CacheConfigEnums.COMMON_CACHE_KEY)
+                                .serializeKeysWith((RedisSerializationContext.SerializationPair.fromSerializer(keySerializer)))
+                                .serializeValuesWith((RedisSerializationContext.SerializationPair.fromSerializer(valueSerializer)))));
+
+        return RedisCacheManager.builder(redisConnectionFactory)
+                .cacheDefaults(config)
+                .withInitialCacheConfigurations(cacheMap)
+                .transactionAware()
+                .build();
     }
 }
