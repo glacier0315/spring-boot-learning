@@ -4,6 +4,7 @@ import com.glacier.domain.User;
 import com.glacier.service.UserService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,58 +27,59 @@ import java.util.UUID;
  * @author glacier
  * @version 1.0
  */
+@DisplayName("测试控制层")
 @AutoConfigureMockMvc
 @SpringBootTest
 class UserControllerTest {
-	
-	@Autowired
-	private MockMvc mockMvc;
-	@MockBean
-	private UserService userService;
-	
-	@BeforeEach
-	void setUp() {
-	}
-	
-	@AfterEach
-	void tearDown() {
-	}
-	
-	@Test
-	void index() throws Exception {
-		String username = "user_1";
-		
-		// mockbean 开始模拟
-		User user = bookServiceMockBean(username);
-		// 测试
-		mockMvc.perform(MockMvcRequestBuilders.get("/user/{username}", username))
-				.andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.username").value(username))
-				.andExpect(MockMvcResultMatchers.jsonPath("$.password").value("passwd_1"))
-				.andDo(MockMvcResultHandlers.print());
-	}
-	
-	/**
-	 * 其他服务未开发，模拟
-	 *
-	 * @param username
-	 */
-	private User bookServiceMockBean(String username) {
-		SecureRandom random = new SecureRandom();
-		User user = new User();
-		user.setId(UUID.randomUUID().toString().replace("-", ""));
-		user.setUsername(username);
-		user.setPassword("passwd_1");
-		user.setNickname("昵称_1");
-		user.setBirthday(LocalDate.now());
-		user.setIdCard("123748909876543254654785");
-		user.setSex(String.valueOf(random.nextInt(1)));
-		user.setDuty("duty_");
-		user.setJoinDate(LocalDateTime.now());
-		user.setDoubleData(random.nextDouble() + random.nextInt(1));
-		
-		BDDMockito.given(userService.findByUsername(username))
-				.willReturn(user);
-		return user;
-	}
+
+    @Autowired
+    private MockMvc mockMvc;
+    @MockBean
+    private UserService userService;
+
+    @BeforeEach
+    void setUp() {
+    }
+
+    @AfterEach
+    void tearDown() {
+    }
+
+    @Test
+    void index() throws Exception {
+        String username = "user_1";
+
+        // mockbean 开始模拟
+        User user = bookServiceMockBean(username);
+        // 测试
+        mockMvc.perform(MockMvcRequestBuilders.get("/user/{username}", username))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.username").value(username))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.password").value("passwd_1"))
+                .andDo(MockMvcResultHandlers.print());
+    }
+
+    /**
+     * 其他服务未开发，模拟
+     *
+     * @param username
+     */
+    private User bookServiceMockBean(String username) {
+        SecureRandom random = new SecureRandom();
+        User user = new User();
+        user.setId(UUID.randomUUID().toString().replace("-", ""));
+        user.setUsername(username);
+        user.setPassword("passwd_1");
+        user.setNickname("昵称_1");
+        user.setBirthday(LocalDate.now());
+        user.setIdCard("123748909876543254654785");
+        user.setSex(String.valueOf(random.nextInt(1)));
+        user.setDuty("duty_");
+        user.setJoinDate(LocalDateTime.now());
+        user.setDoubleData(random.nextDouble() + random.nextInt(1));
+
+        BDDMockito.given(userService.findByUsername(username))
+                .willReturn(user);
+        return user;
+    }
 }

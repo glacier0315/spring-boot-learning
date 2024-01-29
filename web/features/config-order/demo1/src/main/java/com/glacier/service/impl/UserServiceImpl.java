@@ -2,6 +2,7 @@ package com.glacier.service.impl;
 
 import com.glacier.domain.User;
 import com.glacier.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -19,12 +20,11 @@ import java.util.stream.Collectors;
  * @author glacier
  * @version 1.0
  */
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
-	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
-	
 	private final Set<User> users = new HashSet<>(200);
-	
+
 	@PostConstruct
 	public void init() {
 		User user = null;
@@ -41,11 +41,11 @@ public class UserServiceImpl implements UserService {
 			user.setDuty("duty_" + i);
 			user.setJoinDate(LocalDateTime.now());
 			user.setDoubleData(random.nextDouble() + random.nextInt(1));
-			
+
 			this.users.add(user);
 		}
 	}
-	
+
 	/**
 	 * 查询用户
 	 *
@@ -59,12 +59,12 @@ public class UserServiceImpl implements UserService {
 				.findFirst()
 				.orElse(null);
 	}
-	
+
 	@Override
 	public List<User> findAll() {
 		return new ArrayList<>(this.users);
 	}
-	
+
 	@Override
 	public List<User> findList(User user) {
 		return this.users.parallelStream()

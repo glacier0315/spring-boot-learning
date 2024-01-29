@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Bean;
  * @author glacier
  * @version 1.0
  */
-@EnableConfigurationProperties
 @SpringBootApplication
 public class ConfigDemo1Application {
 
