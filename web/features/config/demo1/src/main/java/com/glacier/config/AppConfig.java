@@ -1,6 +1,6 @@
 package com.glacier.config;
 
-import com.glacier.domain.AppInfo;
+import com.glacier.domain.DogInfo;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -15,10 +15,9 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties
 @Configuration
 public class AppConfig {
-
     @Bean
-    @ConfigurationProperties(prefix = "app.info", ignoreInvalidFields = true)
-    AppInfo appInfo() {
-        return new AppInfo();
+    @ConfigurationProperties(prefix = "dog", ignoreInvalidFields = true)
+    DogInfo dogInfo() {
+        return new DogInfo();
     }
 }

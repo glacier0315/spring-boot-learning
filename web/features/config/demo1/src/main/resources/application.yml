@@ -80,3 +80,10 @@ app:
 #    property14:
 #      - map1: { id: 1,username: admin,password: admin }
 #      - map2: { id: 2,username: admin2,password: admin2 }
+
+
+dog:
+  id: 9527
+  name: 哮天犬
+  sex: 公
+  age: 100

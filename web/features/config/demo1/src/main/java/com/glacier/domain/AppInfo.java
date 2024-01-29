@@ -3,6 +3,8 @@ package com.glacier.domain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -19,6 +21,8 @@ import java.util.Set;
  * @author glacier
  * @version 1.0
  */
+@Component
+@ConfigurationProperties(prefix = "app.info", ignoreInvalidFields = true)
 @Data
 @EqualsAndHashCode
 @ToString

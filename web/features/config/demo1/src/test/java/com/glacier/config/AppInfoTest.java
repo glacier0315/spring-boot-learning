@@ -1,6 +1,9 @@
 package com.glacier.config;
 
 import com.glacier.domain.AppInfo;
+import com.glacier.domain.CatInfo;
+import com.glacier.domain.CowInfo;
+import com.glacier.domain.DogInfo;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,6 +25,12 @@ class AppInfoTest {
 
     @Resource
     private AppInfo appInfo;
+    @Resource
+    private CatInfo catInfo;
+    @Resource
+    private DogInfo dogInfo;
+    @Resource
+    private CowInfo cowInfo;
 
     @BeforeEach
     void setUp() {
@@ -41,10 +50,6 @@ class AppInfoTest {
         System.out.println("name6\t" + appInfo.getName6());
         System.out.println("name7\t" + appInfo.getName7());
         System.out.println("name8\t" + appInfo.getName8());
-    }
-
-    @Test
-    void test2() {
         System.out.println("property0\t" + appInfo.getProperty0());
         System.out.println("property1\t" + appInfo.getProperty1());
         System.out.println("property2\t" + appInfo.getProperty2());
@@ -60,5 +65,20 @@ class AppInfoTest {
         System.out.println("property12\t" + appInfo.getProperty12());
         System.out.println("property13\t" + appInfo.getProperty13());
         System.out.println("property14\t" + appInfo.getProperty14());
+    }
+
+    @Test
+    void test2() {
+        System.out.println(catInfo);
+    }
+
+    @Test
+    void test3() {
+        System.out.println(dogInfo );
+    }
+
+    @Test
+    void test4() {
+        System.out.println(cowInfo);
     }
 }
