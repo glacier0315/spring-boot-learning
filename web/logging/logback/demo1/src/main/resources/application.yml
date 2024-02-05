@@ -1,6 +1,8 @@
 spring:
   profiles:
     active: dev
+  application:
+    name: logback-demo1
 
 server:
   servlet:
