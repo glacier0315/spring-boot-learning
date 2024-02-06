@@ -2,11 +2,10 @@ package com.glacier.service.impl;
 
 import com.glacier.domain.User;
 import com.glacier.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import jakarta.annotation.PostConstruct;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import jakarta.annotation.PostConstruct;
 import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -19,12 +18,11 @@ import java.util.stream.Collectors;
  * @author glacier
  * @version 1.0
  */
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
-	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
-	
 	private final Set<User> users = new HashSet<>(200);
-	
+
 	@PostConstruct
 	public void init() {
 		User user = null;
@@ -41,11 +39,11 @@ public class UserServiceImpl implements UserService {
 			user.setDuty("duty_" + i);
 			user.setJoinDate(LocalDateTime.now());
 			user.setDoubleData(random.nextDouble() + random.nextInt(1));
-			
+
 			this.users.add(user);
 		}
 	}
-	
+
 	/**
 	 * 查询用户
 	 *
@@ -54,22 +52,22 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public User findByUsername(String username) {
-		LOGGER.info("findByUsername {}", username);
+		log.info("findByUsername {}", username);
 		return users.stream()
 				.filter(user -> username != null && username.equals(user.getUsername()))
 				.findFirst()
 				.orElse(null);
 	}
-	
+
 	@Override
 	public List<User> findAll() {
-		LOGGER.info("findAll");
+		log.info("findAll");
 		return new ArrayList<>(this.users);
 	}
-	
+
 	@Override
 	public List<User> findList(User user) {
-		LOGGER.info("findList {}", user);
+		log.info("findList {}", user);
 		return this.users.parallelStream()
 				.limit(10)
 				.collect(Collectors.toList());
