@@ -3,6 +3,7 @@ package com.galcier.service.impl;
 import com.galcier.domain.User;
 import com.galcier.enums.HandleType;
 import com.galcier.event.CustomEvent;
+import com.galcier.event.LoginEvent;
 import com.galcier.event.UserEvent;
 import com.galcier.service.UserService;
 import jakarta.annotation.Resource;
@@ -46,6 +47,7 @@ public class UserServiceImpl implements UserService, ApplicationEventPublisherAw
         applicationEventPublisher.publishEvent(new CustomEvent<>(user));
         // 普通对象
         applicationEventPublisher.publishEvent(user);
+
         return "success";
     }
 
@@ -58,6 +60,8 @@ public class UserServiceImpl implements UserService, ApplicationEventPublisherAw
         applicationContext.publishEvent(new CustomEvent<>(user));
         // 普通对象
         applicationContext.publishEvent(user);
+        // 普通对象
+        applicationEventPublisher.publishEvent(new LoginEvent(user));
         return "success";
     }
 

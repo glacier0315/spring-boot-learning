@@ -3,14 +3,17 @@ package com.galcier.handler;
 import com.galcier.domain.Product;
 import com.galcier.domain.User;
 import com.galcier.event.CustomEvent;
+import com.galcier.event.LoginEvent;
 import com.galcier.event.MessageEvent;
 import com.galcier.event.UserEvent;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.annotation.Order;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.event.TransactionalEventListener;
 
 /**
  * date 2023-12-16 11:41
@@ -19,11 +22,9 @@ import org.springframework.stereotype.Component;
  * @author glacier
  * @version 1.0
  */
-
+@Slf4j
 @Component
 public class EventHandler {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(EventHandler.class);
 
     /**
      * 处理用户事件
@@ -35,7 +36,7 @@ public class EventHandler {
     @EventListener(classes = {UserEvent.class})
     public MessageEvent handleUserEvent(UserEvent event) {
         User user = (User) event.getSource();
-        LOGGER.info("处理用户事件, 用户名： {}， 密码： {}, 当前线程： {}", user.getUsername(), user.getPassword(),
+        log.info("处理用户事件, 用户名： {}， 密码： {}, 当前线程： {}", user.getUsername(), user.getPassword(),
                 Thread.currentThread().getName());
         return new MessageEvent(user);
     }
@@ -49,7 +50,7 @@ public class EventHandler {
     @EventListener(classes = {UserEvent.class}, condition = "#event.type.toString().equals('REGISTER')")
     public void handleRegister(UserEvent event) {
         User user = (User) event.getSource();
-        LOGGER.info("处理用户注册事件, 用户名： {}， 密码： {}, 当前线程： {}", user.getUsername(), user.getPassword(),
+        log.info("处理用户注册事件, 用户名： {}， 密码： {}, 当前线程： {}", user.getUsername(), user.getPassword(),
                 Thread.currentThread().getName());
     }
 
@@ -62,7 +63,7 @@ public class EventHandler {
     @EventListener(classes = {UserEvent.class}, condition = "#event.type.toString().equals('LOGIN')")
     public void handleLogin(UserEvent event) {
         User user = (User) event.getSource();
-        LOGGER.info("处理用户登录事件, 用户名： {}， 密码： {}, 当前线程： {}", user.getUsername(), user.getPassword(),
+        log.info("处理用户登录事件, 用户名： {}， 密码： {}, 当前线程： {}", user.getUsername(), user.getPassword(),
                 Thread.currentThread().getName());
     }
 
@@ -74,7 +75,7 @@ public class EventHandler {
     @EventListener(classes = {UserEvent.class}, condition = "#event.type.toString().equals('LOGOUT')")
     public void handleLogout(UserEvent event) {
         User user = (User) event.getSource();
-        LOGGER.info("处理用户注销事件, 用户名： {}， 密码： {}, 当前线程： {}", user.getUsername(), user.getPassword(),
+        log.info("处理用户注销事件, 用户名： {}， 密码： {}, 当前线程： {}", user.getUsername(), user.getPassword(),
                 Thread.currentThread().getName());
     }
 
@@ -87,7 +88,7 @@ public class EventHandler {
     @Async
     @EventListener
     public void onUserCreated(User user) {
-        LOGGER.info("处理用户创建事件, 用户名： {}， 密码： {}, 当前线程： {}", user.getUsername(), user.getPassword(),
+        log.info("处理用户创建事件, 用户名： {}， 密码： {}, 当前线程： {}", user.getUsername(), user.getPassword(),
                 Thread.currentThread().getName());
     }
 
@@ -99,7 +100,7 @@ public class EventHandler {
     @EventListener
     public void onProductCreated(CustomEvent<Product> event) {
         Product product = (Product) event.getSource();
-        LOGGER.info("处理商品创建事件, 名称： {}， 价格： {}, 当前线程： {}", product.getName(), product.getPrice(),
+        log.info("处理商品创建事件, 名称： {}， 价格： {}, 当前线程： {}", product.getName(), product.getPrice(),
                 Thread.currentThread().getName());
     }
 
@@ -113,6 +114,21 @@ public class EventHandler {
     @Async
     public void handleMessageEvent(MessageEvent event) {
         User user = (User) event.getSource();
-        LOGGER.info("处理消息事件, 用户名： {}， 密码： {}, 当前线程： {}", user.getUsername(), user.getPassword(), Thread.currentThread().getName());
+        log.info("处理消息事件, 用户名： {}， 密码： {}, 当前线程： {}", user.getUsername(), user.getPassword(), Thread.currentThread().getName());
+    }
+
+
+    /**
+     * 处理用户登录事件
+     *
+     * @param event 监听事件
+     */
+    @Async
+    @TransactionalEventListener(classes = {LoginEvent.class})
+    public void handleLoginAsync(LoginEvent event) {
+        User user = event.getUser();
+        log.info("异步处理用户登录事件, 用户名： {}， 密码： {}, 当前线程： {}", user.getUsername(), user.getPassword(),
+                Thread.currentThread().getName());
+        throw new RuntimeException("测试异常");
     }
 }
