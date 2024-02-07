@@ -24,6 +24,7 @@ configurations {
 }
 
 ext {
+    springStatemachineVersion = "4.0.0"
     shiro = "1.13.0"
     springBootAdmin = "3.1.8"
 
@@ -42,6 +43,7 @@ dependencies {
     // 引入其他 bom
     api platform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
     api platform("cn.hutool:hutool-bom:${hutoolVersion}")
+    api platform("org.springframework.statemachine:spring-statemachine-bom:${springStatemachineVersion}")
 
     //在constraints块中定义依赖版本约束
     constraints {
