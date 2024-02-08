@@ -1,0 +1,6 @@
+debug: true
+
+
+spring:
+  r2dbc:
+    url: r2dbc:h2:file:///./tmp/testdb
