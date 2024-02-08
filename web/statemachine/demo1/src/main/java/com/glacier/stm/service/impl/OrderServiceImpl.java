@@ -1,8 +1,8 @@
 package com.glacier.stm.service.impl;
 
 import com.glacier.stm.entity.Order;
-import com.glacier.stm.enums.OrderEventEnum;
-import com.glacier.stm.enums.OrderStatusEnum;
+import com.glacier.stm.enums.Events;
+import com.glacier.stm.enums.States;
 import com.glacier.stm.service.OrderService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -26,14 +26,14 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class OrderServiceImpl implements OrderService {
     @Resource
-    private StateMachine<OrderStatusEnum, OrderEventEnum> orderStateMachine;
+    private StateMachine<States, Events> orderStateMachine;
 
     private final Map<Long, Order> orders = new ConcurrentHashMap<>(100);
 
     @Override
     public Order create(long id) {
         Order order = new Order();
-        order.setOrderStatus(OrderStatusEnum.WAIT_PAYMENT);
+        order.setOrderStatus(States.WAIT_PAYMENT);
         order.setOrderId(id);
         orders.put(order.getOrderId(), order);
         log.info("订单创建成功:{}", order);
@@ -44,7 +44,7 @@ public class OrderServiceImpl implements OrderService {
     public Order pay(long id) {
         Order order = orders.get(id);
         log.info("尝试支付，订单号：{}", id);
-        Message<OrderEventEnum> message = MessageBuilder.withPayload(OrderEventEnum.PAYED).
+        Message<Events> message = MessageBuilder.withPayload(Events.PAYED).
                 setHeader("order", order).build();
         if (!sendEvent(message)) {
             log.info(" 支付失败, 状态异常，订单号：{}", id);
@@ -56,7 +56,7 @@ public class OrderServiceImpl implements OrderService {
     public Order deliver(long id) {
         Order order = orders.get(id);
         log.info(" 尝试发货，订单号：{}", id);
-        Message<OrderEventEnum> message = MessageBuilder.withPayload(OrderEventEnum.DELIVERY)
+        Message<Events> message = MessageBuilder.withPayload(Events.DELIVERY)
                 .setHeader("order", order).build();
         if (!sendEvent(message)) {
             log.info(" 发货失败，状态异常，订单号：{}", id);
@@ -68,7 +68,7 @@ public class OrderServiceImpl implements OrderService {
     public Order receive(long id) {
         Order order = orders.get(id);
         log.info(" 尝试收货，订单号：{}", id);
-        Message<OrderEventEnum> message = MessageBuilder.withPayload(OrderEventEnum.RECEIVED)
+        Message<Events> message = MessageBuilder.withPayload(Events.RECEIVED)
                 .setHeader("order", order).build();
         if (!sendEvent(message)) {
             log.info(" 收货失败，状态异常，订单号：{}", id);
@@ -88,7 +88,7 @@ public class OrderServiceImpl implements OrderService {
      * @param message
      * @return
      */
-    private synchronized boolean sendEvent(Message<OrderEventEnum> message) {
+    private synchronized boolean sendEvent(Message<Events> message) {
         boolean result = false;
         try {
             orderStateMachine.start();
@@ -98,7 +98,7 @@ public class OrderServiceImpl implements OrderService {
         } finally {
             if (Objects.nonNull(message)) {
                 Order order = (Order) message.getHeaders().get("order");
-                if (Objects.nonNull(order) && Objects.equals(order.getOrderStatus(), OrderStatusEnum.FINISH)) {
+                if (Objects.nonNull(order) && Objects.equals(order.getOrderStatus(), States.FINISH)) {
                     orderStateMachine.stop();
                 }
             }

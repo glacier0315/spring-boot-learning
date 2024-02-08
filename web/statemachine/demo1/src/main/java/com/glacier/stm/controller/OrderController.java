@@ -20,8 +20,8 @@ public class OrderController {
     @Resource
     private OrderService orderService;
 
-    @RequestMapping("/testOrderStatusChange")
-    public String testOrderStatusChange() {
+    @RequestMapping("/process")
+    public String process() {
         SecureRandom random = new SecureRandom();
         long id = random.nextLong();
         orderService.create(id);

@@ -1,7 +1,7 @@
 package com.glacier.stm.controller;
 
-import com.glacier.stm.enums.OrderEventEnum;
-import com.glacier.stm.enums.OrderStatusEnum;
+import com.glacier.stm.enums.Events;
+import com.glacier.stm.enums.States;
 import com.glacier.stm.service.OrderService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +27,7 @@ public class OrderController {
     @Resource
     private OrderService orderService;
     @Resource
-    private StateMachine<OrderStatusEnum, OrderEventEnum> stateMachine;
+    private StateMachine<States, Events> stateMachine;
 
     @GetMapping("/process")
     public String process() {
@@ -42,7 +42,7 @@ public class OrderController {
     }
 
     @GetMapping("/info")
-    public List<OrderStatusEnum> info() {
+    public List<States> info() {
         return stateMachine.getStates()
                 .stream()
                 .map(State::getId)
@@ -50,19 +50,19 @@ public class OrderController {
     }
 
     @GetMapping("/start")
-    public OrderStatusEnum start() {
+    public States start() {
         stateMachine.startReactively().block();
         return state();
     }
 
     @GetMapping("/state")
-    public OrderStatusEnum state() {
+    public States state() {
         return Mono.defer(() -> Mono.justOrEmpty(stateMachine.getState().getId()))
                 .block();
     }
 
     @GetMapping("/stop")
-    public OrderStatusEnum stop() {
+    public States stop() {
         stateMachine.startReactively().block();
         return state();
     }

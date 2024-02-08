@@ -1,6 +1,6 @@
 package com.glacier.stm.entity;
 
-import com.glacier.stm.enums.OrderStatusEnum;
+import com.glacier.stm.enums.States;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -20,5 +20,5 @@ import java.io.Serializable;
 @ToString
 public class Order implements Serializable {
     private Long orderId;
-    private OrderStatusEnum orderStatus;
+    private States orderStatus;
 }

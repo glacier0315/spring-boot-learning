@@ -1,6 +1,6 @@
 package com.glacier.stm.annotations;
 
-import com.glacier.stm.enums.OrderStatusEnum;
+import com.glacier.stm.enums.States;
 import org.springframework.statemachine.annotation.OnTransition;
 
 import java.lang.annotation.ElementType;
@@ -18,7 +18,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @OnTransition
 public @interface StatesOnTransition {
-    OrderStatusEnum[] source() default {};
+    States[] source() default {};
 
-    OrderStatusEnum[] target() default {};
+    States[] target() default {};
 }

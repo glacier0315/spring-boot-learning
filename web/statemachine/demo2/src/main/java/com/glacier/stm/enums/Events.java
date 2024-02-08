@@ -7,7 +7,7 @@ package com.glacier.stm.enums;
  * @author glacier
  * @version 1.0
  */
-public enum OrderEventEnum {
+public enum Events {
     /**
      * 支付
      */

@@ -1,7 +1,7 @@
 package com.glacier.stm.config;
 
-import com.glacier.stm.enums.OrderEventEnum;
-import com.glacier.stm.enums.OrderStatusEnum;
+import com.glacier.stm.enums.Events;
+import com.glacier.stm.enums.States;
 import com.glacier.stm.listener.OrderStateMachineListener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -26,13 +26,13 @@ import java.util.EnumSet;
 @Slf4j
 @Configuration
 @EnableStateMachine
-public class OrderStatusMachineConfig extends EnumStateMachineConfigurerAdapter<OrderStatusEnum, OrderEventEnum> {
+public class OrderStatusMachineConfig extends EnumStateMachineConfigurerAdapter<States, Events> {
 
     /**
      * 配置监听
      */
     @Override
-    public void configure(StateMachineConfigurationConfigurer<OrderStatusEnum, OrderEventEnum> config) throws Exception {
+    public void configure(StateMachineConfigurationConfigurer<States, Events> config) throws Exception {
         config.withConfiguration()
                 .autoStartup(true)
                 .listener(listener());
@@ -42,80 +42,80 @@ public class OrderStatusMachineConfig extends EnumStateMachineConfigurerAdapter<
      * 配置状态
      */
     @Override
-    public void configure(StateMachineStateConfigurer<OrderStatusEnum, OrderEventEnum> states) throws Exception {
+    public void configure(StateMachineStateConfigurer<States, Events> states) throws Exception {
         states.withStates()
-                .initial(OrderStatusEnum.WAIT_PAYMENT)
-                .end(OrderStatusEnum.FINISH)
-                .states(EnumSet.allOf(OrderStatusEnum.class));
+                .initial(States.WAIT_PAYMENT)
+                .end(States.FINISH)
+                .states(EnumSet.allOf(States.class));
     }
 
     /**
      * 配置状态转换事件关系
      */
     @Override
-    public void configure(StateMachineTransitionConfigurer<OrderStatusEnum, OrderEventEnum> transitions) throws Exception {
+    public void configure(StateMachineTransitionConfigurer<States, Events> transitions) throws Exception {
         transitions
                 .withExternal()
-                .source(OrderStatusEnum.WAIT_PAYMENT)
-                .target(OrderStatusEnum.WAIT_DELIVER)
-                .event(OrderEventEnum.PAYED)
+                .source(States.WAIT_PAYMENT)
+                .target(States.WAIT_DELIVER)
+                .event(Events.PAYED)
                 .action(paySuccess(), payError())
                 .and()
                 .withExternal()
-                .source(OrderStatusEnum.WAIT_DELIVER)
-                .target(OrderStatusEnum.WAIT_RECEIVE)
-                .event(OrderEventEnum.DELIVERY)
+                .source(States.WAIT_DELIVER)
+                .target(States.WAIT_RECEIVE)
+                .event(Events.DELIVERY)
                 .action(deliverySuccess(), deliveryError())
                 .and()
                 .withExternal()
-                .source(OrderStatusEnum.WAIT_RECEIVE)
-                .target(OrderStatusEnum.FINISH)
-                .event(OrderEventEnum.RECEIVED)
+                .source(States.WAIT_RECEIVE)
+                .target(States.FINISH)
+                .event(Events.RECEIVED)
                 .action(receivedSuccess(), receivedError());
     }
 
     @Bean
-    public StateMachineListener<OrderStatusEnum, OrderEventEnum> listener() {
+    public StateMachineListener<States, Events> listener() {
         return new OrderStateMachineListener();
     }
 
     @Bean
-    Action<OrderStatusEnum, OrderEventEnum> paySuccess() {
+    Action<States, Events> paySuccess() {
         return context -> {
             log.info("支付成功， {}", context);
         };
     }
 
     @Bean
-    Action<OrderStatusEnum, OrderEventEnum> payError() {
+    Action<States, Events> payError() {
         return context -> {
             log.info("支付失败， {}", context);
         };
     }
 
     @Bean
-    Action<OrderStatusEnum, OrderEventEnum> deliverySuccess() {
+    Action<States, Events> deliverySuccess() {
         return context -> {
             log.info("发货成功， {}", context);
         };
     }
 
     @Bean
-    Action<OrderStatusEnum, OrderEventEnum> deliveryError() {
+    Action<States, Events> deliveryError() {
         return context -> {
             log.info("发货失败， {}", context);
         };
     }
 
     @Bean
-    Action<OrderStatusEnum, OrderEventEnum> receivedSuccess() {
+    Action<States, Events> receivedSuccess() {
         return context -> {
             log.info("收货成功， {}", context);
         };
     }
 
     @Bean
-    Action<OrderStatusEnum, OrderEventEnum> receivedError() {
+    Action<States, Events> receivedError() {
         return context -> {
             log.info("收货失败， {}", context);
         };

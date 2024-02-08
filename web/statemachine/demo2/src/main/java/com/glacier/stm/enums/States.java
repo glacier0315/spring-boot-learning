@@ -7,7 +7,7 @@ package com.glacier.stm.enums;
  * @author glacier
  * @version 1.0
  */
-public enum OrderStatusEnum {
+public enum States {
     /**
      * 待支付
      */

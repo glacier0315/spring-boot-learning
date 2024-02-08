@@ -1,7 +1,7 @@
 package com.glacier.stm.config;
 
-import com.glacier.stm.enums.OrderEventEnum;
-import com.glacier.stm.enums.OrderStatusEnum;
+import com.glacier.stm.enums.Events;
+import com.glacier.stm.enums.States;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.statemachine.config.EnableStateMachine;
 import org.springframework.statemachine.config.StateMachineConfigurerAdapter;
@@ -18,37 +18,37 @@ import java.util.EnumSet;
  */
 @Configuration
 @EnableStateMachine
-public class OrderStatusMachineConfig extends StateMachineConfigurerAdapter<OrderStatusEnum, OrderEventEnum> {
+public class OrderStatusMachineConfig extends StateMachineConfigurerAdapter<States, Events> {
 
     /**
      * 配置状态
      */
     @Override
-    public void configure(StateMachineStateConfigurer<OrderStatusEnum, OrderEventEnum> states) throws Exception {
+    public void configure(StateMachineStateConfigurer<States, Events> states) throws Exception {
         states.withStates()
-                .initial(OrderStatusEnum.WAIT_PAYMENT)
-                .end(OrderStatusEnum.FINISH)
-                .states(EnumSet.allOf(OrderStatusEnum.class));
+                .initial(States.WAIT_PAYMENT)
+                .end(States.FINISH)
+                .states(EnumSet.allOf(States.class));
     }
 
     /**
      * 配置状态转换事件关系
      */
     @Override
-    public void configure(StateMachineTransitionConfigurer<OrderStatusEnum, OrderEventEnum> transitions) throws Exception {
+    public void configure(StateMachineTransitionConfigurer<States, Events> transitions) throws Exception {
         transitions.withExternal()
-                .source(OrderStatusEnum.WAIT_PAYMENT)
-                .target(OrderStatusEnum.WAIT_DELIVER)
-                .event(OrderEventEnum.PAYED)
+                .source(States.WAIT_PAYMENT)
+                .target(States.WAIT_DELIVER)
+                .event(Events.PAYED)
                 .and()
                 .withExternal()
-                .source(OrderStatusEnum.WAIT_DELIVER)
-                .target(OrderStatusEnum.WAIT_RECEIVE)
-                .event(OrderEventEnum.DELIVERY)
+                .source(States.WAIT_DELIVER)
+                .target(States.WAIT_RECEIVE)
+                .event(Events.DELIVERY)
                 .and()
                 .withExternal()
-                .source(OrderStatusEnum.WAIT_RECEIVE)
-                .target(OrderStatusEnum.FINISH)
-                .event(OrderEventEnum.RECEIVED);
+                .source(States.WAIT_RECEIVE)
+                .target(States.FINISH)
+                .event(Events.RECEIVED);
     }
 }
